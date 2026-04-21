@@ -12,6 +12,8 @@ import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
 import { Sheet } from '../components/ui/Sheet';
 import { Pill } from '../components/ui/Pill';
+import { Segmented } from '../components/ui/Segmented';
+import { LocationPicker } from '../components/map/LocationPicker';
 import { todayISO } from '../lib/format';
 import { runOCR } from '../lib/ocr';
 import { reverseGeocode, forwardGeocode } from '../lib/geocode';
@@ -291,16 +293,19 @@ export default function AddPage() {
 }
 
 function PlaceEditor({
-  current, onClose, onSet, onClear, onUseCurrent,
+  current, startCoords, onClose, onSet, onClear, onUseCurrent,
 }: {
   current: string | null;
+  startCoords: { lat: number; lng: number } | null;
   onClose: () => void;
   onSet: (p: { lat: number; lng: number; label: string }) => void;
   onClear: () => void;
   onUseCurrent: () => void;
 }) {
+  const [mode, setMode] = useState<'search' | 'pin'>('search');
   const [q, setQ] = useState('');
   const [results, setResults] = useState<{ lat: number; lng: number; label: string }[]>([]);
+
   useEffect(() => {
     if (!q.trim() || q.length < 3) { setResults([]); return; }
     const id = setTimeout(async () => {
@@ -309,21 +314,68 @@ function PlaceEditor({
     }, 350);
     return () => clearTimeout(id);
   }, [q]);
+
   return (
     <div className="space-y-3">
-      {current && <div className="glass rounded-2xl px-4 py-3 text-sm">Current: <b>{current}</b></div>}
-      <Input leading={<MapPin size={16} />} placeholder="Search a city or place" value={q} onChange={(e) => setQ(e.target.value)} />
-      <div className="space-y-1.5">
-        {results.map((r, i) => (
-          <button key={i} onClick={() => onSet(r)} className="press w-full text-left glass rounded-2xl px-4 py-3 text-sm">
-            {r.label}
-          </button>
-        ))}
-      </div>
-      <div className="flex gap-2 pt-2">
-        <Button variant="glass" onClick={onUseCurrent}>Use current location</Button>
-        {current && <Button variant="glass" onClick={onClear}>Clear</Button>}
-        <Button variant="ghost" onClick={onClose}>Close</Button>
+      {current && (
+        <div className="glass rounded-2xl px-4 py-3 text-sm flex items-center gap-2">
+          <MapPin size={14} className="text-accent-500" />
+          <span className="flex-1 truncate"><b>{current}</b></span>
+          <button onClick={onClear} className="press text-xs font-semibold text-ink-3">Clear</button>
+        </div>
+      )}
+
+      <button
+        onClick={onUseCurrent}
+        className="press w-full glass rounded-2xl h-12 px-4 flex items-center gap-3 text-left"
+      >
+        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-accent-500 to-[#9b5bff] grid place-items-center text-white">
+          <MapPin size={14} />
+        </div>
+        <div className="flex-1">
+          <div className="font-semibold text-sm">Use my current location</div>
+          <div className="text-xs text-ink-3">GPS — automatic</div>
+        </div>
+      </button>
+
+      <Segmented
+        value={mode}
+        onChange={setMode}
+        options={[
+          { value: 'search', label: 'Search' },
+          { value: 'pin',    label: 'Pick on map' },
+        ]}
+      />
+
+      {mode === 'search' ? (
+        <div className="space-y-2">
+          <Input
+            leading={<MapPin size={16} />}
+            placeholder="Search a city, street, or place"
+            value={q}
+            onChange={(e) => setQ(e.target.value)}
+            autoFocus
+          />
+          <div className="space-y-1.5 max-h-[40vh] overflow-y-auto no-scrollbar">
+            {results.map((r, i) => (
+              <button key={i} onClick={() => onSet(r)} className="press w-full text-left glass rounded-2xl px-4 py-3 text-sm">
+                {r.label}
+              </button>
+            ))}
+            {q.length >= 3 && results.length === 0 && (
+              <div className="text-center text-sm text-ink-3 py-4">No matches</div>
+            )}
+          </div>
+        </div>
+      ) : (
+        <LocationPicker
+          initial={startCoords}
+          onConfirm={(p) => onSet(p)}
+        />
+      )}
+
+      <div className="flex justify-end pt-2">
+        <Button variant="ghost" onClick={onClose}>Cancel</Button>
       </div>
     </div>
   );
