@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Receipt body with torn bottom edge -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M30,20 L78,20 C79.7,20 81,21.3 81,23 L81,82 L74,77 L67,82 L60,77 L54,82 L47,77 L40,82 L33,77 L27,82 L27,23 C27,21.3 28.3,20 30,20 Z"/>
+
+    <!-- Receipt lines - dark indigo on white -->
+    <path android:fillColor="#6366F1" android:pathData="M35,34 L73,34 L73,38 L35,38 Z"/>
+    <path android:fillColor="#6366F1" android:pathData="M35,45 L62,45 L62,48 L35,48 Z"/>
+    <path android:fillColor="#8B5CF6" android:pathData="M35,55 L70,55 L70,58 L35,58 Z"/>
+    <path android:fillColor="#8B5CF6" android:pathData="M35,65 L55,65 L55,68 L35,68 Z"/>
+
+    <!-- Euro symbol -->
+    <path
+        android:fillColor="#6366F1"
+        android:pathData="M65,62 C62.8,62 61,63.8 61,66 C61,68.2 62.8,70 65,70 C66.4,70 67.6,69.3 68.4,68.2 L67,67.3 C66.5,68 65.8,68.4 65,68.4 C63.7,68.4 62.6,67.3 62.6,66 C62.6,64.7 63.7,63.6 65,63.6 C65.8,63.6 66.5,64 67,64.7 L68.4,63.8 C67.6,62.7 66.4,62 65,62 Z M62,65.2 L67.8,65.2 L67.8,66.8 L62,66.8 Z"/>
+</vector>

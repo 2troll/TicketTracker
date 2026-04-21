@@ -1,0 +1,206 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-1: #f4f6fb;
+  --bg-2: #e7ecf7;
+  --bg-3: #eef2ff;
+  --accent: #3b5bff;
+  --accent-2: #9b5bff;
+  --ink:  #0a0a0e;
+  --ink-2:#3b3f4a;
+  --ink-3:#6b7180;
+  --hair: rgba(10,10,30,0.08);
+  --sb-top: env(safe-area-inset-top, 0px);
+  --sb-bot: env(safe-area-inset-bottom, 0px);
+}
+.dark {
+  --bg-1: #07080c;
+  --bg-2: #0d1018;
+  --bg-3: #11152a;
+  --ink:  #f4f5fa;
+  --ink-2:#c9ccd6;
+  --ink-3:#8b91a3;
+  --hair: rgba(255,255,255,0.08);
+}
+
+html, body, #root { height: 100%; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", Inter, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  color: var(--ink);
+  background:
+    radial-gradient(1200px 600px at 80% -10%, rgba(155,91,255,0.28), transparent 60%),
+    radial-gradient(900px 500px at -10% 20%, rgba(59,91,255,0.28), transparent 55%),
+    radial-gradient(700px 400px at 110% 80%, rgba(255,91,170,0.22), transparent 55%),
+    linear-gradient(180deg, var(--bg-1), var(--bg-2));
+  background-attachment: fixed;
+  overscroll-behavior-y: none;
+}
+.dark body {
+  background:
+    radial-gradient(1000px 600px at 85% -10%, rgba(100,60,220,0.45), transparent 55%),
+    radial-gradient(900px 500px at -10% 10%, rgba(30,60,220,0.45), transparent 55%),
+    radial-gradient(700px 400px at 100% 100%, rgba(220,60,160,0.28), transparent 55%),
+    linear-gradient(180deg, #05060a, #0a0c14);
+}
+
+* { box-sizing: border-box; }
+
+button { -webkit-tap-highlight-color: transparent; }
+
+/* ---------- Liquid Glass primitives ---------- */
+.glass {
+  background: var(--glass-bg, rgba(255,255,255,0.60));
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.55);
+  box-shadow:
+    0 1px 0 0 rgba(255,255,255,0.6) inset,
+    0 -1px 0 0 rgba(0,0,0,0.04) inset,
+    0 20px 60px -20px rgba(10,20,60,0.18),
+    0 8px 24px -12px rgba(10,20,60,0.1);
+}
+.dark .glass {
+  background: rgba(20,22,30,0.55);
+  border: 1px solid rgba(255,255,255,0.10);
+  box-shadow:
+    0 1px 0 0 rgba(255,255,255,0.08) inset,
+    0 -1px 0 0 rgba(0,0,0,0.35) inset,
+    0 20px 60px -20px rgba(0,0,0,0.55),
+    0 8px 24px -12px rgba(0,0,0,0.35);
+}
+
+.glass-strong {
+  background: rgba(255,255,255,0.82);
+  backdrop-filter: blur(40px) saturate(200%);
+  -webkit-backdrop-filter: blur(40px) saturate(200%);
+  border: 1px solid rgba(255,255,255,0.7);
+}
+.dark .glass-strong {
+  background: rgba(18,20,28,0.78);
+  border: 1px solid rgba(255,255,255,0.10);
+}
+
+.hairline { border: 1px solid var(--hair); }
+
+.press { transition: transform .18s cubic-bezier(.22,1,.36,1), opacity .18s ease; }
+.press:active { transform: scale(.965); opacity: .92; }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+.pt-safe { padding-top: calc(var(--sb-top) + 8px); }
+.pb-safe { padding-bottom: calc(var(--sb-bot) + 8px); }
+
+.text-ink   { color: var(--ink); }
+.text-ink-2 { color: var(--ink-2); }
+.text-ink-3 { color: var(--ink-3); }
+
+/* ---------- Map overrides (Leaflet) ---------- */
+.leaflet-container {
+  background: transparent !important;
+  font-family: inherit;
+}
+.leaflet-control-attribution,
+.leaflet-control-zoom { display: none !important; }
+
+.ticket-pin {
+  background: none !important;
+  border: none !important;
+}
+.pin-wrap {
+  width: 44px; height: 44px;
+  display: grid; place-items: center;
+  transform-origin: 50% 100%;
+  animation: pop .5s cubic-bezier(.22,1,.36,1);
+}
+.pin-core {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: linear-gradient(135deg, #3b5bff, #9b5bff);
+  box-shadow: 0 10px 24px -6px rgba(59,91,255,.55), 0 0 0 4px rgba(255,255,255,.45);
+  display: grid; place-items: center;
+  color: white; font-weight: 700; font-size: 13px;
+  border: 1.5px solid rgba(255,255,255,.65);
+}
+.pin-core.is-cluster {
+  background: linear-gradient(135deg, #0d1020, #2a2f55);
+}
+.pin-halo {
+  position: absolute; inset: -6px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(59,91,255,0.35), transparent 70%);
+  animation: pulseSoft 2.4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip { background: transparent !important; box-shadow: none !important; }
+.leaflet-popup-content { margin: 0 !important; width: auto !important; }
+.leaflet-popup-close-button { display: none !important; }
+
+.ticket-bubble {
+  cursor: pointer;
+  min-width: 220px;
+  padding: 12px 14px;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.82);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.7);
+  box-shadow: 0 18px 40px -18px rgba(10,20,60,0.35), 0 1px 0 rgba(255,255,255,0.6) inset;
+  color: var(--ink);
+  transform-origin: 50% 100%;
+  animation: pop .42s cubic-bezier(.22,1,.36,1);
+}
+.dark .ticket-bubble {
+  background: rgba(18,20,28,0.82);
+  border: 1px solid rgba(255,255,255,0.10);
+  color: var(--ink);
+}
+.ticket-bubble:active { transform: scale(.975); }
+.ticket-bubble-row { display: flex; align-items: center; gap: 10px; }
+.ticket-bubble-icon {
+  width: 38px; height: 38px; border-radius: 12px;
+  display: grid; place-items: center; font-size: 19px;
+  background: linear-gradient(135deg, rgba(59,91,255,0.18), rgba(155,91,255,0.18));
+}
+.ticket-bubble-main { flex: 1; min-width: 0; }
+.ticket-bubble-title { font-weight: 700; font-size: 14.5px; letter-spacing: -0.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ticket-bubble-sub { font-size: 11.5px; color: var(--ink-3); margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ticket-bubble-amt { font-weight: 800; font-size: 14px; letter-spacing: -0.01em; margin-left: 4px; }
+.ticket-bubble-cta {
+  margin-top: 8px; font-size: 11px; font-weight: 700;
+  color: #3b5bff; text-align: right;
+}
+.dark .ticket-bubble-cta { color: #a5b4ff; }
+
+/* Map color filter for minimalist look */
+.map-tone .leaflet-tile {
+  filter: grayscale(1) contrast(.95) brightness(1.02);
+}
+.dark .map-tone .leaflet-tile {
+  filter: grayscale(1) invert(1) hue-rotate(180deg) contrast(.9) brightness(.9);
+}
+
+/* Inputs */
+input, textarea, select {
+  font-family: inherit;
+  color: var(--ink);
+}
+input::placeholder, textarea::placeholder { color: var(--ink-3); }
+
+/* Recharts tooltip overrides */
+.recharts-default-tooltip {
+  background: rgba(255,255,255,0.9) !important;
+  border: 1px solid var(--hair) !important;
+  border-radius: 14px !important;
+  backdrop-filter: blur(18px);
+  padding: 8px 12px !important;
+}
+.dark .recharts-default-tooltip {
+  background: rgba(20,22,30,0.85) !important;
+  color: var(--ink) !important;
+}
