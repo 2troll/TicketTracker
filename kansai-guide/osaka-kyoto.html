@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Osaka–Kyoto Full Arc — Tony Hanma Private Kansai Guide</title>
+  <meta name="description" content="2-day private tour covering the best of Osaka and Kyoto — the most popular route with Tony Hanma. Best seller." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    :root {
+      --bg:#080808; --bg-1:#0e0e0e; --bg-2:#161616;
+      --glass:rgba(255,255,255,0.05); --glass-b:rgba(255,255,255,0.09);
+      --text:#f2f2f2; --text-2:rgba(242,242,242,0.58); --text-3:rgba(242,242,242,0.28);
+      --acc:#c85a00; --acc2:#ff8c35;
+      --grad:linear-gradient(135deg,#c85a00,#ff8c35);
+      --line:rgba(255,255,255,0.08);
+      --serif:'Cormorant Garamond',Georgia,serif;
+      --sans:'Plus Jakarta Sans',system-ui,sans-serif;
+    }
+    html { scroll-behavior:smooth; }
+    body { background:var(--bg); color:var(--text); font-family:var(--sans); font-size:16px; line-height:1.7; overflow-x:hidden; }
+    ::-webkit-scrollbar { width:3px; } ::-webkit-scrollbar-thumb { background:var(--acc); }
+    img { width:100%; height:100%; object-fit:cover; display:block; } a { text-decoration:none; }
+    nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:1rem 2rem; display:flex; justify-content:space-between; align-items:center; background:rgba(8,8,8,0.82); backdrop-filter:blur(24px); border-bottom:1px solid var(--line); }
+    .nav-back { font-size:0.7rem; font-weight:500; letter-spacing:0.1em; color:var(--text-2); transition:color 0.2s; }
+    .nav-back:hover { color:var(--text); }
+    .nav-city { font-family:var(--serif); font-size:1.05rem; color:var(--text); }
+    .nav-book { font-size:0.65rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; padding:0.55rem 1.4rem; background:var(--grad); color:#fff; border-radius:999px; transition:opacity 0.2s,transform 0.2s; }
+    .nav-book:hover { opacity:0.88; transform:translateY(-1px); }
+    .dest-hero { position:relative; height:92vh; min-height:560px; display:flex; align-items:flex-end; padding:5rem 2.5rem; overflow:hidden; }
+    .dest-hero-bg { position:absolute; inset:0; }
+    .dest-hero-bg img { object-position:center 55%; filter:brightness(0.36); }
+    .dest-hero-grad { position:absolute; inset:0; background:linear-gradient(to top,rgba(8,8,8,1) 0%,rgba(8,8,8,0.22) 45%,transparent 100%); }
+    .dest-hero-content { position:relative; z-index:2; max-width:900px; }
+    .dest-tag { display:inline-block; font-size:0.6rem; font-weight:600; letter-spacing:0.3em; text-transform:uppercase; color:var(--acc2); border:1px solid rgba(255,140,53,0.35); border-radius:999px; padding:0.35rem 1rem; margin-bottom:1.2rem; }
+    .best-seller-tag { display:inline-block; font-size:0.58rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; background:var(--grad); color:#fff; border-radius:999px; padding:0.3rem 0.9rem; margin-left:0.6rem; }
+    .dest-kanji { font-family:var(--serif); font-size:clamp(4rem,12vw,9rem); color:rgba(255,255,255,0.05); position:absolute; top:2rem; right:2.5rem; line-height:1; user-select:none; }
+    .dest-title { font-family:var(--serif); font-size:clamp(2.5rem,7vw,5.8rem); font-weight:300; line-height:0.97; margin-bottom:1rem; }
+    .dest-title em { font-style:italic; background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .dest-sub { font-size:1rem; font-weight:300; color:var(--text-2); max-width:52ch; line-height:1.8; }
+    .facts-bar { background:var(--bg-1); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+    .facts-inner { max-width:1140px; margin:0 auto; padding:0 2rem; display:grid; grid-template-columns:repeat(4,1fr); }
+    .fact { padding:1.6rem 1rem; border-right:1px solid var(--line); text-align:center; }
+    .fact:last-child { border-right:none; }
+    .fact-label { font-size:0.58rem; font-weight:600; letter-spacing:0.22em; text-transform:uppercase; color:var(--text-3); margin-bottom:0.4rem; }
+    .fact-val { font-family:var(--serif); font-size:1.55rem; font-weight:300; color:var(--text); line-height:1; }
+    .fact-note { font-size:0.62rem; color:var(--text-3); margin-top:0.25rem; }
+    .wrap { max-width:1140px; margin:0 auto; padding:0 2rem; }
+    .sec-head { text-align:center; margin-bottom:4rem; }
+    .sec-label { display:inline-block; font-size:0.6rem; font-weight:600; letter-spacing:0.28em; text-transform:uppercase; background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:0.9rem; }
+    .sec-h2 { font-family:var(--serif); font-size:clamp(2.2rem,5vw,3.8rem); font-weight:300; line-height:1.1; margin-bottom:1rem; }
+    .sec-h2 .acc { background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; font-style:italic; }
+    .sec-p { color:var(--text-2); font-size:0.95rem; max-width:55ch; margin:0 auto; }
+    .dest-gallery { padding:8rem 0; background:var(--bg); }
+    .gal-grid { display:grid; grid-template-columns:repeat(3,1fr); grid-auto-rows:280px; gap:0.8rem; }
+    .g-item { position:relative; overflow:hidden; border-radius:14px; background:var(--bg-2); }
+    .g-item.wide { grid-column:span 2; }
+    .g-item.tall { grid-row:span 2; }
+    .g-item img { transition:transform 0.7s,filter 0.5s; filter:brightness(0.85); }
+    .g-item:hover img { transform:scale(1.07); filter:brightness(1); }
+    .g-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(0,0,0,0.75) 0%,transparent 55%); }
+    .g-cap { position:absolute; bottom:1rem; left:1.2rem; right:1rem; }
+    .g-cap strong { display:block; font-size:0.85rem; font-weight:600; color:#fff; }
+    .g-cap span { font-size:0.68rem; color:rgba(255,255,255,0.55); font-family:var(--serif); font-style:italic; }
+    .g-fallback { width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-family:var(--serif); font-size:4rem; color:rgba(255,255,255,0.08); }
+    .dest-route { padding:8rem 0; background:var(--bg-1); }
+    .day-label { font-size:0.65rem; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:var(--acc2); background:rgba(200,90,0,0.12); border:1px solid rgba(255,140,53,0.2); border-radius:999px; padding:0.3rem 1rem; display:inline-block; margin-bottom:2rem; margin-left:8.2rem; }
+    .timeline { position:relative; max-width:720px; margin:0 auto; }
+    .timeline::before { content:''; position:absolute; left:3.2rem; top:0; bottom:0; width:1px; background:var(--line); }
+    .t-step { display:flex; gap:1.8rem; margin-bottom:2.8rem; position:relative; }
+    .t-step:last-child { margin-bottom:0; }
+    .t-num { flex-shrink:0; width:6.4rem; text-align:right; padding-top:0.15rem; }
+    .t-time { font-size:0.72rem; font-weight:600; letter-spacing:0.08em; color:var(--acc2); display:block; }
+    .t-dot { position:absolute; left:3.2rem; top:0.45rem; width:10px; height:10px; background:var(--acc); border-radius:50%; transform:translateX(-50%); box-shadow:0 0 0 3px rgba(200,90,0,0.2); }
+    .t-body { flex:1; background:var(--glass); border:1px solid var(--line); border-radius:14px; padding:1.2rem 1.4rem; }
+    .t-place { font-size:0.95rem; font-weight:600; margin-bottom:0.3rem; }
+    .t-desc { font-size:0.85rem; color:var(--text-2); line-height:1.65; }
+    .t-badge { display:inline-block; font-size:0.58rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; padding:0.22rem 0.7rem; background:rgba(200,90,0,0.13); color:var(--acc2); border-radius:999px; margin-top:0.7rem; }
+    .dest-map { padding:8rem 0; background:var(--bg); }
+    .flow-wrap { overflow-x:auto; padding:1rem 0; }
+    .flow-svg { display:block; margin:0 auto; }
+    .dest-price { padding:8rem 0; background:var(--bg-1); }
+    .price-card { max-width:520px; margin:0 auto; background:var(--bg-2); border:1px solid rgba(255,140,53,0.2); border-radius:24px; padding:3rem; text-align:center; position:relative; overflow:hidden; }
+    .price-card::before { content:''; position:absolute; top:-60px; right:-60px; width:200px; height:200px; background:radial-gradient(circle,rgba(200,90,0,0.15),transparent 70%); border-radius:50%; pointer-events:none; }
+    .price-bestseller { display:inline-block; font-size:0.6rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; background:var(--grad); color:#fff; border-radius:999px; padding:0.35rem 1.1rem; margin-bottom:1rem; }
+    .price-city { font-family:var(--serif); font-size:1rem; color:var(--text-2); margin-bottom:0.5rem; font-style:italic; }
+    .price-main { font-family:var(--serif); font-size:4rem; font-weight:300; line-height:1; margin:0.5rem 0; background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .price-note { font-size:0.72rem; color:var(--text-3); margin-bottom:2rem; }
+    .price-includes { list-style:none; text-align:left; margin-bottom:2.5rem; }
+    .price-includes li { font-size:0.85rem; color:var(--text-2); padding:0.55rem 0; border-bottom:1px solid var(--line); display:flex; align-items:center; gap:0.7rem; }
+    .price-includes li::before { content:'✓'; color:var(--acc2); font-weight:700; flex-shrink:0; }
+    .price-cta { display:block; width:100%; padding:1.1rem; background:var(--grad); color:#fff; font-size:0.75rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; border-radius:999px; transition:opacity 0.2s,transform 0.2s; border:none; cursor:pointer; }
+    .price-cta:hover { opacity:0.88; transform:translateY(-2px); }
+    .price-sub { font-size:0.7rem; color:var(--text-3); margin-top:1rem; }
+    .dest-footer { background:var(--bg); border-top:1px solid var(--line); padding:2.5rem 2rem; text-align:center; }
+    .dest-footer a { font-size:0.75rem; color:var(--text-3); display:inline-flex; align-items:center; gap:0.5rem; transition:color 0.2s; }
+    .dest-footer a:hover { color:var(--text); }
+    @media(max-width:700px) {
+      .facts-inner { grid-template-columns:repeat(2,1fr); }
+      .gal-grid { grid-template-columns:1fr 1fr; grid-auto-rows:200px; }
+      .g-item.wide { grid-column:span 2; }
+      .timeline::before { left:0; }
+      .t-num { display:none; }
+      .day-label { margin-left:0; }
+      .t-dot { left:0; }
+      .t-step { gap:1.2rem; padding-left:1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-back">← Kansai Guide</a>
+  <span class="nav-city">大阪 → 京都 Full Arc</span>
+  <a href="index.html#contact" class="nav-book">Book Now</a>
+</nav>
+
+<section class="dest-hero">
+  <div class="dest-hero-bg">
+    <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1800&q=85" alt="Kyoto torii gates at dawn" onerror="this.style.background='#161616'"/>
+  </div>
+  <div class="dest-hero-grad"></div>
+  <div class="dest-kanji">全弧</div>
+  <div class="dest-hero-content">
+    <div style="display:flex;align-items:center;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.2rem;">
+      <div class="dest-tag" style="margin-bottom:0">Route 06 · 2 Days</div>
+      <span class="best-seller-tag">Best Seller</span>
+    </div>
+    <h1 class="dest-title"><em>Osaka–Kyoto</em><br>Full Arc</h1>
+    <p class="dest-sub">The complete Kansai experience — Osaka's electric streets and food culture on Day 1, Kyoto's ancient silence and ceremony on Day 2. The tour guests ask for most.</p>
+  </div>
+</section>
+
+<div class="facts-bar">
+  <div class="facts-inner">
+    <div class="fact"><div class="fact-label">Duration</div><div class="fact-val">2 Days</div><div class="fact-note">hotel pickup included</div></div>
+    <div class="fact"><div class="fact-label">Group Size</div><div class="fact-val">2–6</div><div class="fact-note">fully private</div></div>
+    <div class="fact"><div class="fact-label">From</div><div class="fact-val">¥32,000</div><div class="fact-note">per person · 2 days</div></div>
+    <div class="fact"><div class="fact-label">Departure</div><div class="fact-val" style="font-size:0.9rem;padding-top:0.3rem;">Hotel Pickup</div><div class="fact-note">8:30 AM · Day 1</div></div>
+  </div>
+</div>
+
+<section class="dest-gallery">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-label">Photo Gallery</span>
+      <h2 class="sec-h2">Two cities, <span class="acc">two worlds</span></h2>
+      <p class="sec-p">The contrast between Osaka's neon chaos and Kyoto's ancient calm is what makes this two-day tour unforgettable.</p>
+    </div>
+    <div class="gal-grid">
+
+      <div class="g-item wide">
+        <img src="https://images.unsplash.com/photo-1557409518-691ebcd96038?auto=format&fit=crop&w=1100&q=80" alt="Dotonbori Osaka neon" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class="g-fallback" style="display:none">大阪</div>
+        <div class="g-overlay"></div>
+        <div class="g-cap"><strong>Day 1 — Dotonbori by Night</strong><span>道頓堀 · Osaka's Neon Heart</span></div>
+      </div>
+
+      <div class="g-item tall">
+        <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=700&q=80" alt="Fushimi Inari Kyoto" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class="g-fallback" style="display:none">京都</div>
+        <div class="g-overlay"></div>
+        <div class="g-cap"><strong>Day 2 — Fushimi Inari</strong><span>伏見稲荷 · 10,000 Red Gates</span></div>
+      </div>
+
+      <div class="g-item">
+        <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&w=700&q=80" alt="Kuromon market Osaka" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class="g-fallback" style="display:none">市</div>
+        <div class="g-overlay"></div>
+        <div class="g-cap"><strong>Kuromon Market</strong><span>黒門市場 · Day 1 Morning</span></div>
+      </div>
+
+      <div class="g-item">
+        <img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=700&q=80" alt="Gion Kyoto" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class="g-fallback" style="display:none">祇園</div>
+        <div class="g-overlay"></div>
+        <div class="g-cap"><strong>Gion District</strong><span>祇園 · Day 2 Afternoon</span></div>
+      </div>
+
+      <div class="g-item wide">
+        <img src="https://images.unsplash.com/photo-1460528917014-dbf0b40d5ad4?auto=format&fit=crop&w=1100&q=80" alt="Arashiyama bamboo" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class="g-fallback" style="display:none">嵐山</div>
+        <div class="g-overlay"></div>
+        <div class="g-cap"><strong>Arashiyama Bamboo Grove</strong><span>嵐山 · Day 2 Morning</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="dest-route">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-label">2-Day Itinerary</span>
+      <h2 class="sec-h2">The complete <span class="acc">Kansai arc</span></h2>
+      <p class="sec-p">The best of both cities, back-to-back — no overlap, no repetition, maximum contrast.</p>
+    </div>
+    <div class="timeline">
+
+      <div class="day-label">Day 1 — Osaka</div>
+
+      <div class="t-step">
+        <div class="t-num"><span class="t-time">8:30 AM</span></div>
+        <div class="t-dot"></div>
+        <div class="t-body">
+          <div class="t-place">Hotel Pickup — Osaka</div>
+          <div class="t-desc">I meet you at your hotel lobby. No station confusion, no navigating the subway on day one. We walk into Osaka together.</div>
+          <div class="t-badge">Hotel Pickup Included</div>
+        </div>
+      </div>
+
+      <div class="t-step">
+        <div class="t-num"><span class="t-time">9:15 AM</span></div>
+        <div class="t-dot"></div>
+        <div class="t-body">
+          <div class="t-place">Kuromon Market — The Kitchen of Osaka</div>
+          <div class="t-desc">200-year-old covered market. We arrive early: vendors setting up, almost no other tourists. Wagyu skewers, sea urchin, giant scallops grilled in front of you. I know which stalls use the best ingredients and which ones are tourist traps.</div>
+          <div class="t-badge">Food Tasting Included</div>
+        </div>
+      </div>
+
+      <div class="t-step">
+        <div class="t-num"><span class="t-time">11:00 AM</span></div>
+        <div class="t-dot"></div>
+        <div class="t-body">
+          <div class="t-place">Shinsekai &amp; Tsūtenkaku Tower</div>
+          <div class="t-desc">The retro working-class neighbourhood built to look like Paris in 1912. Kushikatsu (deep-fried skewers on checkered tablecloths), billiards halls, old men playing shōgi. Not for every traveller — absolutely unforgettable for those who appreciate real neighbourhood character.</div>
+        </div>
+      </div>
+
+      <div class="t-step">
+        <div class="t-num"><span class="t-time">2:00 PM</span></div>
+        <div class="t-dot"></div>
+        <div class="t-body">
+          <div class="t-place">Osaka Castle &amp; Surroundings</div>
+          <div class="t-desc">The castle that Toyotomi Hideyoshi built in 1583 — seat of the daimyo who first unified Japan. The moat, the white towers, the golden shachi ornaments. I skip the interior museum and take you to the hidden garden on the east side where locals picnic, and the view from the north tower wall is better than the main gate.</div>
+        </div>
+      </div>
+
+      <div class="t-step">
+        <div class="t-num"><span class="t-time">7:00 PM</span></div>
+        <div class="t-dot"></div>
+        <div class="t-body">
+          <div class="t-place">Dotonbori Neon &amp; Night Izakaya</div>
+          <div class="t-desc">The canal comes alive after dark. We do the full circuit: neon Glico man, the 3D crab, the rotating sushi counter at the end of the alley. Then: a standing izakaya — yakitori skewers, cold Sapporo draft, locals coming in after work. Osaka at its most alive.</div>
+          <div class="t-badge">Best Sake Pairing of the Trip</div>
+        </div>
+      </div>
+
+      <div style="height:1px; background:var(--line); margin:3rem 0 2.5rem;"></div>
+      <div class="day-label">Day 2 — Kyoto</div>
+
+      <div class="t-step">
+        <div class="t-num"><span class="t-time">8:00 AM</span></div>
+        <div class="t-dot"></div>
+        <div class="t-body">
+          <div class="t-place">Train to Kyoto — 15 Minutes</div>
+          <div class="t-desc">JR Shinkansen or Shinkansen-speed Haruka — Osaka to Kyoto in 15 minutes. We arrive when the temples open but before the tour buses.</div>
+        </div>
+      </div>
+
+      <div class="t-step">
+        <div class="t-num"><span class="t-time">8:30 AM</span></div>
+        <div class="t-dot"></div>
+        <div class="t-body">
+          <div class="t-place">Arashiyama — Bamboo &amp; River</div>
+          <div class="t-desc">The bamboo grove before 9 AM is something else entirely — light filtering through 20-metre stalks, the sound of wood creaking in wind. Then the Ōi River, the wooden boats, the Tenryūji garden with its pond and raked gravel design that hasn't changed since 1345.</div>
+        </div>
+      </div>
+
+      <div class="t-step">
+        <div class="t-num"><span class="t-time">11:30 AM</span></div>
+        <div class="t-dot"></div>
+        <div class="t-body">
+          <div class="t-place">Hidden Nishiki Market Lunch</div>
+          <div class="t-desc">Kyoto's narrow covered food street: pickled vegetables, fresh yuba (tofu skin), grilled mochi, matcha soft serve. We eat standing up, the Kyoto way. Lunch costs about ¥800 and is better than any restaurant.</div>
+          <div class="t-badge">Street Food Lunch</div>
+        </div>
+      </div>
+
+      <div class="t-step">
+        <div class="t-num"><span class="t-time">2:00 PM</span></div>
+        <div class="t-dot"></div>
+        <div class="t-body">
+          <div class="t-place">Gion &amp; Private Tea Ceremony</div>
+          <div class="t-desc">The preserved geisha district — stone lanes, wooden machiya townhouses, hanging lanterns. Then a private matcha tea ceremony in a back-street chashitsu with a practitioner who has studied for 20 years. Not a tourist performance — an actual ceremony.</div>
+          <div class="t-badge">Tea Ceremony Included</div>
+        </div>
+      </div>
+
+      <div class="t-step">
+        <div class="t-num"><span class="t-time">5:30 PM</span></div>
+        <div class="t-dot"></div>
+        <div class="t-body">
+          <div class="t-place">Sake Tasting on the Return Train</div>
+          <div class="t-desc">I board the return train with a selection of 4 single-brewery sake purchased in Kyoto. We taste on the 15-minute ride back — the most comfortable sake bar in Kansai. You arrive at Osaka station with the day complete, slightly happy, and already planning to return.</div>
+          <div class="t-badge">Private Train Sake Tasting</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="dest-map">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-label">Route Map</span>
+      <h2 class="sec-h2">The <span class="acc">full arc</span></h2>
+    </div>
+    <div class="flow-wrap">
+      <svg class="flow-svg" viewBox="0 0 860 210" width="860" height="210" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="lg6" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0%" stop-color="#c85a00"/>
+            <stop offset="100%" stop-color="#ff8c35"/>
+          </linearGradient>
+          <marker id="arr6" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L8,3 z" fill="url(#lg6)"/>
+          </marker>
+        </defs>
+        <line x1="78" y1="90" x2="782" y2="90" stroke="url(#lg6)" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arr6)"/>
+
+        <!-- Day 1 stops -->
+        <rect x="5" y="5" width="390" height="48" rx="8" fill="rgba(200,90,0,0.06)" stroke="rgba(200,90,0,0.15)" stroke-width="1"/>
+        <text x="15" y="23" fill="rgba(255,140,53,0.6)" font-size="8" font-family="'Plus Jakarta Sans',sans-serif" font-weight="700" letter-spacing="2">DAY 1 — OSAKA</text>
+        <text x="15" y="38" fill="rgba(255,255,255,0.25)" font-size="7.5" font-family="sans-serif">market → castle → dotonbori → izakaya</text>
+
+        <rect x="405" y="5" width="445" height="48" rx="8" fill="rgba(91,170,245,0.06)" stroke="rgba(91,170,245,0.15)" stroke-width="1"/>
+        <text x="415" y="23" fill="rgba(91,170,245,0.6)" font-size="8" font-family="'Plus Jakarta Sans',sans-serif" font-weight="700" letter-spacing="2">DAY 2 — KYOTO</text>
+        <text x="415" y="38" fill="rgba(255,255,255,0.25)" font-size="7.5" font-family="sans-serif">arashiyama → nishiki → gion → sake train</text>
+
+        <circle cx="78" cy="90" r="22" fill="#161616" stroke="#c85a00" stroke-width="2"/>
+        <text x="78" y="86" text-anchor="middle" fill="#ff8c35" font-size="9" font-family="'Plus Jakarta Sans',sans-serif" font-weight="700">D1 AM</text>
+        <text x="78" y="98" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="7.5" font-family="sans-serif">8:30</text>
+        <text x="78" y="134" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9" font-family="'Plus Jakarta Sans',sans-serif" font-weight="600">Osaka Hotel</text>
+        <text x="78" y="147" text-anchor="middle" fill="rgba(255,255,255,0.32)" font-size="8" font-family="'Cormorant Garamond',serif">大阪</text>
+
+        <circle cx="238" cy="90" r="20" fill="#161616" stroke="url(#lg6)" stroke-width="1.5"/>
+        <text x="238" y="94" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="11" font-family="'Cormorant Garamond',serif">食</text>
+        <text x="238" y="62" text-anchor="middle" fill="rgba(255,140,53,0.8)" font-size="8" font-family="sans-serif">9:15 AM</text>
+        <text x="238" y="134" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9" font-family="'Plus Jakarta Sans',sans-serif" font-weight="600">Kuromon + Castle</text>
+        <text x="238" y="147" text-anchor="middle" fill="rgba(255,255,255,0.32)" font-size="8" font-family="'Cormorant Garamond',serif">黒門・大阪城</text>
+
+        <circle cx="398" cy="90" r="20" fill="#161616" stroke="url(#lg6)" stroke-width="1.5"/>
+        <text x="398" y="94" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="11" font-family="'Cormorant Garamond',serif">夜</text>
+        <text x="398" y="62" text-anchor="middle" fill="rgba(255,140,53,0.8)" font-size="8" font-family="sans-serif">7:00 PM</text>
+        <text x="398" y="134" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9" font-family="'Plus Jakarta Sans',sans-serif" font-weight="600">Dotonbori Night</text>
+        <text x="398" y="147" text-anchor="middle" fill="rgba(255,255,255,0.32)" font-size="8" font-family="'Cormorant Garamond',serif">道頓堀</text>
+
+        <circle cx="558" cy="90" r="20" fill="#161616" stroke="url(#lg6)" stroke-width="1.5"/>
+        <text x="558" y="94" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="11" font-family="'Cormorant Garamond',serif">竹</text>
+        <text x="558" y="62" text-anchor="middle" fill="rgba(91,170,245,0.8)" font-size="8" font-family="sans-serif">Day 2 AM</text>
+        <text x="558" y="134" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9" font-family="'Plus Jakarta Sans',sans-serif" font-weight="600">Arashiyama</text>
+        <text x="558" y="147" text-anchor="middle" fill="rgba(255,255,255,0.32)" font-size="8" font-family="'Cormorant Garamond',serif">嵐山</text>
+        <text x="475" y="80" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-size="7.5" font-family="sans-serif">JR 15 min</text>
+
+        <circle cx="718" cy="90" r="22" fill="url(#lg6)"/>
+        <text x="718" y="86" text-anchor="middle" fill="#fff" font-size="9" font-family="'Plus Jakarta Sans',sans-serif" font-weight="700">FINISH</text>
+        <text x="718" y="98" text-anchor="middle" fill="rgba(255,255,255,0.75)" font-size="7.5" font-family="sans-serif">6:00 PM</text>
+        <text x="718" y="134" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9" font-family="'Plus Jakarta Sans',sans-serif" font-weight="600">Gion + Sake Train</text>
+        <text x="718" y="147" text-anchor="middle" fill="rgba(255,255,255,0.32)" font-size="8" font-family="'Cormorant Garamond',serif">祇園・帰宅</text>
+        <text x="635" y="80" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-size="7.5" font-family="sans-serif">walk + Nishiki</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="dest-price">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-label">Pricing</span>
+      <h2 class="sec-h2">Book the <span class="acc">full arc</span></h2>
+    </div>
+    <div class="price-card">
+      <div class="price-bestseller">Most Popular Tour</div>
+      <div class="price-city">Osaka–Kyoto Full Arc — 2 Days</div>
+      <div class="price-main">¥32,000</div>
+      <div class="price-note">per person · minimum 2 guests · hotel pickup included both days</div>
+      <ul class="price-includes">
+        <li>100% private — just your group</li>
+        <li>Hotel pickup &amp; drop-off in Osaka</li>
+        <li>All food tastings (Kuromon + izakaya)</li>
+        <li>Private tea ceremony in Gion</li>
+        <li>Sake selection for train tasting</li>
+        <li>English, Spanish &amp; Arabic spoken</li>
+      </ul>
+      <a href="index.html#contact" class="price-cta">Request This Tour</a>
+      <p class="price-sub">Usually booked 2–3 weeks in advance — contact early for prime dates</p>
+    </div>
+  </div>
+</section>
+
+<footer class="dest-footer">
+  <a href="index.html">← Back to Tony Hanma — Private Kansai Guide</a>
+</footer>
+
+</body>
+</html>

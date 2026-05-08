@@ -300,6 +300,11 @@
     .g-fallback { width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-family:var(--serif); font-size:3rem; color:rgba(229,48,48,0.3); }
     @media (max-width:900px) { .gal-grid { grid-template-columns:repeat(2,1fr); grid-auto-rows:180px; } .g-wide,.g-tall { grid-column:span 1; grid-row:span 1; } }
     @media (max-width:560px) { .gal-grid { grid-template-columns:1fr 1fr; grid-auto-rows:140px; } .map-legend { gap:0.5rem; } }
+
+    /* ── ROUTE PAGE LINKS ── */
+    .route-link { display:inline-flex; align-items:center; gap:0.4rem; margin-top:1.1rem; font-size:0.68rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-3); text-decoration:none; transition:color 0.2s,gap 0.2s; }
+    .route-link:hover { color:var(--text); gap:0.65rem; }
+    .route-link::after { content:'→'; }
   </style>
 </head>
 <body>
@@ -613,6 +618,7 @@
           <li data-t="r1.s4">Hidden shotengai &amp; sake bar at dusk</li>
         </ul>
         <div class="route-dep">📍 <strong data-t="r1.dep">Namba Station Exit 14 · 9:00 AM</strong></div>
+        <a href="osaka.html" class="route-link">Full route &amp; photos</a>
       </div>
 
       <div class="route-card tilt-card rev d2"><div class="glare"></div>
@@ -630,6 +636,7 @@
           <li data-t="r2.s4">Riverside kaiseki dinner reservation</li>
         </ul>
         <div class="route-dep">📍 <strong data-t="r2.dep">Kyoto Station Central Exit · 8:30 AM</strong></div>
+        <a href="kyoto.html" class="route-link">Full route &amp; photos</a>
       </div>
 
       <div class="route-card tilt-card rev d3"><div class="glare"></div>
@@ -647,6 +654,7 @@
           <li data-t="r3.s4">Hidden castle-town gardens at dusk</li>
         </ul>
         <div class="route-dep">📍 <strong data-t="r3.dep">Osaka / Kyoto · 8:00 AM</strong></div>
+        <a href="nara.html" class="route-link">Full route &amp; photos</a>
       </div>
 
       <div class="route-card tilt-card rev d4"><div class="glare"></div>
@@ -664,6 +672,7 @@
           <li data-t="r4.s4">Dawn prayer with monks — return by afternoon</li>
         </ul>
         <div class="route-dep">📍 <strong data-t="r4.dep">Osaka Namba Station · 9:00 AM</strong></div>
+        <a href="koyasan.html" class="route-link">Full route &amp; photos</a>
       </div>
 
       <div class="route-card tilt-card rev d5"><div class="glare"></div>
@@ -681,6 +690,7 @@
           <li data-t="r5.s4">Meriken Park harbour at golden hour</li>
         </ul>
         <div class="route-dep">📍 <strong data-t="r5.dep">Sannomiya Station · 10:00 AM</strong></div>
+        <a href="kobe.html" class="route-link">Full route &amp; photos</a>
       </div>
 
       <div class="route-card tilt-card rev d6"><div class="glare"></div>
@@ -698,6 +708,7 @@
           <li data-t="r6.s4">Return with a private sake tasting on the train</li>
         </ul>
         <div class="route-dep">📍 <strong data-t="r6.dep">Hotel pickup included · 8:30 AM</strong></div>
+        <a href="osaka-kyoto.html" class="route-link">Full route &amp; photos</a>
       </div>
 
     </div>
