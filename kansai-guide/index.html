@@ -262,6 +262,44 @@
       .hero-ctas { flex-direction:column; align-items:center; }
       .btn-acc,.btn-ghost { width:100%; max-width:280px; text-align:center; }
     }
+
+    /* ── ROUTE MAP ── */
+    #routemap { padding:10rem 0; background:var(--bg); position:relative; overflow:hidden; }
+    .rmap-orb { width:60vw; height:60vw; top:-20%; left:50%; transform:translateX(-50%); background:radial-gradient(circle,rgba(229,48,48,0.07) 0%,transparent 60%); animation:drift3 22s ease-in-out infinite; }
+    .rmap-head { text-align:center; margin-bottom:3rem; position:relative; z-index:1; }
+    .rmap-head p { font-size:0.97rem; font-weight:300; color:var(--text-2); max-width:42ch; margin:0.8rem auto 0; }
+    .map-container { position:relative; z-index:1; background:rgba(255,255,255,0.03); border:1px solid var(--glass-b); border-radius:24px; padding:2rem; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); }
+    .map-svg { width:100%; max-width:760px; margin:0 auto; display:block; }
+    @keyframes cpulse { 0%,100%{opacity:0.15;r:12} 50%{opacity:0.05;r:20} }
+    .cpulse { animation:cpulse 2.8s ease-in-out infinite; }
+    .map-legend { display:flex; flex-wrap:wrap; gap:0.7rem; justify-content:center; margin-top:1.6rem; }
+    .leg-item { display:flex; align-items:center; gap:0.5rem; font-size:0.66rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-3); cursor:pointer; padding:0.38rem 0.9rem; border-radius:999px; border:1px solid var(--line); transition:all 0.25s; }
+    .leg-item:hover,.leg-item.on { color:var(--text); border-color:rgba(255,255,255,0.2); background:rgba(255,255,255,0.07); }
+    .leg-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+    .rline { transition:opacity 0.35s, stroke-width 0.35s; }
+    .rline.dim { opacity:0.08; }
+    .rline.hi  { stroke-width:4 !important; }
+
+    /* ── GALLERY ── */
+    #gallery { padding:10rem 0; background:var(--bg-1); position:relative; overflow:hidden; }
+    .gal-orb { width:55vw; height:55vw; bottom:-15%; right:-10%; background:radial-gradient(circle,rgba(255,107,53,0.07) 0%,transparent 65%); animation:drift2 20s ease-in-out infinite; }
+    .gal-head { text-align:center; margin-bottom:3rem; position:relative; z-index:1; }
+    .gal-head p { font-size:0.97rem; font-weight:300; color:var(--text-2); max-width:42ch; margin:0.8rem auto 0; }
+    .gal-grid { display:grid; grid-template-columns:repeat(4,1fr); grid-auto-rows:220px; gap:0.8rem; position:relative; z-index:1; }
+    .g-wide { grid-column:span 2; }
+    .g-tall { grid-row:span 2; }
+    .g-item { position:relative; overflow:hidden; border-radius:16px; cursor:pointer; background:rgba(229,48,48,0.07); }
+    .g-item img { width:100%; height:100%; object-fit:cover; display:block; filter:grayscale(18%) brightness(0.9); transition:transform 0.7s cubic-bezier(0.16,1,0.3,1),filter 0.5s ease; }
+    .g-item:hover img { transform:scale(1.09); filter:grayscale(0%) brightness(1); }
+    .g-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(0,0,0,0.72) 0%,transparent 55%); opacity:0; transition:opacity 0.4s; }
+    .g-item:hover .g-overlay { opacity:1; }
+    .g-cap { position:absolute; bottom:1rem; left:1.1rem; right:1.1rem; opacity:0; transform:translateY(6px); transition:opacity 0.4s,transform 0.4s; }
+    .g-item:hover .g-cap { opacity:1; transform:translateY(0); }
+    .g-cap strong { display:block; font-size:0.78rem; font-weight:600; color:#fff; letter-spacing:0.08em; }
+    .g-cap span { font-size:0.6rem; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.6); }
+    .g-fallback { width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-family:var(--serif); font-size:3rem; color:rgba(229,48,48,0.3); }
+    @media (max-width:900px) { .gal-grid { grid-template-columns:repeat(2,1fr); grid-auto-rows:180px; } .g-wide,.g-tall { grid-column:span 1; grid-row:span 1; } }
+    @media (max-width:560px) { .gal-grid { grid-template-columns:1fr 1fr; grid-auto-rows:140px; } .map-legend { gap:0.5rem; } }
   </style>
 </head>
 <body>
@@ -272,6 +310,8 @@
     <li><a href="#region"       data-t="nav.region">Kansai</a></li>
     <li><a href="#about"        data-t="nav.guide">Guide</a></li>
     <li><a href="#experiences"  data-t="nav.tours">Tours</a></li>
+    <li><a href="#routemap"     data-t="nav.map">Map</a></li>
+    <li><a href="#gallery"      data-t="nav.gallery">Gallery</a></li>
     <li><a href="#routes"       data-t="nav.routes">Routes</a></li>
     <li><a href="#pricing"      data-t="nav.pricing">Pricing</a></li>
     <li><a href="#testimonials" data-t="nav.reviews">Reviews</a></li>
@@ -423,6 +463,131 @@
   </div>
 </section>
 
+<!-- ROUTE MAP -->
+<section id="routemap">
+  <div class="orb rmap-orb"></div>
+  <div class="wrap">
+    <div class="rmap-head rev">
+      <span class="section-label" data-t="map.label">Interactive Map</span>
+      <h2 data-t="map.h2">Our routes across <span class="acc">Kansai</span></h2>
+      <p data-t="map.sub">Click a route below the map to highlight it.</p>
+    </div>
+    <div class="map-container rev d1">
+      <svg class="map-svg" viewBox="0 0 720 440" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="mgrid" width="28" height="28" patternUnits="userSpaceOnUse">
+            <path d="M 28 0 L 0 0 0 28" fill="none" stroke="rgba(255,255,255,0.045)" stroke-width="0.5"/>
+          </pattern>
+          <filter id="mglow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="4" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+
+        <!-- Grid -->
+        <rect width="720" height="440" fill="url(#mgrid)" rx="12"/>
+
+        <!-- Osaka Bay water area -->
+        <path d="M 170,310 Q 210,370 260,390 Q 310,405 350,385 Q 380,360 370,330 Q 340,295 295,282 Q 240,265 195,280 Z" fill="rgba(20,50,90,0.3)" stroke="rgba(40,100,180,0.15)" stroke-width="1"/>
+        <text x="260" y="340" text-anchor="middle" fill="rgba(40,120,220,0.25)" font-size="9" font-family="sans-serif" letter-spacing="2">OSAKA BAY</text>
+
+        <!-- Region soft boundary -->
+        <path d="M 55,170 Q 90,95 160,75 Q 230,55 300,65 Q 390,70 450,110 Q 495,145 505,210 Q 510,275 480,330 Q 450,390 390,415 Q 340,432 285,420 Q 225,405 175,375 Q 130,345 98,300 Q 65,255 55,210 Z" fill="rgba(229,48,48,0.025)" stroke="rgba(229,48,48,0.08)" stroke-width="1"/>
+
+        <!-- Mountain hint (north Kyoto) -->
+        <path d="M 340,60 L 360,30 L 380,60 Z M 390,70 L 408,42 L 426,70 Z M 290,68 L 305,45 L 320,68 Z" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+
+        <!-- ROUTE LINES (drawn under city dots) -->
+        <!-- R03: Himeji → Osaka → Nara (amber) -->
+        <path id="rl-3" class="rline" d="M 88,208 L 282,248 L 392,252" stroke="#ffaa00" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+        <!-- R04: Osaka → Kōyasan (purple) -->
+        <path id="rl-4" class="rline" d="M 282,248 Q 290,310 308,372" stroke="#b06cc8" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/>
+        <!-- R05: Osaka → Kobe (blue) -->
+        <path id="rl-5" class="rline" d="M 282,248 L 192,233" stroke="#4499dd" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/>
+        <!-- R06: Osaka → Kyoto (teal) -->
+        <path id="rl-6" class="rline" d="M 282,248 Q 310,195 355,145" stroke="#22cc88" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/>
+        <!-- R01 loop: Osaka food (red circle) -->
+        <circle id="rl-1" class="rline" cx="282" cy="248" r="38" stroke="#e53030" stroke-width="2.5" stroke-dasharray="8 5" opacity="0.5" fill="none"/>
+        <!-- R02 loop: Kyoto (orange circle) -->
+        <circle id="rl-2" class="rline" cx="355" cy="145" r="32" stroke="#ff6b35" stroke-width="2.5" stroke-dasharray="8 5" opacity="0.5" fill="none"/>
+
+        <!-- City glow halos -->
+        <circle cx="282" cy="248" r="32" fill="rgba(229,48,48,0.07)"/>
+        <circle cx="355" cy="145" r="24" fill="rgba(255,107,53,0.07)"/>
+
+        <!-- CITY MARKERS -->
+        <!-- Himeji -->
+        <g class="city-dot" style="cursor:default">
+          <circle cx="88" cy="208" r="12" class="cpulse" fill="#e53030"/>
+          <circle cx="88" cy="208" r="5" fill="#ff8870" filter="url(#mglow)"/>
+          <text x="88" y="193" text-anchor="middle" fill="rgba(255,255,255,0.75)" font-size="9.5" font-family="'Plus Jakarta Sans',sans-serif" font-weight="600" letter-spacing="1.2">HIMEJI</text>
+          <text x="88" y="228" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="9" font-family="'Cormorant Garamond',serif">姫路</text>
+        </g>
+
+        <!-- Kobe -->
+        <g class="city-dot" style="cursor:default">
+          <circle cx="192" cy="233" r="12" class="cpulse" fill="#e53030" style="animation-delay:0.6s"/>
+          <circle cx="192" cy="233" r="5" fill="#ff8870" filter="url(#mglow)"/>
+          <text x="192" y="218" text-anchor="middle" fill="rgba(255,255,255,0.75)" font-size="9.5" font-family="'Plus Jakarta Sans',sans-serif" font-weight="600" letter-spacing="1.2">KOBE</text>
+          <text x="192" y="253" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="9" font-family="'Cormorant Garamond',serif">神戸</text>
+        </g>
+
+        <!-- Osaka (main hub — bigger) -->
+        <g class="city-dot" style="cursor:default">
+          <circle cx="282" cy="248" r="18" class="cpulse" fill="#e53030" style="animation-delay:0.3s"/>
+          <circle cx="282" cy="248" r="7" fill="#ff5040" filter="url(#mglow)"/>
+          <text x="282" y="230" text-anchor="middle" fill="rgba(255,255,255,0.95)" font-size="12" font-family="'Plus Jakarta Sans',sans-serif" font-weight="700" letter-spacing="2">OSAKA</text>
+          <text x="282" y="272" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="11" font-family="'Cormorant Garamond',serif">大阪</text>
+        </g>
+
+        <!-- Kyoto -->
+        <g class="city-dot" style="cursor:default">
+          <circle cx="355" cy="145" r="15" class="cpulse" fill="#ff6b35" style="animation-delay:0.9s"/>
+          <circle cx="355" cy="145" r="6" fill="#ffaa60" filter="url(#mglow)"/>
+          <text x="355" y="128" text-anchor="middle" fill="rgba(255,255,255,0.88)" font-size="11" font-family="'Plus Jakarta Sans',sans-serif" font-weight="600" letter-spacing="1.5">KYOTO</text>
+          <text x="355" y="165" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="10" font-family="'Cormorant Garamond',serif">京都</text>
+        </g>
+
+        <!-- Nara -->
+        <g class="city-dot" style="cursor:default">
+          <circle cx="392" cy="252" r="12" class="cpulse" fill="#e53030" style="animation-delay:1.1s"/>
+          <circle cx="392" cy="252" r="5" fill="#ff8870" filter="url(#mglow)"/>
+          <text x="420" y="248" text-anchor="start" fill="rgba(255,255,255,0.75)" font-size="9.5" font-family="'Plus Jakarta Sans',sans-serif" font-weight="600" letter-spacing="1.2">NARA</text>
+          <text x="420" y="262" text-anchor="start" fill="rgba(255,255,255,0.3)" font-size="9" font-family="'Cormorant Garamond',serif">奈良</text>
+        </g>
+
+        <!-- Kōyasan -->
+        <g class="city-dot" style="cursor:default">
+          <circle cx="308" cy="372" r="12" class="cpulse" fill="#b06cc8" style="animation-delay:1.4s"/>
+          <circle cx="308" cy="372" r="5" fill="#d090e8" filter="url(#mglow)"/>
+          <text x="308" y="356" text-anchor="middle" fill="rgba(255,255,255,0.72)" font-size="9.5" font-family="'Plus Jakarta Sans',sans-serif" font-weight="600" letter-spacing="0.8">KŌYASAN</text>
+          <text x="308" y="392" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="9" font-family="'Cormorant Garamond',serif">高野山</text>
+        </g>
+
+        <!-- Compass -->
+        <g transform="translate(668,48)">
+          <text x="0" y="-5" text-anchor="middle" fill="rgba(255,255,255,0.22)" font-size="9" font-family="sans-serif" letter-spacing="1">N</text>
+          <line x1="0" y1="0" x2="0" y2="14" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+          <polygon points="0,-2 -3,6 0,4 3,6" fill="rgba(229,48,48,0.5)"/>
+        </g>
+
+        <!-- Region label -->
+        <text x="36" y="430" fill="rgba(255,255,255,0.12)" font-size="8.5" font-family="sans-serif" letter-spacing="3">KANSAI 関西地方</text>
+      </svg>
+
+      <!-- Legend -->
+      <div class="map-legend" id="map-legend">
+        <div class="leg-item" data-route="1"><span class="leg-dot" style="background:#e53030"></span><span data-t="leg.1">Osaka Food Circuit</span></div>
+        <div class="leg-item" data-route="2"><span class="leg-dot" style="background:#ff6b35"></span><span data-t="leg.2">Hidden Kyoto</span></div>
+        <div class="leg-item" data-route="3"><span class="leg-dot" style="background:#ffaa00"></span><span data-t="leg.3">Nara &amp; Himeji</span></div>
+        <div class="leg-item" data-route="4"><span class="leg-dot" style="background:#b06cc8"></span><span data-t="leg.4">Kōyasan Pilgrimage</span></div>
+        <div class="leg-item" data-route="5"><span class="leg-dot" style="background:#4499dd"></span><span data-t="leg.5">Kobe Refined</span></div>
+        <div class="leg-item" data-route="6"><span class="leg-dot" style="background:#22cc88"></span><span data-t="leg.6">Osaka–Kyoto Arc</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ROUTES -->
 <section id="routes">
   <div class="orb routes-orb"></div>
@@ -533,6 +698,93 @@
           <li data-t="r6.s4">Return with a private sake tasting on the train</li>
         </ul>
         <div class="route-dep">📍 <strong data-t="r6.dep">Hotel pickup included · 8:30 AM</strong></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="orb gal-orb"></div>
+  <div class="wrap">
+    <div class="gal-head rev">
+      <span class="section-label" data-t="gal.label">Photo Gallery</span>
+      <h2 data-t="gal.h2">Moments from <span class="acc">our tours</span></h2>
+      <p data-t="gal.sub">Real places. Real experiences. Every photo tells a story from Kansai.</p>
+    </div>
+    <div class="gal-grid">
+
+      <div class="g-item g-wide g-tall rev d1">
+        <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=900&q=80" alt="Fushimi Inari" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.g-fallback').style.display='flex'"/>
+        <div class="g-fallback" style="display:none">鳥居</div>
+        <div class="g-overlay"></div><div class="g-cap"><strong>Fushimi Inari</strong><span>Kyoto · 伏見稲荷</span></div>
+      </div>
+
+      <div class="g-item rev d2">
+        <img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=600&q=80" alt="Kyoto Street" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.g-fallback').style.display='flex'"/>
+        <div class="g-fallback" style="display:none">京都</div>
+        <div class="g-overlay"></div><div class="g-cap"><strong>Gion District</strong><span>Kyoto · 祇園</span></div>
+      </div>
+
+      <div class="g-item rev d3">
+        <img src="https://images.unsplash.com/photo-1480796927426-f609979314bd?auto=format&fit=crop&w=600&q=80" alt="Nara Deer" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.g-fallback').style.display='flex'"/>
+        <div class="g-fallback" style="display:none">鹿</div>
+        <div class="g-overlay"></div><div class="g-cap"><strong>Deer of Nara</strong><span>Nara · 奈良公園</span></div>
+      </div>
+
+      <div class="g-item rev d1">
+        <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&w=600&q=80" alt="Japanese Ramen" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.g-fallback').style.display='flex'"/>
+        <div class="g-fallback" style="display:none">食</div>
+        <div class="g-overlay"></div><div class="g-cap"><strong>Kuromon Market</strong><span>Osaka · 黒門市場</span></div>
+      </div>
+
+      <div class="g-item g-wide rev d2">
+        <img src="https://images.unsplash.com/photo-1460528917014-dbf0b40d5ad4?auto=format&fit=crop&w=900&q=80" alt="Arashiyama Bamboo" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.g-fallback').style.display='flex'"/>
+        <div class="g-fallback" style="display:none">竹</div>
+        <div class="g-overlay"></div><div class="g-cap"><strong>Arashiyama Bamboo</strong><span>Kyoto · 嵐山</span></div>
+      </div>
+
+      <div class="g-item g-tall rev d1">
+        <img src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=600&q=80" alt="Japanese Temple" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.g-fallback').style.display='flex'"/>
+        <div class="g-fallback" style="display:none">寺</div>
+        <div class="g-overlay"></div><div class="g-cap"><strong>Kōyasan Temple</strong><span>Wakayama · 高野山</span></div>
+      </div>
+
+      <div class="g-item rev d2">
+        <img src="https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?auto=format&fit=crop&w=600&q=80" alt="Himeji Castle" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.g-fallback').style.display='flex'"/>
+        <div class="g-fallback" style="display:none">城</div>
+        <div class="g-overlay"></div><div class="g-cap"><strong>Himeji Castle</strong><span>Himeji · 姫路城</span></div>
+      </div>
+
+      <div class="g-item rev d3">
+        <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=600&q=80" alt="Japanese Lanterns" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.g-fallback').style.display='flex'"/>
+        <div class="g-fallback" style="display:none">灯</div>
+        <div class="g-overlay"></div><div class="g-cap"><strong>Lantern Festival</strong><span>Nara · 燈花会</span></div>
+      </div>
+
+      <div class="g-item rev d4">
+        <img src="https://images.unsplash.com/photo-1503152394-c571994fd383?auto=format&fit=crop&w=600&q=80" alt="Japan Mountains" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.g-fallback').style.display='flex'"/>
+        <div class="g-fallback" style="display:none">山</div>
+        <div class="g-overlay"></div><div class="g-cap"><strong>Mountain Paths</strong><span>Kōyasan · 奥院</span></div>
+      </div>
+
+      <div class="g-item g-wide rev d2">
+        <img src="https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=900&q=80" alt="Osaka Castle" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.g-fallback').style.display='flex'"/>
+        <div class="g-fallback" style="display:none">大阪城</div>
+        <div class="g-overlay"></div><div class="g-cap"><strong>Osaka Castle</strong><span>Osaka · 大阪城</span></div>
+      </div>
+
+      <div class="g-item rev d3">
+        <img src="https://images.unsplash.com/photo-1542640944-9f23c7d5b01e?auto=format&fit=crop&w=600&q=80" alt="Japanese Street" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.g-fallback').style.display='flex'"/>
+        <div class="g-fallback" style="display:none">道</div>
+        <div class="g-overlay"></div><div class="g-cap"><strong>Old Town Alley</strong><span>Osaka · 路地裏</span></div>
+      </div>
+
+      <div class="g-item rev d4">
+        <img src="https://images.unsplash.com/photo-1557409518-691ebcd96038?auto=format&fit=crop&w=600&q=80" alt="Dotonbori" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.g-fallback').style.display='flex'"/>
+        <div class="g-fallback" style="display:none">道頓堀</div>
+        <div class="g-overlay"></div><div class="g-cap"><strong>Dotonbori at Night</strong><span>Osaka · 道頓堀</span></div>
       </div>
 
     </div>
@@ -708,6 +960,10 @@ const T = {
     'exp.3.title':'Food & Market Tours','exp.3.desc':"Osaka is Japan's food capital. We eat through Kuromon market, neighbourhood shotengai, and the best standing sushi bar you will ever visit.",
     'exp.4.title':'Cultural & Spiritual Journeys','exp.4.desc':'Monastery stays, dawn temple walks, traditional craft workshops — for travellers who want depth, not just sights on a checklist.',
     'tag.1day':'1 Day','tag.group':'1–6 People','tag.custom':'Custom Route','tag.days':'3–7 Days','tag.log':'Full Logistics','tag.acc':'Accommodation Tips','tag.half':'Half Day','tag.food':'Food Included','tag.flex':'Flexible','tag.imm':'Immersive',
+    'nav.map':'Map','nav.gallery':'Gallery',
+    'map.label':'Interactive Map','map.h2':'Our routes across <span class="acc">Kansai</span>','map.sub':'Click a route below the map to highlight it.',
+    'leg.1':'Osaka Food Circuit','leg.2':'Hidden Kyoto','leg.3':'Nara & Himeji','leg.4':'Kōyasan Pilgrimage','leg.5':'Kobe Refined','leg.6':'Osaka–Kyoto Arc',
+    'gal.label':'Photo Gallery','gal.h2':'Moments from <span class="acc">our tours</span>','gal.sub':'Real places. Real experiences. Every photo tells a story from Kansai.',
     'routes.label':'Departure Routes','routes.h2':'Specific <span class="acc">itineraries</span>',
     'route.n1':'Route 01','route.n2':'Route 02','route.n3':'Route 03','route.n4':'Route 04','route.n5':'Route 05','route.n6':'Route 06',
     'route.1.title':'Osaka Street Food Circuit','route.2.title':'Hidden Kyoto','route.3.title':'Nara & Himeji Castle','route.4.title':'Kōyasan Pilgrimage','route.5.title':'Kobe Refined','route.6.title':'Osaka–Kyoto Full Arc',
@@ -800,10 +1056,14 @@ const T = {
     'contact.p':'Cuéntame tus fechas de viaje, intereses y tamaño del grupo. Te responderé en 24 horas.',
     'form.name':'Tu Nombre','form.email':'Tu Email','form.dates':'Fechas de Viaje (opcional)','form.msg':'Tu Mensaje','form.send':'Enviar Mensaje','form.sending':'Enviando…','form.retry':'Intentar de Nuevo',
     'form.ok.title':'Mensaje Enviado','form.ok.text':'Gracias — te responderé en menos de 24 horas.',
-    'footer.l':'© 2026 Tony Hanma · Guía Privado Kansai','footer.r':'Osaka · Kansai · Japón'
+    'footer.l':'© 2026 Tony Hanma · Guía Privado Kansai','footer.r':'Osaka · Kansai · Japón',
+    'nav.map':'Mapa','nav.gallery':'Galería',
+    'map.label':'Mapa Interactivo','map.h2':'Nuestras rutas por <span class="acc">Kansai</span>','map.sub':'Haz clic en una ruta para destacarla en el mapa.',
+    'leg.1':'Circuito Gastronómico','leg.2':'Kyoto Oculto','leg.3':'Nara y Himeji','leg.4':'Peregrinación Kōyasan','leg.5':'Kobe Refinado','leg.6':'Arco Osaka–Kioto',
+    'gal.label':'Galería de Fotos','gal.h2':'Momentos de <span class="acc">nuestros tours</span>','gal.sub':'Lugares reales. Experiencias reales. Cada foto cuenta una historia de Kansai.'
   },
   ru: {
-    'nav.region':'Кансай','nav.guide':'Гид','nav.tours':'Туры','nav.routes':'Маршруты','nav.pricing':'Цены','nav.reviews':'Отзывы','nav.contact':'Контакт',
+    'nav.region':'Кансай','nav.guide':'Гид','nav.tours':'Туры','nav.map':'Карта','nav.gallery':'Галерея','nav.routes':'Маршруты','nav.pricing':'Цены','nav.reviews':'Отзывы','nav.contact':'Контакт',
     'hero.tag':'Частный гид · Осака · Регион Кансай · Япония','hero.l1':'Откройте','hero.l2':'Душу','hero.l3':'Японии',
     'hero.sub':'За пределами путеводителей. Личное путешествие по Осаке, Киото, Нара и скрытым уголкам региона Кансай — с гидом, который здесь живёт.',
     'hero.cta1':'Забронировать тур','hero.cta2':'О гиде','scroll':'Вниз',
@@ -860,7 +1120,10 @@ const T = {
     'contact.p':'Расскажите о датах, интересах и размере группы. Отвечу в течение 24 часов.',
     'form.name':'Ваше имя','form.email':'Ваш email','form.dates':'Даты поездки (необязательно)','form.msg':'Ваше сообщение','form.send':'Отправить','form.sending':'Отправляю…','form.retry':'Попробовать снова',
     'form.ok.title':'Сообщение отправлено','form.ok.text':'Спасибо — отвечу в течение 24 часов.',
-    'footer.l':'© 2026 Тони Ханма · Частный гид по Кансаю','footer.r':'Осака · Кансай · Япония'
+    'footer.l':'© 2026 Тони Ханма · Частный гид по Кансаю','footer.r':'Осака · Кансай · Япония',
+    'map.label':'Интерактивная карта','map.h2':'Наши маршруты по <span class="acc">Кансаю</span>','map.sub':'Нажмите на маршрут под картой, чтобы выделить его.',
+    'leg.1':'Гастрономический тур','leg.2':'Скрытое Киото','leg.3':'Нара и Химэдзи','leg.4':'Паломничество Коясан','leg.5':'Утончённый Кобе','leg.6':'Маршрут Осака–Киото',
+    'gal.label':'Фотогалерея','gal.h2':'Моменты из <span class="acc">наших туров</span>','gal.sub':'Настоящие места. Настоящие впечатления. Каждое фото — история из Кансая.'
   }
 };
 
@@ -954,6 +1217,30 @@ form.addEventListener('submit', async ev => {
     else { stxt.textContent = T[lang]['form.retry']; sbtn.classList.remove('loading'); }
   } catch { stxt.textContent = T[lang]['form.retry']; sbtn.classList.remove('loading'); }
 });
+
+// ── ROUTE MAP LEGEND ──
+(function(){
+  const legs = document.querySelectorAll('.leg-item[data-route]');
+  const lines = document.querySelectorAll('.rline');
+  if (!legs.length || !lines.length) return;
+  legs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const r = btn.getAttribute('data-route');
+      if (btn.classList.contains('on')) {
+        // reset all
+        legs.forEach(b => b.classList.remove('on'));
+        lines.forEach(l => { l.classList.remove('dim','hi'); });
+      } else {
+        legs.forEach(b => b.classList.remove('on'));
+        btn.classList.add('on');
+        lines.forEach(l => {
+          if (l.id === 'rl-' + r) { l.classList.remove('dim'); l.classList.add('hi'); }
+          else { l.classList.add('dim'); l.classList.remove('hi'); }
+        });
+      }
+    });
+  });
+})();
 </script>
 </body>
 </html>
