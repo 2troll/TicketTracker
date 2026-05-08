@@ -302,9 +302,9 @@
     @media (max-width:560px) { .gal-grid { grid-template-columns:1fr 1fr; grid-auto-rows:140px; } .map-legend { gap:0.5rem; } }
 
     /* ── ROUTE PAGE LINKS ── */
-    .route-link { display:inline-flex; align-items:center; gap:0.4rem; margin-top:1.1rem; font-size:0.68rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-3); text-decoration:none; transition:color 0.2s,gap 0.2s; }
-    .route-link:hover { color:var(--text); gap:0.65rem; }
-    .route-link::after { content:'→'; }
+    .route-page-btn { display:block; margin-top:1.4rem; padding:0.8rem 1rem; text-align:center; font-size:0.68rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--text); background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.13); border-radius:12px; text-decoration:none; transition:all 0.25s; }
+    .route-page-btn:hover { background:rgba(229,48,48,0.16); border-color:rgba(229,48,48,0.45); color:#fff; }
+    .route-card[data-href] { cursor:pointer; }
   </style>
 </head>
 <body>
@@ -603,7 +603,7 @@
     </div>
     <div class="routes-grid">
 
-      <div class="route-card tilt-card rev d1"><div class="glare"></div>
+      <div class="route-card tilt-card rev d1" data-href="osaka.html"><div class="glare"></div>
         <div class="route-num" data-t="route.n1">Route 01</div>
         <h3 data-t="route.1.title">Osaka Street Food Circuit</h3>
         <div class="route-meta">
@@ -618,10 +618,10 @@
           <li data-t="r1.s4">Hidden shotengai &amp; sake bar at dusk</li>
         </ul>
         <div class="route-dep">📍 <strong data-t="r1.dep">Namba Station Exit 14 · 9:00 AM</strong></div>
-        <a href="osaka.html" class="route-link">Full route &amp; photos</a>
+        <a href="osaka.html" class="route-page-btn">Photos &amp; Full Itinerary →</a>
       </div>
 
-      <div class="route-card tilt-card rev d2"><div class="glare"></div>
+      <div class="route-card tilt-card rev d2" data-href="kyoto.html"><div class="glare"></div>
         <div class="route-num" data-t="route.n2">Route 02</div>
         <h3 data-t="route.2.title">Hidden Kyoto</h3>
         <div class="route-meta">
@@ -636,10 +636,10 @@
           <li data-t="r2.s4">Riverside kaiseki dinner reservation</li>
         </ul>
         <div class="route-dep">📍 <strong data-t="r2.dep">Kyoto Station Central Exit · 8:30 AM</strong></div>
-        <a href="kyoto.html" class="route-link">Full route &amp; photos</a>
+        <a href="kyoto.html" class="route-page-btn">Photos &amp; Full Itinerary →</a>
       </div>
 
-      <div class="route-card tilt-card rev d3"><div class="glare"></div>
+      <div class="route-card tilt-card rev d3" data-href="nara.html"><div class="glare"></div>
         <div class="route-num" data-t="route.n3">Route 03</div>
         <h3 data-t="route.3.title">Nara &amp; Himeji Castle</h3>
         <div class="route-meta">
@@ -654,10 +654,10 @@
           <li data-t="r3.s4">Hidden castle-town gardens at dusk</li>
         </ul>
         <div class="route-dep">📍 <strong data-t="r3.dep">Osaka / Kyoto · 8:00 AM</strong></div>
-        <a href="nara.html" class="route-link">Full route &amp; photos</a>
+        <a href="nara.html" class="route-page-btn">Photos &amp; Full Itinerary →</a>
       </div>
 
-      <div class="route-card tilt-card rev d4"><div class="glare"></div>
+      <div class="route-card tilt-card rev d4" data-href="koyasan.html"><div class="glare"></div>
         <div class="route-num" data-t="route.n4">Route 04</div>
         <h3 data-t="route.4.title">Kōyasan Pilgrimage</h3>
         <div class="route-meta">
@@ -672,10 +672,10 @@
           <li data-t="r4.s4">Dawn prayer with monks — return by afternoon</li>
         </ul>
         <div class="route-dep">📍 <strong data-t="r4.dep">Osaka Namba Station · 9:00 AM</strong></div>
-        <a href="koyasan.html" class="route-link">Full route &amp; photos</a>
+        <a href="koyasan.html" class="route-page-btn">Photos &amp; Full Itinerary →</a>
       </div>
 
-      <div class="route-card tilt-card rev d5"><div class="glare"></div>
+      <div class="route-card tilt-card rev d5" data-href="kobe.html"><div class="glare"></div>
         <div class="route-num" data-t="route.n5">Route 05</div>
         <h3 data-t="route.5.title">Kobe Refined</h3>
         <div class="route-meta">
@@ -690,10 +690,10 @@
           <li data-t="r5.s4">Meriken Park harbour at golden hour</li>
         </ul>
         <div class="route-dep">📍 <strong data-t="r5.dep">Sannomiya Station · 10:00 AM</strong></div>
-        <a href="kobe.html" class="route-link">Full route &amp; photos</a>
+        <a href="kobe.html" class="route-page-btn">Photos &amp; Full Itinerary →</a>
       </div>
 
-      <div class="route-card tilt-card rev d6"><div class="glare"></div>
+      <div class="route-card tilt-card rev d6" data-href="osaka-kyoto.html"><div class="glare"></div>
         <div class="route-num" data-t="route.n6">Route 06</div>
         <h3 data-t="route.6.title">Osaka–Kyoto Full Arc</h3>
         <div class="route-meta">
@@ -708,7 +708,7 @@
           <li data-t="r6.s4">Return with a private sake tasting on the train</li>
         </ul>
         <div class="route-dep">📍 <strong data-t="r6.dep">Hotel pickup included · 8:30 AM</strong></div>
-        <a href="osaka-kyoto.html" class="route-link">Full route &amp; photos</a>
+        <a href="osaka-kyoto.html" class="route-page-btn">Photos &amp; Full Itinerary →</a>
       </div>
 
     </div>
@@ -1227,6 +1227,13 @@ form.addEventListener('submit', async ev => {
     if (j.success === 'true' || j.success === true) { form.style.display='none'; fok.classList.add('show'); }
     else { stxt.textContent = T[lang]['form.retry']; sbtn.classList.remove('loading'); }
   } catch { stxt.textContent = T[lang]['form.retry']; sbtn.classList.remove('loading'); }
+});
+
+// ── ROUTE CARDS — click entire card ──
+document.querySelectorAll('.route-card[data-href]').forEach(card => {
+  card.addEventListener('click', e => {
+    if (!e.target.closest('a')) window.location.href = card.dataset.href;
+  });
 });
 
 // ── ROUTE MAP LEGEND ──
