@@ -10,867 +10,950 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --bg:     #080808;
-      --bg-1:   #0e0e0e;
-      --bg-2:   #161616;
-      --glass:       rgba(255,255,255,0.05);
-      --glass-b:     rgba(255,255,255,0.09);
-      --glass-hover: rgba(255,255,255,0.09);
-      --text:   #f2f2f2;
-      --text-2: rgba(242,242,242,0.58);
-      --text-3: rgba(242,242,242,0.28);
-      --red:     #e53030;
-      --orange:  #ff6b35;
-      --acc:     linear-gradient(135deg, #e53030 0%, #ff6b35 100%);
-      --acc-bg:  rgba(229,48,48,0.12);
-      --line:    rgba(255,255,255,0.08);
-      --serif:  'Cormorant Garamond', Georgia, serif;
-      --sans:   'Plus Jakarta Sans', system-ui, sans-serif;
-      --radius: 18px;
+      --bg:#080808; --bg-1:#0e0e0e; --bg-2:#161616;
+      --glass:rgba(255,255,255,0.05); --glass-b:rgba(255,255,255,0.09); --glass-hover:rgba(255,255,255,0.09);
+      --text:#f2f2f2; --text-2:rgba(242,242,242,0.58); --text-3:rgba(242,242,242,0.28);
+      --red:#e53030; --orange:#ff6b35;
+      --acc:linear-gradient(135deg,#e53030 0%,#ff6b35 100%);
+      --line:rgba(255,255,255,0.08);
+      --serif:'Cormorant Garamond',Georgia,serif;
+      --sans:'Plus Jakarta Sans',system-ui,sans-serif;
+      --radius:18px;
     }
-
     html { scroll-behavior: smooth; }
+    body { background:var(--bg); color:var(--text); font-family:var(--sans); font-size:16px; line-height:1.7; overflow-x:hidden; }
+    ::-webkit-scrollbar { width:3px; }
+    ::-webkit-scrollbar-track { background:var(--bg); }
+    ::-webkit-scrollbar-thumb { background:var(--red); }
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--sans);
-      font-size: 16px;
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
+    /* ── AMBIENT ORBS ── */
+    .orb { position:absolute; border-radius:50%; pointer-events:none; will-change:transform; filter:blur(90px); }
+    @keyframes drift1 { 0%,100%{transform:translate(0,0)scale(1)} 33%{transform:translate(4%,6%)scale(1.08)} 66%{transform:translate(-3%,3%)scale(0.95)} }
+    @keyframes drift2 { 0%,100%{transform:translate(0,0)scale(1)} 33%{transform:translate(-5%,-4%)scale(1.1)} 66%{transform:translate(3%,-2%)scale(0.92)} }
+    @keyframes drift3 { 0%,100%{transform:translate(0,0)scale(1)} 50%{transform:translate(2%,-5%)scale(1.06)} }
 
-    ::-webkit-scrollbar { width: 3px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--red); }
-
-    /* ── AMBIENT ORBS (constant movement) ── */
-    .orb {
-      position: absolute;
-      border-radius: 50%;
-      pointer-events: none;
-      will-change: transform;
-      filter: blur(90px);
-    }
-
-    @keyframes drift1 { 0%,100%{transform:translate(0,0) scale(1)}   33%{transform:translate(4%,6%) scale(1.08)}  66%{transform:translate(-3%,3%) scale(0.95)} }
-    @keyframes drift2 { 0%,100%{transform:translate(0,0) scale(1)}   33%{transform:translate(-5%,-4%) scale(1.1)} 66%{transform:translate(3%,-2%) scale(0.92)} }
-    @keyframes drift3 { 0%,100%{transform:translate(0,0) scale(1)}   50%{transform:translate(2%,-5%) scale(1.06)} }
+    /* ── SCROLL REVEAL — visible by default, JS hides then reveals ── */
+    .rev,.rev-l,.rev-r { transition:opacity 0.85s ease,transform 0.85s cubic-bezier(0.16,1,0.3,1); }
+    .sr-hide.rev   { opacity:0; transform:translateY(44px); }
+    .sr-hide.rev-l { opacity:0; transform:translateX(-44px); }
+    .sr-hide.rev-r { opacity:0; transform:translateX(44px); }
+    .d1{transition-delay:.08s} .d2{transition-delay:.16s} .d3{transition-delay:.24s}
+    .d4{transition-delay:.32s} .d5{transition-delay:.40s} .d6{transition-delay:.48s}
 
     /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      padding: 1.1rem 2.5rem;
-      display: flex; justify-content: space-between; align-items: center;
-      background: rgba(8,8,8,0.7);
-      backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px);
-      border-bottom: 1px solid var(--line);
-      gap: 1rem;
-    }
-
-    .nav-logo { font-family: var(--serif); font-size: 1.15rem; font-weight: 400; letter-spacing: 0.06em; color: var(--text); text-decoration: none; white-space: nowrap; flex-shrink: 0; }
-
-    .nav-center { display: flex; gap: 2rem; list-style: none; }
-    .nav-center a { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-2); text-decoration: none; transition: color 0.2s; white-space: nowrap; }
-    .nav-center a:hover { color: var(--text); }
-
-    .lang-sw { display: flex; gap: 0.3rem; background: rgba(255,255,255,0.05); border: 1px solid var(--line); border-radius: 999px; padding: 0.25rem; flex-shrink: 0; }
-    .lang-btn { font-family: var(--sans); font-size: 0.62rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); background: transparent; border: none; border-radius: 999px; padding: 0.3rem 0.7rem; cursor: pointer; transition: background 0.25s, color 0.25s; white-space: nowrap; }
-    .lang-btn.active { background: var(--red); color: #fff; }
+    nav { position:fixed; top:0; left:0; right:0; z-index:1000; padding:1rem 2.5rem; display:flex; justify-content:space-between; align-items:center; background:rgba(8,8,8,0.75); backdrop-filter:blur(28px); -webkit-backdrop-filter:blur(28px); border-bottom:1px solid var(--line); gap:1rem; }
+    .nav-logo { font-family:var(--serif); font-size:1.15rem; font-weight:400; letter-spacing:0.06em; color:var(--text); text-decoration:none; white-space:nowrap; flex-shrink:0; }
+    .nav-center { display:flex; gap:1.6rem; list-style:none; }
+    .nav-center a { font-size:0.68rem; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; color:var(--text-2); text-decoration:none; transition:color 0.2s; white-space:nowrap; }
+    .nav-center a:hover { color:var(--text); }
+    .lang-sw { display:flex; gap:0.3rem; background:rgba(255,255,255,0.05); border:1px solid var(--line); border-radius:999px; padding:0.25rem; flex-shrink:0; }
+    .lang-btn { font-family:var(--sans); font-size:0.62rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-3); background:transparent; border:none; border-radius:999px; padding:0.3rem 0.7rem; cursor:pointer; transition:background 0.25s,color 0.25s; }
+    .lang-btn.active { background:var(--red); color:#fff; }
 
     /* ── HERO ── */
-    #hero {
-      min-height: 100vh;
-      display: flex; flex-direction: column; justify-content: center; align-items: center;
-      text-align: center;
-      padding: 9rem 1.5rem 7rem;
-      position: relative; overflow: hidden;
-    }
-
-    .hero-bg { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-
-    .hero-grid {
-      position: absolute; inset: 0;
-      background-image: linear-gradient(rgba(255,255,255,0.016) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.016) 1px, transparent 1px);
-      background-size: 72px 72px;
-      mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black, transparent);
-      -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black, transparent);
-    }
-
-    /* big background kanji — parallax target */
-    .hero-kanji {
-      position: absolute;
-      font-family: var(--serif);
-      font-size: clamp(22rem, 55vw, 48rem);
-      color: rgba(255,255,255,0.013);
-      top: 50%; left: 50%;
-      transform: translate(-50%,-50%);
-      user-select: none; white-space: nowrap; line-height: 1;
-      will-change: transform;
-    }
-
-    /* animated orbs inside hero */
-    .hero-orb-r {
-      width: 65vw; height: 65vw;
-      top: -15%; left: -10%;
-      background: radial-gradient(circle, rgba(229,48,48,0.24) 0%, transparent 65%);
-      animation: drift1 18s ease-in-out infinite;
-    }
-    .hero-orb-o {
-      width: 55vw; height: 55vw;
-      bottom: -20%; right: -5%;
-      background: radial-gradient(circle, rgba(255,107,53,0.19) 0%, transparent 65%);
-      animation: drift2 22s ease-in-out infinite;
-    }
-    .hero-orb-d {
-      width: 45vw; height: 45vw;
-      top: 42%; left: 30%;
-      background: radial-gradient(circle, rgba(120,20,20,0.14) 0%, transparent 65%);
-      animation: drift3 28s ease-in-out infinite;
-    }
-
-    .hero-content { position: relative; z-index: 2; max-width: 900px; }
-
-    .hero-tag { display: inline-block; font-size: 0.62rem; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; background: var(--acc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 2rem; opacity: 0; transform: translateY(12px); animation: fadeUp 0.8s ease forwards 0.4s; }
-
-    .hero-title { font-family: var(--serif); font-size: clamp(4.2rem, 11vw, 9.5rem); font-weight: 300; line-height: 0.93; letter-spacing: -0.02em; margin-bottom: 2rem; }
-
-    .h-line { display: block; overflow: hidden; }
-    .h-inner { display: block; opacity: 0; transform: translateY(108%); animation: lineUp 0.95s cubic-bezier(0.16,1,0.3,1) forwards; }
-    .h-line:nth-child(1) .h-inner { animation-delay: 0.52s; }
-    .h-line:nth-child(2) .h-inner { animation-delay: 0.68s; }
-    .h-line:nth-child(3) .h-inner { animation-delay: 0.84s; }
-
-    .hero-title .acc-word { font-style: italic; background: var(--acc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-
-    .hero-sub { font-size: 1.05rem; font-weight: 300; color: var(--text-2); max-width: 44ch; line-height: 1.85; margin: 0 auto 3.2rem; opacity: 0; transform: translateY(12px); animation: fadeUp 0.8s ease forwards 1.05s; }
-
-    .hero-ctas { display: flex; gap: 0.9rem; justify-content: center; flex-wrap: wrap; opacity: 0; transform: translateY(12px); animation: fadeUp 0.8s ease forwards 1.22s; }
-
-    .btn-acc { display: inline-block; padding: 0.9rem 2.2rem; background: var(--acc); color: #fff; text-decoration: none; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; border: none; border-radius: 999px; transition: transform 0.25s, box-shadow 0.25s, opacity 0.25s; cursor: pointer; }
-    .btn-acc:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(229,48,48,0.35); opacity: 0.92; }
-
-    .btn-ghost { display: inline-block; padding: 0.9rem 2.2rem; background: var(--glass); color: var(--text-2); text-decoration: none; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; border: 1px solid var(--glass-b); border-radius: 999px; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); transition: color 0.25s, background 0.25s, transform 0.25s; }
-    .btn-ghost:hover { color: var(--text); background: var(--glass-hover); transform: translateY(-2px); }
-
-    .scroll-hint { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.6rem; opacity: 0; animation: fadeUp 0.8s ease forwards 1.5s; z-index: 2; }
-    .scroll-hint span { font-size: 0.57rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--text-3); }
-    .scroll-mouse { width: 22px; height: 34px; border: 1px solid rgba(255,255,255,0.14); border-radius: 11px; display: flex; justify-content: center; padding-top: 5px; }
-    .scroll-dot { width: 3px; height: 7px; background: var(--red); border-radius: 2px; animation: dotDrop 1.9s ease-in-out infinite; }
-
+    #hero { min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:9rem 1.5rem 7rem; position:relative; overflow:hidden; }
+    .hero-bg { position:absolute; inset:0; overflow:hidden; pointer-events:none; }
+    .hero-grid { position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.016) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.016) 1px,transparent 1px); background-size:72px 72px; mask-image:radial-gradient(ellipse 80% 70% at 50% 50%,black,transparent); -webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 50%,black,transparent); }
+    .hero-kanji { position:absolute; font-family:var(--serif); font-size:clamp(22rem,55vw,48rem); color:rgba(255,255,255,0.013); top:50%; left:50%; transform:translate(-50%,-50%); user-select:none; white-space:nowrap; line-height:1; will-change:transform; }
+    .hero-orb-r { width:65vw; height:65vw; top:-15%; left:-10%; background:radial-gradient(circle,rgba(229,48,48,0.24) 0%,transparent 65%); animation:drift1 18s ease-in-out infinite; }
+    .hero-orb-o { width:55vw; height:55vw; bottom:-20%; right:-5%; background:radial-gradient(circle,rgba(255,107,53,0.19) 0%,transparent 65%); animation:drift2 22s ease-in-out infinite; }
+    .hero-orb-d { width:45vw; height:45vw; top:42%; left:30%; background:radial-gradient(circle,rgba(120,20,20,0.14) 0%,transparent 65%); animation:drift3 28s ease-in-out infinite; }
+    .hero-content { position:relative; z-index:2; max-width:900px; }
+    .hero-tag { display:inline-block; font-size:0.62rem; font-weight:500; letter-spacing:0.3em; text-transform:uppercase; background:var(--acc); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:2rem; opacity:0; transform:translateY(12px); animation:fadeUp 0.8s ease forwards 0.4s; }
+    .hero-title { font-family:var(--serif); font-size:clamp(4.2rem,11vw,9.5rem); font-weight:300; line-height:0.93; letter-spacing:-0.02em; margin-bottom:2rem; }
+    .h-line { display:block; overflow:hidden; }
+    .h-inner { display:block; opacity:0; transform:translateY(108%); animation:lineUp 0.95s cubic-bezier(0.16,1,0.3,1) forwards; }
+    .h-line:nth-child(1) .h-inner { animation-delay:0.52s; }
+    .h-line:nth-child(2) .h-inner { animation-delay:0.68s; }
+    .h-line:nth-child(3) .h-inner { animation-delay:0.84s; }
+    .hero-title .acc-word { font-style:italic; background:var(--acc); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .hero-sub { font-size:1.05rem; font-weight:300; color:var(--text-2); max-width:44ch; line-height:1.85; margin:0 auto 3.2rem; opacity:0; transform:translateY(12px); animation:fadeUp 0.8s ease forwards 1.05s; }
+    .hero-ctas { display:flex; gap:0.9rem; justify-content:center; flex-wrap:wrap; opacity:0; transform:translateY(12px); animation:fadeUp 0.8s ease forwards 1.22s; }
+    .btn-acc { display:inline-block; padding:0.9rem 2.2rem; background:var(--acc); color:#fff; text-decoration:none; font-size:0.72rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; border:none; border-radius:999px; transition:transform 0.25s,box-shadow 0.25s,opacity 0.25s; cursor:pointer; }
+    .btn-acc:hover { transform:translateY(-2px); box-shadow:0 8px 30px rgba(229,48,48,0.35); opacity:0.92; }
+    .btn-ghost { display:inline-block; padding:0.9rem 2.2rem; background:var(--glass); color:var(--text-2); text-decoration:none; font-size:0.72rem; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; border:1px solid var(--glass-b); border-radius:999px; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); transition:color 0.25s,background 0.25s,transform 0.25s; }
+    .btn-ghost:hover { color:var(--text); background:var(--glass-hover); transform:translateY(-2px); }
+    .scroll-hint { position:absolute; bottom:2.5rem; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:0.6rem; opacity:0; animation:fadeUp 0.8s ease forwards 1.5s; z-index:2; }
+    .scroll-hint span { font-size:0.57rem; letter-spacing:0.24em; text-transform:uppercase; color:var(--text-3); }
+    .scroll-mouse { width:22px; height:34px; border:1px solid rgba(255,255,255,0.14); border-radius:11px; display:flex; justify-content:center; padding-top:5px; }
+    .scroll-dot { width:3px; height:7px; background:var(--red); border-radius:2px; animation:dotDrop 1.9s ease-in-out infinite; }
     @keyframes dotDrop  { 0%,100%{transform:translateY(0);opacity:1} 55%{transform:translateY(9px);opacity:.2} }
     @keyframes fadeUp   { to{opacity:1;transform:translateY(0)} }
     @keyframes lineUp   { to{opacity:1;transform:translateY(0)} }
 
     /* ── MARQUEE ── */
-    .marquee-bar { overflow: hidden; padding: 1.2rem 0; background: var(--bg-1); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-    .marquee-track { display: flex; white-space: nowrap; animation: scroll 26s linear infinite; }
-    .marquee-track:hover { animation-play-state: paused; }
-    .m-item { display: inline-flex; align-items: center; gap: 1.4rem; padding: 0 1.4rem; font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-3); flex-shrink: 0; }
-    .m-dot { width: 4px; height: 4px; background: var(--red); border-radius: 50%; opacity: 0.7; flex-shrink: 0; }
-    @keyframes scroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+    .marquee-bar { overflow:hidden; padding:1.2rem 0; background:var(--bg-1); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+    .marquee-track { display:flex; white-space:nowrap; animation:mscroll 26s linear infinite; }
+    .marquee-track:hover { animation-play-state:paused; }
+    .m-item { display:inline-flex; align-items:center; gap:1.4rem; padding:0 1.4rem; font-size:0.62rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--text-3); flex-shrink:0; }
+    .m-dot { width:4px; height:4px; background:var(--red); border-radius:50%; opacity:0.7; flex-shrink:0; }
+    @keyframes mscroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
     /* ── LAYOUT ── */
-    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 2rem; }
+    .wrap { max-width:1120px; margin:0 auto; padding:0 2rem; }
+    .section-label { display:inline-flex; align-items:center; gap:0.8rem; font-size:0.6rem; font-weight:600; letter-spacing:0.3em; text-transform:uppercase; background:var(--acc); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:1.2rem; }
+    .section-label::before { content:''; width:1.6rem; height:1px; background:var(--red); opacity:0.7; flex-shrink:0; }
+    h2 { font-family:var(--serif); font-size:clamp(2.6rem,6vw,5rem); font-weight:300; line-height:1.05; letter-spacing:-0.015em; }
+    h2 .acc { font-style:italic; background:var(--acc); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
 
-    .section-label { display: inline-flex; align-items: center; gap: 0.8rem; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; background: var(--acc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 1.2rem; }
-    .section-label::before { content: ''; width: 1.6rem; height: 1px; background: var(--red); opacity: 0.7; flex-shrink: 0; }
-
-    h2 { font-family: var(--serif); font-size: clamp(2.6rem, 6vw, 5rem); font-weight: 300; line-height: 1.05; letter-spacing: -0.015em; }
-    h2 .acc { font-style: italic; background: var(--acc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-
-    /* Scroll reveal */
-    .rev, .rev-l, .rev-r { opacity: 0; transition: opacity 0.85s ease, transform 0.85s cubic-bezier(0.16,1,0.3,1); }
-    .rev   { transform: translateY(40px); }
-    .rev-l { transform: translateX(-40px); }
-    .rev-r { transform: translateX(40px); }
-    .rev.on, .rev-l.on, .rev-r.on { opacity: 1; transform: translate(0); }
-    .d1{transition-delay:.07s} .d2{transition-delay:.14s} .d3{transition-delay:.21s}
-    .d4{transition-delay:.28s} .d5{transition-delay:.35s} .d6{transition-delay:.42s}
-
-    /* 3D Tilt + glare */
-    .tilt-card { will-change: transform; position: relative; overflow: hidden; }
-    .tilt-card .glare { position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity 0.3s; }
+    /* Tilt + glare */
+    .tilt-card { will-change:transform; position:relative; overflow:hidden; }
+    .tilt-card .glare { position:absolute; inset:0; border-radius:inherit; pointer-events:none; opacity:0; transition:opacity 0.3s; }
 
     /* ── REGION ── */
-    #region { padding: 10rem 0; background: var(--bg-1); position: relative; overflow: hidden; }
-    .region-orb { width: 50vw; height: 50vw; top: -10%; right: -15%; background: radial-gradient(circle, rgba(229,48,48,0.07) 0%, transparent 65%); animation: drift2 20s ease-in-out infinite; }
-
-    .region-head { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: end; margin-bottom: 5rem; }
-    .region-head p { font-size: 0.97rem; font-weight: 300; color: var(--text-2); line-height: 1.85; margin-top: 1.2rem; }
-
-    .city-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-
-    .city-card {
-      padding: 2.2rem 2rem;
-      background: var(--glass); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      border: 1px solid var(--glass-b); border-radius: var(--radius);
-      transition: background 0.3s, border-color 0.3s; position: relative; overflow: hidden;
-    }
-    .city-card::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--acc); transform: scaleX(0); transform-origin: left; transition: transform 0.45s cubic-bezier(0.16,1,0.3,1); }
-    .city-card:hover { background: var(--glass-hover); border-color: rgba(229,48,48,0.22); }
-    .city-card:hover::before { transform: scaleX(1); }
-
-    .city-kanji { display: block; font-family: var(--serif); font-size: 2.3rem; background: var(--acc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; opacity: 0.45; margin-bottom: 0.7rem; line-height: 1; transition: opacity 0.3s; }
-    .city-card:hover .city-kanji { opacity: 0.8; }
-    .city-card h3 { font-family: var(--sans); font-size: 1.1rem; font-weight: 600; color: var(--text); margin-bottom: 0.55rem; }
-    .city-card p { font-size: 0.86rem; font-weight: 300; color: var(--text-2); line-height: 1.7; }
+    #region { padding:10rem 0; background:var(--bg-1); position:relative; overflow:hidden; }
+    .region-orb { width:50vw; height:50vw; top:-10%; right:-15%; background:radial-gradient(circle,rgba(229,48,48,0.07) 0%,transparent 65%); animation:drift2 20s ease-in-out infinite; }
+    .region-head { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:end; margin-bottom:5rem; }
+    .region-head p { font-size:0.97rem; font-weight:300; color:var(--text-2); line-height:1.85; margin-top:1.2rem; }
+    .city-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+    .city-card { padding:2.2rem 2rem; background:var(--glass); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border:1px solid var(--glass-b); border-radius:var(--radius); transition:background 0.3s,border-color 0.3s; position:relative; overflow:hidden; }
+    .city-card::before { content:''; position:absolute; bottom:0; left:0; right:0; height:2px; background:var(--acc); transform:scaleX(0); transform-origin:left; transition:transform 0.45s cubic-bezier(0.16,1,0.3,1); }
+    .city-card:hover { background:var(--glass-hover); border-color:rgba(229,48,48,0.22); }
+    .city-card:hover::before { transform:scaleX(1); }
+    .city-kanji { display:block; font-family:var(--serif); font-size:2.3rem; background:var(--acc); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; opacity:0.45; margin-bottom:0.7rem; line-height:1; transition:opacity 0.3s; }
+    .city-card:hover .city-kanji { opacity:0.8; }
+    .city-card h3 { font-size:1.1rem; font-weight:600; color:var(--text); margin-bottom:0.55rem; }
+    .city-card p { font-size:0.86rem; font-weight:300; color:var(--text-2); line-height:1.7; }
 
     /* ── STATS ── */
-    .stats-bar { padding: 6rem 0; background: var(--bg); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); position: relative; overflow: hidden; }
-    .stats-orb { width: 60vw; height: 60vw; top: -30%; left: 50%; transform: translateX(-50%); background: radial-gradient(circle, rgba(229,48,48,0.06) 0%, transparent 60%); animation: drift3 24s ease-in-out infinite; }
-
-    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); text-align: center; gap: 1.5rem; position: relative; z-index: 1; }
-
-    .stat-card { padding: 2.5rem 1rem; background: var(--glass); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--glass-b); border-radius: var(--radius); }
-    .stat-n { font-family: var(--serif); font-size: clamp(3rem, 5.5vw, 5rem); font-weight: 300; background: var(--acc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; display: block; }
-    .stat-l { font-size: 0.62rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-3); margin-top: 0.6rem; display: block; }
+    .stats-bar { padding:6rem 0; background:var(--bg); border-top:1px solid var(--line); border-bottom:1px solid var(--line); position:relative; overflow:hidden; }
+    .stats-orb { width:60vw; height:60vw; top:-30%; left:50%; transform:translateX(-50%); background:radial-gradient(circle,rgba(229,48,48,0.06) 0%,transparent 60%); animation:drift3 24s ease-in-out infinite; }
+    .stats-grid { display:grid; grid-template-columns:repeat(4,1fr); text-align:center; gap:1.5rem; position:relative; z-index:1; }
+    .stat-card { padding:2.5rem 1rem; background:var(--glass); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border:1px solid var(--glass-b); border-radius:var(--radius); }
+    .stat-n { font-family:var(--serif); font-size:clamp(3rem,5.5vw,5rem); font-weight:300; background:var(--acc); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1; display:block; }
+    .stat-l { font-size:0.62rem; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; color:var(--text-3); margin-top:0.6rem; display:block; }
 
     /* ── ABOUT ── */
-    #about { padding: 10rem 0; background: var(--bg-1); position: relative; overflow: hidden; }
-    .about-orb { width: 55vw; height: 55vw; bottom: -20%; left: -10%; background: radial-gradient(circle, rgba(255,107,53,0.07) 0%, transparent 65%); animation: drift1 22s ease-in-out infinite; }
-
-    .about-grid { display: grid; grid-template-columns: 340px 1fr; gap: 8rem; align-items: center; position: relative; z-index: 2; }
-
-    .photo-wrap { position: relative; flex-shrink: 0; }
-    .photo-frame { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--glass-b); position: relative; }
-    .photo-frame img { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: center top; display: block; filter: grayscale(12%); transition: filter 0.6s ease, transform 0.6s ease; }
-    .photo-frame:hover img { filter: grayscale(0%); transform: scale(1.025); }
-    .photo-frame::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 40%; background: linear-gradient(to top, rgba(8,8,8,0.55), transparent); pointer-events: none; }
-
-    .about-copy p { font-size: 0.97rem; font-weight: 300; color: var(--text-2); line-height: 1.9; margin-bottom: 1.1rem; }
-
-    .signature { font-family: var(--serif); font-size: 2.4rem; font-style: italic; font-weight: 300; background: var(--acc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: block; margin-top: 2.2rem; }
+    #about { padding:10rem 0; background:var(--bg-1); position:relative; overflow:hidden; }
+    .about-orb { width:55vw; height:55vw; bottom:-20%; left:-10%; background:radial-gradient(circle,rgba(255,107,53,0.07) 0%,transparent 65%); animation:drift1 22s ease-in-out infinite; }
+    .about-grid { display:grid; grid-template-columns:340px 1fr; gap:8rem; align-items:center; position:relative; z-index:2; }
+    .photo-wrap { position:relative; flex-shrink:0; }
+    .photo-frame { border-radius:var(--radius); overflow:hidden; border:1px solid var(--glass-b); position:relative; }
+    .photo-frame img { width:100%; aspect-ratio:3/4; object-fit:cover; object-position:center top; display:block; filter:grayscale(12%); transition:filter 0.6s ease,transform 0.6s ease; }
+    .photo-frame:hover img { filter:grayscale(0%); transform:scale(1.025); }
+    .photo-frame::after { content:''; position:absolute; bottom:0; left:0; right:0; height:40%; background:linear-gradient(to top,rgba(8,8,8,0.55),transparent); pointer-events:none; }
+    .about-copy p { font-size:0.97rem; font-weight:300; color:var(--text-2); line-height:1.9; margin-bottom:1.1rem; }
+    .signature { font-family:var(--serif); font-size:2.4rem; font-style:italic; font-weight:300; background:var(--acc); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; display:block; margin-top:2.2rem; }
 
     /* ── EXPERIENCES ── */
-    #experiences { padding: 10rem 0; background: var(--bg); position: relative; overflow: hidden; }
-    .exp-orb { width: 45vw; height: 45vw; top: 20%; right: -12%; background: radial-gradient(circle, rgba(229,48,48,0.07) 0%, transparent 65%); animation: drift2 19s ease-in-out infinite; }
+    #experiences { padding:10rem 0; background:var(--bg); position:relative; overflow:hidden; }
+    .exp-orb { width:45vw; height:45vw; top:20%; right:-12%; background:radial-gradient(circle,rgba(229,48,48,0.07) 0%,transparent 65%); animation:drift2 19s ease-in-out infinite; }
+    .exp-head { margin-bottom:4rem; position:relative; z-index:1; }
+    .exp-item { display:grid; grid-template-columns:5rem 1fr; gap:2rem; padding:2.5rem; background:var(--glass); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border:1px solid var(--glass-b); border-radius:var(--radius); margin-bottom:1rem; transition:background 0.3s,border-color 0.3s,transform 0.3s; align-items:start; position:relative; z-index:1; }
+    .exp-item:hover { background:var(--glass-hover); border-color:rgba(229,48,48,0.18); transform:translateX(5px); }
+    .exp-num { font-family:var(--serif); font-size:3.2rem; font-weight:300; background:var(--acc); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; opacity:0.3; line-height:1; padding-top:0.2rem; transition:opacity 0.3s; }
+    .exp-item:hover .exp-num { opacity:0.7; }
+    .exp-body h3 { font-size:1.3rem; font-weight:600; color:var(--text); margin-bottom:0.5rem; margin-top:0.2rem; }
+    .exp-body p { font-size:0.92rem; font-weight:300; color:var(--text-2); line-height:1.8; }
+    .etags { display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:0.9rem; }
+    .etag { font-size:0.58rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--red); background:rgba(229,48,48,0.1); border:1px solid rgba(229,48,48,0.2); border-radius:999px; padding:0.22rem 0.65rem; }
 
-    .exp-head { margin-bottom: 4rem; position: relative; z-index: 1; }
+    /* ── ROUTES ── */
+    #routes { padding:10rem 0; background:var(--bg-1); position:relative; overflow:hidden; }
+    .routes-orb { width:55vw; height:55vw; top:-15%; left:-10%; background:radial-gradient(circle,rgba(255,107,53,0.07) 0%,transparent 65%); animation:drift1 21s ease-in-out infinite; }
+    .routes-head { margin-bottom:4rem; }
+    .routes-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; }
+    .route-card { background:var(--glass); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border:1px solid var(--glass-b); border-radius:var(--radius); padding:2.2rem; transition:background 0.3s,border-color 0.3s,transform 0.3s; position:relative; overflow:hidden; }
+    .route-card::after { content:''; position:absolute; left:0; top:0; bottom:0; width:2px; background:var(--acc); transform:scaleY(0); transform-origin:top; transition:transform 0.45s cubic-bezier(0.16,1,0.3,1); }
+    .route-card:hover { background:var(--glass-hover); border-color:rgba(229,48,48,0.2); transform:translateY(-3px); }
+    .route-card:hover::after { transform:scaleY(1); }
+    .route-num { font-family:var(--serif); font-size:0.68rem; font-weight:300; letter-spacing:0.2em; background:var(--acc); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:0.5rem; }
+    .route-card h3 { font-size:1.2rem; font-weight:600; color:var(--text); margin-bottom:0.8rem; }
+    .route-meta { display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:1.1rem; }
+    .route-badge { font-size:0.58rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--red); background:rgba(229,48,48,0.1); border:1px solid rgba(229,48,48,0.2); border-radius:999px; padding:0.22rem 0.7rem; }
+    .route-stops { list-style:none; margin-bottom:1rem; }
+    .route-stops li { font-size:0.86rem; font-weight:300; color:var(--text-2); padding:0.35rem 0; border-bottom:1px solid var(--line); display:flex; align-items:center; gap:0.7rem; }
+    .route-stops li:last-child { border-bottom:none; }
+    .route-stops li::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--red); flex-shrink:0; opacity:0.6; }
+    .route-dep { font-size:0.72rem; font-weight:500; color:var(--text-3); letter-spacing:0.05em; margin-top:0.8rem; display:flex; align-items:center; gap:0.5rem; }
+    .route-dep strong { color:var(--text-2); }
 
-    .exp-item { display: grid; grid-template-columns: 5rem 1fr; gap: 2rem; padding: 2.5rem; background: var(--glass); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid var(--glass-b); border-radius: var(--radius); margin-bottom: 1rem; transition: background 0.3s, border-color 0.3s, transform 0.3s; align-items: start; position: relative; z-index: 1; }
-    .exp-item:hover { background: var(--glass-hover); border-color: rgba(229,48,48,0.18); transform: translateX(5px); }
-    .exp-num { font-family: var(--serif); font-size: 3.2rem; font-weight: 300; background: var(--acc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; opacity: 0.3; line-height: 1; padding-top: 0.2rem; transition: opacity 0.3s; }
-    .exp-item:hover .exp-num { opacity: 0.7; }
-    .exp-body h3 { font-size: 1.3rem; font-weight: 600; color: var(--text); margin-bottom: 0.5rem; margin-top: 0.2rem; }
-    .exp-body p { font-size: 0.92rem; font-weight: 300; color: var(--text-2); line-height: 1.8; }
-    .etags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.9rem; }
-    .etag { font-size: 0.58rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); background: rgba(229,48,48,0.1); border: 1px solid rgba(229,48,48,0.2); border-radius: 999px; padding: 0.22rem 0.65rem; }
+    /* ── PRICING ── */
+    #pricing { padding:10rem 0; background:var(--bg); position:relative; overflow:hidden; }
+    .pricing-orb { width:60vw; height:60vw; bottom:-25%; right:-10%; background:radial-gradient(circle,rgba(229,48,48,0.07) 0%,transparent 65%); animation:drift3 23s ease-in-out infinite; }
+    .pricing-head { text-align:center; margin-bottom:4rem; }
+    .pricing-head p { font-size:0.97rem; font-weight:300; color:var(--text-2); max-width:42ch; margin:0.8rem auto 0; line-height:1.85; }
+    .pricing-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; align-items:start; }
+    .plan-card { background:var(--glass); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border:1px solid var(--glass-b); border-radius:var(--radius); padding:2rem; transition:background 0.3s,border-color 0.3s,transform 0.3s; position:relative; overflow:hidden; }
+    .plan-card:hover { background:var(--glass-hover); transform:translateY(-4px); }
+    .plan-card.featured { background:rgba(229,48,48,0.08); border-color:rgba(229,48,48,0.3); }
+    .plan-card.featured:hover { border-color:rgba(229,48,48,0.5); }
+    .plan-badge { position:absolute; top:1rem; right:1rem; font-size:0.52rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; background:var(--acc); color:#fff; border-radius:999px; padding:0.25rem 0.65rem; }
+    .plan-icon { font-family:var(--serif); font-size:2.4rem; background:var(--acc); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; opacity:0.5; line-height:1; margin-bottom:0.8rem; }
+    .plan-name { font-family:var(--sans); font-size:1rem; font-weight:700; color:var(--text); margin-bottom:0.3rem; letter-spacing:0.02em; }
+    .plan-dur  { font-size:0.72rem; color:var(--text-3); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:1.4rem; }
+    .plan-price { font-family:var(--serif); font-size:2.6rem; font-weight:300; background:var(--acc); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1; margin-bottom:0.25rem; }
+    .plan-price-note { font-size:0.62rem; color:var(--text-3); margin-bottom:1.4rem; letter-spacing:0.06em; }
+    .plan-features { list-style:none; margin-bottom:1.6rem; }
+    .plan-features li { font-size:0.84rem; font-weight:300; color:var(--text-2); padding:0.4rem 0; border-bottom:1px solid var(--line); display:flex; align-items:center; gap:0.6rem; }
+    .plan-features li:last-child { border-bottom:none; }
+    .plan-features li::before { content:'✓'; font-size:0.7rem; color:var(--orange); font-weight:700; flex-shrink:0; }
+    .plan-cta { display:block; text-align:center; padding:0.75rem 1rem; background:var(--glass); border:1px solid var(--glass-b); border-radius:999px; font-size:0.68rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-2); text-decoration:none; transition:background 0.25s,color 0.25s,border-color 0.25s; }
+    .plan-cta:hover { background:var(--glass-hover); color:var(--text); }
+    .plan-card.featured .plan-cta { background:var(--acc); border-color:transparent; color:#fff; }
+    .plan-card.featured .plan-cta:hover { opacity:0.88; }
 
     /* ── TESTIMONIALS ── */
-    #testimonials { padding: 10rem 0; background: var(--bg-1); position: relative; overflow: hidden; }
-    .test-orb { width: 60vw; height: 60vw; top: -20%; left: 50%; transform: translateX(-50%); background: radial-gradient(circle, rgba(255,107,53,0.06) 0%, transparent 60%); animation: drift1 26s ease-in-out infinite; }
-
-    .test-head { text-align: center; margin-bottom: 4rem; position: relative; z-index: 1; }
-    .test-head p { font-size: 0.97rem; font-weight: 300; color: var(--text-2); max-width: 42ch; margin: 0.8rem auto 0; }
-
-    .test-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; position: relative; z-index: 1; }
-
-    .test-card {
-      background: var(--glass); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      border: 1px solid var(--glass-b); border-radius: var(--radius); padding: 2rem;
-      transition: background 0.3s, border-color 0.3s, transform 0.3s;
-      display: flex; flex-direction: column; gap: 1.2rem;
-    }
-    .test-card:hover { background: var(--glass-hover); border-color: rgba(229,48,48,0.18); transform: translateY(-4px); }
-
-    .test-stars { color: var(--orange); font-size: 0.78rem; letter-spacing: 0.06em; }
-
-    .test-quote { font-family: var(--serif); font-size: 1.05rem; font-weight: 300; font-style: italic; color: var(--text); line-height: 1.75; flex: 1; }
-    .test-quote::before { content: '\201C'; }
-    .test-quote::after  { content: '\201D'; }
-
-    .test-person { display: flex; align-items: center; gap: 0.9rem; margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--line); }
-
-    .test-avatar {
-      width: 42px; height: 42px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em;
-      color: #fff; flex-shrink: 0;
-    }
-
-    .av-a { background: linear-gradient(135deg, #e53030, #ff6b35); }
-    .av-b { background: linear-gradient(135deg, #8b1a1a, #e53030); }
-    .av-c { background: linear-gradient(135deg, #c43a00, #ff6b35); }
-    .av-d { background: linear-gradient(135deg, #a02020, #e53030); }
-    .av-e { background: linear-gradient(135deg, #d14000, #ff6b35); }
-    .av-f { background: linear-gradient(135deg, #701010, #c43a00); }
-
-    .test-meta strong { display: block; font-size: 0.82rem; font-weight: 600; color: var(--text); }
-    .test-meta span   { font-size: 0.68rem; letter-spacing: 0.1em; color: var(--text-3); text-transform: uppercase; }
+    #testimonials { padding:10rem 0; background:var(--bg-1); position:relative; overflow:hidden; }
+    .test-orb { width:60vw; height:60vw; top:-20%; left:50%; transform:translateX(-50%); background:radial-gradient(circle,rgba(255,107,53,0.06) 0%,transparent 60%); animation:drift1 26s ease-in-out infinite; }
+    .test-head { text-align:center; margin-bottom:4rem; position:relative; z-index:1; }
+    .test-head p { font-size:0.97rem; font-weight:300; color:var(--text-2); max-width:42ch; margin:0.8rem auto 0; }
+    .test-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; position:relative; z-index:1; }
+    .test-card { background:var(--glass); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border:1px solid var(--glass-b); border-radius:var(--radius); padding:2rem; transition:background 0.3s,border-color 0.3s,transform 0.3s; display:flex; flex-direction:column; gap:1.2rem; }
+    .test-card:hover { background:var(--glass-hover); border-color:rgba(229,48,48,0.18); transform:translateY(-4px); }
+    .test-stars { color:var(--orange); font-size:0.78rem; letter-spacing:0.06em; }
+    .test-quote { font-family:var(--serif); font-size:1.05rem; font-weight:300; font-style:italic; color:var(--text); line-height:1.75; flex:1; }
+    .test-quote::before { content:'\201C'; }
+    .test-quote::after  { content:'\201D'; }
+    .test-person { display:flex; align-items:center; gap:0.9rem; margin-top:auto; padding-top:1rem; border-top:1px solid var(--line); }
+    .test-avatar { width:42px; height:42px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.78rem; font-weight:600; color:#fff; flex-shrink:0; }
+    .av-a{background:linear-gradient(135deg,#e53030,#ff6b35)} .av-b{background:linear-gradient(135deg,#8b1a1a,#e53030)} .av-c{background:linear-gradient(135deg,#c43a00,#ff6b35)} .av-d{background:linear-gradient(135deg,#a02020,#e53030)} .av-e{background:linear-gradient(135deg,#d14000,#ff6b35)} .av-f{background:linear-gradient(135deg,#701010,#c43a00)}
+    .test-meta strong { display:block; font-size:0.82rem; font-weight:600; color:var(--text); }
+    .test-meta span { font-size:0.68rem; letter-spacing:0.1em; color:var(--text-3); text-transform:uppercase; }
 
     /* ── CONTACT ── */
-    #contact { padding: 10rem 0; background: var(--bg); position: relative; overflow: hidden; }
-    .contact-orb { width: 55vw; height: 55vw; bottom: -25%; right: -10%; background: radial-gradient(circle, rgba(229,48,48,0.08) 0%, transparent 65%); animation: drift3 20s ease-in-out infinite; }
-
-    .contact-inner { max-width: 660px; margin: 0 auto; position: relative; z-index: 1; }
-    .contact-head { text-align: center; margin-bottom: 3.5rem; }
-    .contact-head p { font-size: 0.97rem; font-weight: 300; color: var(--text-2); margin: 1.2rem auto 0; max-width: 40ch; line-height: 1.85; }
-
-    .cform-wrap { background: var(--glass); backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px); border: 1px solid var(--glass-b); border-radius: 24px; padding: 2.8rem; }
-    .cform { display: flex; flex-direction: column; gap: 1.2rem; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
-    .fld { position: relative; }
-
-    .fld input, .fld textarea { width: 100%; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: var(--text); font-family: var(--sans); font-size: 0.93rem; font-weight: 300; padding: 1.5rem 1.1rem 0.5rem; outline: none; border-radius: 12px; -webkit-appearance: none; transition: border-color 0.3s, background 0.3s; resize: none; }
-    .fld textarea { min-height: 140px; padding-top: 1.8rem; }
-    .fld input:focus, .fld textarea:focus { border-color: rgba(229,48,48,0.5); background: rgba(229,48,48,0.04); }
-
-    .fld label { position: absolute; top: 1rem; left: 1.1rem; font-size: 0.62rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-3); pointer-events: none; transition: top 0.2s, font-size 0.2s, color 0.2s; }
-    .fld input:focus ~ label, .fld input:not(:placeholder-shown) ~ label, .fld textarea:focus ~ label, .fld textarea:not(:placeholder-shown) ~ label { top: 0.38rem; font-size: 0.5rem; color: var(--red); }
-
-    .sbtn { width: 100%; padding: 1rem; background: var(--acc); color: #fff; border: none; border-radius: 999px; font-family: var(--sans); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer; margin-top: 0.5rem; transition: opacity 0.25s, transform 0.25s, box-shadow 0.25s; }
-    .sbtn:hover { opacity: 0.88; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(229,48,48,0.3); }
-    .sbtn.loading { opacity: 0.45; pointer-events: none; }
-
-    .form-ok { display: none; text-align: center; padding: 4rem 2rem; }
-    .form-ok.show { display: block; }
-    .ok-icon { font-size: 2.8rem; background: var(--acc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: block; margin-bottom: 0.8rem; font-family: var(--serif); }
-    .form-ok h3 { font-family: var(--serif); font-size: 2.2rem; font-weight: 300; margin-bottom: 0.5rem; }
-    .form-ok p  { font-size: 0.9rem; font-weight: 300; color: var(--text-2); }
+    #contact { padding:10rem 0; background:var(--bg); position:relative; overflow:hidden; }
+    .contact-orb { width:55vw; height:55vw; bottom:-25%; right:-10%; background:radial-gradient(circle,rgba(229,48,48,0.08) 0%,transparent 65%); animation:drift3 20s ease-in-out infinite; }
+    .contact-inner { max-width:660px; margin:0 auto; position:relative; z-index:1; }
+    .contact-head { text-align:center; margin-bottom:3.5rem; }
+    .contact-head p { font-size:0.97rem; font-weight:300; color:var(--text-2); margin:1.2rem auto 0; max-width:40ch; line-height:1.85; }
+    .cform-wrap { background:var(--glass); backdrop-filter:blur(28px); -webkit-backdrop-filter:blur(28px); border:1px solid var(--glass-b); border-radius:24px; padding:2.8rem; }
+    .cform { display:flex; flex-direction:column; gap:1.2rem; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; }
+    .fld { position:relative; }
+    .fld input,.fld textarea { width:100%; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); color:var(--text); font-family:var(--sans); font-size:0.93rem; font-weight:300; padding:1.5rem 1.1rem 0.5rem; outline:none; border-radius:12px; -webkit-appearance:none; transition:border-color 0.3s,background 0.3s; resize:none; }
+    .fld textarea { min-height:140px; padding-top:1.8rem; }
+    .fld input:focus,.fld textarea:focus { border-color:rgba(229,48,48,0.5); background:rgba(229,48,48,0.04); }
+    .fld label { position:absolute; top:1rem; left:1.1rem; font-size:0.62rem; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:var(--text-3); pointer-events:none; transition:top 0.2s,font-size 0.2s,color 0.2s; }
+    .fld input:focus ~ label,.fld input:not(:placeholder-shown) ~ label,.fld textarea:focus ~ label,.fld textarea:not(:placeholder-shown) ~ label { top:0.38rem; font-size:0.5rem; color:var(--red); }
+    .sbtn { width:100%; padding:1rem; background:var(--acc); color:#fff; border:none; border-radius:999px; font-family:var(--sans); font-size:0.72rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; cursor:pointer; margin-top:0.5rem; transition:opacity 0.25s,transform 0.25s,box-shadow 0.25s; }
+    .sbtn:hover { opacity:0.88; transform:translateY(-2px); box-shadow:0 8px 28px rgba(229,48,48,0.3); }
+    .sbtn.loading { opacity:0.45; pointer-events:none; }
+    .form-ok { display:none; text-align:center; padding:4rem 2rem; }
+    .form-ok.show { display:block; }
+    .ok-icon { font-size:2.8rem; background:var(--acc); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; display:block; margin-bottom:0.8rem; font-family:var(--serif); }
+    .form-ok h3 { font-family:var(--serif); font-size:2.2rem; font-weight:300; margin-bottom:0.5rem; }
+    .form-ok p { font-size:0.9rem; font-weight:300; color:var(--text-2); }
 
     /* ── FOOTER ── */
-    footer { padding: 2rem 2.5rem; background: #000; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; }
-    footer span { font-size: 0.63rem; letter-spacing: 0.12em; color: var(--text-3); }
+    footer { padding:2rem 2.5rem; background:#000; border-top:1px solid var(--line); display:flex; justify-content:space-between; align-items:center; }
+    footer span { font-size:0.63rem; letter-spacing:0.12em; color:var(--text-3); }
 
     /* ── MOBILE ── */
-    @media (max-width: 900px) {
-      nav { padding: 0.9rem 1.2rem; }
-      .nav-center { display: none; }
-      .region-head { grid-template-columns: 1fr; gap: 1.5rem; }
-      .city-grid { grid-template-columns: repeat(2, 1fr); }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
-      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .photo-wrap { max-width: 280px; }
-      .form-row { grid-template-columns: 1fr; }
-      .test-grid { grid-template-columns: repeat(2, 1fr); }
-      footer { flex-direction: column; gap: 0.4rem; text-align: center; }
+    @media (max-width:1024px) { .pricing-grid { grid-template-columns:repeat(2,1fr); } }
+    @media (max-width:900px) {
+      nav { padding:0.9rem 1.2rem; } .nav-center { display:none; }
+      .region-head { grid-template-columns:1fr; gap:1.5rem; }
+      .city-grid,.routes-grid { grid-template-columns:repeat(2,1fr); }
+      .stats-grid { grid-template-columns:repeat(2,1fr); }
+      .about-grid { grid-template-columns:1fr; gap:3rem; } .photo-wrap { max-width:280px; }
+      .form-row { grid-template-columns:1fr; }
+      .test-grid { grid-template-columns:repeat(2,1fr); }
+      footer { flex-direction:column; gap:0.4rem; text-align:center; }
     }
-
-    @media (max-width: 560px) {
-      .wrap { padding: 0 1.2rem; }
-      .city-grid { grid-template-columns: 1fr; }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
-      .exp-item { grid-template-columns: 3.2rem 1fr; gap: 1.2rem; padding: 1.8rem 1.5rem; }
-      .cform-wrap { padding: 1.8rem 1.4rem; }
-      #hero { padding-top: 7rem; }
-      .hero-ctas { flex-direction: column; align-items: center; }
-      .btn-acc, .btn-ghost { width: 100%; max-width: 280px; text-align: center; }
-      .test-grid { grid-template-columns: 1fr; }
+    @media (max-width:600px) {
+      .wrap { padding:0 1.2rem; }
+      .city-grid,.routes-grid,.test-grid,.pricing-grid { grid-template-columns:1fr; }
+      .stats-grid { grid-template-columns:repeat(2,1fr); gap:0.8rem; }
+      .exp-item { grid-template-columns:3.2rem 1fr; gap:1.2rem; padding:1.8rem 1.5rem; }
+      .cform-wrap { padding:1.8rem 1.4rem; }
+      #hero { padding-top:7rem; }
+      .hero-ctas { flex-direction:column; align-items:center; }
+      .btn-acc,.btn-ghost { width:100%; max-width:280px; text-align:center; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <a class="nav-logo" href="#">Tony Hanma</a>
-    <ul class="nav-center">
-      <li><a href="#region"       data-t="nav.region">Kansai</a></li>
-      <li><a href="#about"        data-t="nav.guide">Guide</a></li>
-      <li><a href="#experiences"  data-t="nav.tours">Tours</a></li>
-      <li><a href="#testimonials" data-t="nav.reviews">Reviews</a></li>
-      <li><a href="#contact"      data-t="nav.contact">Contact</a></li>
-    </ul>
-    <div class="lang-sw">
-      <button class="lang-btn active" data-l="en">EN</button>
-      <button class="lang-btn"        data-l="es">ES</button>
-      <button class="lang-btn"        data-l="ru">RU</button>
-    </div>
-  </nav>
+<nav>
+  <a class="nav-logo" href="#">Tony Hanma</a>
+  <ul class="nav-center">
+    <li><a href="#region"       data-t="nav.region">Kansai</a></li>
+    <li><a href="#about"        data-t="nav.guide">Guide</a></li>
+    <li><a href="#experiences"  data-t="nav.tours">Tours</a></li>
+    <li><a href="#routes"       data-t="nav.routes">Routes</a></li>
+    <li><a href="#pricing"      data-t="nav.pricing">Pricing</a></li>
+    <li><a href="#testimonials" data-t="nav.reviews">Reviews</a></li>
+    <li><a href="#contact"      data-t="nav.contact">Contact</a></li>
+  </ul>
+  <div class="lang-sw">
+    <button class="lang-btn active" data-l="en">EN</button>
+    <button class="lang-btn"        data-l="es">ES</button>
+    <button class="lang-btn"        data-l="ru">RU</button>
+  </div>
+</nav>
 
-  <!-- HERO -->
-  <section id="hero">
-    <div class="hero-bg">
-      <div class="hero-grid" aria-hidden="true"></div>
-      <div class="orb hero-orb-r"></div>
-      <div class="orb hero-orb-o"></div>
-      <div class="orb hero-orb-d"></div>
-      <div class="hero-kanji" aria-hidden="true" id="hkanji">関西</div>
-    </div>
-    <div class="hero-content">
-      <p class="hero-tag" data-t="hero.tag">Private Guide · Osaka · Kansai Region · Japan</p>
-      <h1 class="hero-title">
-        <span class="h-line"><span class="h-inner" data-t="hero.l1">Discover</span></span>
-        <span class="h-line"><span class="h-inner"><span class="acc-word" data-t="hero.l2">Japan's</span></span></span>
-        <span class="h-line"><span class="h-inner" data-t="hero.l3">True Soul</span></span>
-      </h1>
-      <p class="hero-sub" data-t="hero.sub">Beyond the guidebooks. An intimate journey through Osaka, Kyoto, Nara, and the hidden corners of the Kansai heartland — led by someone who lives it.</p>
-      <div class="hero-ctas">
-        <a class="btn-acc"   href="#contact" data-t="hero.cta1">Book a Private Tour</a>
-        <a class="btn-ghost" href="#about"   data-t="hero.cta2">About Your Guide</a>
-      </div>
-    </div>
-    <div class="scroll-hint">
-      <span data-t="scroll">Scroll</span>
-      <div class="scroll-mouse"><div class="scroll-dot"></div></div>
-    </div>
-  </section>
-
-  <!-- MARQUEE -->
-  <div class="marquee-bar" aria-hidden="true">
-    <div class="marquee-track">
-      <span class="m-item">Osaka<span class="m-dot"></span></span>
-      <span class="m-item">Kyoto<span class="m-dot"></span></span>
-      <span class="m-item">Nara<span class="m-dot"></span></span>
-      <span class="m-item">Kobe<span class="m-dot"></span></span>
-      <span class="m-item">Himeji<span class="m-dot"></span></span>
-      <span class="m-item">Kōyasan<span class="m-dot"></span></span>
-      <span class="m-item" data-t="marq.tours">Private Tours</span><span class="m-dot" style="margin-left:1.4rem"></span>
-      <span class="m-item" data-t="marq.food">Food &amp; Culture</span><span class="m-dot" style="margin-left:1.4rem"></span>
-      <span class="m-item">English · Español · Русский<span class="m-dot"></span></span>
-      <span class="m-item">Osaka<span class="m-dot"></span></span>
-      <span class="m-item">Kyoto<span class="m-dot"></span></span>
-      <span class="m-item">Nara<span class="m-dot"></span></span>
-      <span class="m-item">Kobe<span class="m-dot"></span></span>
-      <span class="m-item">Himeji<span class="m-dot"></span></span>
-      <span class="m-item">Kōyasan<span class="m-dot"></span></span>
-      <span class="m-item" data-t="marq.tours">Private Tours</span><span class="m-dot" style="margin-left:1.4rem"></span>
-      <span class="m-item" data-t="marq.food">Food &amp; Culture</span><span class="m-dot" style="margin-left:1.4rem"></span>
-      <span class="m-item">English · Español · Русский<span class="m-dot"></span></span>
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg">
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="orb hero-orb-r"></div>
+    <div class="orb hero-orb-o"></div>
+    <div class="orb hero-orb-d"></div>
+    <div class="hero-kanji" aria-hidden="true" id="hkanji">関西</div>
+  </div>
+  <div class="hero-content">
+    <p class="hero-tag" data-t="hero.tag">Private Guide · Osaka · Kansai Region · Japan</p>
+    <h1 class="hero-title">
+      <span class="h-line"><span class="h-inner" data-t="hero.l1">Discover</span></span>
+      <span class="h-line"><span class="h-inner"><span class="acc-word" data-t="hero.l2">Japan's</span></span></span>
+      <span class="h-line"><span class="h-inner" data-t="hero.l3">True Soul</span></span>
+    </h1>
+    <p class="hero-sub" data-t="hero.sub">Beyond the guidebooks. An intimate journey through Osaka, Kyoto, Nara, and the hidden corners of the Kansai heartland — led by someone who lives it.</p>
+    <div class="hero-ctas">
+      <a class="btn-acc"   href="#contact" data-t="hero.cta1">Book a Private Tour</a>
+      <a class="btn-ghost" href="#about"   data-t="hero.cta2">About Your Guide</a>
     </div>
   </div>
+  <div class="scroll-hint">
+    <span data-t="scroll">Scroll</span>
+    <div class="scroll-mouse"><div class="scroll-dot"></div></div>
+  </div>
+</section>
 
-  <!-- REGION -->
-  <section id="region">
-    <div class="orb region-orb"></div>
-    <div class="wrap">
-      <div class="region-head">
-        <div class="rev">
-          <span class="section-label" data-t="region.label">The Region · 関西地方</span>
-          <h2 data-t="region.h2">Where Japan's <span class="acc">history was born</span></h2>
-        </div>
-        <div class="rev d2">
-          <p data-t="region.p">Kansai is Japan's cultural and spiritual core. Home to two ancient capitals, the country's finest cuisine, and a way of life that remains fiercely distinct — warmer, louder, more honest. Seven prefectures. Centuries of stories. Knowing where to look makes all the difference.</p>
-        </div>
+<!-- MARQUEE -->
+<div class="marquee-bar" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="m-item">Osaka<span class="m-dot"></span></span>
+    <span class="m-item">Kyoto<span class="m-dot"></span></span>
+    <span class="m-item">Nara<span class="m-dot"></span></span>
+    <span class="m-item">Kobe<span class="m-dot"></span></span>
+    <span class="m-item">Himeji<span class="m-dot"></span></span>
+    <span class="m-item">Kōyasan<span class="m-dot"></span></span>
+    <span class="m-item" data-t="marq.tours">Private Tours</span><span class="m-dot" style="margin-left:1.4rem"></span>
+    <span class="m-item" data-t="marq.food">Food &amp; Culture</span><span class="m-dot" style="margin-left:1.4rem"></span>
+    <span class="m-item">English · Español · العربية<span class="m-dot"></span></span>
+    <span class="m-item">Osaka<span class="m-dot"></span></span>
+    <span class="m-item">Kyoto<span class="m-dot"></span></span>
+    <span class="m-item">Nara<span class="m-dot"></span></span>
+    <span class="m-item">Kobe<span class="m-dot"></span></span>
+    <span class="m-item">Himeji<span class="m-dot"></span></span>
+    <span class="m-item">Kōyasan<span class="m-dot"></span></span>
+    <span class="m-item" data-t="marq.tours">Private Tours</span><span class="m-dot" style="margin-left:1.4rem"></span>
+    <span class="m-item" data-t="marq.food">Food &amp; Culture</span><span class="m-dot" style="margin-left:1.4rem"></span>
+    <span class="m-item">English · Español · العربية<span class="m-dot"></span></span>
+  </div>
+</div>
+
+<!-- REGION -->
+<section id="region">
+  <div class="orb region-orb"></div>
+  <div class="wrap">
+    <div class="region-head">
+      <div class="rev">
+        <span class="section-label" data-t="region.label">The Region · 関西地方</span>
+        <h2 data-t="region.h2">Where Japan's <span class="acc">history was born</span></h2>
       </div>
-      <div class="city-grid">
-        <div class="city-card tilt-card rev d1"><div class="glare"></div><span class="city-kanji">大阪</span><h3>Osaka</h3><p data-t="city.osaka">Japan's kitchen. Street food, neon, merchant spirit, and the most open-hearted people you'll meet anywhere in the country.</p></div>
-        <div class="city-card tilt-card rev d2"><div class="glare"></div><span class="city-kanji">京都</span><h3>Kyoto</h3><p data-t="city.kyoto">A thousand years of imperial culture. Wooden temples, bamboo groves, geisha districts — and the hidden paths tourists rarely find.</p></div>
-        <div class="city-card tilt-card rev d3"><div class="glare"></div><span class="city-kanji">奈良</span><h3>Nara</h3><p data-t="city.nara">Ancient deer roam freely among UNESCO shrines. Japan's first permanent capital — serene, underrated, unforgettable.</p></div>
-        <div class="city-card tilt-card rev d4"><div class="glare"></div><span class="city-kanji">神戸</span><h3>Kobe</h3><p data-t="city.kobe">Port city elegance, legendary beef, and a European-influenced skyline nestled between mountains and sea.</p></div>
-        <div class="city-card tilt-card rev d5"><div class="glare"></div><span class="city-kanji">姫路</span><h3>Himeji</h3><p data-t="city.himeji">Japan's most perfect castle — white as a heron in flight, unchanged for four centuries.</p></div>
-        <div class="city-card tilt-card rev d6"><div class="glare"></div><span class="city-kanji">高野山</span><h3>Kōyasan</h3><p data-t="city.koyasan">Sleep in a mountain monastery. Walk lantern-lit cemetery paths at dawn. A world completely apart.</p></div>
+      <div class="rev d2">
+        <p data-t="region.p">Kansai is Japan's cultural and spiritual core. Home to two ancient capitals, the country's finest cuisine, and a way of life that remains fiercely distinct — warmer, louder, more honest. Seven prefectures. Centuries of stories. Knowing where to look makes all the difference.</p>
       </div>
     </div>
-  </section>
+    <div class="city-grid">
+      <div class="city-card tilt-card rev d1"><div class="glare"></div><span class="city-kanji">大阪</span><h3>Osaka</h3><p data-t="city.osaka">Japan's kitchen. Street food, neon, merchant spirit, and the most open-hearted people you'll meet anywhere in the country.</p></div>
+      <div class="city-card tilt-card rev d2"><div class="glare"></div><span class="city-kanji">京都</span><h3>Kyoto</h3><p data-t="city.kyoto">A thousand years of imperial culture. Wooden temples, bamboo groves, geisha districts — and the hidden paths tourists rarely find.</p></div>
+      <div class="city-card tilt-card rev d3"><div class="glare"></div><span class="city-kanji">奈良</span><h3>Nara</h3><p data-t="city.nara">Ancient deer roam freely among UNESCO shrines. Japan's first permanent capital — serene, underrated, unforgettable.</p></div>
+      <div class="city-card tilt-card rev d4"><div class="glare"></div><span class="city-kanji">神戸</span><h3>Kobe</h3><p data-t="city.kobe">Port city elegance, legendary beef, and a European-influenced skyline nestled between mountains and sea.</p></div>
+      <div class="city-card tilt-card rev d5"><div class="glare"></div><span class="city-kanji">姫路</span><h3>Himeji</h3><p data-t="city.himeji">Japan's most perfect castle — white as a heron in flight, unchanged for four centuries.</p></div>
+      <div class="city-card tilt-card rev d6"><div class="glare"></div><span class="city-kanji">高野山</span><h3>Kōyasan</h3><p data-t="city.koyasan">Sleep in a mountain monastery. Walk lantern-lit cemetery paths at dawn. A world completely apart.</p></div>
+    </div>
+  </div>
+</section>
 
-  <!-- STATS -->
-  <div class="stats-bar">
-    <div class="orb stats-orb"></div>
-    <div class="wrap">
-      <div class="stats-grid">
-        <div class="stat-card tilt-card rev"><div class="glare"></div><span class="stat-n" data-target="7">0</span><span class="stat-l" data-t="stat.1">Prefectures Covered</span></div>
-        <div class="stat-card tilt-card rev d2"><div class="glare"></div><span class="stat-n" data-target="200">0</span><span class="stat-l" data-t="stat.2">Tours Completed</span></div>
-        <div class="stat-card tilt-card rev d3"><div class="glare"></div><span class="stat-n" data-target="3">0</span><span class="stat-l" data-t="stat.3">Languages Spoken</span></div>
-        <div class="stat-card tilt-card rev d4"><div class="glare"></div><span class="stat-n" data-target="100">0</span><span class="stat-l" data-t="stat.4">% Private &amp; Personalised</span></div>
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="orb stats-orb"></div>
+  <div class="wrap">
+    <div class="stats-grid">
+      <div class="stat-card tilt-card rev"><div class="glare"></div><span class="stat-n" data-target="7">0</span><span class="stat-l" data-t="stat.1">Prefectures Covered</span></div>
+      <div class="stat-card tilt-card rev d2"><div class="glare"></div><span class="stat-n" data-target="200">0</span><span class="stat-l" data-t="stat.2">Tours Completed</span></div>
+      <div class="stat-card tilt-card rev d3"><div class="glare"></div><span class="stat-n" data-target="3">0</span><span class="stat-l" data-t="stat.3">Languages Spoken</span></div>
+      <div class="stat-card tilt-card rev d4"><div class="glare"></div><span class="stat-n" data-target="100">0</span><span class="stat-l" data-t="stat.4">% Private &amp; Personalised</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="orb about-orb"></div>
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="photo-wrap rev-l">
+        <div class="photo-frame tilt-card"><div class="glare"></div>
+          <img src="photo.jpg" alt="Tony Hanma — Private Kansai Guide" />
+        </div>
+      </div>
+      <div class="about-copy rev-r">
+        <span class="section-label" data-t="about.label">Your Guide</span>
+        <h2 data-t="about.h2">Meet <span class="acc">Tony</span></h2><br/>
+        <p data-t="about.p1">I'm Tony — a private guide based in the Kansai region. I came to Japan drawn by its culture, its food, and its people, and I never left.</p>
+        <p data-t="about.p2">What I offer is not a packaged tour — it is access to the Japan I know personally. The backstreet izakayas that don't appear on Google Maps. The temple at 6am before the crowds arrive. The market vendor who will become your favourite memory of the whole trip.</p>
+        <p data-t="about.p3">I speak English, Spanish and Arabic fluently, and I adapt to any pace or interest — whether you want to eat everything, photograph every corner, or simply walk and let the city breathe around you.</p>
+        <p data-t="about.p4">Every tour is private, fully personalised, and built entirely around you. No scripts. No group buses. Just Japan, as it really is.</p>
+        <span class="signature">Tony Hanma</span>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="orb about-orb"></div>
-    <div class="wrap">
-      <div class="about-grid">
-        <div class="photo-wrap rev-l">
-          <div class="photo-frame tilt-card"><div class="glare"></div>
-            <img src="photo.jpg" alt="Tony Hanma — Private Kansai Guide" />
-          </div>
+<!-- EXPERIENCES -->
+<section id="experiences">
+  <div class="orb exp-orb"></div>
+  <div class="wrap">
+    <div class="exp-head rev">
+      <span class="section-label" data-t="exp.label">What I Offer</span>
+      <h2 data-t="exp.h2">Tailored <span class="acc">experiences</span></h2>
+    </div>
+    <div class="exp-item tilt-card rev"><div class="glare"></div>
+      <div class="exp-num">01</div>
+      <div class="exp-body"><h3 data-t="exp.1.title">Full-Day City Deep Dive</h3><p data-t="exp.1.desc">One city, one day, done right. Markets at opening time, hidden shrines, street lunch, neighbourhood bars at dusk. Osaka or Kyoto — your choice.</p><div class="etags"><span class="etag" data-t="tag.1day">1 Day</span><span class="etag" data-t="tag.group">1–6 People</span><span class="etag" data-t="tag.custom">Custom Route</span></div></div>
+    </div>
+    <div class="exp-item tilt-card rev d1"><div class="glare"></div>
+      <div class="exp-num">02</div>
+      <div class="exp-body"><h3 data-t="exp.2.title">Multi-Day Kansai Journey</h3><p data-t="exp.2.desc">A curated arc across the whole region — balancing iconic landmarks with the places most visitors never find. All logistics handled, nothing rushed.</p><div class="etags"><span class="etag" data-t="tag.days">3–7 Days</span><span class="etag" data-t="tag.log">Full Logistics</span><span class="etag" data-t="tag.acc">Accommodation Tips</span></div></div>
+    </div>
+    <div class="exp-item tilt-card rev d2"><div class="glare"></div>
+      <div class="exp-num">03</div>
+      <div class="exp-body"><h3 data-t="exp.3.title">Food &amp; Market Tours</h3><p data-t="exp.3.desc">Osaka is Japan's food capital. We eat through Kuromon market, neighbourhood shotengai, and the best standing sushi bar you will ever visit.</p><div class="etags"><span class="etag" data-t="tag.half">Half Day</span><span class="etag" data-t="tag.food">Food Included</span><span class="etag">Osaka</span></div></div>
+    </div>
+    <div class="exp-item tilt-card rev d3"><div class="glare"></div>
+      <div class="exp-num">04</div>
+      <div class="exp-body"><h3 data-t="exp.4.title">Cultural &amp; Spiritual Journeys</h3><p data-t="exp.4.desc">Monastery stays, dawn temple walks, traditional craft workshops — for travellers who want depth, not just sights on a checklist.</p><div class="etags"><span class="etag" data-t="tag.flex">Flexible</span><span class="etag">Kōyasan</span><span class="etag" data-t="tag.imm">Immersive</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ROUTES -->
+<section id="routes">
+  <div class="orb routes-orb"></div>
+  <div class="wrap">
+    <div class="routes-head rev">
+      <span class="section-label" data-t="routes.label">Departure Routes</span>
+      <h2 data-t="routes.h2">Specific <span class="acc">itineraries</span></h2>
+    </div>
+    <div class="routes-grid">
+
+      <div class="route-card tilt-card rev d1"><div class="glare"></div>
+        <div class="route-num" data-t="route.n1">Route 01</div>
+        <h3 data-t="route.1.title">Osaka Street Food Circuit</h3>
+        <div class="route-meta">
+          <span class="route-badge" data-t="rtag.4h">4 Hours</span>
+          <span class="route-badge" data-t="rtag.food">Food Focused</span>
+          <span class="route-badge" data-t="rtag.any">Any Group</span>
         </div>
-        <div class="about-copy rev-r">
-          <span class="section-label" data-t="about.label">Your Guide</span>
-          <h2 data-t="about.h2">Meet <span class="acc">Tony</span></h2>
-          <br/>
-          <p data-t="about.p1">I'm Tony — a private guide based in the Kansai region. I came to Japan drawn by its culture, its food, and its people, and I never left.</p>
-          <p data-t="about.p2">What I offer is not a packaged tour — it is access to the Japan I know personally. The backstreet izakayas that don't appear on Google Maps. The temple at 6am before the crowds arrive. The market vendor who will become your favourite memory of the whole trip.</p>
-          <p data-t="about.p3">I speak English, Spanish and Russian fluently, and I adapt to any pace or interest — whether you want to eat everything, photograph every corner, or simply walk and let the city breathe around you.</p>
-          <p data-t="about.p4">Every tour is private, fully personalised, and built entirely around you. No scripts. No group buses. Just Japan, as it really is.</p>
-          <span class="signature">Tony Hanma</span>
+        <ul class="route-stops">
+          <li data-t="r1.s1">Kuromon Market — opening time, with the vendors</li>
+          <li data-t="r1.s2">Dotonbori canal walk &amp; takoyaki tasting</li>
+          <li data-t="r1.s3">Shinsekai neighbourhood lunch</li>
+          <li data-t="r1.s4">Hidden shotengai &amp; sake bar at dusk</li>
+        </ul>
+        <div class="route-dep">📍 <strong data-t="r1.dep">Namba Station Exit 14 · 9:00 AM</strong></div>
+      </div>
+
+      <div class="route-card tilt-card rev d2"><div class="glare"></div>
+        <div class="route-num" data-t="route.n2">Route 02</div>
+        <h3 data-t="route.2.title">Hidden Kyoto</h3>
+        <div class="route-meta">
+          <span class="route-badge" data-t="rtag.8h">8 Hours</span>
+          <span class="route-badge" data-t="rtag.culture">Culture</span>
+          <span class="route-badge" data-t="rtag.max6">Max 6</span>
+        </div>
+        <ul class="route-stops">
+          <li data-t="r2.s1">Fushimi Inari before the crowds — 8:30 AM</li>
+          <li data-t="r2.s2">Philosopher's Path in silence</li>
+          <li data-t="r2.s3">Secret Gion alleys &amp; tea ceremony</li>
+          <li data-t="r2.s4">Riverside kaiseki dinner reservation</li>
+        </ul>
+        <div class="route-dep">📍 <strong data-t="r2.dep">Kyoto Station Central Exit · 8:30 AM</strong></div>
+      </div>
+
+      <div class="route-card tilt-card rev d3"><div class="glare"></div>
+        <div class="route-num" data-t="route.n3">Route 03</div>
+        <h3 data-t="route.3.title">Nara &amp; Himeji Castle</h3>
+        <div class="route-meta">
+          <span class="route-badge" data-t="rtag.9h">9 Hours</span>
+          <span class="route-badge" data-t="rtag.hist">History</span>
+          <span class="route-badge" data-t="rtag.max6">Max 6</span>
+        </div>
+        <ul class="route-stops">
+          <li data-t="r3.s1">Tōdai-ji — largest wooden structure on Earth</li>
+          <li data-t="r3.s2">Kasuga Grand Shrine deer park</li>
+          <li data-t="r3.s3">Himeji Castle — UNESCO World Heritage</li>
+          <li data-t="r3.s4">Hidden castle-town gardens at dusk</li>
+        </ul>
+        <div class="route-dep">📍 <strong data-t="r3.dep">Osaka / Kyoto · 8:00 AM</strong></div>
+      </div>
+
+      <div class="route-card tilt-card rev d4"><div class="glare"></div>
+        <div class="route-num" data-t="route.n4">Route 04</div>
+        <h3 data-t="route.4.title">Kōyasan Pilgrimage</h3>
+        <div class="route-meta">
+          <span class="route-badge" data-t="rtag.2d">2 Days</span>
+          <span class="route-badge" data-t="rtag.spirit">Spiritual</span>
+          <span class="route-badge" data-t="rtag.max4">Max 4</span>
+        </div>
+        <ul class="route-stops">
+          <li data-t="r4.s1">Mountain train &amp; cable car to Kōya</li>
+          <li data-t="r4.s2">Okunoin Cemetery by lantern light — evening</li>
+          <li data-t="r4.s3">Shukubō monastery stay &amp; vegetarian dinner</li>
+          <li data-t="r4.s4">Dawn prayer with monks — return by afternoon</li>
+        </ul>
+        <div class="route-dep">📍 <strong data-t="r4.dep">Osaka Namba Station · 9:00 AM</strong></div>
+      </div>
+
+      <div class="route-card tilt-card rev d5"><div class="glare"></div>
+        <div class="route-num" data-t="route.n5">Route 05</div>
+        <h3 data-t="route.5.title">Kobe Refined</h3>
+        <div class="route-meta">
+          <span class="route-badge" data-t="rtag.5h">5 Hours</span>
+          <span class="route-badge" data-t="rtag.lux">Luxury</span>
+          <span class="route-badge" data-t="rtag.any">Any Group</span>
+        </div>
+        <ul class="route-stops">
+          <li data-t="r5.s1">Kitano Ijinkan foreign settlement</li>
+          <li data-t="r5.s2">Kobe wagyu lunch at a local counter</li>
+          <li data-t="r5.s3">Sake brewery tasting in Nada district</li>
+          <li data-t="r5.s4">Meriken Park harbour at golden hour</li>
+        </ul>
+        <div class="route-dep">📍 <strong data-t="r5.dep">Sannomiya Station · 10:00 AM</strong></div>
+      </div>
+
+      <div class="route-card tilt-card rev d6"><div class="glare"></div>
+        <div class="route-num" data-t="route.n6">Route 06</div>
+        <h3 data-t="route.6.title">Osaka–Kyoto Full Arc</h3>
+        <div class="route-meta">
+          <span class="route-badge" data-t="rtag.2d">2 Days</span>
+          <span class="route-badge" data-t="rtag.best">Best Seller</span>
+          <span class="route-badge" data-t="rtag.max6">Max 6</span>
+        </div>
+        <ul class="route-stops">
+          <li data-t="r6.s1">Day 1 — Osaka: market, street food, Shinsekai</li>
+          <li data-t="r6.s2">Evening: Dotonbori neon &amp; night izakaya</li>
+          <li data-t="r6.s3">Day 2 — Kyoto: Arashiyama, Gion, hidden temple</li>
+          <li data-t="r6.s4">Return with a private sake tasting on the train</li>
+        </ul>
+        <div class="route-dep">📍 <strong data-t="r6.dep">Hotel pickup included · 8:30 AM</strong></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="orb pricing-orb"></div>
+  <div class="wrap">
+    <div class="pricing-head rev">
+      <span class="section-label" data-t="pricing.label">Plans &amp; Pricing</span>
+      <h2 data-t="pricing.h2">Choose your <span class="acc">experience</span></h2>
+      <p data-t="pricing.sub">All tours are 100% private. Prices below are per person with a minimum of 2 guests. Solo travellers welcome — contact me for a quote.</p>
+    </div>
+    <div class="pricing-grid">
+
+      <div class="plan-card tilt-card rev d1"><div class="glare"></div>
+        <div class="plan-icon">半</div>
+        <div class="plan-name" data-t="plan.1.name">Half Day</div>
+        <div class="plan-dur"  data-t="plan.1.dur">4 Hours · Up to 4 people</div>
+        <div class="plan-price">¥18,000</div>
+        <div class="plan-price-note" data-t="plan.perperson">per person · min 2 guests</div>
+        <ul class="plan-features">
+          <li data-t="pf.1city">One district or neighbourhood</li>
+          <li data-t="pf.pickup">Hotel meeting point</li>
+          <li data-t="pf.custom">Custom itinerary</li>
+          <li data-t="pf.guide">Fully private guide</li>
+        </ul>
+        <a href="#contact" class="plan-cta" data-t="plan.cta">Book Now</a>
+      </div>
+
+      <div class="plan-card featured tilt-card rev d2"><div class="glare"></div>
+        <span class="plan-badge" data-t="plan.popular">Most Popular</span>
+        <div class="plan-icon">日</div>
+        <div class="plan-name" data-t="plan.2.name">Full Day</div>
+        <div class="plan-dur"  data-t="plan.2.dur">8 Hours · Up to 6 people</div>
+        <div class="plan-price">¥28,000</div>
+        <div class="plan-price-note" data-t="plan.perperson">per person · min 2 guests</div>
+        <ul class="plan-features">
+          <li data-t="pf.1city-full">One full city — complete experience</li>
+          <li data-t="pf.pickup-drop">Hotel pickup &amp; drop-off</li>
+          <li data-t="pf.lunch">Lunch recommendation &amp; booking</li>
+          <li data-t="pf.custom">Custom itinerary</li>
+          <li data-t="pf.guide">Fully private guide</li>
+          <li data-t="pf.24h">24h WhatsApp support</li>
+        </ul>
+        <a href="#contact" class="plan-cta" data-t="plan.cta">Book Now</a>
+      </div>
+
+      <div class="plan-card tilt-card rev d3"><div class="glare"></div>
+        <div class="plan-icon">旅</div>
+        <div class="plan-name" data-t="plan.3.name">Multi-Day Journey</div>
+        <div class="plan-dur"  data-t="plan.3.dur">3–7 Days · Up to 6 people</div>
+        <div class="plan-price">¥65,000</div>
+        <div class="plan-price-note" data-t="plan.perday">per day · group up to 4</div>
+        <ul class="plan-features">
+          <li data-t="pf.multi">Multiple cities across Kansai</li>
+          <li data-t="pf.logistics">Full logistics managed</li>
+          <li data-t="pf.hotel">Hotel recommendations</li>
+          <li data-t="pf.transport">Transport booking assistance</li>
+          <li data-t="pf.custom">Fully custom itinerary</li>
+          <li data-t="pf.24h">24h WhatsApp support</li>
+        </ul>
+        <a href="#contact" class="plan-cta" data-t="plan.cta">Book Now</a>
+      </div>
+
+      <div class="plan-card tilt-card rev d4"><div class="glare"></div>
+        <div class="plan-icon">道</div>
+        <div class="plan-name" data-t="plan.4.name">Fully Bespoke</div>
+        <div class="plan-dur"  data-t="plan.4.dur">Any duration · Any group</div>
+        <div class="plan-price" data-t="plan.4.price">Custom</div>
+        <div class="plan-price-note" data-t="plan.onrequest">quote on request</div>
+        <ul class="plan-features">
+          <li data-t="pf.any">No limits on duration or group</li>
+          <li data-t="pf.corp">Corporate &amp; family groups</li>
+          <li data-t="pf.special">Special occasions &amp; proposals</li>
+          <li data-t="pf.logistics">Full logistics managed</li>
+          <li data-t="pf.vip">VIP restaurant bookings</li>
+          <li data-t="pf.24h">24h WhatsApp support</li>
+        </ul>
+        <a href="#contact" class="plan-cta" data-t="plan.cta.bespoke">Get a Quote</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="orb test-orb"></div>
+  <div class="wrap">
+    <div class="test-head rev">
+      <span class="section-label" data-t="test.label">Client Reviews</span>
+      <h2 data-t="test.h2">What travellers <span class="acc">say</span></h2>
+      <p data-t="test.sub">Over 200 private tours. Real people, real stories.</p>
+    </div>
+    <div class="test-grid">
+      <div class="test-card tilt-card rev d1"><div class="glare"></div><div class="test-stars">★★★★★</div><p class="test-quote" data-t="test.1.q">Tony took us to a tiny ramen shop hidden in an Osaka alley — no sign, no English menu, just perfection. That single bowl was worth the whole trip.</p><div class="test-person"><div class="test-avatar av-a">SM</div><div class="test-meta"><strong>Sarah M.</strong><span>🇬🇧 United Kingdom</span></div></div></div>
+      <div class="test-card tilt-card rev d2"><div class="glare"></div><div class="test-stars">★★★★★</div><p class="test-quote" data-t="test.2.q">We spent three days with Tony across Kansai. He knows every alley, every chef, every temple. It was the best experience in Japan.</p><div class="test-person"><div class="test-avatar av-b">ДВ</div><div class="test-meta"><strong>Dmitri V.</strong><span>🇷🇺 Russia</span></div></div></div>
+      <div class="test-card tilt-card rev d3"><div class="glare"></div><div class="test-stars">★★★★★</div><p class="test-quote" data-t="test.3.q">The best experience of our entire trip to Japan. Tony speaks Spanish perfectly and took us to places we'd never have found on our own.</p><div class="test-person"><div class="test-avatar av-c">CR</div><div class="test-meta"><strong>Carlos R.</strong><span>🇪🇸 Spain</span></div></div></div>
+      <div class="test-card tilt-card rev d4"><div class="glare"></div><div class="test-stars">★★★★★</div><p class="test-quote" data-t="test.4.q">We did a 5-day journey from Osaka to Kōyasan. Tony arranged everything. Waking up in a monastery at dawn is something I'll never forget.</p><div class="test-person"><div class="test-avatar av-d">ET</div><div class="test-meta"><strong>Emma T.</strong><span>🇦🇺 Australia</span></div></div></div>
+      <div class="test-card tilt-card rev d5"><div class="glare"></div><div class="test-stars">★★★★★</div><p class="test-quote" data-t="test.5.q">The food tour through Kuromon market was incredible. Tony knew every vendor personally. We ate things I couldn't name and loved every single one.</p><div class="test-person"><div class="test-avatar av-e">MK</div><div class="test-meta"><strong>Michael K.</strong><span>🇺🇸 United States</span></div></div></div>
+      <div class="test-card tilt-card rev d6"><div class="glare"></div><div class="test-stars">★★★★★</div><p class="test-quote" data-t="test.6.q">As someone with Japanese heritage visiting for the first time, I needed a guide who understood depth. Tony gave us history, culture and emotion all at once.</p><div class="test-person"><div class="test-avatar av-f">YS</div><div class="test-meta"><strong>Yuki S.</strong><span>🇨🇦 Canada</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="orb contact-orb"></div>
+  <div class="wrap">
+    <div class="contact-inner">
+      <div class="contact-head rev">
+        <span class="section-label" data-t="contact.label">Get in Touch</span>
+        <h2 data-t="contact.h2">Ready to explore <span class="acc">Kansai?</span></h2>
+        <p data-t="contact.p">Tell me your travel dates, interests, and group size. I'll reply within 24 hours with a personalised proposal.</p>
+      </div>
+      <div class="cform-wrap tilt-card rev d2"><div class="glare"></div>
+        <form class="cform" id="cform" novalidate>
+          <div class="form-row">
+            <div class="fld"><input type="text" name="name" id="fn" placeholder=" " required /><label for="fn" data-t="form.name">Your Name</label></div>
+            <div class="fld"><input type="email" name="email" id="fe" placeholder=" " required /><label for="fe" data-t="form.email">Your Email</label></div>
+          </div>
+          <div class="fld"><input type="text" name="dates" id="fd" placeholder=" " /><label for="fd" data-t="form.dates">Travel Dates (optional)</label></div>
+          <div class="fld"><textarea name="message" id="fm" placeholder=" " required></textarea><label for="fm" data-t="form.msg">Your Message</label></div>
+          <input type="hidden" name="_subject" value="New inquiry — Tony Hanma Kansai Guide" />
+          <input type="hidden" name="_captcha" value="false" />
+          <button type="submit" class="sbtn" id="sbtn"><span id="sbtn-txt" data-t="form.send">Send Message</span></button>
+        </form>
+        <div class="form-ok" id="form-ok">
+          <span class="ok-icon">✦</span>
+          <h3 data-t="form.ok.title">Message Sent</h3>
+          <p data-t="form.ok.text">Thank you — I'll be in touch within 24 hours.</p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- EXPERIENCES -->
-  <section id="experiences">
-    <div class="orb exp-orb"></div>
-    <div class="wrap">
-      <div class="exp-head rev">
-        <span class="section-label" data-t="exp.label">What I Offer</span>
-        <h2 data-t="exp.h2">Tailored <span class="acc">experiences</span></h2>
-      </div>
-      <div class="exp-item tilt-card rev"><div class="glare"></div>
-        <div class="exp-num">01</div>
-        <div class="exp-body">
-          <h3 data-t="exp.1.title">Full-Day City Deep Dive</h3>
-          <p data-t="exp.1.desc">One city, one day, done right. Markets at opening time, hidden shrines, street lunch, neighbourhood bars at dusk. Osaka or Kyoto — your choice.</p>
-          <div class="etags"><span class="etag" data-t="tag.1day">1 Day</span><span class="etag" data-t="tag.group">1–6 People</span><span class="etag" data-t="tag.custom">Custom Route</span></div>
-        </div>
-      </div>
-      <div class="exp-item tilt-card rev d1"><div class="glare"></div>
-        <div class="exp-num">02</div>
-        <div class="exp-body">
-          <h3 data-t="exp.2.title">Multi-Day Kansai Journey</h3>
-          <p data-t="exp.2.desc">A curated arc across the whole region — balancing iconic landmarks with the places most visitors never find. All logistics handled, nothing rushed.</p>
-          <div class="etags"><span class="etag" data-t="tag.days">3–7 Days</span><span class="etag" data-t="tag.log">Full Logistics</span><span class="etag" data-t="tag.acc">Accommodation Tips</span></div>
-        </div>
-      </div>
-      <div class="exp-item tilt-card rev d2"><div class="glare"></div>
-        <div class="exp-num">03</div>
-        <div class="exp-body">
-          <h3 data-t="exp.3.title">Food &amp; Market Tours</h3>
-          <p data-t="exp.3.desc">Osaka is Japan's food capital. We eat through Kuromon market, neighbourhood shotengai, and the best standing sushi bar you will ever visit.</p>
-          <div class="etags"><span class="etag" data-t="tag.half">Half Day</span><span class="etag" data-t="tag.food">Food Included</span><span class="etag">Osaka</span></div>
-        </div>
-      </div>
-      <div class="exp-item tilt-card rev d3"><div class="glare"></div>
-        <div class="exp-num">04</div>
-        <div class="exp-body">
-          <h3 data-t="exp.4.title">Cultural &amp; Spiritual Journeys</h3>
-          <p data-t="exp.4.desc">Monastery stays, dawn temple walks, traditional craft workshops — for travellers who want depth, not just sights on a checklist.</p>
-          <div class="etags"><span class="etag" data-t="tag.flex">Flexible</span><span class="etag">Kōyasan</span><span class="etag" data-t="tag.imm">Immersive</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
+<footer>
+  <span data-t="footer.l">© 2026 Tony Hanma · Private Kansai Guide</span>
+  <span data-t="footer.r">Osaka · Kansai · Japan</span>
+</footer>
 
-  <!-- TESTIMONIALS -->
-  <section id="testimonials">
-    <div class="orb test-orb"></div>
-    <div class="wrap">
-      <div class="test-head rev">
-        <span class="section-label" data-t="test.label">Client Reviews</span>
-        <h2 data-t="test.h2">What travellers <span class="acc">say</span></h2>
-        <p data-t="test.sub">Over 200 private tours. Real people, real stories.</p>
-      </div>
-      <div class="test-grid">
-
-        <div class="test-card tilt-card rev d1"><div class="glare"></div>
-          <div class="test-stars">★★★★★</div>
-          <p class="test-quote" data-t="test.1.q">Tony took us to a tiny ramen shop hidden in a Osaka alley — no sign, no English menu, just perfection. That single bowl was worth the whole trip.</p>
-          <div class="test-person">
-            <div class="test-avatar av-a">SM</div>
-            <div class="test-meta"><strong>Sarah M.</strong><span>🇬🇧 United Kingdom</span></div>
-          </div>
-        </div>
-
-        <div class="test-card tilt-card rev d2"><div class="glare"></div>
-          <div class="test-stars">★★★★★</div>
-          <p class="test-quote" data-t="test.2.q">Провели с Тони три дня по всему Кансаю. Он знает каждый переулок, каждого повара, каждый храм. Это был лучший опыт в Японии.</p>
-          <div class="test-person">
-            <div class="test-avatar av-b">ДВ</div>
-            <div class="test-meta"><strong>Dmitri V.</strong><span>🇷🇺 Russia</span></div>
-          </div>
-        </div>
-
-        <div class="test-card tilt-card rev d3"><div class="glare"></div>
-          <div class="test-stars">★★★★★</div>
-          <p class="test-quote" data-t="test.3.q">La mejor experiencia de todo nuestro viaje a Japón. Tony habla español perfectamente y nos llevó a lugares que jamás hubiéramos encontrado solos.</p>
-          <div class="test-person">
-            <div class="test-avatar av-c">CR</div>
-            <div class="test-meta"><strong>Carlos R.</strong><span>🇪🇸 Spain</span></div>
-          </div>
-        </div>
-
-        <div class="test-card tilt-card rev d4"><div class="glare"></div>
-          <div class="test-stars">★★★★★</div>
-          <p class="test-quote" data-t="test.4.q">We did a 5-day journey from Osaka to Kōyasan. Tony arranged everything — temples, food, transport. Waking up in a monastery at dawn is something I'll never forget.</p>
-          <div class="test-person">
-            <div class="test-avatar av-d">ET</div>
-            <div class="test-meta"><strong>Emma T.</strong><span>🇦🇺 Australia</span></div>
-          </div>
-        </div>
-
-        <div class="test-card tilt-card rev d5"><div class="glare"></div>
-          <div class="test-stars">★★★★★</div>
-          <p class="test-quote" data-t="test.5.q">The food tour through Kuromon market was incredible. Tony knew every vendor personally. We ate things I couldn't name and loved every single one.</p>
-          <div class="test-person">
-            <div class="test-avatar av-e">MK</div>
-            <div class="test-meta"><strong>Michael K.</strong><span>🇺🇸 United States</span></div>
-          </div>
-        </div>
-
-        <div class="test-card tilt-card rev d6"><div class="glare"></div>
-          <div class="test-stars">★★★★★</div>
-          <p class="test-quote" data-t="test.6.q">As someone with Japanese heritage visiting for the first time, I needed a guide who understood depth. Tony gave us history, culture and emotion all at once.</p>
-          <div class="test-person">
-            <div class="test-avatar av-f">YS</div>
-            <div class="test-meta"><strong>Yuki S.</strong><span>🇨🇦 Canada</span></div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="orb contact-orb"></div>
-    <div class="wrap">
-      <div class="contact-inner">
-        <div class="contact-head rev">
-          <span class="section-label" data-t="contact.label">Get in Touch</span>
-          <h2 data-t="contact.h2">Ready to explore <span class="acc">Kansai?</span></h2>
-          <p data-t="contact.p">Tell me your travel dates, interests, and group size. I'll reply within 24 hours with a personalised proposal.</p>
-        </div>
-        <div class="cform-wrap tilt-card rev d2"><div class="glare"></div>
-          <form class="cform" id="cform" novalidate>
-            <div class="form-row">
-              <div class="fld"><input type="text" name="name" id="fn" placeholder=" " required /><label for="fn" data-t="form.name">Your Name</label></div>
-              <div class="fld"><input type="email" name="email" id="fe" placeholder=" " required /><label for="fe" data-t="form.email">Your Email</label></div>
-            </div>
-            <div class="fld"><input type="text" name="dates" id="fd" placeholder=" " /><label for="fd" data-t="form.dates">Travel Dates (optional)</label></div>
-            <div class="fld"><textarea name="message" id="fm" placeholder=" " required></textarea><label for="fm" data-t="form.msg">Your Message</label></div>
-            <input type="hidden" name="_subject" value="New inquiry — Tony Hanma Kansai Guide" />
-            <input type="hidden" name="_captcha" value="false" />
-            <button type="submit" class="sbtn" id="sbtn"><span id="sbtn-txt" data-t="form.send">Send Message</span></button>
-          </form>
-          <div class="form-ok" id="form-ok">
-            <span class="ok-icon">✦</span>
-            <h3 data-t="form.ok.title">Message Sent</h3>
-            <p data-t="form.ok.text">Thank you — I'll be in touch within 24 hours.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <span data-t="footer.l">© 2026 Tony Hanma · Private Kansai Guide</span>
-    <span data-t="footer.r">Osaka · Kansai · Japan</span>
-  </footer>
-
-  <script>
-  // ── TRANSLATIONS ──────────────────────────────────────────────────
-  const T = {
-    en: {
-      'nav.region':'Kansai','nav.guide':'Guide','nav.tours':'Tours','nav.reviews':'Reviews','nav.contact':'Contact',
-      'hero.tag':'Private Guide · Osaka · Kansai Region · Japan',
-      'hero.l1':'Discover','hero.l2':"Japan's",'hero.l3':'True Soul',
-      'hero.sub':"Beyond the guidebooks. An intimate journey through Osaka, Kyoto, Nara, and the hidden corners of the Kansai heartland — led by someone who lives it.",
-      'hero.cta1':'Book a Private Tour','hero.cta2':'About Your Guide',
-      'scroll':'Scroll',
-      'marq.tours':'Private Tours','marq.food':'Food & Culture',
-      'region.label':'The Region · 関西地方',
-      'region.h2':'Where Japan\'s <span class="acc">history was born</span>',
-      'region.p':"Kansai is Japan's cultural and spiritual core. Home to two ancient capitals, the country's finest cuisine, and a way of life that remains fiercely distinct — warmer, louder, more honest. Seven prefectures. Centuries of stories. Knowing where to look makes all the difference.",
-      'city.osaka':"Japan's kitchen. Street food, neon, merchant spirit, and the most open-hearted people you'll meet anywhere in the country.",
-      'city.kyoto':'A thousand years of imperial culture. Wooden temples, bamboo groves, geisha districts — and the hidden paths tourists rarely find.',
-      'city.nara':"Ancient deer roam freely among UNESCO shrines. Japan's first permanent capital — serene, underrated, unforgettable.",
-      'city.kobe':'Port city elegance, legendary beef, and a European-influenced skyline nestled between mountains and sea.',
-      'city.himeji':'Japan\'s most perfect castle — white as a heron in flight, unchanged for four centuries.',
-      'city.koyasan':'Sleep in a mountain monastery. Walk lantern-lit cemetery paths at dawn. A world completely apart.',
-      'stat.1':'Prefectures Covered','stat.2':'Tours Completed','stat.3':'Languages Spoken','stat.4':'% Private & Personalised',
-      'about.label':'Your Guide','about.h2':'Meet <span class="acc">Tony</span>',
-      'about.p1':"I'm Tony — a private guide based in the Kansai region. I came to Japan drawn by its culture, its food, and its people, and I never left.",
-      'about.p2':"What I offer is not a packaged tour — it is access to the Japan I know personally. The backstreet izakayas that don't appear on Google Maps. The temple at 6am before the crowds arrive. The market vendor who will become your favourite memory of the whole trip.",
-      'about.p3':'I speak English, Spanish and Russian fluently, and I adapt to any pace or interest — whether you want to eat everything, photograph every corner, or simply walk and let the city breathe around you.',
-      'about.p4':'Every tour is private, fully personalised, and built entirely around you. No scripts. No group buses. Just Japan, as it really is.',
-      'exp.label':'What I Offer','exp.h2':'Tailored <span class="acc">experiences</span>',
-      'exp.1.title':'Full-Day City Deep Dive','exp.1.desc':'One city, one day, done right. Markets at opening time, hidden shrines, street lunch, neighbourhood bars at dusk. Osaka or Kyoto — your choice.',
-      'exp.2.title':'Multi-Day Kansai Journey','exp.2.desc':'A curated arc across the whole region — balancing iconic landmarks with the places most visitors never find. All logistics handled, nothing rushed.',
-      'exp.3.title':'Food & Market Tours','exp.3.desc':"Osaka is Japan's food capital. We eat through Kuromon market, neighbourhood shotengai, and the best standing sushi bar you will ever visit.",
-      'exp.4.title':'Cultural & Spiritual Journeys','exp.4.desc':'Monastery stays, dawn temple walks, traditional craft workshops — for travellers who want depth, not just sights on a checklist.',
-      'tag.1day':'1 Day','tag.group':'1–6 People','tag.custom':'Custom Route','tag.days':'3–7 Days','tag.log':'Full Logistics','tag.acc':'Accommodation Tips','tag.half':'Half Day','tag.food':'Food Included','tag.flex':'Flexible','tag.imm':'Immersive',
-      'test.label':'Client Reviews','test.h2':'What travellers <span class="acc">say</span>','test.sub':'Over 200 private tours. Real people, real stories.',
-      'test.1.q':'Tony took us to a tiny ramen shop hidden in an Osaka alley — no sign, no English menu, just perfection. That single bowl was worth the whole trip.',
-      'test.2.q':'We spent three days with Tony across Kansai. He knows every alley, every chef, every temple. It was the best experience in Japan.',
-      'test.3.q':'The best experience of our entire trip to Japan. Tony speaks Spanish perfectly and took us to places we'd never have found on our own.',
-      'test.4.q':'We did a 5-day journey from Osaka to Kōyasan. Tony arranged everything — temples, food, transport. Waking up in a monastery at dawn is something I'll never forget.',
-      'test.5.q':'The food tour through Kuromon market was incredible. Tony knew every vendor personally. We ate things I couldn't name and loved every single one.',
-      'test.6.q':'As someone with Japanese heritage visiting for the first time, I needed a guide who understood depth. Tony gave us history, culture and emotion all at once.',
-      'contact.label':'Get in Touch','contact.h2':'Ready to explore <span class="acc">Kansai?</span>',
-      'contact.p':"Tell me your travel dates, interests, and group size. I'll reply within 24 hours with a personalised proposal.",
-      'form.name':'Your Name','form.email':'Your Email','form.dates':'Travel Dates (optional)','form.msg':'Your Message','form.send':'Send Message','form.sending':'Sending…','form.retry':'Try Again',
-      'form.ok.title':'Message Sent','form.ok.text':"Thank you — I'll be in touch within 24 hours.",
-      'footer.l':'© 2026 Tony Hanma · Private Kansai Guide','footer.r':'Osaka · Kansai · Japan'
-    },
-    es: {
-      'nav.region':'Kansai','nav.guide':'Guía','nav.tours':'Tours','nav.reviews':'Opiniones','nav.contact':'Contacto',
-      'hero.tag':'Guía Privado · Osaka · Región de Kansai · Japón',
-      'hero.l1':'Descubre','hero.l2':'el Alma','hero.l3':'de Japón',
-      'hero.sub':'Más allá de las guías turísticas. Un viaje íntimo por Osaka, Kioto, Nara y los rincones ocultos de la región de Kansai — guiado por alguien que vive aquí.',
-      'hero.cta1':'Reservar un Tour Privado','hero.cta2':'Sobre el Guía',
-      'scroll':'Bajar',
-      'marq.tours':'Tours Privados','marq.food':'Gastronomía y Cultura',
-      'region.label':'La Región · 関西地方',
-      'region.h2':'Donde nació la <span class="acc">historia de Japón</span>',
-      'region.p':'Kansai es el corazón cultural y espiritual de Japón. Hogar de dos antiguas capitales, la mejor gastronomía del país y una forma de vida marcadamente distinta — más cálida, más auténtica. Siete prefecturas. Siglos de historia. Saber dónde mirar marca la diferencia.',
-      'city.osaka':'La cocina de Japón. Gastronomía callejera, neón, espíritu comerciante y la gente más acogedora que encontrarás en el país.',
-      'city.kyoto':'Mil años de cultura imperial. Templos de madera, bosques de bambú, barrios de geishas — y los caminos ocultos que los turistas rara vez encuentran.',
-      'city.nara':'Ciervos antiguos deambulan libremente entre santuarios de la UNESCO. La primera capital permanente de Japón — serena, infravalorada, inolvidable.',
-      'city.kobe':'Elegancia portuaria, el mejor wagyu del mundo y un horizonte de influencia europea entre montañas y mar.',
-      'city.himeji':'El castillo más perfecto de Japón — blanco como una garza en vuelo, sin cambios durante cuatro siglos.',
-      'city.koyasan':'Duerme en un monasterio de montaña. Camina por senderos iluminados por faroles al amanecer. Un mundo completamente aparte.',
-      'stat.1':'Prefecturas Cubiertas','stat.2':'Tours Completados','stat.3':'Idiomas Hablados','stat.4':'% Privado y Personalizado',
-      'about.label':'Tu Guía','about.h2':'Conoce a <span class="acc">Tony</span>',
-      'about.p1':'Soy Tony — guía privado con base en la región de Kansai. Vine a Japón atraído por su cultura, su gastronomía y su gente, y nunca me fui.',
-      'about.p2':'Lo que ofrezco no es un tour empaquetado — es acceso a la Japón que conozco personalmente. Los izakayas de callejón que no aparecen en Google Maps. El templo a las 6am antes de que lleguen las multitudes. El vendedor del mercado que se convertirá en tu mejor recuerdo del viaje.',
-      'about.p3':'Hablo inglés, español y ruso con fluidez, y me adapto a cualquier ritmo e interés — tanto si quieres comer todo lo que ves, fotografiar cada rincón, o simplemente caminar.',
-      'about.p4':'Cada tour es privado, totalmente personalizado y construido enteramente alrededor de ti. Sin guiones. Sin autobuses grupales. Solo Japón, tal como es de verdad.',
-      'exp.label':'Lo que Ofrezco','exp.h2':'Experiencias <span class="acc">a medida</span>',
-      'exp.1.title':'Inmersión Urbana de Un Día','exp.1.desc':'Una ciudad, un día, bien hecho. Mercados al abrir, santuarios ocultos, almuerzo callejero, bares de barrio al atardecer. Osaka o Kioto — tú eliges.',
-      'exp.2.title':'Viaje Multi-día por Kansai','exp.2.desc':'Un recorrido curado por toda la región — equilibrando lugares icónicos con los sitios que la mayoría nunca encuentra. Toda la logística incluida.',
-      'exp.3.title':'Tours Gastronómicos y de Mercado','exp.3.desc':'Osaka es la capital gastronómica de Japón. Recorremos el mercado Kuromon, el shotengai del barrio y el mejor bar de sushi de pie que jamás visitarás.',
-      'exp.4.title':'Viajes Culturales y Espirituales','exp.4.desc':'Estancias en monasterios, caminatas al amanecer por templos, talleres artesanales — para viajeros que buscan profundidad, no solo monumentos.',
-      'tag.1day':'1 Día','tag.group':'1–6 Personas','tag.custom':'Ruta Personalizada','tag.days':'3–7 Días','tag.log':'Logística Completa','tag.acc':'Consejos de Alojamiento','tag.half':'Medio Día','tag.food':'Comida Incluida','tag.flex':'Flexible','tag.imm':'Inmersivo',
-      'test.label':'Opiniones de Clientes','test.h2':'Lo que dicen los <span class="acc">viajeros</span>','test.sub':'Más de 200 tours privados. Personas reales, historias reales.',
-      'test.1.q':'Tony nos llevó a un pequeño restaurante de ramen escondido en un callejón de Osaka — sin letrero, sin menú en inglés, solo perfección. Ese único bol valió todo el viaje.',
-      'test.2.q':'Pasamos tres días con Tony por todo Kansai. Conoce cada callejón, cada cocinero, cada templo. Fue la mejor experiencia en Japón.',
-      'test.3.q':'La mejor experiencia de todo nuestro viaje a Japón. Tony habla español perfectamente y nos llevó a lugares que jamás hubiéramos encontrado solos.',
-      'test.4.q':'Hicimos un viaje de 5 días de Osaka a Kōyasan. Tony organizó todo — templos, comida, transporte. Despertar en un monasterio al amanecer es algo que nunca olvidaré.',
-      'test.5.q':'El tour gastronómico por el mercado Kuromon fue increíble. Tony conocía a cada vendedor personalmente. Comimos cosas sin nombre y amamos cada una.',
-      'test.6.q':'Como alguien de herencia japonesa visitando por primera vez, necesitaba un guía que entendiera la profundidad. Tony nos dio historia, cultura y emoción a la vez.',
-      'contact.label':'Escríbeme','contact.h2':'¿Listo para explorar <span class="acc">Kansai?</span>',
-      'contact.p':'Cuéntame tus fechas de viaje, intereses y tamaño del grupo. Te responderé en 24 horas con una propuesta personalizada.',
-      'form.name':'Tu Nombre','form.email':'Tu Email','form.dates':'Fechas de Viaje (opcional)','form.msg':'Tu Mensaje','form.send':'Enviar Mensaje','form.sending':'Enviando…','form.retry':'Intentar de Nuevo',
-      'form.ok.title':'Mensaje Enviado','form.ok.text':'Gracias — te responderé en menos de 24 horas.',
-      'footer.l':'© 2026 Tony Hanma · Guía Privado Kansai','footer.r':'Osaka · Kansai · Japón'
-    },
-    ru: {
-      'nav.region':'Кансай','nav.guide':'Гид','nav.tours':'Туры','nav.reviews':'Отзывы','nav.contact':'Контакт',
-      'hero.tag':'Частный гид · Осака · Регион Кансай · Япония',
-      'hero.l1':'Откройте','hero.l2':'Душу','hero.l3':'Японии',
-      'hero.sub':'За пределами путеводителей. Личное путешествие по Осаке, Киото, Нара и скрытым уголкам региона Кансай — с гидом, который здесь живёт.',
-      'hero.cta1':'Забронировать тур','hero.cta2':'О гиде',
-      'scroll':'Вниз',
-      'marq.tours':'Частные туры','marq.food':'Еда и культура',
-      'region.label':'Регион · 関西地方',
-      'region.h2':'Где <span class="acc">родилась история Японии</span>',
-      'region.p':'Кансай — культурное и духовное сердце Японии. Здесь располагались две древние столицы, лучшая кухня страны и уклад жизни, разительно отличающийся от Токио — теплее, громче, честнее. Семь префектур. Века истории. Главное — знать, куда смотреть.',
-      'city.osaka':'Кухня Японии. Уличная еда, неон, торговый дух и самые открытые люди во всей стране.',
-      'city.kyoto':'Тысяча лет императорской культуры. Деревянные храмы, бамбуковые рощи, районы гейш — и скрытые тропы, которые туристы редко находят.',
-      'city.nara':'Древние олени свободно гуляют среди святынь ЮНЕСКО. Первая постоянная столица Японии — тихая, недооценённая, незабываемая.',
-      'city.kobe':'Портовая элегантность, легендарная говядина вагю и горизонт с европейским влиянием между горами и морем.',
-      'city.himeji':'Самый совершенный замок Японии — белый, как цапля в полёте, не изменившийся за четыре века.',
-      'city.koyasan':'Ночёвка в горном монастыре. Прогулка по тропам кладбища при свете фонарей на рассвете. Совершенно особый мир.',
-      'stat.1':'Охваченных префектур','stat.2':'Проведённых туров','stat.3':'Языков','stat.4':'% Частные туры',
-      'about.label':'Ваш гид','about.h2':'Знакомьтесь — <span class="acc">Тони</span>',
-      'about.p1':'Я Тони — частный гид в регионе Кансай. Я приехал в Японию, влюблённый в её культуру, кухню и людей, и остался навсегда.',
-      'about.p2':'Я предлагаю не стандартные экскурсии — а доступ к той Японии, которую знаю лично. Закусочные в переулках, которых нет на Google Maps. Храм в 6 утра до прихода толп. Продавец на рынке, который станет вашим лучшим воспоминанием о путешествии.',
-      'about.p3':'Я свободно говорю по-английски, по-испански и по-русски, и подстраиваюсь под любой ритм — будь то гастрономия, фотография или просто прогулки по городу.',
-      'about.p4':'Каждый тур — частный, полностью персонализированный и созданный специально для вас. Без сценариев. Без групповых автобусов. Просто Япония такой, какая она есть на самом деле.',
-      'exp.label':'Что я предлагаю','exp.h2':'Туры <span class="acc">по вашим интересам</span>',
-      'exp.1.title':'Полный день в городе','exp.1.desc':'Один город, один день — по-настоящему. Рынки с утра, скрытые святыни, уличный обед, бары в соседних кварталах. Осака или Киото — ваш выбор.',
-      'exp.2.title':'Многодневное путешествие по Кансаю','exp.2.desc':'Продуманный маршрут по всему региону — знаковые места и скрытые уголки, которые большинство туристов не находят. Вся логистика под контролем.',
-      'exp.3.title':'Гастрономические туры','exp.3.desc':'Осака — гастрономическая столица Японии. Мы обходим рынок Куромон, местные торговые улицы и лучший суши-бар, где едят стоя.',
-      'exp.4.title':'Культурные и духовные путешествия','exp.4.desc':'Ночёвки в монастырях, утренние прогулки по храмам, мастер-классы по традиционным ремёслам — для тех, кто хочет глубины, а не просто галочек.',
-      'tag.1day':'1 день','tag.group':'1–6 человек','tag.custom':'Маршрут под вас','tag.days':'3–7 дней','tag.log':'Полная логистика','tag.acc':'Советы по жилью','tag.half':'Полдня','tag.food':'Еда включена','tag.flex':'Гибко','tag.imm':'Погружение',
-      'test.label':'Отзывы клиентов','test.h2':'Что говорят <span class="acc">путешественники</span>','test.sub':'Более 200 частных туров. Реальные люди, реальные истории.',
-      'test.1.q':'Тони привёл нас в крошечную рамэн-лавку, спрятанную в осакском переулке — без вывески, без меню на английском, просто совершенство. Одна эта миска стоила всей поездки.',
-      'test.2.q':'Провели с Тони три дня по всему Кансаю. Он знает каждый переулок, каждого повара, каждый храм. Это был лучший опыт в Японии.',
-      'test.3.q':'Лучший опыт за всё путешествие по Японии. Тони прекрасно говорит по-испански и отвёл нас в места, которые мы никогда бы не нашли сами.',
-      'test.4.q':'Мы совершили 5-дневное путешествие от Осаки до Коясана. Тони организовал всё — храмы, еду, транспорт. Просыпаться в монастыре на рассвете — это незабываемо.',
-      'test.5.q':'Гастрономический тур по рынку Куромон был невероятным. Тони лично знал каждого продавца. Мы ели то, чему нет названия, и это было восхитительно.',
-      'test.6.q':'Как человек с японскими корнями, приехавший впервые, мне нужен был гид, понимающий глубину. Тони дал нам историю, культуру и эмоцию одновременно.',
-      'contact.label':'Свяжитесь','contact.h2':'Готовы открыть <span class="acc">Кансай?</span>',
-      'contact.p':'Расскажите о датах поездки, интересах и размере группы. Отвечу в течение 24 часов с персональным предложением.',
-      'form.name':'Ваше имя','form.email':'Ваш email','form.dates':'Даты поездки (необязательно)','form.msg':'Ваше сообщение','form.send':'Отправить','form.sending':'Отправляю…','form.retry':'Попробовать снова',
-      'form.ok.title':'Сообщение отправлено','form.ok.text':'Спасибо — отвечу в течение 24 часов.',
-      'footer.l':'© 2026 Тони Ханма · Частный гид по Кансаю','footer.r':'Осака · Кансай · Япония'
-    }
-  };
-
-  let lang = localStorage.getItem('lang') || 'en';
-
-  function applyLang(l) {
-    lang = l;
-    localStorage.setItem('lang', l);
-    document.documentElement.lang = l;
-    document.querySelectorAll('[data-t]').forEach(el => {
-      const v = T[l][el.dataset.t];
-      if (v !== undefined) el.innerHTML = v;
-    });
-    document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.l === l));
+<script>
+const T = {
+  en: {
+    'nav.region':'Kansai','nav.guide':'Guide','nav.tours':'Tours','nav.routes':'Routes','nav.pricing':'Pricing','nav.reviews':'Reviews','nav.contact':'Contact',
+    'hero.tag':'Private Guide · Osaka · Kansai Region · Japan',
+    'hero.l1':'Discover','hero.l2':"Japan's",'hero.l3':'True Soul',
+    'hero.sub':"Beyond the guidebooks. An intimate journey through Osaka, Kyoto, Nara, and the hidden corners of the Kansai heartland — led by someone who lives it.",
+    'hero.cta1':'Book a Private Tour','hero.cta2':'About Your Guide','scroll':'Scroll',
+    'marq.tours':'Private Tours','marq.food':'Food & Culture',
+    'region.label':'The Region · 関西地方',
+    'region.h2':'Where Japan\'s <span class="acc">history was born</span>',
+    'region.p':"Kansai is Japan's cultural and spiritual core. Home to two ancient capitals, the country's finest cuisine, and a way of life that remains fiercely distinct — warmer, louder, more honest. Seven prefectures. Centuries of stories. Knowing where to look makes all the difference.",
+    'city.osaka':"Japan's kitchen. Street food, neon, merchant spirit, and the most open-hearted people you'll meet anywhere in the country.",
+    'city.kyoto':'A thousand years of imperial culture. Wooden temples, bamboo groves, geisha districts — and the hidden paths tourists rarely find.',
+    'city.nara':"Ancient deer roam freely among UNESCO shrines. Japan's first permanent capital — serene, underrated, unforgettable.",
+    'city.kobe':'Port city elegance, legendary beef, and a European-influenced skyline nestled between mountains and sea.',
+    'city.himeji':"Japan's most perfect castle — white as a heron in flight, unchanged for four centuries.",
+    'city.koyasan':'Sleep in a mountain monastery. Walk lantern-lit cemetery paths at dawn. A world completely apart.',
+    'stat.1':'Prefectures Covered','stat.2':'Tours Completed','stat.3':'Languages Spoken','stat.4':'% Private & Personalised',
+    'about.label':'Your Guide','about.h2':'Meet <span class="acc">Tony</span>',
+    'about.p1':"I'm Tony — a private guide based in the Kansai region. I came to Japan drawn by its culture, its food, and its people, and I never left.",
+    'about.p2':"What I offer is not a packaged tour — it is access to the Japan I know personally. The backstreet izakayas that don't appear on Google Maps. The temple at 6am before the crowds arrive. The market vendor who will become your favourite memory of the whole trip.",
+    'about.p3':'I speak English, Spanish and Arabic fluently, and I adapt to any pace or interest — whether you want to eat everything, photograph every corner, or simply walk and let the city breathe around you.',
+    'about.p4':'Every tour is private, fully personalised, and built entirely around you. No scripts. No group buses. Just Japan, as it really is.',
+    'exp.label':'What I Offer','exp.h2':'Tailored <span class="acc">experiences</span>',
+    'exp.1.title':'Full-Day City Deep Dive','exp.1.desc':'One city, one day, done right. Markets at opening time, hidden shrines, street lunch, neighbourhood bars at dusk. Osaka or Kyoto — your choice.',
+    'exp.2.title':'Multi-Day Kansai Journey','exp.2.desc':'A curated arc across the whole region — balancing iconic landmarks with the places most visitors never find. All logistics handled, nothing rushed.',
+    'exp.3.title':'Food & Market Tours','exp.3.desc':"Osaka is Japan's food capital. We eat through Kuromon market, neighbourhood shotengai, and the best standing sushi bar you will ever visit.",
+    'exp.4.title':'Cultural & Spiritual Journeys','exp.4.desc':'Monastery stays, dawn temple walks, traditional craft workshops — for travellers who want depth, not just sights on a checklist.',
+    'tag.1day':'1 Day','tag.group':'1–6 People','tag.custom':'Custom Route','tag.days':'3–7 Days','tag.log':'Full Logistics','tag.acc':'Accommodation Tips','tag.half':'Half Day','tag.food':'Food Included','tag.flex':'Flexible','tag.imm':'Immersive',
+    'routes.label':'Departure Routes','routes.h2':'Specific <span class="acc">itineraries</span>',
+    'route.n1':'Route 01','route.n2':'Route 02','route.n3':'Route 03','route.n4':'Route 04','route.n5':'Route 05','route.n6':'Route 06',
+    'route.1.title':'Osaka Street Food Circuit','route.2.title':'Hidden Kyoto','route.3.title':'Nara & Himeji Castle','route.4.title':'Kōyasan Pilgrimage','route.5.title':'Kobe Refined','route.6.title':'Osaka–Kyoto Full Arc',
+    'rtag.4h':'4 Hours','rtag.5h':'5 Hours','rtag.8h':'8 Hours','rtag.9h':'9 Hours','rtag.2d':'2 Days','rtag.food':'Food Focused','rtag.culture':'Culture','rtag.hist':'History','rtag.spirit':'Spiritual','rtag.lux':'Luxury','rtag.best':'Best Seller','rtag.any':'Any Group','rtag.max4':'Max 4','rtag.max6':'Max 6',
+    'r1.s1':'Kuromon Market — opening time, with the vendors','r1.s2':'Dotonbori canal walk & takoyaki tasting','r1.s3':'Shinsekai neighbourhood lunch','r1.s4':'Hidden shotengai & sake bar at dusk',
+    'r1.dep':'Namba Station Exit 14 · 9:00 AM',
+    'r2.s1':'Fushimi Inari before the crowds — 8:30 AM','r2.s2':'Philosopher\'s Path in silence','r2.s3':'Secret Gion alleys & tea ceremony','r2.s4':'Riverside kaiseki dinner reservation',
+    'r2.dep':'Kyoto Station Central Exit · 8:30 AM',
+    'r3.s1':'Tōdai-ji — largest wooden structure on Earth','r3.s2':'Kasuga Grand Shrine deer park','r3.s3':'Himeji Castle — UNESCO World Heritage','r3.s4':'Hidden castle-town gardens at dusk',
+    'r3.dep':'Osaka / Kyoto · 8:00 AM',
+    'r4.s1':'Mountain train & cable car to Kōya','r4.s2':'Okunoin Cemetery by lantern light — evening','r4.s3':'Shukubō monastery stay & vegetarian dinner','r4.s4':'Dawn prayer with monks — return by afternoon',
+    'r4.dep':'Osaka Namba Station · 9:00 AM',
+    'r5.s1':'Kitano Ijinkan foreign settlement','r5.s2':'Kobe wagyu lunch at a local counter','r5.s3':'Sake brewery tasting in Nada district','r5.s4':'Meriken Park harbour at golden hour',
+    'r5.dep':'Sannomiya Station · 10:00 AM',
+    'r6.s1':'Day 1 — Osaka: market, street food, Shinsekai','r6.s2':'Evening: Dotonbori neon & night izakaya','r6.s3':'Day 2 — Kyoto: Arashiyama, Gion, hidden temple','r6.s4':'Return with a private sake tasting on the train',
+    'r6.dep':'Hotel pickup included · 8:30 AM',
+    'pricing.label':'Plans & Pricing','pricing.h2':'Choose your <span class="acc">experience</span>','pricing.sub':'All tours are 100% private. Prices below are per person with a minimum of 2 guests. Solo travellers welcome — contact me for a quote.',
+    'plan.1.name':'Half Day','plan.1.dur':'4 Hours · Up to 4 people','plan.2.name':'Full Day','plan.2.dur':'8 Hours · Up to 6 people','plan.3.name':'Multi-Day Journey','plan.3.dur':'3–7 Days · Up to 6 people','plan.4.name':'Fully Bespoke','plan.4.dur':'Any duration · Any group','plan.4.price':'Custom',
+    'plan.perperson':'per person · min 2 guests','plan.perday':'per day · group up to 4','plan.onrequest':'quote on request','plan.popular':'Most Popular',
+    'pf.1city':'One district or neighbourhood','pf.1city-full':'One full city — complete experience','pf.pickup':'Hotel meeting point','pf.pickup-drop':'Hotel pickup & drop-off','pf.lunch':'Lunch recommendation & booking','pf.custom':'Custom itinerary','pf.guide':'Fully private guide','pf.24h':'24h WhatsApp support','pf.multi':'Multiple cities across Kansai','pf.logistics':'Full logistics managed','pf.hotel':'Hotel recommendations','pf.transport':'Transport booking assistance','pf.any':'No limits on duration or group','pf.corp':'Corporate & family groups','pf.special':'Special occasions & proposals','pf.vip':'VIP restaurant bookings',
+    'plan.cta':'Book Now','plan.cta.bespoke':'Get a Quote',
+    'test.label':'Client Reviews','test.h2':'What travellers <span class="acc">say</span>','test.sub':'Over 200 private tours. Real people, real stories.',
+    'test.1.q':'Tony took us to a tiny ramen shop hidden in an Osaka alley — no sign, no English menu, just perfection. That single bowl was worth the whole trip.',
+    'test.2.q':'We spent three days with Tony across Kansai. He knows every alley, every chef, every temple. It was the best experience in Japan.',
+    'test.3.q':'The best experience of our entire trip to Japan. Tony speaks Spanish perfectly and took us to places we\'d never have found on our own.',
+    'test.4.q':'We did a 5-day journey from Osaka to Kōyasan. Tony arranged everything. Waking up in a monastery at dawn is something I\'ll never forget.',
+    'test.5.q':'The food tour through Kuromon market was incredible. Tony knew every vendor personally. We ate things I couldn\'t name and loved every single one.',
+    'test.6.q':'As someone with Japanese heritage visiting for the first time, I needed a guide who understood depth. Tony gave us history, culture and emotion all at once.',
+    'contact.label':'Get in Touch','contact.h2':'Ready to explore <span class="acc">Kansai?</span>',
+    'contact.p':"Tell me your travel dates, interests, and group size. I'll reply within 24 hours with a personalised proposal.",
+    'form.name':'Your Name','form.email':'Your Email','form.dates':'Travel Dates (optional)','form.msg':'Your Message','form.send':'Send Message','form.sending':'Sending…','form.retry':'Try Again',
+    'form.ok.title':'Message Sent','form.ok.text':"Thank you — I'll be in touch within 24 hours.",
+    'footer.l':'© 2026 Tony Hanma · Private Kansai Guide','footer.r':'Osaka · Kansai · Japan'
+  },
+  es: {
+    'nav.region':'Kansai','nav.guide':'Guía','nav.tours':'Tours','nav.routes':'Rutas','nav.pricing':'Precios','nav.reviews':'Opiniones','nav.contact':'Contacto',
+    'hero.tag':'Guía Privado · Osaka · Región de Kansai · Japón','hero.l1':'Descubre','hero.l2':'el Alma','hero.l3':'de Japón',
+    'hero.sub':'Más allá de las guías turísticas. Un viaje íntimo por Osaka, Kioto, Nara y los rincones ocultos de la región de Kansai — guiado por alguien que vive aquí.',
+    'hero.cta1':'Reservar un Tour Privado','hero.cta2':'Sobre el Guía','scroll':'Bajar',
+    'marq.tours':'Tours Privados','marq.food':'Gastronomía y Cultura',
+    'region.label':'La Región · 関西地方','region.h2':'Donde nació la <span class="acc">historia de Japón</span>',
+    'region.p':'Kansai es el corazón cultural y espiritual de Japón. Hogar de dos antiguas capitales, la mejor gastronomía del país y una forma de vida marcadamente distinta — más cálida, más auténtica. Siete prefecturas. Siglos de historia.',
+    'city.osaka':'La cocina de Japón. Gastronomía callejera, neón, espíritu comerciante y la gente más acogedora del país.',
+    'city.kyoto':'Mil años de cultura imperial. Templos de madera, bosques de bambú, barrios de geishas — y los caminos ocultos que los turistas rara vez encuentran.',
+    'city.nara':'Ciervos antiguos deambulan entre santuarios de la UNESCO. La primera capital permanente de Japón — serena, infravalorada, inolvidable.',
+    'city.kobe':'Elegancia portuaria, el mejor wagyu del mundo y un horizonte europeo entre montañas y mar.',
+    'city.himeji':'El castillo más perfecto de Japón — blanco como una garza en vuelo, sin cambios durante cuatro siglos.',
+    'city.koyasan':'Duerme en un monasterio de montaña. Camina por senderos iluminados por faroles al amanecer.',
+    'stat.1':'Prefecturas Cubiertas','stat.2':'Tours Completados','stat.3':'Idiomas Hablados','stat.4':'% Privado y Personalizado',
+    'about.label':'Tu Guía','about.h2':'Conoce a <span class="acc">Tony</span>',
+    'about.p1':'Soy Tony — guía privado en la región de Kansai. Vine a Japón atraído por su cultura, su gastronomía y su gente, y nunca me fui.',
+    'about.p2':'Lo que ofrezco no es un tour empaquetado — es acceso a la Japón que conozco personalmente. Los izakayas de callejón que no aparecen en Google Maps. El templo a las 6am antes de las multitudes.',
+    'about.p3':'Hablo inglés, español y árabe con fluidez, y me adapto a cualquier ritmo e interés.',
+    'about.p4':'Cada tour es privado, totalmente personalizado y construido alrededor de ti. Sin guiones. Sin autobuses grupales. Solo Japón.',
+    'exp.label':'Lo que Ofrezco','exp.h2':'Experiencias <span class="acc">a medida</span>',
+    'exp.1.title':'Inmersión Urbana de Un Día','exp.1.desc':'Una ciudad, un día, bien hecho. Mercados al abrir, santuarios ocultos, almuerzo callejero, bares de barrio al atardecer.',
+    'exp.2.title':'Viaje Multi-día por Kansai','exp.2.desc':'Un recorrido curado por toda la región — equilibrando lugares icónicos con los sitios que la mayoría nunca encuentra.',
+    'exp.3.title':'Tours Gastronómicos y de Mercado','exp.3.desc':'Osaka es la capital gastronómica de Japón. Recorremos el mercado Kuromon y el mejor bar de sushi de pie que jamás visitarás.',
+    'exp.4.title':'Viajes Culturales y Espirituales','exp.4.desc':'Estancias en monasterios, caminatas al amanecer, talleres artesanales — para viajeros que buscan profundidad.',
+    'tag.1day':'1 Día','tag.group':'1–6 Personas','tag.custom':'Ruta Personalizada','tag.days':'3–7 Días','tag.log':'Logística Completa','tag.acc':'Consejos de Alojamiento','tag.half':'Medio Día','tag.food':'Comida Incluida','tag.flex':'Flexible','tag.imm':'Inmersivo',
+    'routes.label':'Rutas con Salidas','routes.h2':'Itinerarios <span class="acc">específicos</span>',
+    'route.n1':'Ruta 01','route.n2':'Ruta 02','route.n3':'Ruta 03','route.n4':'Ruta 04','route.n5':'Ruta 05','route.n6':'Ruta 06',
+    'route.1.title':'Circuito Gastronómico de Osaka','route.2.title':'Kyoto Oculto','route.3.title':'Nara y Castillo de Himeji','route.4.title':'Peregrinación a Kōyasan','route.5.title':'Kobe Refinado','route.6.title':'Arco Completo Osaka–Kioto',
+    'rtag.4h':'4 Horas','rtag.5h':'5 Horas','rtag.8h':'8 Horas','rtag.9h':'9 Horas','rtag.2d':'2 Días','rtag.food':'Gastronomía','rtag.culture':'Cultura','rtag.hist':'Historia','rtag.spirit':'Espiritual','rtag.lux':'Lujo','rtag.best':'Más Vendido','rtag.any':'Cualquier Grupo','rtag.max4':'Máx 4','rtag.max6':'Máx 6',
+    'r1.s1':'Mercado Kuromon — a la apertura, con los vendedores','r1.s2':'Paseo por el canal de Dotonbori y takoyaki','r1.s3':'Almuerzo en el barrio de Shinsekai','r1.s4':'Shotengai oculto y bar de sake al atardecer',
+    'r1.dep':'Salida Namba Estación Salida 14 · 9:00 AM',
+    'r2.s1':'Fushimi Inari antes de las multitudes — 8:30 AM','r2.s2':'Camino del Filósofo en silencio','r2.s3':'Callejones secretos de Gion y ceremonia del té','r2.s4':'Reserva de cena kaiseki junto al río',
+    'r2.dep':'Estación Central de Kyoto · 8:30 AM',
+    'r3.s1':'Tōdai-ji — la estructura de madera más grande del mundo','r3.s2':'Parque de ciervos del Gran Santuario Kasuga','r3.s3':'Castillo de Himeji — Patrimonio Mundial UNESCO','r3.s4':'Jardines ocultos de la ciudad del castillo al anochecer',
+    'r3.dep':'Osaka / Kioto · 8:00 AM',
+    'r4.s1':'Tren de montaña y teleférico a Kōya','r4.s2':'Cementerio Okunoin a la luz de los faroles — tarde','r4.s3':'Estancia en monasterio shukubō y cena vegetariana','r4.s4':'Oración del amanecer con monjes — regreso por la tarde',
+    'r4.dep':'Estación Osaka Namba · 9:00 AM',
+    'r5.s1':'Asentamiento extranjero de Kitano Ijinkan','r5.s2':'Almuerzo de wagyu de Kobe en mostrador local','r5.s3':'Degustación en cervecería de sake del distrito Nada','r5.s4':'Puerto Meriken Park a la hora dorada',
+    'r5.dep':'Estación Sannomiya · 10:00 AM',
+    'r6.s1':'Día 1 — Osaka: mercado, gastronomía callejera, Shinsekai','r6.s2':'Tarde: neón de Dotonbori e izakaya nocturno','r6.s3':'Día 2 — Kioto: Arashiyama, Gion, templo oculto','r6.s4':'Regreso con degustación privada de sake en el tren',
+    'r6.dep':'Recogida en hotel incluida · 8:30 AM',
+    'pricing.label':'Planes y Precios','pricing.h2':'Elige tu <span class="acc">experiencia</span>','pricing.sub':'Todos los tours son 100% privados. Precios por persona con mínimo 2 personas. Viajeros solos bienvenidos — contáctame para presupuesto.',
+    'plan.1.name':'Medio Día','plan.1.dur':'4 Horas · Hasta 4 personas','plan.2.name':'Día Completo','plan.2.dur':'8 Horas · Hasta 6 personas','plan.3.name':'Viaje Multi-día','plan.3.dur':'3–7 Días · Hasta 6 personas','plan.4.name':'Totalmente a Medida','plan.4.dur':'Cualquier duración · Cualquier grupo','plan.4.price':'Consultar',
+    'plan.perperson':'por persona · mín 2 personas','plan.perday':'por día · grupo hasta 4','plan.onrequest':'presupuesto bajo consulta','plan.popular':'Más Popular',
+    'pf.1city':'Un barrio o distrito','pf.1city-full':'Una ciudad completa — experiencia total','pf.pickup':'Punto de encuentro en hotel','pf.pickup-drop':'Recogida y regreso al hotel','pf.lunch':'Recomendación y reserva de almuerzo','pf.custom':'Itinerario personalizado','pf.guide':'Guía totalmente privado','pf.24h':'Soporte WhatsApp 24h','pf.multi':'Varias ciudades de Kansai','pf.logistics':'Logística completa gestionada','pf.hotel':'Recomendaciones de alojamiento','pf.transport':'Asistencia para reserva de transporte','pf.any':'Sin límites de duración ni grupo','pf.corp':'Grupos corporativos y familiares','pf.special':'Ocasiones especiales y propuestas','pf.vip':'Reservas en restaurantes VIP',
+    'plan.cta':'Reservar','plan.cta.bespoke':'Pedir Presupuesto',
+    'test.label':'Opiniones de Clientes','test.h2':'Lo que dicen los <span class="acc">viajeros</span>','test.sub':'Más de 200 tours privados. Personas reales, historias reales.',
+    'test.1.q':'Tony nos llevó a un pequeño restaurante de ramen escondido en un callejón de Osaka — sin letrero, sin menú en inglés, solo perfección.',
+    'test.2.q':'Pasamos tres días con Tony por todo Kansai. Conoce cada callejón, cada cocinero, cada templo. Fue la mejor experiencia en Japón.',
+    'test.3.q':'La mejor experiencia de todo nuestro viaje a Japón. Tony habla español perfectamente y nos llevó a lugares que jamás hubiéramos encontrado solos.',
+    'test.4.q':'Hicimos un viaje de 5 días de Osaka a Kōyasan. Tony organizó todo. Despertar en un monasterio al amanecer es algo que nunca olvidaré.',
+    'test.5.q':'El tour gastronómico por el mercado Kuromon fue increíble. Tony conocía a cada vendedor personalmente.',
+    'test.6.q':'Como alguien de herencia japonesa visitando por primera vez, necesitaba un guía que entendiera la profundidad. Tony nos dio historia, cultura y emoción a la vez.',
+    'contact.label':'Escríbeme','contact.h2':'¿Listo para explorar <span class="acc">Kansai?</span>',
+    'contact.p':'Cuéntame tus fechas de viaje, intereses y tamaño del grupo. Te responderé en 24 horas.',
+    'form.name':'Tu Nombre','form.email':'Tu Email','form.dates':'Fechas de Viaje (opcional)','form.msg':'Tu Mensaje','form.send':'Enviar Mensaje','form.sending':'Enviando…','form.retry':'Intentar de Nuevo',
+    'form.ok.title':'Mensaje Enviado','form.ok.text':'Gracias — te responderé en menos de 24 horas.',
+    'footer.l':'© 2026 Tony Hanma · Guía Privado Kansai','footer.r':'Osaka · Kansai · Japón'
+  },
+  ru: {
+    'nav.region':'Кансай','nav.guide':'Гид','nav.tours':'Туры','nav.routes':'Маршруты','nav.pricing':'Цены','nav.reviews':'Отзывы','nav.contact':'Контакт',
+    'hero.tag':'Частный гид · Осака · Регион Кансай · Япония','hero.l1':'Откройте','hero.l2':'Душу','hero.l3':'Японии',
+    'hero.sub':'За пределами путеводителей. Личное путешествие по Осаке, Киото, Нара и скрытым уголкам региона Кансай — с гидом, который здесь живёт.',
+    'hero.cta1':'Забронировать тур','hero.cta2':'О гиде','scroll':'Вниз',
+    'marq.tours':'Частные туры','marq.food':'Еда и культура',
+    'region.label':'Регион · 関西地方','region.h2':'Где <span class="acc">родилась история Японии</span>',
+    'region.p':'Кансай — культурное и духовное сердце Японии. Здесь располагались две древние столицы, лучшая кухня страны и уклад жизни, разительно отличающийся от Токио — теплее, громче, честнее.',
+    'city.osaka':'Кухня Японии. Уличная еда, неон, торговый дух и самые открытые люди во всей стране.',
+    'city.kyoto':'Тысяча лет императорской культуры. Деревянные храмы, бамбуковые рощи, районы гейш — и скрытые тропы.',
+    'city.nara':'Древние олени свободно гуляют среди святынь ЮНЕСКО. Первая постоянная столица Японии.',
+    'city.kobe':'Портовая элегантность, легендарная говядина вагю и горизонт с европейским влиянием.',
+    'city.himeji':'Самый совершенный замок Японии — белый, как цапля в полёте, не изменившийся за четыре века.',
+    'city.koyasan':'Ночёвка в горном монастыре. Прогулка по кладбищу при свете фонарей на рассвете.',
+    'stat.1':'Охваченных префектур','stat.2':'Проведённых туров','stat.3':'Языков','stat.4':'% Частные туры',
+    'about.label':'Ваш гид','about.h2':'Знакомьтесь — <span class="acc">Тони</span>',
+    'about.p1':'Я Тони — частный гид в регионе Кансай. Я приехал в Японию, влюблённый в её культуру, кухню и людей, и остался навсегда.',
+    'about.p2':'Я предлагаю не стандартные экскурсии — а доступ к той Японии, которую знаю лично. Закусочные в переулках без Google Maps. Храм в 6 утра до прихода толп.',
+    'about.p3':'Я свободно говорю по-английски, по-испански и по-арабски, и подстраиваюсь под любой ритм и интерес.',
+    'about.p4':'Каждый тур — частный, полностью персонализированный. Без сценариев. Без групповых автобусов. Просто Япония.',
+    'exp.label':'Что я предлагаю','exp.h2':'Туры <span class="acc">по вашим интересам</span>',
+    'exp.1.title':'Полный день в городе','exp.1.desc':'Один город, один день — по-настоящему. Рынки с утра, скрытые святыни, уличный обед, бары в переулках.',
+    'exp.2.title':'Многодневное путешествие по Кансаю','exp.2.desc':'Продуманный маршрут по всему региону — знаковые места и скрытые уголки, которые большинство туристов не находят.',
+    'exp.3.title':'Гастрономические туры','exp.3.desc':'Осака — гастрономическая столица Японии. Рынок Куромон и лучший суши-бар стоя.',
+    'exp.4.title':'Культурные и духовные путешествия','exp.4.desc':'Ночёвки в монастырях, утренние прогулки по храмам — для тех, кто хочет глубины.',
+    'tag.1day':'1 день','tag.group':'1–6 человек','tag.custom':'Маршрут под вас','tag.days':'3–7 дней','tag.log':'Полная логистика','tag.acc':'Советы по жилью','tag.half':'Полдня','tag.food':'Еда включена','tag.flex':'Гибко','tag.imm':'Погружение',
+    'routes.label':'Маршруты с отправлением','routes.h2':'Конкретные <span class="acc">маршруты</span>',
+    'route.n1':'Маршрут 01','route.n2':'Маршрут 02','route.n3':'Маршрут 03','route.n4':'Маршрут 04','route.n5':'Маршрут 05','route.n6':'Маршрут 06',
+    'route.1.title':'Гастрономический тур по Осаке','route.2.title':'Скрытое Киото','route.3.title':'Нара и замок Химэдзи','route.4.title':'Паломничество на Коясан','route.5.title':'Утончённый Кобе','route.6.title':'Полный маршрут Осака–Киото',
+    'rtag.4h':'4 часа','rtag.5h':'5 часов','rtag.8h':'8 часов','rtag.9h':'9 часов','rtag.2d':'2 дня','rtag.food':'Гастрономия','rtag.culture':'Культура','rtag.hist':'История','rtag.spirit':'Духовный','rtag.lux':'Люкс','rtag.best':'Хит продаж','rtag.any':'Любая группа','rtag.max4':'Макс 4','rtag.max6':'Макс 6',
+    'r1.s1':'Рынок Куромон — к открытию, среди продавцов','r1.s2':'Прогулка по каналу Дотонбори и такояки','r1.s3':'Обед в квартале Синсэкай','r1.s4':'Скрытый сётэнгай и бар саке на закате',
+    'r1.dep':'Ст. Намба, выход 14 · 9:00',
+    'r2.s1':'Фусими Инари до толп туристов — 8:30','r2.s2':'Тропа Философа в тишине','r2.s3':'Секретные переулки Гион и чайная церемония','r2.s4':'Бронирование ужина кайсэки у реки',
+    'r2.dep':'Центральный выход ст. Киото · 8:30',
+    'r3.s1':'Тодайдзи — крупнейшая деревянная постройка в мире','r3.s2':'Парк оленей святилища Касуга','r3.s3':'Замок Химэдзи — объект ЮНЕСКО','r3.s4':'Скрытые сады замкового города на закате',
+    'r3.dep':'Осака / Киото · 8:00',
+    'r4.s1':'Горный поезд и подвесная дорога на Коя','r4.s2':'Кладбище Окуноин при свете фонарей — вечер','r4.s3':'Ночёвка в монастыре сюкубо и вегетарианский ужин','r4.s4':'Утренняя молитва с монахами — возвращение днём',
+    'r4.dep':'Ст. Осака Намба · 9:00',
+    'r5.s1':'Иностранный квартал Китано Идзинкан','r5.s2':'Обед из говядины вагю Кобе за местным прилавком','r5.s3':'Дегустация в пивоварне саке района Нада','r5.s4':'Парк Мерикен у гавани в золотой час',
+    'r5.dep':'Ст. Санномия · 10:00',
+    'r6.s1':'День 1 — Осака: рынок, уличная еда, Синсэкай','r6.s2':'Вечер: неон Дотонбори и ночная идзакая','r6.s3':'День 2 — Киото: Арасияма, Гион, скрытый храм','r6.s4':'Возвращение с частной дегустацией саке в поезде',
+    'r6.dep':'Трансфер от отеля включён · 8:30',
+    'pricing.label':'Планы и цены','pricing.h2':'Выберите вашу <span class="acc">программу</span>','pricing.sub':'Все туры — 100% частные. Цены указаны за человека при минимуме 2 гостей. Одиночные путешественники — пишите для расчёта.',
+    'plan.1.name':'Полдня','plan.1.dur':'4 часа · До 4 человек','plan.2.name':'Полный день','plan.2.dur':'8 часов · До 6 человек','plan.3.name':'Многодневное','plan.3.dur':'3–7 дней · До 6 человек','plan.4.name':'Полностью под вас','plan.4.dur':'Любая длительность · Любая группа','plan.4.price':'По запросу',
+    'plan.perperson':'за человека · мин 2 гостя','plan.perday':'за день · группа до 4','plan.onrequest':'стоимость по запросу','plan.popular':'Популярный',
+    'pf.1city':'Один квартал или район','pf.1city-full':'Один город — полноценный опыт','pf.pickup':'Встреча у отеля','pf.pickup-drop':'Трансфер от/до отеля','pf.lunch':'Рекомендация и бронь обеда','pf.custom':'Индивидуальный маршрут','pf.guide':'Полностью частный гид','pf.24h':'Поддержка WhatsApp 24ч','pf.multi':'Несколько городов Кансая','pf.logistics':'Полная логистика','pf.hotel':'Рекомендации по жилью','pf.transport':'Помощь с транспортом','pf.any':'Без ограничений','pf.corp':'Корпоративные и семейные группы','pf.special':'Особые случаи и предложения','pf.vip':'Бронирование VIP-ресторанов',
+    'plan.cta':'Забронировать','plan.cta.bespoke':'Запросить цену',
+    'test.label':'Отзывы клиентов','test.h2':'Что говорят <span class="acc">путешественники</span>','test.sub':'Более 200 частных туров. Реальные люди, реальные истории.',
+    'test.1.q':'Тони привёл нас в крошечную рамэн-лавку в переулке Осаки — без вывески, без меню, просто совершенство.',
+    'test.2.q':'Провели с Тони три дня по всему Кансаю. Он знает каждый переулок, каждого повара, каждый храм.',
+    'test.3.q':'Лучший опыт за всё путешествие по Японии. Тони прекрасно говорит по-испански.',
+    'test.4.q':'Мы совершили 5-дневное путешествие от Осаки до Коясана. Просыпаться в монастыре — это незабываемо.',
+    'test.5.q':'Гастрономический тур по рынку Куромон был невероятным. Тони лично знал каждого продавца.',
+    'test.6.q':'Как человек с японскими корнями, приехавший впервые, мне нужен был гид, понимающий глубину. Тони дал это.',
+    'contact.label':'Свяжитесь','contact.h2':'Готовы открыть <span class="acc">Кансай?</span>',
+    'contact.p':'Расскажите о датах, интересах и размере группы. Отвечу в течение 24 часов.',
+    'form.name':'Ваше имя','form.email':'Ваш email','form.dates':'Даты поездки (необязательно)','form.msg':'Ваше сообщение','form.send':'Отправить','form.sending':'Отправляю…','form.retry':'Попробовать снова',
+    'form.ok.title':'Сообщение отправлено','form.ok.text':'Спасибо — отвечу в течение 24 часов.',
+    'footer.l':'© 2026 Тони Ханма · Частный гид по Кансаю','footer.r':'Осака · Кансай · Япония'
   }
+};
 
-  document.querySelectorAll('.lang-btn').forEach(b =>
-    b.addEventListener('click', () => applyLang(b.dataset.l))
-  );
-
-  applyLang(lang);
-
-  // ── Scroll reveal ──
-  const ro = new IntersectionObserver(es => {
-    es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); ro.unobserve(e.target); } });
-  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-  document.querySelectorAll('.rev,.rev-l,.rev-r').forEach(el => ro.observe(el));
-
-  // ── Stat counters ──
-  function count(el, target, ms) {
-    let t0 = null;
-    const sfx = target === 100 ? '%' : '+';
-    (function tick(ts) {
-      if (!t0) t0 = ts;
-      const p = Math.min((ts - t0) / ms, 1);
-      el.textContent = Math.round((1 - Math.pow(1 - p, 3)) * target);
-      p < 1 ? requestAnimationFrame(tick) : (el.textContent = target + sfx);
-    })(performance.now());
-  }
-
-  const co = new IntersectionObserver(es => {
-    es.forEach(e => { if (e.isIntersecting) { count(e.target, +e.target.dataset.target, 1800); co.unobserve(e.target); } });
-  }, { threshold: 0.6 });
-  document.querySelectorAll('.stat-n[data-target]').forEach(el => co.observe(el));
-
-  // ── Parallax on scroll — hero kanji + section orbs ──
-  const hkanji = document.getElementById('hkanji');
-  window.addEventListener('scroll', () => {
-    const y = window.scrollY;
-    if (hkanji) hkanji.style.transform = `translate(-50%, calc(-50% + ${y * 0.28}px))`;
-  }, { passive: true });
-
-  // ── 3D Card tilt + glare ──
-  (function() {
-    const MAX = 11, PERSP = 700;
-
-    function addTilt(el) {
-      const glare = el.querySelector('.glare');
-      el.addEventListener('mouseenter', () => { el.style.transition = 'transform 0.1s ease'; });
-      el.addEventListener('mousemove', ev => {
-        const r  = el.getBoundingClientRect();
-        const dx = (ev.clientX - (r.left + r.width  / 2)) / (r.width  / 2);
-        const dy = (ev.clientY - (r.top  + r.height / 2)) / (r.height / 2);
-        el.style.transform = `perspective(${PERSP}px) rotateX(${-dy * MAX}deg) rotateY(${dx * MAX}deg) scale3d(1.03,1.03,1.03)`;
-        if (glare) {
-          glare.style.background = `radial-gradient(circle at ${(dx+1)/2*100}% ${(dy+1)/2*100}%, rgba(255,255,255,0.11) 0%, transparent 65%)`;
-          glare.style.opacity = '1';
-        }
-      });
-      el.addEventListener('mouseleave', () => {
-        el.style.transition = 'transform 0.55s cubic-bezier(0.23,1,0.32,1)';
-        el.style.transform  = '';
-        if (glare) glare.style.opacity = '0';
-        setTimeout(() => { el.style.transition = ''; }, 560);
-      });
-    }
-
-    document.querySelectorAll('.tilt-card').forEach(addTilt);
-  })();
-
-  // ── Contact form ──
-  const ep   = atob('aHR0cHM6Ly9mb3Jtc3VibWl0LmNvL2FqYXgvUHJpbmNlLms3M2tAcHJvdG9uLm1l');
-  const form = document.getElementById('cform');
-  const fok  = document.getElementById('form-ok');
-  const sbtn = document.getElementById('sbtn');
-  const stxt = document.getElementById('sbtn-txt');
-
-  form.addEventListener('submit', async ev => {
-    ev.preventDefault();
-    if (!form.checkValidity()) { form.reportValidity(); return; }
-    stxt.textContent = T[lang]['form.sending'];
-    sbtn.classList.add('loading');
-    try {
-      const r = await fetch(ep, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
-      const j = await r.json();
-      if (j.success === 'true' || j.success === true) { form.style.display = 'none'; fok.classList.add('show'); }
-      else { stxt.textContent = T[lang]['form.retry']; sbtn.classList.remove('loading'); }
-    } catch { stxt.textContent = T[lang]['form.retry']; sbtn.classList.remove('loading'); }
+let lang = localStorage.getItem('lang') || 'en';
+function applyLang(l) {
+  lang = l;
+  localStorage.setItem('lang', l);
+  document.documentElement.lang = l;
+  document.querySelectorAll('[data-t]').forEach(el => {
+    const v = T[l][el.dataset.t];
+    if (v !== undefined) el.innerHTML = v;
   });
-  </script>
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.l === l));
+}
+document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => applyLang(b.dataset.l)));
+applyLang(lang);
+
+// ── SCROLL REVEAL — hide via JS so content is always visible if JS fails ──
+const revEls = document.querySelectorAll('.rev,.rev-l,.rev-r');
+// Use rAF so page paints first (prevents flash of hidden content)
+requestAnimationFrame(() => {
+  revEls.forEach(el => el.classList.add('sr-hide'));
+  const ro = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.remove('sr-hide');
+        ro.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.05 });
+  revEls.forEach(el => ro.observe(el));
+});
+
+// ── STAT COUNTERS ──
+function count(el, target, ms) {
+  let t0 = null;
+  const sfx = target === 100 ? '%' : '+';
+  (function tick(ts) {
+    if (!t0) t0 = ts;
+    const p = Math.min((ts - t0) / ms, 1);
+    el.textContent = Math.round((1 - Math.pow(1 - p, 3)) * target);
+    p < 1 ? requestAnimationFrame(tick) : (el.textContent = target + sfx);
+  })(performance.now());
+}
+const co = new IntersectionObserver(es => {
+  es.forEach(e => { if (e.isIntersecting) { count(e.target, +e.target.dataset.target, 1800); co.unobserve(e.target); } });
+}, { threshold: 0.6 });
+document.querySelectorAll('.stat-n[data-target]').forEach(el => co.observe(el));
+
+// ── HERO KANJI PARALLAX ──
+const hkanji = document.getElementById('hkanji');
+window.addEventListener('scroll', () => {
+  if (hkanji) hkanji.style.transform = `translate(-50%, calc(-50% + ${window.scrollY * 0.28}px))`;
+}, { passive: true });
+
+// ── 3D CARD TILT ──
+(function() {
+  const MAX = 11, P = 700;
+  document.querySelectorAll('.tilt-card').forEach(el => {
+    const g = el.querySelector('.glare');
+    el.addEventListener('mouseenter', () => { el.style.transition = 'transform 0.1s ease'; });
+    el.addEventListener('mousemove', ev => {
+      const r = el.getBoundingClientRect();
+      const dx = (ev.clientX - (r.left + r.width/2)) / (r.width/2);
+      const dy = (ev.clientY - (r.top + r.height/2)) / (r.height/2);
+      el.style.transform = `perspective(${P}px) rotateX(${-dy*MAX}deg) rotateY(${dx*MAX}deg) scale3d(1.03,1.03,1.03)`;
+      if (g) { g.style.background = `radial-gradient(circle at ${(dx+1)/2*100}% ${(dy+1)/2*100}%, rgba(255,255,255,0.11) 0%, transparent 65%)`; g.style.opacity='1'; }
+    });
+    el.addEventListener('mouseleave', () => {
+      el.style.transition = 'transform 0.55s cubic-bezier(0.23,1,0.32,1)';
+      el.style.transform = '';
+      if (g) g.style.opacity = '0';
+      setTimeout(() => { el.style.transition = ''; }, 560);
+    });
+  });
+})();
+
+// ── CONTACT FORM ──
+const ep = atob('aHR0cHM6Ly9mb3Jtc3VibWl0LmNvL2FqYXgvUHJpbmNlLms3M2tAcHJvdG9uLm1l');
+const form = document.getElementById('cform'), fok = document.getElementById('form-ok');
+const sbtn = document.getElementById('sbtn'), stxt = document.getElementById('sbtn-txt');
+form.addEventListener('submit', async ev => {
+  ev.preventDefault();
+  if (!form.checkValidity()) { form.reportValidity(); return; }
+  stxt.textContent = T[lang]['form.sending'];
+  sbtn.classList.add('loading');
+  try {
+    const r = await fetch(ep, { method:'POST', body:new FormData(form), headers:{Accept:'application/json'} });
+    const j = await r.json();
+    if (j.success === 'true' || j.success === true) { form.style.display='none'; fok.classList.add('show'); }
+    else { stxt.textContent = T[lang]['form.retry']; sbtn.classList.remove('loading'); }
+  } catch { stxt.textContent = T[lang]['form.retry']; sbtn.classList.remove('loading'); }
+});
+</script>
 </body>
 </html>
