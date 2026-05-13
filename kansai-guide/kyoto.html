@@ -104,9 +104,121 @@
       .t-dot { left:0; }
       .t-step { gap:1.2rem; padding-left:1.2rem; }
     }
+
+    /* ── KYOTO SPLASH SCREEN ── */
+    #ky-splash {
+      position:fixed; inset:0; z-index:10000;
+      display:flex; align-items:center; justify-content:center;
+      overflow:hidden;
+      transition:opacity 0.9s cubic-bezier(0.4,0,0.2,1), visibility 0.9s;
+    }
+    #ky-splash.hidden { opacity:0; visibility:hidden; pointer-events:none; }
+    #ky-splash-bg {
+      position:absolute; inset:0;
+    }
+    #ky-splash-bg img {
+      width:100%; height:100%; object-fit:cover; object-position:center 30%;
+      filter:brightness(0.22) saturate(0.8);
+    }
+    #ky-splash-vignette {
+      position:absolute; inset:0;
+      background:radial-gradient(ellipse at center, transparent 30%, rgba(8,8,8,0.85) 100%);
+    }
+    #ky-splash-cv {
+      position:absolute; inset:0; width:100%; height:100%;
+      pointer-events:none; opacity:0.7;
+    }
+    #ky-splash-inner {
+      position:relative; z-index:2;
+      text-align:center; padding:2rem 1.5rem; max-width:640px; width:100%;
+    }
+    .sp-label {
+      font-size:0.58rem; font-weight:700; letter-spacing:0.35em; text-transform:uppercase;
+      color:rgba(255,255,255,0.35); margin-bottom:3rem;
+    }
+    .sp-kanji-wrap { position:relative; line-height:1; margin-bottom:0.5rem; }
+    .sp-kanji-bg {
+      font-family:var(--serif); font-size:clamp(7rem,22vw,14rem); font-weight:300;
+      color:rgba(255,255,255,0.04); line-height:1; user-select:none;
+      letter-spacing:-0.02em;
+    }
+    .sp-kanji-over {
+      position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+      font-family:var(--serif); font-size:clamp(3.5rem,10vw,6.5rem); font-weight:300;
+      color:rgba(255,255,255,0.9); letter-spacing:0.15em;
+    }
+    .sp-divider {
+      width:60px; height:1px; background:linear-gradient(90deg,transparent,#c0392b,transparent);
+      margin:1.4rem auto;
+    }
+    .sp-title-en {
+      font-family:var(--serif); font-size:clamp(1.6rem,5vw,2.8rem); font-weight:300;
+      font-style:italic; color:rgba(255,255,255,0.88); letter-spacing:0.04em; margin-bottom:1rem;
+    }
+    .sp-sub {
+      font-size:0.65rem; font-weight:500; letter-spacing:0.22em; text-transform:uppercase;
+      color:rgba(255,255,255,0.28); margin-bottom:3rem;
+    }
+    .sp-btn {
+      display:inline-flex; align-items:center; gap:0.9rem;
+      font-size:0.68rem; font-weight:700; letter-spacing:0.22em; text-transform:uppercase;
+      color:#fff; background:transparent;
+      border:1px solid rgba(192,57,43,0.7); border-radius:999px;
+      padding:0.85rem 2.2rem; cursor:pointer;
+      transition:background 0.3s, border-color 0.3s, transform 0.25s;
+      position:relative; overflow:hidden;
+    }
+    .sp-btn::before {
+      content:''; position:absolute; inset:0;
+      background:linear-gradient(135deg,#c0392b,#e74c3c);
+      opacity:0; transition:opacity 0.3s;
+    }
+    .sp-btn:hover::before { opacity:1; }
+    .sp-btn:hover { border-color:transparent; transform:translateY(-2px); }
+    .sp-btn span { position:relative; z-index:1; }
+    .sp-btn .sp-arrow { font-size:1rem; transition:transform 0.3s; }
+    .sp-btn:hover .sp-arrow { transform:translateX(4px); }
+    .sp-corner {
+      position:absolute; width:40px; height:40px;
+      border-color:rgba(192,57,43,0.3); border-style:solid;
+    }
+    .sp-corner-tl { top:2rem; left:2rem; border-width:1px 0 0 1px; }
+    .sp-corner-tr { top:2rem; right:2rem; border-width:1px 1px 0 0; }
+    .sp-corner-bl { bottom:2rem; left:2rem; border-width:0 0 1px 1px; }
+    .sp-corner-br { bottom:2rem; right:2rem; border-width:0 1px 1px 0; }
+    @media(max-width:480px) {
+      .sp-corner { display:none; }
+    }
   </style>
 </head>
 <body>
+
+<!-- KYOTO SPLASH SCREEN -->
+<div id="ky-splash">
+  <div id="ky-splash-bg">
+    <img src="img/kyoto-fushimi-inari.jpg" alt="" aria-hidden="true"/>
+  </div>
+  <div id="ky-splash-vignette"></div>
+  <canvas id="ky-splash-cv"></canvas>
+  <div class="sp-corner sp-corner-tl"></div>
+  <div class="sp-corner sp-corner-tr"></div>
+  <div class="sp-corner sp-corner-bl"></div>
+  <div class="sp-corner sp-corner-br"></div>
+  <div id="ky-splash-inner">
+    <div class="sp-label">Tony Hanma · Private Kansai Guide</div>
+    <div class="sp-kanji-wrap">
+      <div class="sp-kanji-bg">京都</div>
+      <div class="sp-kanji-over">京都</div>
+    </div>
+    <div class="sp-divider"></div>
+    <div class="sp-title-en">Hidden Kyoto</div>
+    <div class="sp-sub">Ancient Temples · Sacred Gardens · Geisha Quarter</div>
+    <button class="sp-btn" onclick="window.__closeSplash()">
+      <span>Discover Kyoto</span>
+      <span class="sp-arrow">→</span>
+    </button>
+  </div>
+</div>
 
 <nav>
   <a href="index.html" class="nav-back">← Kansai Guide</a>
@@ -116,7 +228,7 @@
 
 <section class="dest-hero">
   <div class="dest-hero-bg">
-    <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1800&q=85" alt="Fushimi Inari torii gates" onerror="this.style.background='#161616'"/>
+    <img src="img/kyoto-fushimi-inari.jpg" alt="Fushimi Inari torii gates"/>
   </div>
   <div class="dest-hero-grad"></div>
   <div class="dest-kanji">京都</div>
@@ -146,51 +258,51 @@
     <div class="gal-grid">
 
       <div class="g-item wide">
-        <img src="https://images.unsplash.com/EsyRI8Wag40?auto=format&fit=crop&w=1100&q=80" alt="Corridor of red torii gates Fushimi Inari Japan" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1100&q=80'"/>
+        <img src="img/kyoto-fushimi-inari.jpg" alt="Corridor of red torii gates Fushimi Inari Japan" loading="lazy"/>
         <div class="g-overlay"></div>
         <div class="g-cap"><strong>Torii Corridor</strong><span>伏見稲荷 · Most Photographed Place in Japan</span></div>
       </div>
 
       <div class="g-item tall">
-        <img src="https://images.unsplash.com/_njz0TtRszo?auto=format&fit=crop&w=700&q=80" alt="Person walking through red torii gates Kyoto Japan" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=700&q=80'"/>
+        <img src="img/kyoto-bamboo-arashiyama.jpg" alt="Arashiyama bamboo grove tall forest Kyoto Japan" loading="lazy"/>
         <div class="g-overlay"></div>
-        <div class="g-cap"><strong>Walking the Gates</strong><span>鳥居 · 10,000 Gates to the Summit</span></div>
+        <div class="g-cap"><strong>Arashiyama Bamboo</strong><span>嵐山 · Ancient Grove That Bends in the Wind</span></div>
       </div>
 
       <div class="g-item">
-        <img src="https://images.unsplash.com/06b2oaQPevQ?auto=format&fit=crop&w=700&q=80" alt="Orange torii tunnel shrine Japan Kyoto" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=700&q=80'"/>
+        <img src="img/kyoto-kinkakuji.jpg" alt="Kinkakuji Golden Pavilion reflecting on water Kyoto Japan" loading="lazy"/>
         <div class="g-overlay"></div>
-        <div class="g-cap"><strong>The Orange Tunnel</strong><span>朱色 · Vermilion as Far as You Can See</span></div>
+        <div class="g-cap"><strong>Kinkaku-ji</strong><span>金閣寺 · Gold Leaf Pavilion Reflecting on Still Water</span></div>
       </div>
 
       <div class="g-item">
-        <img src="https://images.unsplash.com/i8w-RXJ8WZI?auto=format&fit=crop&w=700&q=80" alt="Rows of red torii gates Japanese inscriptions Inari" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=700&q=80'"/>
+        <img src="img/kyoto-kiyomizudera.jpg" alt="Kiyomizudera temple wooden stage Kyoto Japan" loading="lazy"/>
         <div class="g-overlay"></div>
-        <div class="g-cap"><strong>Donor Inscriptions</strong><span>奉納 · Each Gate Donated by a Business</span></div>
+        <div class="g-cap"><strong>Kiyomizudera</strong><span>清水寺 · Stage Built Without a Single Nail</span></div>
       </div>
 
       <div class="g-item">
-        <img src="https://images.unsplash.com/aWgpnQfvk8w?auto=format&fit=crop&w=700&q=80" alt="Orange wooden arch Fushimi Inari shrine gate" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=700&q=80'"/>
+        <img src="img/kyoto-geisha-gion.jpg" alt="Three geisha women walking in Gion district Kyoto Japan" loading="lazy"/>
         <div class="g-overlay"></div>
-        <div class="g-cap"><strong>Single Gate Detail</strong><span>鳥居 · Lacquered by Hand Every 10 Years</span></div>
+        <div class="g-cap"><strong>Gion Geisha</strong><span>祇園 · A Glimpse of the Flower &amp; Willow World</span></div>
       </div>
 
       <div class="g-item wide">
-        <img src="https://images.unsplash.com/lm7CYifb5r4?auto=format&fit=crop&w=1100&q=80" alt="Gion Kyoto roadway between traditional buildings at night" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=1100&q=80'"/>
+        <img src="img/kyoto-gion-alley.jpg" alt="Gion Kyoto roadway between traditional buildings at night" loading="lazy"/>
         <div class="g-overlay"></div>
         <div class="g-cap"><strong>Gion by Night</strong><span>祇園 · Kyoto's Geisha District After Dark</span></div>
       </div>
 
       <div class="g-item">
-        <img src="https://images.unsplash.com/n4Dl8szrGJU?auto=format&fit=crop&w=700&q=80" alt="Stone street lined with traditional Japanese buildings Kyoto" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=700&q=80'"/>
+        <img src="img/kyoto-gion-lanterns.jpg" alt="Japanese lanterns illuminate vibrant night scene Gion Kyoto" loading="lazy"/>
         <div class="g-overlay"></div>
-        <div class="g-cap"><strong>Preserved Machiya</strong><span>町家 · 300-Year-Old Wooden Townhouses</span></div>
+        <div class="g-cap"><strong>Lanterns of Gion</strong><span>提灯 · Warm Light, Ancient Streets</span></div>
       </div>
 
       <div class="g-item">
-        <img src="https://images.unsplash.com/riZUikNDy4Q?auto=format&fit=crop&w=700&q=80" alt="Sannenzaka street Kyoto with pagoda in distance" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=700&q=80'"/>
+        <img src="img/kyoto-pagoda-gate.jpg" alt="Traditional wooden pagoda gate surrounded by trees Kyoto Japan" loading="lazy"/>
         <div class="g-overlay"></div>
-        <div class="g-cap"><strong>Sannenzaka</strong><span>三年坂 · Cobblestone Path to Kiyomizudera</span></div>
+        <div class="g-cap"><strong>Ancient Temple Gate</strong><span>山門 · Over 1,600 Buddhist Temples in Kyoto</span></div>
       </div>
 
     </div>
@@ -361,5 +473,81 @@
 </footer>
 
 <script src="particles.js"></script>
+<script>
+(function(){
+  'use strict';
+  var cv = document.getElementById('ky-splash-cv');
+  var ctx = cv.getContext('2d');
+  var W, H, pts = [], raf;
+
+  function resize(){
+    W = cv.width = window.innerWidth;
+    H = cv.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  var COLS = ['#c0392b','#e74c3c','#ff6b6b','#ff9999','#ffb3b3','#ff4444'];
+
+  function Pt(){
+    this.x = Math.random() * W;
+    this.y = H + Math.random() * 120;
+    this.r = Math.random() * 3.5 + 0.8;
+    this.vx = (Math.random() - 0.5) * 0.9;
+    this.vy = -(Math.random() * 1.4 + 0.5);
+    this.op = Math.random() * 0.55 + 0.1;
+    this.col = COLS[Math.floor(Math.random() * COLS.length)];
+    this.rot = Math.random() * Math.PI * 2;
+    this.rs = (Math.random() - 0.5) * 0.06;
+    this.petal = Math.random() > 0.55;
+  }
+  Pt.prototype.tick = function(){
+    this.x += this.vx;
+    this.y += this.vy;
+    this.rot += this.rs;
+    if(this.y < -20){ this.x = Math.random()*W; this.y = H + 20; }
+  };
+  Pt.prototype.draw = function(){
+    ctx.save();
+    ctx.globalAlpha = this.op;
+    ctx.fillStyle = this.col;
+    ctx.translate(this.x, this.y);
+    ctx.rotate(this.rot);
+    ctx.beginPath();
+    if(this.petal){
+      ctx.ellipse(0, -this.r, this.r*0.55, this.r, 0, 0, Math.PI*2);
+    } else {
+      ctx.arc(0, 0, this.r, 0, Math.PI*2);
+    }
+    ctx.fill();
+    ctx.restore();
+  };
+
+  for(var i=0;i<90;i++){
+    var p = new Pt();
+    p.y = Math.random() * H;
+    pts.push(p);
+  }
+
+  function loop(){
+    ctx.clearRect(0,0,W,H);
+    for(var i=0;i<pts.length;i++){
+      pts[i].tick();
+      pts[i].draw();
+    }
+    raf = requestAnimationFrame(loop);
+  }
+  loop();
+
+  window.__closeSplash = function(){
+    var el = document.getElementById('ky-splash');
+    el.classList.add('hidden');
+    setTimeout(function(){
+      el.style.display = 'none';
+      cancelAnimationFrame(raf);
+    }, 950);
+  };
+})();
+</script>
 </body>
 </html>
