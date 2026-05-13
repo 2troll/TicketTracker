@@ -9,312 +9,400 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
     :root {
-      --bg:#080808; --bg-1:#0e0e0e; --bg-2:#161616;
-      --glass:rgba(255,255,255,0.05); --glass-b:rgba(255,255,255,0.09);
-      --text:#f2f2f2; --text-2:rgba(242,242,242,0.58); --text-3:rgba(242,242,242,0.28);
-      --acc:#7c5cbf; --acc2:#b08de8;
-      --grad:linear-gradient(135deg,#7c5cbf,#b08de8);
-      --line:rgba(255,255,255,0.08);
+      --bg:#F9F7F4; --bg-1:#F3F0E9; --bg-2:#EDE8DF;
+      --text:#2C2320; --text-2:#6B6057; --text-3:#A89F98;
+      --red:#A8281A; --red-d:#7a1c11; --red-light:rgba(168,40,26,0.08);
+      --sage:#7A9E8A; --gold:#C9A84C;
+      --line:rgba(44,35,32,0.1); --line2:rgba(44,35,32,0.06);
       --serif:'Cormorant Garamond',Georgia,serif;
       --sans:'Plus Jakarta Sans',system-ui,sans-serif;
     }
     html { scroll-behavior:smooth; }
-    body { background:var(--bg); color:var(--text); font-family:var(--sans); font-size:16px; line-height:1.7; overflow-x:hidden; }
-    ::-webkit-scrollbar { width:3px; } ::-webkit-scrollbar-thumb { background:var(--acc); }
-    img { width:100%; height:100%; object-fit:cover; display:block; } a { text-decoration:none; }
-    nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:1rem 2rem; display:flex; justify-content:space-between; align-items:center; background:rgba(8,8,8,0.82); backdrop-filter:blur(24px); border-bottom:1px solid var(--line); }
-    .nav-back { font-size:0.7rem; font-weight:500; letter-spacing:0.1em; color:var(--text-2); display:flex; align-items:center; gap:0.5rem; transition:color 0.2s; }
+    body { background:var(--bg); color:var(--text); font-family:var(--sans); font-size:16px; line-height:1.75; overflow-x:hidden; }
+    ::-webkit-scrollbar { width:3px; } ::-webkit-scrollbar-thumb { background:var(--red); }
+    img { width:100%; height:100%; object-fit:cover; display:block; }
+    a { text-decoration:none; color:inherit; }
+
+    /* PROGRESS */
+    #progress-bar { position:fixed; top:0; left:0; height:2px; width:0%; background:linear-gradient(90deg,var(--red),var(--gold)); z-index:9999; transition:width 0.08s linear; pointer-events:none; }
+
+    /* SAKURA CANVAS */
+    #sakura-cv { position:fixed; inset:0; width:100%; height:100%; pointer-events:none; z-index:0; }
+
+    /* NAV */
+    nav { position:fixed; top:2px; left:0; right:0; z-index:500; padding:1.1rem 2.5rem; display:flex; justify-content:space-between; align-items:center; transition:padding .3s, background .3s, box-shadow .3s; }
+    nav.solid { background:rgba(249,247,244,0.94); backdrop-filter:blur(20px); box-shadow:0 1px 0 var(--line); padding:.85rem 2.5rem; }
+    .nav-back { font-size:.63rem; font-weight:500; letter-spacing:.12em; color:var(--text-2); display:flex; align-items:center; gap:.4rem; transition:color .2s; }
     .nav-back:hover { color:var(--text); }
-    .nav-city { font-family:var(--serif); font-size:1.05rem; color:var(--text); }
-    .nav-book { font-size:0.65rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; padding:0.55rem 1.4rem; background:var(--grad); color:#fff; border-radius:999px; transition:opacity 0.2s,transform 0.2s; }
-    .nav-book:hover { opacity:0.88; transform:translateY(-1px); }
-    .dest-hero { position:relative; height:92vh; min-height:560px; display:flex; align-items:flex-end; padding:5rem 2.5rem; overflow:hidden; }
-    .dest-hero-bg { position:absolute; inset:0; }
-    .dest-hero-bg img { object-position:center 40%; filter:brightness(0.4); }
-    .dest-hero-grad { position:absolute; inset:0; background:linear-gradient(to top,rgba(8,8,8,1) 0%,rgba(8,8,8,0.28) 45%,transparent 100%); }
-    .dest-hero-content { position:relative; z-index:2; max-width:900px; }
-    .dest-tag { display:inline-block; font-size:0.6rem; font-weight:600; letter-spacing:0.3em; text-transform:uppercase; color:var(--acc2); border:1px solid rgba(176,141,232,0.4); border-radius:999px; padding:0.35rem 1rem; margin-bottom:1.2rem; }
-    .dest-kanji { font-family:var(--serif); font-size:clamp(4rem,12vw,9rem); color:rgba(255,255,255,0.055); position:absolute; top:2rem; right:2.5rem; line-height:1; user-select:none; }
-    .dest-title { font-family:var(--serif); font-size:clamp(3rem,8vw,6.5rem); font-weight:300; line-height:0.95; margin-bottom:1rem; }
-    .dest-title em { font-style:italic; background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-    .dest-sub { font-size:1rem; font-weight:300; color:var(--text-2); max-width:52ch; line-height:1.8; }
-    .facts-bar { background:var(--bg-1); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
-    .facts-inner { max-width:1140px; margin:0 auto; padding:0 2rem; display:grid; grid-template-columns:repeat(4,1fr); }
-    .fact { padding:1.6rem 1rem; border-right:1px solid var(--line); text-align:center; }
+    .nav-logo { font-family:var(--serif); font-size:1.05rem; font-style:italic; color:var(--text); }
+    .nav-cta { font-size:.6rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; padding:.48rem 1.4rem; border:1px solid var(--red); border-radius:999px; color:var(--red); transition:background .25s, color .25s, transform .2s; }
+    .nav-cta:hover { background:var(--red); color:#fff; transform:translateY(-1px); }
+
+    /* HERO */
+    .hero { position:relative; min-height:100svh; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:7rem 2rem 6rem; z-index:1; overflow:hidden; }
+    .hero-torii { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none; }
+    .hero-torii svg { width:min(68vw,520px); height:auto; }
+
+    /* torii draw-on animation */
+    .torii-path { stroke-dasharray:1200; stroke-dashoffset:1200; animation:draw 2.2s cubic-bezier(0.4,0,0.2,1) 0.3s forwards; }
+    @keyframes draw { to { stroke-dashoffset:0; } }
+
+    .hero-pre { font-size:.58rem; font-weight:600; letter-spacing:.38em; text-transform:uppercase; color:var(--sage); margin-bottom:1.6rem; opacity:0; animation:fadeUp .8s ease .9s forwards; }
+    .hero-h1 { font-family:var(--serif); font-size:clamp(4.5rem,13vw,9.5rem); font-weight:300; line-height:.9; text-align:center; margin-bottom:1.8rem; opacity:0; animation:fadeUp 1s ease 1.1s forwards; }
+    .hero-h1 em { display:block; font-style:italic; color:var(--red); }
+    .hero-rule { width:1px; height:56px; background:linear-gradient(to bottom,transparent,var(--red),transparent); margin:0 auto 1.6rem; opacity:0; animation:fadeIn .8s ease 1.6s forwards; }
+    .hero-sub { font-size:.98rem; font-weight:300; color:var(--text-2); max-width:44ch; text-align:center; line-height:1.95; opacity:0; animation:fadeUp .8s ease 1.8s forwards; }
+    .hero-scroll { position:absolute; bottom:2.5rem; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:.5rem; opacity:.4; animation:fadeIn 1s ease 2.5s forwards; }
+    .hero-scroll span { font-size:.55rem; letter-spacing:.28em; text-transform:uppercase; color:var(--text-3); }
+    .scroll-line { width:1px; height:44px; background:linear-gradient(to bottom,var(--red),transparent); animation:pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:.3}50%{opacity:1} }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:none} }
+    @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+    /* FACTS */
+    .facts-bar { background:var(--bg-1); border-top:1px solid var(--line); border-bottom:1px solid var(--line); position:relative; z-index:2; }
+    .facts-inner { max-width:1100px; margin:0 auto; padding:0 2rem; display:grid; grid-template-columns:repeat(4,1fr); }
+    .fact { padding:1.9rem 1.2rem; border-right:1px solid var(--line); text-align:center; }
     .fact:last-child { border-right:none; }
-    .fact-label { font-size:0.58rem; font-weight:600; letter-spacing:0.22em; text-transform:uppercase; color:var(--text-3); margin-bottom:0.4rem; }
-    .fact-val { font-family:var(--serif); font-size:1.55rem; font-weight:300; color:var(--text); line-height:1; }
-    .fact-note { font-size:0.62rem; color:var(--text-3); margin-top:0.25rem; }
-    .wrap { max-width:1140px; margin:0 auto; padding:0 2rem; }
-    .sec-head { text-align:center; margin-bottom:4rem; }
-    .sec-label { display:inline-block; font-size:0.6rem; font-weight:600; letter-spacing:0.28em; text-transform:uppercase; background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:0.9rem; }
-    .sec-h2 { font-family:var(--serif); font-size:clamp(2.2rem,5vw,3.8rem); font-weight:300; line-height:1.1; margin-bottom:1rem; }
-    .sec-h2 .acc { background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; font-style:italic; }
-    .sec-p { color:var(--text-2); font-size:0.95rem; max-width:55ch; margin:0 auto; }
-    .dest-gallery { padding:8rem 0; background:var(--bg); }
-    .gal-grid { display:grid; grid-template-columns:repeat(3,1fr); grid-auto-rows:280px; gap:0.8rem; }
-    .g-item { position:relative; overflow:hidden; border-radius:14px; background:var(--bg-2); }
+    .fact-label { font-size:.54rem; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:var(--text-3); margin-bottom:.5rem; }
+    .fact-val { font-family:var(--serif); font-size:1.7rem; font-weight:300; color:var(--text); line-height:1; }
+    .fact-note { font-size:.6rem; color:var(--text-3); margin-top:.3rem; }
+
+    /* WRAP */
+    .wrap { max-width:1100px; margin:0 auto; padding:0 2rem; }
+
+    /* SECTION HEAD */
+    .sec-head { text-align:center; margin-bottom:4.5rem; }
+    .sec-label { display:inline-block; font-size:.57rem; font-weight:600; letter-spacing:.3em; text-transform:uppercase; color:var(--sage); margin-bottom:1rem; }
+    .sec-h2 { font-family:var(--serif); font-size:clamp(2.4rem,5vw,4rem); font-weight:300; color:var(--text); line-height:1.1; margin-bottom:1rem; }
+    .sec-h2 .acc { color:var(--red); font-style:italic; }
+    .sec-p { font-size:.93rem; color:var(--text-2); max-width:52ch; margin:0 auto; font-weight:300; }
+
+    /* SCROLL REVEAL */
+    .rv  { opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease; }
+    .rl  { opacity:0; transform:translateX(-28px); transition:opacity .7s ease, transform .7s ease; }
+    .rr  { opacity:0; transform:translateX(28px); transition:opacity .7s ease, transform .7s ease; }
+    .rv.on, .rl.on, .rr.on { opacity:1; transform:none; }
+    .rv[data-d="1"]{ transition-delay:.1s } .rv[data-d="2"]{ transition-delay:.2s }
+    .rv[data-d="3"]{ transition-delay:.3s } .rv[data-d="4"]{ transition-delay:.4s }
+    .rv[data-d="5"]{ transition-delay:.5s }
+
+    /* GALLERY */
+    .dest-gallery { padding:8rem 0; background:var(--bg); position:relative; z-index:2; }
+    .gal-grid { display:grid; grid-template-columns:repeat(3,1fr); grid-auto-rows:275px; gap:.85rem; }
+    .g-item { position:relative; overflow:hidden; border-radius:12px; background:var(--bg-2); cursor:zoom-in; }
     .g-item.wide { grid-column:span 2; }
     .g-item.tall { grid-row:span 2; }
-    .g-item img { transition:transform 0.7s,filter 0.5s; filter:brightness(0.85); }
-    .g-item:hover img { transform:scale(1.07); filter:brightness(1); }
-    .g-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(0,0,0,0.75) 0%,transparent 55%); }
-    .g-cap { position:absolute; bottom:1rem; left:1.2rem; right:1rem; }
-    .g-cap strong { display:block; font-size:0.85rem; font-weight:600; color:#fff; }
-    .g-cap span { font-size:0.68rem; color:rgba(255,255,255,0.55); font-family:var(--serif); font-style:italic; }
-    .g-fallback { width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-family:var(--serif); font-size:4rem; color:rgba(255,255,255,0.08); }
-    .dest-route { padding:8rem 0; background:var(--bg-1); }
-    .timeline { position:relative; max-width:720px; margin:0 auto; }
-    .timeline::before { content:''; position:absolute; left:3.2rem; top:0; bottom:0; width:1px; background:var(--line); }
-    .t-step { display:flex; gap:1.8rem; margin-bottom:2.8rem; position:relative; }
-    .t-step:last-child { margin-bottom:0; }
-    .t-num { flex-shrink:0; width:6.4rem; text-align:right; padding-top:0.15rem; }
-    .t-time { font-size:0.72rem; font-weight:600; letter-spacing:0.08em; color:var(--acc2); display:block; }
-    .t-dot { position:absolute; left:3.2rem; top:0.45rem; width:10px; height:10px; background:var(--acc); border-radius:50%; transform:translateX(-50%); box-shadow:0 0 0 3px rgba(124,92,191,0.2); }
-    .t-body { flex:1; background:var(--glass); border:1px solid var(--line); border-radius:14px; padding:1.2rem 1.4rem; }
-    .t-place { font-size:0.95rem; font-weight:600; margin-bottom:0.3rem; }
-    .t-desc { font-size:0.85rem; color:var(--text-2); line-height:1.65; }
-    .t-badge { display:inline-block; font-size:0.58rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; padding:0.22rem 0.7rem; background:rgba(124,92,191,0.14); color:var(--acc2); border-radius:999px; margin-top:0.7rem; }
-    .dest-map { padding:8rem 0; background:var(--bg); }
+    .g-item img { transition:transform .8s cubic-bezier(.25,.46,.45,.94), filter .5s; filter:brightness(.92) saturate(.85); }
+    .g-item:hover img { transform:scale(1.05); filter:brightness(1) saturate(1); }
+    .g-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(44,35,32,.72) 0%,transparent 55%); opacity:.75; transition:opacity .3s; }
+    .g-item:hover .g-overlay { opacity:1; }
+    .g-cap { position:absolute; bottom:1.1rem; left:1.2rem; right:1rem; }
+    .g-cap strong { display:block; font-size:.85rem; font-weight:600; color:#fff; }
+    .g-cap span { font-size:.65rem; color:rgba(255,255,255,.48); font-family:var(--serif); font-style:italic; }
+    .g-expand { position:absolute; top:.9rem; right:.9rem; width:30px; height:30px; border-radius:50%; background:rgba(255,255,255,.18); backdrop-filter:blur(6px); display:flex; align-items:center; justify-content:center; font-size:.7rem; color:rgba(255,255,255,.75); opacity:0; transform:scale(.8); transition:opacity .3s, transform .3s; }
+    .g-item:hover .g-expand { opacity:1; transform:scale(1); }
+
+    /* LIGHTBOX */
+    #lb { position:fixed; inset:0; z-index:8000; background:rgba(30,24,20,.96); backdrop-filter:blur(16px); display:flex; align-items:center; justify-content:center; opacity:0; visibility:hidden; transition:opacity .4s, visibility .4s; }
+    #lb.open { opacity:1; visibility:visible; }
+    #lb-img { max-width:88vw; max-height:82vh; border-radius:8px; width:auto; height:auto; object-fit:contain; transform:scale(.93); transition:transform .4s; display:block; }
+    #lb.open #lb-img { transform:scale(1); }
+    #lb-x { position:absolute; top:1.5rem; right:2rem; background:none; border:none; color:rgba(255,255,255,.4); font-size:2rem; cursor:pointer; line-height:1; transition:color .2s; }
+    #lb-x:hover { color:#fff; }
+    #lb-caption { position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); font-family:var(--serif); font-size:.9rem; font-style:italic; color:rgba(255,255,255,.4); white-space:nowrap; }
+    #lb-prev, #lb-next { position:absolute; top:50%; transform:translateY(-50%); background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12); color:rgba(255,255,255,.5); font-size:1.2rem; width:44px; height:44px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .2s, color .2s; }
+    #lb-prev:hover, #lb-next:hover { background:rgba(255,255,255,.16); color:#fff; }
+    #lb-prev { left:1.5rem; } #lb-next { right:1.5rem; }
+
+    /* STORY PANELS */
+    .dest-story { padding:8rem 0; background:var(--bg-1); position:relative; z-index:2; overflow:hidden; }
+    .story-panel { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; margin-bottom:7rem; }
+    .story-panel:last-child { margin-bottom:0; }
+    .story-panel.flip { }
+    .story-panel.flip .story-visual { order:2; }
+    .story-panel.flip .story-body  { order:1; }
+    .story-visual { position:relative; border-radius:16px; overflow:hidden; height:460px; box-shadow:0 24px 64px rgba(44,35,32,.1); }
+    .story-visual img { height:100%; filter:saturate(.9); transition:filter .6s, transform .8s; }
+    .story-visual:hover img { filter:saturate(1.05); transform:scale(1.03); }
+    .story-visual-badge { position:absolute; bottom:1.2rem; left:1.2rem; background:rgba(249,247,244,.9); backdrop-filter:blur(8px); border-radius:999px; padding:.35rem 1rem; font-size:.6rem; font-weight:600; letter-spacing:.15em; text-transform:uppercase; color:var(--text); }
+    .story-body {}
+    .story-num { font-family:var(--serif); font-size:6rem; font-weight:300; line-height:1; color:var(--line2); margin-bottom:-1.8rem; user-select:none; }
+    .story-label { font-size:.57rem; font-weight:600; letter-spacing:.3em; text-transform:uppercase; color:var(--sage); margin-bottom:1rem; }
+    .story-h3 { font-family:var(--serif); font-size:clamp(1.9rem,3.2vw,2.7rem); font-weight:300; line-height:1.18; color:var(--text); margin-bottom:1.2rem; }
+    .story-h3 em { font-style:italic; color:var(--red); }
+    .story-text { font-size:.88rem; color:var(--text-2); line-height:1.9; font-weight:300; margin-bottom:1.5rem; }
+    .story-kanji { position:absolute; top:1rem; right:1.5rem; font-family:var(--serif); font-size:5rem; font-weight:300; color:rgba(168,40,26,.06); line-height:1; pointer-events:none; }
+    .story-body { position:relative; }
+    .story-tag { display:inline-flex; align-items:center; gap:.5rem; font-size:.6rem; font-weight:500; letter-spacing:.1em; color:var(--text-3); }
+    .story-tag::before { content:''; width:24px; height:1px; background:var(--red-light); }
+
+    /* TIMELINE */
+    .dest-route { padding:8rem 0; background:var(--bg); position:relative; z-index:2; }
+    .timeline { position:relative; max-width:700px; margin:0 auto; }
+    .timeline::before { content:''; position:absolute; left:3rem; top:0; bottom:0; width:1px; background:linear-gradient(to bottom,transparent,var(--line) 8%,var(--line) 92%,transparent); }
+    .t-step { display:flex; gap:2rem; margin-bottom:2.8rem; position:relative; opacity:0; transform:translateX(-18px); transition:opacity .65s ease, transform .65s ease; }
+    .t-step.on { opacity:1; transform:none; }
+    .t-num { flex-shrink:0; width:6rem; text-align:right; padding-top:.2rem; }
+    .t-time { font-size:.66rem; font-weight:600; letter-spacing:.1em; color:var(--sage); display:block; }
+    .t-dot { position:absolute; left:3rem; top:.55rem; width:8px; height:8px; background:var(--red); border-radius:50%; transform:translateX(-50%); box-shadow:0 0 0 4px rgba(168,40,26,.1); }
+    .t-body { flex:1; background:#fff; border:1px solid var(--line); border-radius:14px; padding:1.25rem 1.5rem; box-shadow:0 2px 12px rgba(44,35,32,.03); transition:box-shadow .3s; }
+    .t-body:hover { box-shadow:0 8px 28px rgba(44,35,32,.07); }
+    .t-place { font-size:.93rem; font-weight:600; color:var(--text); margin-bottom:.3rem; }
+    .t-desc { font-size:.82rem; color:var(--text-2); line-height:1.72; font-weight:300; }
+    .t-badge { display:inline-block; font-size:.54rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; padding:.2rem .75rem; background:var(--red-light); color:var(--red); border-radius:999px; margin-top:.65rem; }
+
+    /* MAP */
+    .dest-map { padding:8rem 0; background:var(--bg-1); position:relative; z-index:2; }
     .flow-wrap { overflow-x:auto; padding:1rem 0; }
     .flow-svg { display:block; margin:0 auto; }
-    .dest-price { padding:8rem 0; background:var(--bg-1); }
-    .price-card { max-width:520px; margin:0 auto; background:var(--bg-2); border:1px solid var(--glass-b); border-radius:24px; padding:3rem; text-align:center; position:relative; overflow:hidden; }
-    .price-card::before { content:''; position:absolute; top:-60px; right:-60px; width:200px; height:200px; background:radial-gradient(circle,rgba(124,92,191,0.12),transparent 70%); border-radius:50%; pointer-events:none; }
-    .price-city { font-family:var(--serif); font-size:1rem; color:var(--text-2); margin-bottom:0.5rem; font-style:italic; }
-    .price-main { font-family:var(--serif); font-size:4rem; font-weight:300; line-height:1; margin:0.5rem 0; background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-    .price-note { font-size:0.72rem; color:var(--text-3); margin-bottom:2rem; }
-    .price-includes { list-style:none; text-align:left; margin-bottom:2.5rem; }
-    .price-includes li { font-size:0.85rem; color:var(--text-2); padding:0.55rem 0; border-bottom:1px solid var(--line); display:flex; align-items:center; gap:0.7rem; }
-    .price-includes li::before { content:'✓'; color:var(--acc2); font-weight:700; flex-shrink:0; }
-    .price-cta { display:block; width:100%; padding:1.1rem; background:var(--grad); color:#fff; font-size:0.75rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; border-radius:999px; transition:opacity 0.2s,transform 0.2s; border:none; cursor:pointer; }
-    .price-cta:hover { opacity:0.88; transform:translateY(-2px); }
-    .price-sub { font-size:0.7rem; color:var(--text-3); margin-top:1rem; }
-    .dest-footer { background:var(--bg); border-top:1px solid var(--line); padding:2.5rem 2rem; text-align:center; }
-    .dest-footer a { font-size:0.75rem; color:var(--text-3); display:inline-flex; align-items:center; gap:0.5rem; transition:color 0.2s; }
+
+    /* PRICE */
+    .dest-price { padding:8rem 0; background:var(--bg); position:relative; z-index:2; }
+    .price-wrap { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:start; max-width:920px; margin:0 auto; }
+    .price-left {}
+    .price-quote { font-family:var(--serif); font-size:clamp(1.5rem,3vw,2.2rem); font-weight:300; font-style:italic; color:var(--text); line-height:1.45; margin-bottom:1.8rem; }
+    .price-quote .mark { color:var(--red); }
+    .price-detail { font-size:.83rem; color:var(--text-2); line-height:1.85; font-weight:300; margin-bottom:2rem; }
+    .price-languages { display:flex; flex-wrap:wrap; gap:.5rem; }
+    .price-lang { font-size:.58rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; padding:.3rem .9rem; border:1px solid var(--line); border-radius:999px; color:var(--text-3); }
+    .price-card { background:#fff; border:1px solid var(--line); border-radius:20px; padding:2.8rem; box-shadow:0 16px 48px rgba(44,35,32,.07); position:relative; overflow:hidden; }
+    .price-card::after { content:'京都'; position:absolute; bottom:-1rem; right:1rem; font-family:var(--serif); font-size:7rem; font-weight:300; color:rgba(168,40,26,.05); line-height:1; pointer-events:none; }
+    .price-city { font-family:var(--serif); font-size:.9rem; font-style:italic; color:var(--text-3); margin-bottom:.4rem; }
+    .price-main { font-family:var(--serif); font-size:3.8rem; font-weight:300; color:var(--red); line-height:1; margin:.3rem 0; }
+    .price-note { font-size:.62rem; color:var(--text-3); margin-bottom:1.8rem; }
+    .price-divider { width:100%; height:1px; background:var(--line); margin-bottom:1.5rem; }
+    .price-includes { list-style:none; margin-bottom:2rem; }
+    .price-includes li { font-size:.82rem; color:var(--text-2); padding:.52rem 0; border-bottom:1px solid var(--line2); display:flex; align-items:center; gap:.7rem; }
+    .price-includes li:last-child { border-bottom:none; }
+    .price-includes li::before { content:'✓'; color:var(--sage); font-weight:700; flex-shrink:0; font-size:.8rem; }
+    .price-cta { display:block; width:100%; padding:1rem; background:var(--red); color:#fff; font-size:.68rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; border-radius:999px; border:none; cursor:pointer; transition:background .2s, transform .2s; }
+    .price-cta:hover { background:var(--red-d); transform:translateY(-2px); }
+    .price-sub { font-size:.66rem; color:var(--text-3); margin-top:.9rem; text-align:center; }
+
+    /* FOOTER */
+    .dest-footer { background:var(--bg-1); border-top:1px solid var(--line); padding:3rem 2rem; text-align:center; }
+    .dest-footer a { font-size:.73rem; color:var(--text-3); transition:color .2s; }
     .dest-footer a:hover { color:var(--text); }
+
+    /* MOBILE */
+    @media(max-width:900px) {
+      .story-panel { grid-template-columns:1fr; gap:2.5rem; }
+      .story-panel.flip .story-visual { order:unset; }
+      .story-panel.flip .story-body { order:unset; }
+      .story-visual { height:300px; }
+      .price-wrap { grid-template-columns:1fr; }
+    }
     @media(max-width:700px) {
       .facts-inner { grid-template-columns:repeat(2,1fr); }
-      .gal-grid { grid-template-columns:1fr 1fr; grid-auto-rows:200px; }
+      .gal-grid { grid-template-columns:1fr 1fr; grid-auto-rows:185px; }
       .g-item.wide { grid-column:span 2; }
       .timeline::before { left:0; }
       .t-num { display:none; }
       .t-dot { left:0; }
-      .t-step { gap:1.2rem; padding-left:1.2rem; }
-    }
-
-    /* ── KYOTO SPLASH SCREEN ── */
-    #ky-splash {
-      position:fixed; inset:0; z-index:10000;
-      display:flex; align-items:center; justify-content:center;
-      overflow:hidden;
-      transition:opacity 0.9s cubic-bezier(0.4,0,0.2,1), visibility 0.9s;
-    }
-    #ky-splash.hidden { opacity:0; visibility:hidden; pointer-events:none; }
-    #ky-splash-bg {
-      position:absolute; inset:0;
-    }
-    #ky-splash-bg img {
-      width:100%; height:100%; object-fit:cover; object-position:center 30%;
-      filter:brightness(0.22) saturate(0.8);
-    }
-    #ky-splash-vignette {
-      position:absolute; inset:0;
-      background:radial-gradient(ellipse at center, transparent 30%, rgba(8,8,8,0.85) 100%);
-    }
-    #ky-splash-cv {
-      position:absolute; inset:0; width:100%; height:100%;
-      pointer-events:none; opacity:0.7;
-    }
-    #ky-splash-inner {
-      position:relative; z-index:2;
-      text-align:center; padding:2rem 1.5rem; max-width:640px; width:100%;
-    }
-    .sp-label {
-      font-size:0.58rem; font-weight:700; letter-spacing:0.35em; text-transform:uppercase;
-      color:rgba(255,255,255,0.35); margin-bottom:3rem;
-    }
-    .sp-kanji-wrap { position:relative; line-height:1; margin-bottom:0.5rem; }
-    .sp-kanji-bg {
-      font-family:var(--serif); font-size:clamp(7rem,22vw,14rem); font-weight:300;
-      color:rgba(255,255,255,0.04); line-height:1; user-select:none;
-      letter-spacing:-0.02em;
-    }
-    .sp-kanji-over {
-      position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
-      font-family:var(--serif); font-size:clamp(3.5rem,10vw,6.5rem); font-weight:300;
-      color:rgba(255,255,255,0.9); letter-spacing:0.15em;
-    }
-    .sp-divider {
-      width:60px; height:1px; background:linear-gradient(90deg,transparent,#c0392b,transparent);
-      margin:1.4rem auto;
-    }
-    .sp-title-en {
-      font-family:var(--serif); font-size:clamp(1.6rem,5vw,2.8rem); font-weight:300;
-      font-style:italic; color:rgba(255,255,255,0.88); letter-spacing:0.04em; margin-bottom:1rem;
-    }
-    .sp-sub {
-      font-size:0.65rem; font-weight:500; letter-spacing:0.22em; text-transform:uppercase;
-      color:rgba(255,255,255,0.28); margin-bottom:3rem;
-    }
-    .sp-btn {
-      display:inline-flex; align-items:center; gap:0.9rem;
-      font-size:0.68rem; font-weight:700; letter-spacing:0.22em; text-transform:uppercase;
-      color:#fff; background:transparent;
-      border:1px solid rgba(192,57,43,0.7); border-radius:999px;
-      padding:0.85rem 2.2rem; cursor:pointer;
-      transition:background 0.3s, border-color 0.3s, transform 0.25s;
-      position:relative; overflow:hidden;
-    }
-    .sp-btn::before {
-      content:''; position:absolute; inset:0;
-      background:linear-gradient(135deg,#c0392b,#e74c3c);
-      opacity:0; transition:opacity 0.3s;
-    }
-    .sp-btn:hover::before { opacity:1; }
-    .sp-btn:hover { border-color:transparent; transform:translateY(-2px); }
-    .sp-btn span { position:relative; z-index:1; }
-    .sp-btn .sp-arrow { font-size:1rem; transition:transform 0.3s; }
-    .sp-btn:hover .sp-arrow { transform:translateX(4px); }
-    .sp-corner {
-      position:absolute; width:40px; height:40px;
-      border-color:rgba(192,57,43,0.3); border-style:solid;
-    }
-    .sp-corner-tl { top:2rem; left:2rem; border-width:1px 0 0 1px; }
-    .sp-corner-tr { top:2rem; right:2rem; border-width:1px 1px 0 0; }
-    .sp-corner-bl { bottom:2rem; left:2rem; border-width:0 0 1px 1px; }
-    .sp-corner-br { bottom:2rem; right:2rem; border-width:0 1px 1px 0; }
-    @media(max-width:480px) {
-      .sp-corner { display:none; }
+      .t-step { gap:1.2rem; padding-left:1.4rem; }
+      nav { padding:.9rem 1.4rem; }
+      .hero-h1 { font-size:clamp(3.5rem,16vw,6rem); }
     }
   </style>
 </head>
 <body>
 
-<!-- KYOTO SPLASH SCREEN -->
-<div id="ky-splash">
-  <div id="ky-splash-bg">
-    <img src="img/kyoto-fushimi-inari.jpg" alt="" aria-hidden="true"/>
-  </div>
-  <div id="ky-splash-vignette"></div>
-  <canvas id="ky-splash-cv"></canvas>
-  <div class="sp-corner sp-corner-tl"></div>
-  <div class="sp-corner sp-corner-tr"></div>
-  <div class="sp-corner sp-corner-bl"></div>
-  <div class="sp-corner sp-corner-br"></div>
-  <div id="ky-splash-inner">
-    <div class="sp-label">Tony Hanma · Private Kansai Guide</div>
-    <div class="sp-kanji-wrap">
-      <div class="sp-kanji-bg">京都</div>
-      <div class="sp-kanji-over">京都</div>
-    </div>
-    <div class="sp-divider"></div>
-    <div class="sp-title-en">Hidden Kyoto</div>
-    <div class="sp-sub">Ancient Temples · Sacred Gardens · Geisha Quarter</div>
-    <button class="sp-btn" onclick="window.__closeSplash()">
-      <span>Discover Kyoto</span>
-      <span class="sp-arrow">→</span>
-    </button>
-  </div>
+<div id="progress-bar"></div>
+<canvas id="sakura-cv"></canvas>
+
+<!-- LIGHTBOX -->
+<div id="lb" role="dialog" aria-label="Photo viewer">
+  <button id="lb-x" aria-label="Close">×</button>
+  <button id="lb-prev" aria-label="Previous">‹</button>
+  <img id="lb-img" src="" alt="" />
+  <button id="lb-next" aria-label="Next">›</button>
+  <div id="lb-caption"></div>
 </div>
 
-<nav>
+<!-- NAV -->
+<nav id="main-nav">
   <a href="index.html" class="nav-back">← Kansai Guide</a>
-  <span class="nav-city">京都 Kyoto</span>
-  <a href="index.html#contact" class="nav-book">Book Now</a>
+  <span class="nav-logo">京都 Kyoto</span>
+  <a href="index.html#contact" class="nav-cta">Book Now</a>
 </nav>
 
-<section class="dest-hero">
-  <div class="dest-hero-bg">
-    <img src="img/kyoto-fushimi-inari.jpg" alt="Fushimi Inari torii gates"/>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-torii" aria-hidden="true">
+    <svg viewBox="0 0 500 370" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- curved top kasagi -->
+      <path class="torii-path" d="M18 118 Q250 52 482 118" stroke="#A8281A" stroke-width="17" stroke-linecap="round"/>
+      <!-- shimaki below kasagi -->
+      <line class="torii-path" x1="38" y1="118" x2="462" y2="118" stroke="#A8281A" stroke-width="9" stroke-linecap="round" style="animation-delay:.35s"/>
+      <!-- nuki crossbeam -->
+      <line class="torii-path" x1="58" y1="162" x2="442" y2="162" stroke="#A8281A" stroke-width="13" stroke-linecap="round" style="animation-delay:.55s"/>
+      <!-- left column -->
+      <line class="torii-path" x1="108" y1="118" x2="108" y2="365" stroke="#A8281A" stroke-width="15" stroke-linecap="round" style="animation-delay:.75s"/>
+      <!-- right column -->
+      <line class="torii-path" x1="392" y1="118" x2="392" y2="365" stroke="#A8281A" stroke-width="15" stroke-linecap="round" style="animation-delay:.75s"/>
+      <!-- gakuzuka struts -->
+      <line class="torii-path" x1="108" y1="140" x2="83" y2="118" stroke="#A8281A" stroke-width="6" stroke-linecap="round" style="animation-delay:1s"/>
+      <line class="torii-path" x1="392" y1="140" x2="417" y2="118" stroke="#A8281A" stroke-width="6" stroke-linecap="round" style="animation-delay:1s"/>
+    </svg>
   </div>
-  <div class="dest-hero-grad"></div>
-  <div class="dest-kanji">京都</div>
-  <div class="dest-hero-content">
-    <div class="dest-tag">Route 02 · Culture &amp; Tradition</div>
-    <h1 class="dest-title"><em>Hidden</em><br>Kyoto</h1>
-    <p class="dest-sub">Ancient temples before the crowds, silent bamboo groves, geisha alleys at dusk — Kyoto as it was always meant to be experienced.</p>
+
+  <div class="hero-pre">Route 02 · Culture &amp; Tradition</div>
+  <h1 class="hero-h1"><em>Hidden</em>Kyoto</h1>
+  <div class="hero-rule"></div>
+  <p class="hero-sub">Ancient temples before the crowds, silent bamboo groves, geisha alleys at dusk — Kyoto as it was always meant to be experienced.</p>
+  <div class="hero-scroll" aria-hidden="true">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
   </div>
 </section>
 
+<!-- FACTS -->
 <div class="facts-bar">
   <div class="facts-inner">
-    <div class="fact"><div class="fact-label">Duration</div><div class="fact-val">8 h</div><div class="fact-note">full cultural day</div></div>
-    <div class="fact"><div class="fact-label">Group Size</div><div class="fact-val">2–6</div><div class="fact-note">fully private</div></div>
-    <div class="fact"><div class="fact-label">From</div><div class="fact-val">¥22,000</div><div class="fact-note">per person</div></div>
-    <div class="fact"><div class="fact-label">Departure</div><div class="fact-val" style="font-size:1rem;padding-top:0.3rem;">Kyoto St.</div><div class="fact-note">Central Exit · 8:30 AM</div></div>
+    <div class="fact rv"><div class="fact-label">Duration</div><div class="fact-val">8 h</div><div class="fact-note">full cultural day</div></div>
+    <div class="fact rv" data-d="1"><div class="fact-label">Group Size</div><div class="fact-val">2–6</div><div class="fact-note">fully private</div></div>
+    <div class="fact rv" data-d="2"><div class="fact-label">From</div><div class="fact-val">¥22,000</div><div class="fact-note">per person</div></div>
+    <div class="fact rv" data-d="3"><div class="fact-label">Departure</div><div class="fact-val" style="font-size:1rem;padding-top:.3rem">Kyoto St.</div><div class="fact-note">Central Exit · 8:30 AM</div></div>
   </div>
 </div>
 
+<!-- GALLERY -->
 <section class="dest-gallery">
   <div class="wrap">
-    <div class="sec-head">
+    <div class="sec-head rv">
       <span class="sec-label">Photo Gallery</span>
       <h2 class="sec-h2">From our <span class="acc">Kyoto tours</span></h2>
-      <p class="sec-p">Every photo taken at the times and angles we actually visit — before tourists arrive.</p>
+      <p class="sec-p">Every photo taken at the exact times and angles we visit — before the tour buses arrive.</p>
     </div>
     <div class="gal-grid">
 
-      <div class="g-item wide">
-        <img src="img/kyoto-fushimi-inari.jpg" alt="Corridor of red torii gates Fushimi Inari Japan" loading="lazy"/>
+      <div class="g-item wide rv" data-d="1" data-src="img/kyoto-fushimi-inari.jpg" data-cap="Fushimi Inari · 伏見稲荷 · 10,000 Gates to the Summit">
+        <img src="img/kyoto-fushimi-inari.jpg" alt="Fushimi Inari torii gates corridor Kyoto" loading="lazy"/>
         <div class="g-overlay"></div>
-        <div class="g-cap"><strong>Torii Corridor</strong><span>伏見稲荷 · Most Photographed Place in Japan</span></div>
+        <div class="g-expand">⤢</div>
+        <div class="g-cap"><strong>Fushimi Inari</strong><span>伏見稲荷 · 10,000 Gates to the Summit</span></div>
       </div>
 
-      <div class="g-item tall">
-        <img src="img/kyoto-bamboo-arashiyama.jpg" alt="Arashiyama bamboo grove tall forest Kyoto Japan" loading="lazy"/>
+      <div class="g-item tall rv" data-d="2" data-src="img/kyoto-bamboo-arashiyama.jpg" data-cap="Arashiyama Bamboo · 嵐山 · Ancient Grove That Bends in the Wind">
+        <img src="img/kyoto-bamboo-arashiyama.jpg" alt="Arashiyama bamboo grove Kyoto" loading="lazy"/>
         <div class="g-overlay"></div>
+        <div class="g-expand">⤢</div>
         <div class="g-cap"><strong>Arashiyama Bamboo</strong><span>嵐山 · Ancient Grove That Bends in the Wind</span></div>
       </div>
 
-      <div class="g-item">
-        <img src="img/kyoto-kinkakuji.jpg" alt="Kinkakuji Golden Pavilion reflecting on water Kyoto Japan" loading="lazy"/>
+      <div class="g-item rv" data-d="1" data-src="img/kyoto-kinkakuji.jpg" data-cap="Kinkaku-ji · 金閣寺 · Gold Leaf Pavilion on Still Water">
+        <img src="img/kyoto-kinkakuji.jpg" alt="Kinkakuji Golden Pavilion Kyoto" loading="lazy"/>
         <div class="g-overlay"></div>
-        <div class="g-cap"><strong>Kinkaku-ji</strong><span>金閣寺 · Gold Leaf Pavilion Reflecting on Still Water</span></div>
+        <div class="g-expand">⤢</div>
+        <div class="g-cap"><strong>Kinkaku-ji</strong><span>金閣寺 · Gold Leaf on Still Water</span></div>
       </div>
 
-      <div class="g-item">
-        <img src="img/kyoto-kiyomizudera.jpg" alt="Kiyomizudera temple wooden stage Kyoto Japan" loading="lazy"/>
+      <div class="g-item rv" data-d="2" data-src="img/kyoto-kiyomizudera.jpg" data-cap="Kiyomizudera · 清水寺 · Stage Built Without a Single Nail">
+        <img src="img/kyoto-kiyomizudera.jpg" alt="Kiyomizudera temple Kyoto" loading="lazy"/>
         <div class="g-overlay"></div>
+        <div class="g-expand">⤢</div>
         <div class="g-cap"><strong>Kiyomizudera</strong><span>清水寺 · Stage Built Without a Single Nail</span></div>
       </div>
 
-      <div class="g-item">
-        <img src="img/kyoto-geisha-gion.jpg" alt="Three geisha women walking in Gion district Kyoto Japan" loading="lazy"/>
+      <div class="g-item rv" data-d="3" data-src="img/kyoto-geisha-gion.jpg" data-cap="Gion Geisha · 祇園 · A Glimpse of the Flower & Willow World">
+        <img src="img/kyoto-geisha-gion.jpg" alt="Three geisha in Gion Kyoto" loading="lazy"/>
         <div class="g-overlay"></div>
-        <div class="g-cap"><strong>Gion Geisha</strong><span>祇園 · A Glimpse of the Flower &amp; Willow World</span></div>
+        <div class="g-expand">⤢</div>
+        <div class="g-cap"><strong>Gion Geisha</strong><span>祇園 · Flower &amp; Willow World</span></div>
       </div>
 
-      <div class="g-item wide">
-        <img src="img/kyoto-gion-alley.jpg" alt="Gion Kyoto roadway between traditional buildings at night" loading="lazy"/>
+      <div class="g-item wide rv" data-d="1" data-src="img/kyoto-gion-alley.jpg" data-cap="Gion by Night · 祇園 · Kyoto's Geisha District After Dark">
+        <img src="img/kyoto-gion-alley.jpg" alt="Gion district at night Kyoto" loading="lazy"/>
         <div class="g-overlay"></div>
+        <div class="g-expand">⤢</div>
         <div class="g-cap"><strong>Gion by Night</strong><span>祇園 · Kyoto's Geisha District After Dark</span></div>
       </div>
 
-      <div class="g-item">
-        <img src="img/kyoto-gion-lanterns.jpg" alt="Japanese lanterns illuminate vibrant night scene Gion Kyoto" loading="lazy"/>
+      <div class="g-item rv" data-d="2" data-src="img/kyoto-gion-lanterns.jpg" data-cap="Lanterns of Gion · 提灯 · Warm Light, Ancient Streets">
+        <img src="img/kyoto-gion-lanterns.jpg" alt="Gion lanterns Kyoto night" loading="lazy"/>
         <div class="g-overlay"></div>
+        <div class="g-expand">⤢</div>
         <div class="g-cap"><strong>Lanterns of Gion</strong><span>提灯 · Warm Light, Ancient Streets</span></div>
       </div>
 
-      <div class="g-item">
-        <img src="img/kyoto-pagoda-gate.jpg" alt="Traditional wooden pagoda gate surrounded by trees Kyoto Japan" loading="lazy"/>
+      <div class="g-item rv" data-d="3" data-src="img/kyoto-pagoda-gate.jpg" data-cap="Ancient Gate · 山門 · Over 1,600 Buddhist Temples in Kyoto">
+        <img src="img/kyoto-pagoda-gate.jpg" alt="Wooden pagoda gate Kyoto" loading="lazy"/>
         <div class="g-overlay"></div>
-        <div class="g-cap"><strong>Ancient Temple Gate</strong><span>山門 · Over 1,600 Buddhist Temples in Kyoto</span></div>
+        <div class="g-expand">⤢</div>
+        <div class="g-cap"><strong>Ancient Temple Gate</strong><span>山門 · 1,600 Buddhist Temples</span></div>
       </div>
 
     </div>
   </div>
 </section>
 
+<!-- STORY PANELS -->
+<section class="dest-story">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-label">The Experience</span>
+      <h2 class="sec-h2">What you'll <span class="acc">actually see</span></h2>
+      <p class="sec-p">This isn't a highlights reel — it's Kyoto the way a local lives it, timed to perfection.</p>
+    </div>
+
+    <div class="story-panel">
+      <div class="story-visual rl">
+        <img src="img/kyoto-fushimi-inari.jpg" alt="Fushimi Inari gates at dawn"/>
+        <div class="story-visual-badge">9:00 AM · Fushimi Inari</div>
+      </div>
+      <div class="story-body rr">
+        <div class="story-kanji">鳥</div>
+        <div class="story-num">01</div>
+        <div class="story-label">Before the Crowds</div>
+        <h3 class="story-h3">10,000 Gates.<br><em>Zero tourists.</em></h3>
+        <p class="story-text">The first tour buses arrive at 10:30. We're already at the upper trails by then — the ones 90% of visitors never reach. Each vermilion gate was donated by a Japanese business; the names are inscribed in black on the back pillar. At the summit, Kyoto spreads below you. Cedar forest, no noise, no selfie sticks. Just the smell of incense and old wood.</p>
+        <div class="story-tag">Best photo light · Golden hour conditions</div>
+      </div>
+    </div>
+
+    <div class="story-panel flip">
+      <div class="story-visual rr">
+        <img src="img/kyoto-geisha-gion.jpg" alt="Geisha in Gion"/>
+        <div class="story-visual-badge">2:30 PM · Gion Quarter</div>
+      </div>
+      <div class="story-body rl">
+        <div class="story-kanji">茶</div>
+        <div class="story-num">02</div>
+        <div class="story-label">Tea Ceremony Included</div>
+        <h3 class="story-h3">500 Years of<br><em>Ceremony.</em></h3>
+        <p class="story-text">Not the main Hanamikoji street — the side lanes behind it where ochaya teahouses have been running since the Edo period. We enter a small chashitsu for a private matcha ceremony with a practitioner who has studied for 15 years. Every gesture carries meaning. You'll leave understanding why it takes a lifetime to master.</p>
+        <div class="story-tag">Tea ceremony · Private booking · 45 min</div>
+      </div>
+    </div>
+
+    <div class="story-panel">
+      <div class="story-visual rl">
+        <img src="img/kyoto-bamboo-arashiyama.jpg" alt="Arashiyama bamboo grove"/>
+        <div class="story-visual-badge">11:00 AM · Philosopher's Path</div>
+      </div>
+      <div class="story-body rr">
+        <div class="story-kanji">竹</div>
+        <div class="story-num">03</div>
+        <div class="story-label">Walk &amp; Silence</div>
+        <h3 class="story-h3">The Path That<br><em>Changes You.</em></h3>
+        <p class="story-text">Named after philosopher Nishida Kitaro who walked this canal path every morning while thinking. Cherry trees arch overhead — in spring the canal turns pink with reflected blossoms, in autumn, orange. We walk slowly. I point out the small neighbourhood shrines tourists pass without noticing. No rush. This is the part guests remember longest.</p>
+        <div class="story-tag">2 km walk · Canal path · Nanzenji area</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ITINERARY -->
 <section class="dest-route">
   <div class="wrap">
-    <div class="sec-head">
+    <div class="sec-head rv">
       <span class="sec-label">Detailed Itinerary</span>
       <h2 class="sec-h2">Your <span class="acc">Kyoto day</span></h2>
-      <p class="sec-p">We time every stop to miss the tour bus crowds — arriving before them, leaving before they arrive.</p>
+      <p class="sec-p">Every stop is timed to miss the tour bus crowds — arriving before them, leaving before they arrive.</p>
     </div>
     <div class="timeline">
 
@@ -323,7 +411,7 @@
         <div class="t-dot"></div>
         <div class="t-body">
           <div class="t-place">Kyoto Station — Central Exit</div>
-          <div class="t-desc">Meet at the statue outside the central exit. I'll have coffee. We take the JR line south — 5 minutes — to Fushimi.</div>
+          <div class="t-desc">Meet at the statue outside the central exit. I'll have coffee. We take the JR Nara line south — 5 minutes to Fushimi. I brief you on the day, what to expect, how to get the most out of each stop.</div>
         </div>
       </div>
 
@@ -332,7 +420,7 @@
         <div class="t-dot"></div>
         <div class="t-body">
           <div class="t-place">Fushimi Inari — Before the Crowds</div>
-          <div class="t-desc">10,000 vermilion torii gates up a forested mountain. At 9 AM the first tour buses haven't arrived. We walk the inner path that 90% of visitors skip. At the top: Kyoto spread below, no noise, no selfie sticks.</div>
+          <div class="t-desc">10,000 vermilion torii gates up a forested mountain. We walk the inner path that 90% of visitors skip. At the top: Kyoto spread below, no noise, no selfie sticks.</div>
           <div class="t-badge">Best Photo Opportunities</div>
         </div>
       </div>
@@ -342,7 +430,7 @@
         <div class="t-dot"></div>
         <div class="t-body">
           <div class="t-place">Philosopher's Path — Silence Walk</div>
-          <div class="t-desc">A 2 km canal path lined with cherry trees, connecting Ginkakuji to Nanzenji. Named after a philosopher who walked it daily. We walk it slowly. I point out the small neighbourhood shrines tourists walk past without noticing.</div>
+          <div class="t-desc">A 2 km canal path connecting Ginkakuji to Nanzenji, lined with cherry trees. We walk slowly. I point out the small neighbourhood shrines tourists walk past without noticing.</div>
         </div>
       </div>
 
@@ -351,7 +439,7 @@
         <div class="t-dot"></div>
         <div class="t-body">
           <div class="t-place">Lunch — Local Kaiseki or Ramen</div>
-          <div class="t-desc">Your choice: a 5-course kaiseki lunch at a restaurant locals use (no English menu — I order for you), or an old-school ramen-ya that's been in the same family for 60 years.</div>
+          <div class="t-desc">Your choice: a 5-course kaiseki at a restaurant locals use (no English menu — I order for you), or an old-school ramen-ya that's been in the same family for 60 years.</div>
           <div class="t-badge">Reservation Arranged in Advance</div>
         </div>
       </div>
@@ -361,7 +449,7 @@
         <div class="t-dot"></div>
         <div class="t-body">
           <div class="t-place">Gion — Secret Alleys &amp; Tea Ceremony</div>
-          <div class="t-desc">Not the main Hanamikoji street — the side lanes behind it. Preserved machiya townhouses, private tea rooms. We enter a small chashitsu for a private matcha tea ceremony with a practitioner who studied for 15 years.</div>
+          <div class="t-desc">The side lanes behind Hanamikoji where ochaya have been running for 200 years. Private matcha tea ceremony with a practitioner who studied for 15 years.</div>
           <div class="t-badge">Tea Ceremony Included</div>
         </div>
       </div>
@@ -380,90 +468,97 @@
   </div>
 </section>
 
+<!-- MAP -->
 <section class="dest-map">
   <div class="wrap">
-    <div class="sec-head">
+    <div class="sec-head rv">
       <span class="sec-label">Route Map</span>
       <h2 class="sec-h2">The <span class="acc">Kyoto arc</span></h2>
     </div>
-    <div class="flow-wrap">
+    <div class="flow-wrap rv">
       <svg class="flow-svg" viewBox="0 0 940 180" width="940" height="180" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id="lg2" x1="0" x2="1" y1="0" y2="0">
-            <stop offset="0%" stop-color="#7c5cbf"/>
-            <stop offset="100%" stop-color="#b08de8"/>
+            <stop offset="0%" stop-color="#A8281A"/><stop offset="100%" stop-color="#C9A84C"/>
           </linearGradient>
           <marker id="arr2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-            <path d="M0,0 L0,6 L8,3 z" fill="url(#lg2)"/>
+            <path d="M0,0 L0,6 L8,3 z" fill="#C9A84C"/>
           </marker>
         </defs>
         <line x1="78" y1="90" x2="860" y2="90" stroke="url(#lg2)" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arr2)"/>
-
-        <circle cx="78" cy="90" r="22" fill="#161616" stroke="#7c5cbf" stroke-width="2"/>
-        <text x="78" y="86" text-anchor="middle" fill="#b08de8" font-size="9" font-family="'Plus Jakarta Sans',sans-serif" font-weight="700">START</text>
-        <text x="78" y="98" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="7.5" font-family="sans-serif">8:30</text>
-        <text x="78" y="126" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9" font-family="'Plus Jakarta Sans',sans-serif" font-weight="600">Kyoto St.</text>
-        <text x="78" y="139" text-anchor="middle" fill="rgba(255,255,255,0.32)" font-size="8" font-family="'Cormorant Garamond',serif">京都駅</text>
-
-        <circle cx="238" cy="90" r="20" fill="#161616" stroke="url(#lg2)" stroke-width="1.5"/>
-        <text x="238" y="94" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="11" font-family="'Cormorant Garamond',serif">鳥</text>
-        <text x="238" y="62" text-anchor="middle" fill="rgba(176,141,232,0.8)" font-size="8" font-family="sans-serif">9:00 AM</text>
-        <text x="238" y="126" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9" font-family="'Plus Jakarta Sans',sans-serif" font-weight="600">Fushimi Inari</text>
-        <text x="238" y="139" text-anchor="middle" fill="rgba(255,255,255,0.32)" font-size="8" font-family="'Cormorant Garamond',serif">伏見稲荷</text>
-        <text x="155" y="80" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-size="7.5" font-family="sans-serif">JR 5 min</text>
-
-        <circle cx="398" cy="90" r="20" fill="#161616" stroke="url(#lg2)" stroke-width="1.5"/>
-        <text x="398" y="94" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="11" font-family="'Cormorant Garamond',serif">道</text>
-        <text x="398" y="62" text-anchor="middle" fill="rgba(176,141,232,0.8)" font-size="8" font-family="sans-serif">11:00 AM</text>
-        <text x="398" y="126" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9" font-family="'Plus Jakarta Sans',sans-serif" font-weight="600">Philosopher's Path</text>
-        <text x="398" y="139" text-anchor="middle" fill="rgba(255,255,255,0.32)" font-size="8" font-family="'Cormorant Garamond',serif">哲学の道</text>
-        <text x="315" y="80" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-size="7.5" font-family="sans-serif">bus 30 min</text>
-
-        <circle cx="558" cy="90" r="20" fill="#161616" stroke="url(#lg2)" stroke-width="1.5"/>
-        <text x="558" y="94" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="11" font-family="'Cormorant Garamond',serif">茶</text>
-        <text x="558" y="62" text-anchor="middle" fill="rgba(176,141,232,0.8)" font-size="8" font-family="sans-serif">2:30 PM</text>
-        <text x="558" y="126" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9" font-family="'Plus Jakarta Sans',sans-serif" font-weight="600">Gion + Tea</text>
-        <text x="558" y="139" text-anchor="middle" fill="rgba(255,255,255,0.32)" font-size="8" font-family="'Cormorant Garamond',serif">祇園</text>
-        <text x="475" y="80" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-size="7.5" font-family="sans-serif">walk 20 min</text>
-
-        <circle cx="718" cy="90" r="20" fill="#161616" stroke="url(#lg2)" stroke-width="1.5"/>
-        <text x="718" y="94" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="11" font-family="'Cormorant Garamond',serif">食</text>
-        <text x="718" y="62" text-anchor="middle" fill="rgba(176,141,232,0.8)" font-size="8" font-family="sans-serif">5:00 PM</text>
-        <text x="718" y="126" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9" font-family="'Plus Jakarta Sans',sans-serif" font-weight="600">Riverside Dinner</text>
-        <text x="718" y="139" text-anchor="middle" fill="rgba(255,255,255,0.32)" font-size="8" font-family="'Cormorant Garamond',serif">鴨川</text>
-        <text x="635" y="80" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-size="7.5" font-family="sans-serif">walk 10 min</text>
-
-        <circle cx="860" cy="90" r="22" fill="url(#lg2)"/>
+        <circle cx="78" cy="90" r="22" fill="#fff" stroke="#A8281A" stroke-width="2"/>
+        <text x="78" y="86" text-anchor="middle" fill="#A8281A" font-size="9" font-family="'Plus Jakarta Sans',sans-serif" font-weight="700">START</text>
+        <text x="78" y="98" text-anchor="middle" fill="rgba(44,35,32,.4)" font-size="7.5">8:30</text>
+        <text x="78" y="126" text-anchor="middle" fill="rgba(44,35,32,.7)" font-size="9" font-family="'Plus Jakarta Sans',sans-serif" font-weight="600">Kyoto St.</text>
+        <text x="78" y="139" text-anchor="middle" fill="rgba(44,35,32,.3)" font-size="8" font-family="'Cormorant Garamond',serif">京都駅</text>
+        <circle cx="238" cy="90" r="20" fill="#fff" stroke="url(#lg2)" stroke-width="1.5"/>
+        <text x="238" y="94" text-anchor="middle" fill="rgba(44,35,32,.7)" font-size="11" font-family="'Cormorant Garamond',serif">鳥</text>
+        <text x="238" y="62" text-anchor="middle" fill="#A8281A" font-size="8">9:00 AM</text>
+        <text x="238" y="126" text-anchor="middle" fill="rgba(44,35,32,.7)" font-size="9" font-family="'Plus Jakarta Sans',sans-serif" font-weight="600">Fushimi Inari</text>
+        <text x="238" y="139" text-anchor="middle" fill="rgba(44,35,32,.3)" font-size="8" font-family="'Cormorant Garamond',serif">伏見稲荷</text>
+        <text x="155" y="80" text-anchor="middle" fill="rgba(44,35,32,.25)" font-size="7.5">JR 5 min</text>
+        <circle cx="398" cy="90" r="20" fill="#fff" stroke="url(#lg2)" stroke-width="1.5"/>
+        <text x="398" y="94" text-anchor="middle" fill="rgba(44,35,32,.7)" font-size="11" font-family="'Cormorant Garamond',serif">道</text>
+        <text x="398" y="62" text-anchor="middle" fill="#A8281A" font-size="8">11:00 AM</text>
+        <text x="398" y="126" text-anchor="middle" fill="rgba(44,35,32,.7)" font-size="9" font-family="'Plus Jakarta Sans',sans-serif" font-weight="600">Philosopher's Path</text>
+        <text x="398" y="139" text-anchor="middle" fill="rgba(44,35,32,.3)" font-size="8" font-family="'Cormorant Garamond',serif">哲学の道</text>
+        <text x="315" y="80" text-anchor="middle" fill="rgba(44,35,32,.25)" font-size="7.5">bus 30 min</text>
+        <circle cx="558" cy="90" r="20" fill="#fff" stroke="url(#lg2)" stroke-width="1.5"/>
+        <text x="558" y="94" text-anchor="middle" fill="rgba(44,35,32,.7)" font-size="11" font-family="'Cormorant Garamond',serif">茶</text>
+        <text x="558" y="62" text-anchor="middle" fill="#A8281A" font-size="8">2:30 PM</text>
+        <text x="558" y="126" text-anchor="middle" fill="rgba(44,35,32,.7)" font-size="9" font-family="'Plus Jakarta Sans',sans-serif" font-weight="600">Gion + Tea</text>
+        <text x="558" y="139" text-anchor="middle" fill="rgba(44,35,32,.3)" font-size="8" font-family="'Cormorant Garamond',serif">祇園</text>
+        <text x="475" y="80" text-anchor="middle" fill="rgba(44,35,32,.25)" font-size="7.5">walk 20 min</text>
+        <circle cx="718" cy="90" r="20" fill="#fff" stroke="url(#lg2)" stroke-width="1.5"/>
+        <text x="718" y="94" text-anchor="middle" fill="rgba(44,35,32,.7)" font-size="11" font-family="'Cormorant Garamond',serif">食</text>
+        <text x="718" y="62" text-anchor="middle" fill="#A8281A" font-size="8">5:00 PM</text>
+        <text x="718" y="126" text-anchor="middle" fill="rgba(44,35,32,.7)" font-size="9" font-family="'Plus Jakarta Sans',sans-serif" font-weight="600">Riverside Dinner</text>
+        <text x="718" y="139" text-anchor="middle" fill="rgba(44,35,32,.3)" font-size="8" font-family="'Cormorant Garamond',serif">鴨川</text>
+        <text x="635" y="80" text-anchor="middle" fill="rgba(44,35,32,.25)" font-size="7.5">walk 10 min</text>
+        <circle cx="860" cy="90" r="22" fill="#A8281A"/>
         <text x="860" y="86" text-anchor="middle" fill="#fff" font-size="9" font-family="'Plus Jakarta Sans',sans-serif" font-weight="700">FINISH</text>
-        <text x="860" y="98" text-anchor="middle" fill="rgba(255,255,255,0.75)" font-size="7.5" font-family="sans-serif">8:00</text>
-        <text x="860" y="126" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9" font-family="'Plus Jakarta Sans',sans-serif" font-weight="600">Kawaramachi</text>
-        <text x="860" y="139" text-anchor="middle" fill="rgba(255,255,255,0.32)" font-size="8" font-family="'Cormorant Garamond',serif">河原町</text>
-        <text x="787" y="80" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-size="7.5" font-family="sans-serif">walk 5 min</text>
+        <text x="860" y="98" text-anchor="middle" fill="rgba(255,255,255,.7)" font-size="7.5">8:00 PM</text>
+        <text x="860" y="126" text-anchor="middle" fill="rgba(44,35,32,.7)" font-size="9" font-family="'Plus Jakarta Sans',sans-serif" font-weight="600">Kawaramachi</text>
+        <text x="860" y="139" text-anchor="middle" fill="rgba(44,35,32,.3)" font-size="8" font-family="'Cormorant Garamond',serif">河原町</text>
+        <text x="787" y="80" text-anchor="middle" fill="rgba(44,35,32,.25)" font-size="7.5">walk 5 min</text>
       </svg>
     </div>
   </div>
 </section>
 
+<!-- PRICE -->
 <section class="dest-price">
   <div class="wrap">
-    <div class="sec-head">
+    <div class="sec-head rv">
       <span class="sec-label">Pricing</span>
       <h2 class="sec-h2">Book your <span class="acc">Kyoto day</span></h2>
     </div>
-    <div class="price-card">
-      <div class="price-city">Hidden Kyoto — Full Day</div>
-      <div class="price-main">¥22,000</div>
-      <div class="price-note">per person · minimum 2 guests</div>
-      <ul class="price-includes">
-        <li>100% private — just your group</li>
-        <li>Tea ceremony with experienced practitioner</li>
-        <li>Dinner reservation at local restaurant</li>
-        <li>Early access timing to avoid crowds</li>
-        <li>Transport guidance &amp; IC card help</li>
-        <li>English, Spanish &amp; Arabic spoken</li>
-      </ul>
-      <a href="index.html#contact" class="price-cta">Request This Tour</a>
-      <p class="price-sub">Usually responds within 2 hours · WhatsApp preferred</p>
+    <div class="price-wrap">
+      <div class="price-left rl">
+        <p class="price-quote">"By the time we reached the<br><span class="mark">tea ceremony</span>, we had already forgotten everything we thought we knew about Japan."</p>
+        <p class="price-detail">Every stop is chosen because it's genuinely worth your time — not because it fits on a bus route. This is Kyoto for people who want to understand it, not just photograph it.</p>
+        <div class="price-languages">
+          <span class="price-lang">English</span>
+          <span class="price-lang">Spanish</span>
+          <span class="price-lang">Arabic</span>
+        </div>
+      </div>
+      <div class="price-card rr">
+        <div class="price-city">Hidden Kyoto — Full Day</div>
+        <div class="price-main">¥22,000</div>
+        <div class="price-note">per person · minimum 2 guests</div>
+        <div class="price-divider"></div>
+        <ul class="price-includes">
+          <li>100% private — just your group</li>
+          <li>Tea ceremony with experienced practitioner</li>
+          <li>Dinner reservation at local restaurant</li>
+          <li>Early-access timing to avoid crowds</li>
+          <li>Transport guidance &amp; IC card help</li>
+          <li>English, Spanish &amp; Arabic spoken</li>
+        </ul>
+        <a href="index.html#contact" class="price-cta">Request This Tour</a>
+        <p class="price-sub">Usually responds within 2 hours · WhatsApp preferred</p>
+      </div>
     </div>
   </div>
 </section>
@@ -472,81 +567,114 @@
   <a href="index.html">← Back to Tony Hanma — Private Kansai Guide</a>
 </footer>
 
-<script src="particles.js"></script>
 <script>
 (function(){
   'use strict';
-  var cv = document.getElementById('ky-splash-cv');
+
+  // ── PROGRESS BAR
+  var bar = document.getElementById('progress-bar');
+  window.addEventListener('scroll', function(){
+    var d = document.documentElement;
+    bar.style.width = ((d.scrollTop||document.body.scrollTop)/(d.scrollHeight-d.clientHeight)*100)+'%';
+  }, {passive:true});
+
+  // ── NAV
+  var nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', function(){
+    nav.classList.toggle('solid', window.scrollY > 60);
+  }, {passive:true});
+
+  // ── SAKURA PARTICLES (light pink on cream)
+  var cv = document.getElementById('sakura-cv');
   var ctx = cv.getContext('2d');
-  var W, H, pts = [], raf;
+  var W, H, pts = [];
+  function rsz(){ W = cv.width = innerWidth; H = cv.height = innerHeight; }
+  rsz(); window.addEventListener('resize', rsz, {passive:true});
 
-  function resize(){
-    W = cv.width = window.innerWidth;
-    H = cv.height = window.innerHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize);
-
-  var COLS = ['#c0392b','#e74c3c','#ff6b6b','#ff9999','#ffb3b3','#ff4444'];
+  var COLS = ['#F4B8C4','#F9D4DB','#E8A0B4','#FFCDD6','#F2A4B4','#FAE0E4','#EFC8D2'];
 
   function Pt(){
-    this.x = Math.random() * W;
-    this.y = H + Math.random() * 120;
-    this.r = Math.random() * 3.5 + 0.8;
-    this.vx = (Math.random() - 0.5) * 0.9;
-    this.vy = -(Math.random() * 1.4 + 0.5);
-    this.op = Math.random() * 0.55 + 0.1;
-    this.col = COLS[Math.floor(Math.random() * COLS.length)];
-    this.rot = Math.random() * Math.PI * 2;
-    this.rs = (Math.random() - 0.5) * 0.06;
-    this.petal = Math.random() > 0.55;
+    this.x = Math.random()*W;
+    this.y = H + Math.random()*120;
+    this.r = Math.random()*3+.8;
+    this.vx = (Math.random()-.5)*.55;
+    this.vy = -(Math.random()*.75+.28);
+    this.op = Math.random()*.38+.07;
+    this.col = COLS[0|Math.random()*COLS.length];
+    this.rot = Math.random()*Math.PI*2;
+    this.rs = (Math.random()-.5)*.022;
+    this.petal = Math.random()>.38;
+    this.phase = Math.random()*Math.PI*2;
   }
-  Pt.prototype.tick = function(){
-    this.x += this.vx;
+  Pt.prototype.tick = function(t){
+    this.x += this.vx + Math.sin(t*.0007+this.phase)*.18;
     this.y += this.vy;
     this.rot += this.rs;
-    if(this.y < -20){ this.x = Math.random()*W; this.y = H + 20; }
+    if(this.y < -22){ this.x=Math.random()*W; this.y=H+22; }
   };
   Pt.prototype.draw = function(){
     ctx.save();
     ctx.globalAlpha = this.op;
     ctx.fillStyle = this.col;
-    ctx.translate(this.x, this.y);
+    ctx.translate(this.x,this.y);
     ctx.rotate(this.rot);
     ctx.beginPath();
-    if(this.petal){
-      ctx.ellipse(0, -this.r, this.r*0.55, this.r, 0, 0, Math.PI*2);
-    } else {
-      ctx.arc(0, 0, this.r, 0, Math.PI*2);
-    }
+    if(this.petal){ ctx.ellipse(0,-this.r,this.r*.52,this.r*1.18,0,0,Math.PI*2); }
+    else { ctx.arc(0,0,this.r,0,Math.PI*2); }
     ctx.fill();
     ctx.restore();
   };
-
-  for(var i=0;i<90;i++){
-    var p = new Pt();
-    p.y = Math.random() * H;
-    pts.push(p);
-  }
-
-  function loop(){
+  for(var i=0;i<60;i++){ var p=new Pt(); p.y=Math.random()*H; pts.push(p); }
+  function loop(t){
     ctx.clearRect(0,0,W,H);
-    for(var i=0;i<pts.length;i++){
-      pts[i].tick();
-      pts[i].draw();
-    }
-    raf = requestAnimationFrame(loop);
+    for(var i=0;i<pts.length;i++){ pts[i].tick(t); pts[i].draw(); }
+    requestAnimationFrame(loop);
   }
-  loop();
+  requestAnimationFrame(loop);
 
-  window.__closeSplash = function(){
-    var el = document.getElementById('ky-splash');
-    el.classList.add('hidden');
-    setTimeout(function(){
-      el.style.display = 'none';
-      cancelAnimationFrame(raf);
-    }, 950);
-  };
+  // ── SCROLL REVEALS
+  var revEls = document.querySelectorAll('.rv,.rl,.rr,.t-step');
+  if('IntersectionObserver' in window){
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('on'); });
+    },{threshold:.1});
+    revEls.forEach(function(el){ obs.observe(el); });
+  } else {
+    revEls.forEach(function(el){ el.classList.add('on'); });
+  }
+
+  // ── LIGHTBOX
+  var lb = document.getElementById('lb');
+  var lbImg = document.getElementById('lb-img');
+  var lbCap = document.getElementById('lb-caption');
+  var items = Array.from(document.querySelectorAll('.g-item[data-src]'));
+  var cur = 0;
+
+  function openAt(idx){
+    cur = (idx+items.length)%items.length;
+    lbImg.src = items[cur].dataset.src;
+    lbCap.textContent = items[cur].dataset.cap||'';
+    lb.classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+  function closeLb(){
+    lb.classList.remove('open');
+    document.body.style.overflow='';
+    setTimeout(function(){ lbImg.src=''; },400);
+  }
+
+  items.forEach(function(el,i){ el.addEventListener('click',function(){ openAt(i); }); });
+  document.getElementById('lb-x').addEventListener('click',closeLb);
+  document.getElementById('lb-prev').addEventListener('click',function(){ openAt(cur-1); });
+  document.getElementById('lb-next').addEventListener('click',function(){ openAt(cur+1); });
+  lb.addEventListener('click',function(e){ if(e.target===lb) closeLb(); });
+  document.addEventListener('keydown',function(e){
+    if(!lb.classList.contains('open')) return;
+    if(e.key==='Escape') closeLb();
+    if(e.key==='ArrowLeft') openAt(cur-1);
+    if(e.key==='ArrowRight') openAt(cur+1);
+  });
+
 })();
 </script>
 </body>
