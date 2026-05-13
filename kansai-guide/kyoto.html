@@ -187,6 +187,32 @@
     .dest-footer a { font-size:.73rem; color:var(--text-3); transition:color .2s; }
     .dest-footer a:hover { color:var(--text); }
 
+    /* ILLUSTRATED HERO */
+    .illus-hero{position:relative;height:100svh;min-height:600px;overflow:hidden;display:flex;align-items:center;padding-top:62px;}
+    .ih-left{position:relative;z-index:10;width:42%;padding:0 2rem 0 5%;flex-shrink:0;}
+    .ih-right{position:relative;flex:1;height:100%;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+    .ih-parallax{position:relative;width:90%;max-width:520px;}
+    .ih-parallax-bg{position:absolute;inset:-60px;transition:transform .15s ease-out;will-change:transform;}
+    .ih-parallax-fg{position:relative;transition:transform .12s ease-out;will-change:transform;animation:ihFloat 5.5s ease-in-out infinite;}
+    @keyframes ihFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+    .ih-ptc{position:absolute;inset:0;pointer-events:none;z-index:4;}
+    .ih-tag{font-size:.57rem;font-weight:600;letter-spacing:.35em;text-transform:uppercase;color:#7A9E8A;margin-bottom:1.4rem;display:block;opacity:0;animation:ihFU .8s ease .4s forwards;}
+    .ih-h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(3.2rem,6.5vw,6rem);font-weight:300;line-height:.92;margin-bottom:1.5rem;opacity:0;animation:ihFU .9s ease .6s forwards;}
+    .ih-h1 em{display:block;font-style:italic;color:#A8281A;}
+    .ih-rule{width:1px;height:48px;background:linear-gradient(to bottom,transparent,#A8281A,transparent);margin-bottom:1.5rem;opacity:0;animation:ihFI .8s ease 1s forwards;}
+    .ih-sub{font-size:.92rem;font-weight:300;color:#6B6057;max-width:37ch;line-height:1.92;opacity:0;animation:ihFU .8s ease 1.2s forwards;}
+    .ih-scroll{position:absolute;bottom:2rem;left:5%;z-index:10;display:flex;align-items:center;gap:.7rem;font-size:.54rem;letter-spacing:.28em;text-transform:uppercase;color:#A89F98;opacity:0;animation:ihFI 1s ease 2s forwards;}
+    .ih-scroll-bar{width:34px;height:1px;background:linear-gradient(to right,#A8281A,transparent);animation:sp 2s ease-in-out infinite;}
+    @keyframes sp{0%,100%{opacity:.3}50%{opacity:1}}
+    @keyframes ihFU{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+    @keyframes ihFI{from{opacity:0}to{opacity:1}}
+    @media(max-width:860px){
+      .illus-hero{flex-direction:column-reverse;height:auto;min-height:100svh;}
+      .ih-left{width:100%;padding:2rem 1.5rem 3rem;}
+      .ih-right{width:100%;height:52vw;min-height:260px;flex-shrink:0;}
+      .ih-parallax{max-width:380px;}
+    }
+
     /* MOBILE */
     @media(max-width:900px) {
       .story-panel { grid-template-columns:1fr; gap:2.5rem; }
@@ -230,32 +256,122 @@
 </nav>
 
 <!-- HERO -->
-<section class="hero">
-  <div class="hero-torii" aria-hidden="true">
-    <svg viewBox="0 0 500 370" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- curved top kasagi -->
-      <path class="torii-path" d="M18 118 Q250 52 482 118" stroke="#A8281A" stroke-width="17" stroke-linecap="round"/>
-      <!-- shimaki below kasagi -->
-      <line class="torii-path" x1="38" y1="118" x2="462" y2="118" stroke="#A8281A" stroke-width="9" stroke-linecap="round" style="animation-delay:.35s"/>
-      <!-- nuki crossbeam -->
-      <line class="torii-path" x1="58" y1="162" x2="442" y2="162" stroke="#A8281A" stroke-width="13" stroke-linecap="round" style="animation-delay:.55s"/>
-      <!-- left column -->
-      <line class="torii-path" x1="108" y1="118" x2="108" y2="365" stroke="#A8281A" stroke-width="15" stroke-linecap="round" style="animation-delay:.75s"/>
-      <!-- right column -->
-      <line class="torii-path" x1="392" y1="118" x2="392" y2="365" stroke="#A8281A" stroke-width="15" stroke-linecap="round" style="animation-delay:.75s"/>
-      <!-- gakuzuka struts -->
-      <line class="torii-path" x1="108" y1="140" x2="83" y2="118" stroke="#A8281A" stroke-width="6" stroke-linecap="round" style="animation-delay:1s"/>
-      <line class="torii-path" x1="392" y1="140" x2="417" y2="118" stroke="#A8281A" stroke-width="6" stroke-linecap="round" style="animation-delay:1s"/>
-    </svg>
+<section class="illus-hero" style="background:#EDE8DC;">
+  <div class="ih-left">
+    <span class="ih-tag">Route 02 · Culture &amp; Tradition</span>
+    <h1 class="ih-h1"><em>Hidden</em>Kyoto</h1>
+    <div class="ih-rule"></div>
+    <p class="ih-sub">Ancient temples before the crowds, silent bamboo groves, geisha alleys at dusk — Kyoto as it was always meant to be experienced.</p>
+    <div class="ih-scroll"><div class="ih-scroll-bar"></div><span>Scroll</span></div>
   </div>
+  <div class="ih-right" id="kyoto-scene">
+    <canvas class="ih-ptc" id="kyoto-ptc"></canvas>
+    <div class="ih-parallax">
+      <div class="ih-parallax-bg" id="kyoto-bg">
+        <svg viewBox="0 0 560 440" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+          <!-- sky -->
+          <rect width="560" height="440" fill="#EDE8DC"/>
+          <!-- far mountains -->
+          <polygon points="0,300 90,195 200,240 310,158 420,210 490,175 560,220 560,440 0,440" fill="#CEC6B0"/>
+          <polygon points="0,310 120,225 230,265 340,180 450,225 560,245 560,440 0,440" fill="#D8D0BC"/>
+          <!-- ground -->
+          <polygon points="0,370 560,370 560,440 0,440" fill="#C2B89A"/>
+          <!-- zen garden sand -->
+          <rect x="40" y="372" width="480" height="68" fill="#DDD5BF"/>
+          <!-- raked sand lines -->
+          <line x1="70" y1="374" x2="70" y2="438" stroke="#CFC7B1" stroke-width="1.2"/>
+          <line x1="95" y1="374" x2="95" y2="438" stroke="#CFC7B1" stroke-width="1.2"/>
+          <line x1="120" y1="374" x2="120" y2="438" stroke="#CFC7B1" stroke-width="1.2"/>
+          <line x1="145" y1="374" x2="145" y2="438" stroke="#CFC7B1" stroke-width="1.2"/>
+          <line x1="170" y1="374" x2="170" y2="438" stroke="#CFC7B1" stroke-width="1.2"/>
+          <line x1="195" y1="374" x2="195" y2="438" stroke="#CFC7B1" stroke-width="1.2"/>
+          <line x1="220" y1="374" x2="220" y2="438" stroke="#CFC7B1" stroke-width="1.2"/>
+          <line x1="245" y1="374" x2="245" y2="438" stroke="#CFC7B1" stroke-width="1.2"/>
+          <line x1="270" y1="374" x2="270" y2="438" stroke="#CFC7B1" stroke-width="1.2"/>
+          <line x1="295" y1="374" x2="295" y2="438" stroke="#CFC7B1" stroke-width="1.2"/>
+          <line x1="320" y1="374" x2="320" y2="438" stroke="#CFC7B1" stroke-width="1.2"/>
+          <line x1="345" y1="374" x2="345" y2="438" stroke="#CFC7B1" stroke-width="1.2"/>
+          <line x1="370" y1="374" x2="370" y2="438" stroke="#CFC7B1" stroke-width="1.2"/>
+          <line x1="395" y1="374" x2="395" y2="438" stroke="#CFC7B1" stroke-width="1.2"/>
+          <line x1="420" y1="374" x2="420" y2="438" stroke="#CFC7B1" stroke-width="1.2"/>
+          <line x1="445" y1="374" x2="445" y2="438" stroke="#CFC7B1" stroke-width="1.2"/>
+          <line x1="470" y1="374" x2="470" y2="438" stroke="#CFC7B1" stroke-width="1.2"/>
+          <line x1="495" y1="374" x2="495" y2="438" stroke="#CFC7B1" stroke-width="1.2"/>
+          <!-- zen rocks -->
+          <ellipse cx="160" cy="382" rx="30" ry="17" fill="#9A9286"/>
+          <ellipse cx="200" cy="394" rx="20" ry="12" fill="#ADA49A"/>
+          <ellipse cx="500" cy="386" rx="26" ry="15" fill="#9A9286"/>
+          <ellipse cx="470" cy="400" rx="16" ry="9" fill="#B0A89E"/>
+        </svg>
+      </div>
+      <div class="ih-parallax-fg" id="kyoto-fg">
+        <svg viewBox="0 0 560 440" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;position:relative;z-index:3;">
+          <!-- TORII GATE -->
+          <!-- left pillar -->
+          <rect x="95" y="185" width="20" height="195" rx="4" fill="#A8281A"/>
+          <!-- right pillar -->
+          <rect x="215" y="185" width="20" height="195" rx="4" fill="#A8281A"/>
+          <!-- nuki (horizontal beam) -->
+          <rect x="83" y="215" width="172" height="16" rx="4" fill="#8C2014"/>
+          <!-- shimaki -->
+          <rect x="75" y="193" width="188" height="13" rx="3" fill="#A8281A"/>
+          <!-- kasagi (curved top beam) -->
+          <path d="M58,197 Q165,150 298,197" stroke="#A8281A" stroke-width="22" stroke-linecap="round" fill="none"/>
+          <!-- kasagi overhang tips -->
+          <ellipse cx="58" cy="197" rx="9" ry="7" fill="#8C2014"/>
+          <ellipse cx="298" cy="197" rx="9" ry="7" fill="#8C2014"/>
+          <!-- gakuzuka struts -->
+          <line x1="105" y1="214" x2="80" y2="193" stroke="#A8281A" stroke-width="9" stroke-linecap="round"/>
+          <line x1="225" y1="214" x2="250" y2="193" stroke="#A8281A" stroke-width="9" stroke-linecap="round"/>
 
-  <div class="hero-pre">Route 02 · Culture &amp; Tradition</div>
-  <h1 class="hero-h1"><em>Hidden</em>Kyoto</h1>
-  <div class="hero-rule"></div>
-  <p class="hero-sub">Ancient temples before the crowds, silent bamboo groves, geisha alleys at dusk — Kyoto as it was always meant to be experienced.</p>
-  <div class="hero-scroll" aria-hidden="true">
-    <div class="scroll-line"></div>
-    <span>Scroll</span>
+          <!-- FIVE-STORY PAGODA (right side) -->
+          <!-- foundation -->
+          <polygon points="332,372 498,372 510,352 320,352" fill="#7A6A58"/>
+          <!-- level 5 body -->
+          <polygon points="320,352 510,352 500,326 330,326" fill="#9E8868"/>
+          <!-- roof 5 -->
+          <polygon points="305,332 342,314 488,314 525,332 500,340 342,340" fill="#456848"/>
+          <polygon points="305,332 316,324 342,314 342,340" fill="#3A5A3C"/>
+          <polygon points="525,332 513,324 488,314 488,340" fill="#3A5A3C"/>
+          <!-- level 4 body -->
+          <polygon points="342,314 488,314 478,290 352,290" fill="#A89068"/>
+          <!-- roof 4 -->
+          <polygon points="330,295 358,280 472,280 500,295 478,302 358,302" fill="#3D6045"/>
+          <polygon points="330,295 340,287 358,280 358,302" fill="#324E38"/>
+          <polygon points="500,295 490,287 472,280 472,302" fill="#324E38"/>
+          <!-- level 3 body -->
+          <polygon points="358,280 472,280 462,258 368,258" fill="#9E8868"/>
+          <!-- roof 3 -->
+          <polygon points="347,263 373,249 457,249 483,263 462,270 373,270" fill="#456848"/>
+          <polygon points="347,263 357,255 373,249 373,270" fill="#3A5A3C"/>
+          <polygon points="483,263 473,255 457,249 457,270" fill="#3A5A3C"/>
+          <!-- level 2 body -->
+          <polygon points="373,249 457,249 448,229 382,229" fill="#A89068"/>
+          <!-- roof 2 -->
+          <polygon points="363,234 386,222 444,222 467,234 448,240 386,240" fill="#3D6045"/>
+          <polygon points="363,234 373,226 386,222 386,240" fill="#324E38"/>
+          <polygon points="467,234 457,226 444,222 444,240" fill="#324E38"/>
+          <!-- level 1 body -->
+          <polygon points="386,222 444,222 436,204 394,204" fill="#9E8868"/>
+          <!-- roof 1 -->
+          <polygon points="377,208 396,197 434,197 453,208 436,214 396,214" fill="#456848"/>
+          <polygon points="377,208 386,200 396,197 396,214" fill="#3A5A3C"/>
+          <polygon points="453,208 444,200 434,197 434,214" fill="#3A5A3C"/>
+          <!-- spire shaft -->
+          <line x1="415" y1="197" x2="415" y2="152" stroke="#C9A84C" stroke-width="5" stroke-linecap="round"/>
+          <!-- spire rings -->
+          <ellipse cx="415" cy="180" rx="6" ry="4" fill="#C9A84C"/>
+          <ellipse cx="415" cy="168" rx="5" ry="3" fill="#C9A84C"/>
+          <!-- spire tip -->
+          <polygon points="410,155 415,132 420,155" fill="#C9A84C"/>
+
+          <!-- Japanese stamp circle -->
+          <circle cx="510" cy="68" r="32" fill="rgba(201,168,76,0.08)" stroke="#C9A84C" stroke-width="2"/>
+          <circle cx="510" cy="68" r="26" fill="none" stroke="#C9A84C" stroke-width="1" stroke-dasharray="3,3"/>
+          <text x="510" y="76" text-anchor="middle" font-family="'Cormorant Garamond',Georgia,serif" font-size="18" fill="#C9A84C" opacity=".7">京</text>
+        </svg>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -675,6 +791,33 @@
     if(e.key==='ArrowRight') openAt(cur+1);
   });
 
+})();
+</script>
+<script>
+// HERO PARALLAX + PARTICLES
+(function(){
+  var scene = document.getElementById('kyoto-scene');
+  var bg = document.getElementById('kyoto-bg');
+  var fg = document.getElementById('kyoto-fg');
+  if(!scene) return;
+  window.addEventListener('mousemove', function(e){
+    var rx=(e.clientX/innerWidth-.5), ry=(e.clientY/innerHeight-.5);
+    if(bg) bg.style.transform='translate('+(rx*18)+'px,'+(ry*10)+'px)';
+    if(fg) fg.style.transform='translateY('+((fg.style.transform||'').match(/-?\d+(\.\d+)?px/)||['0px'])[0].replace('px','')*1+'px) translate('+(rx*8)+'px,'+(ry*5)+'px)';
+  },{passive:true});
+  // Sakura particles
+  var cv=document.getElementById('kyoto-ptc');
+  if(!cv) return;
+  var ctx=cv.getContext('2d'), W, H, pts=[];
+  function rsz(){W=cv.width=scene.offsetWidth;H=cv.height=scene.offsetHeight;}
+  rsz(); window.addEventListener('resize',rsz,{passive:true});
+  var COLS=['#F4B8C4','#F9D4DB','#E8A0B4','#FFCDD6'];
+  function Pt(){this.x=Math.random()*W;this.y=H+10;this.r=Math.random()*3+.8;this.vx=(Math.random()-.5)*.5;this.vy=-(Math.random()*.7+.3);this.op=Math.random()*.35+.08;this.col=COLS[0|Math.random()*4];this.rot=Math.random()*Math.PI*2;this.rs=(Math.random()-.5)*.02;this.petal=Math.random()>.4;}
+  Pt.prototype.tick=function(t){this.x+=this.vx+Math.sin(t*.0007+this.y*.008)*.15;this.y+=this.vy;this.rot+=this.rs;if(this.y<-10){this.x=Math.random()*W;this.y=H+10;}};
+  Pt.prototype.draw=function(){ctx.save();ctx.globalAlpha=this.op;ctx.fillStyle=this.col;ctx.translate(this.x,this.y);ctx.rotate(this.rot);ctx.beginPath();if(this.petal){ctx.ellipse(0,-this.r,this.r*.5,this.r*1.15,0,0,Math.PI*2);}else{ctx.arc(0,0,this.r,0,Math.PI*2);}ctx.fill();ctx.restore();};
+  for(var i=0;i<45;i++){var p=new Pt();p.y=Math.random()*H;pts.push(p);}
+  function loop(t){ctx.clearRect(0,0,W,H);pts.forEach(function(p){p.tick(t);p.draw();});requestAnimationFrame(loop);}
+  requestAnimationFrame(loop);
 })();
 </script>
 </body>
