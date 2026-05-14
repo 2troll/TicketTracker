@@ -52,24 +52,25 @@
     .lang-btn.active { background:var(--red); color:#fff; }
 
     /* ── HERO ── */
-    #hero { min-height:100svh; background-image:url('img/torii-zen.png'); background-size:cover; background-position:center; display:flex; align-items:flex-end; padding:62px 5% 4.5rem; position:relative; overflow:hidden; }
-    .ih-grad { position:absolute; inset:0; background:linear-gradient(to top,rgba(5,3,2,.85) 0%,rgba(5,3,2,.1) 60%,transparent 100%); }
-    .ih-txt { position:relative; z-index:2; opacity:0; animation:dbhFU .9s ease .3s forwards; }
-    .ih-label { display:block; font-size:.58rem; letter-spacing:.35em; text-transform:uppercase; color:rgba(255,255,255,.6); margin-bottom:1rem; }
-    .ih-h1 { font-family:var(--serif); font-size:clamp(3.5rem,8vw,7rem); font-weight:300; line-height:.95; color:#fff; margin-bottom:1.2rem; }
+    #hero { min-height:100svh; background:#0B0D14; display:flex; flex-direction:column; justify-content:center; position:relative; overflow:hidden; padding:62px 5% 6rem; }
+    #hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 55% 70% at 80% 20%,rgba(106,171,168,.11) 0%,transparent 55%),radial-gradient(ellipse 40% 50% at 10% 85%,rgba(229,48,48,.08) 0%,transparent 50%); }
+    .ih-kanji { position:absolute; right:-.02em; top:50%; transform:translateY(-50%); font-family:var(--serif); font-size:min(80vw,80vh); font-weight:300; color:rgba(255,255,255,.02); line-height:1; letter-spacing:-.04em; user-select:none; pointer-events:none; }
+    .ih-content { position:relative; z-index:2; opacity:0; animation:ihUp .9s ease .3s forwards; }
+    .ih-label { display:block; font-size:.56rem; letter-spacing:.38em; text-transform:uppercase; color:rgba(255,255,255,.5); margin-bottom:1.4rem; }
+    .ih-h1 { font-family:var(--serif); font-size:clamp(4rem,9vw,8.5rem); font-weight:300; line-height:.88; color:#fff; margin-bottom:1.4rem; }
     .ih-h1 em { font-style:italic; display:block; }
-    .ih-sub { font-size:.96rem; font-weight:300; color:rgba(255,255,255,.78); max-width:55ch; line-height:1.75; }
-    .ih-ctas { display:flex; gap:.8rem; margin-top:2rem; flex-wrap:wrap; }
-    .btn-acc { display:inline-block; padding:.8rem 2rem; background:linear-gradient(135deg,#6AABA8,#4A8A87); color:#fff; text-decoration:none; font-size:.7rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; border-radius:999px; transition:transform .2s,box-shadow .2s; }
+    .ih-sub { font-size:.97rem; font-weight:300; color:rgba(255,255,255,.68); max-width:52ch; line-height:1.85; margin-bottom:2.4rem; }
+    .ih-ctas { display:flex; gap:.8rem; flex-wrap:wrap; }
+    .btn-acc { display:inline-block; padding:.85rem 2.2rem; background:linear-gradient(135deg,#6AABA8,#4A8A87); color:#fff; text-decoration:none; font-size:.7rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; border-radius:999px; transition:transform .2s,box-shadow .2s; }
     .btn-acc:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(106,171,168,.45); }
-    .btn-ghost { display:inline-block; padding:.8rem 2rem; color:#fff; text-decoration:none; font-size:.7rem; font-weight:500; letter-spacing:.12em; text-transform:uppercase; border:1.5px solid rgba(255,255,255,.5); border-radius:999px; transition:background .2s,color .2s,transform .2s; }
-    .btn-ghost:hover { background:rgba(255,255,255,.15); transform:translateY(-2px); }
-    .scroll-hint { position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:.5rem; z-index:3; opacity:0; animation:dbhFU .8s ease 1.5s forwards; }
-    .scroll-hint span { font-size:.54rem; letter-spacing:.22em; text-transform:uppercase; color:rgba(255,255,255,.5); }
-    .scroll-mouse { width:20px; height:32px; border:1.5px solid rgba(255,255,255,.3); border-radius:10px; display:flex; justify-content:center; padding-top:5px; }
+    .btn-ghost { display:inline-block; padding:.85rem 2.2rem; color:#fff; text-decoration:none; font-size:.7rem; font-weight:500; letter-spacing:.12em; text-transform:uppercase; border:1.5px solid rgba(255,255,255,.35); border-radius:999px; transition:background .2s,transform .2s; }
+    .btn-ghost:hover { background:rgba(255,255,255,.1); transform:translateY(-2px); }
+    .scroll-hint { position:absolute; bottom:2.5rem; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:.5rem; z-index:3; opacity:0; animation:ihUp .8s ease 1.5s forwards; }
+    .scroll-hint span { font-size:.54rem; letter-spacing:.22em; text-transform:uppercase; color:rgba(255,255,255,.4); }
+    .scroll-mouse { width:20px; height:32px; border:1.5px solid rgba(255,255,255,.25); border-radius:10px; display:flex; justify-content:center; padding-top:5px; }
     .scroll-dot { width:3px; height:7px; background:#fff; border-radius:2px; animation:dotDrop 1.9s ease-in-out infinite; }
     @keyframes dotDrop { 0%,100%{transform:translateY(0);opacity:1} 55%{transform:translateY(9px);opacity:.2} }
-    @keyframes dbhFU { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:none} }
+    @keyframes ihUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:none} }
     @keyframes fadeUp { to{opacity:1;transform:translateY(0)} }
     .hero-content { display:none; }
     .hero-bg { display:none; }
@@ -323,14 +324,14 @@
 
 <!-- HERO -->
 <section id="hero">
-  <div class="ih-grad"></div>
-  <div class="ih-txt">
+  <div class="ih-kanji" aria-hidden="true">関西</div>
+  <div class="ih-content">
     <span class="ih-label">Private Guide · Kansai Region · Japan</span>
-    <h1 class="ih-h1"><em>Discover</em>Japan's True Soul</h1>
-    <p class="ih-sub">Beyond the guidebooks — an intimate journey through Osaka, Kyoto, Nara and the Kansai heartland.</p>
+    <h1 class="ih-h1"><em>Discover</em>Japan's<br>True Soul</h1>
+    <p class="ih-sub">Beyond the guidebooks — an intimate journey through Osaka, Kyoto, Nara and the Kansai heartland with a private local expert.</p>
     <div class="ih-ctas">
       <a class="btn-acc" href="#contact">Book a Private Tour</a>
-      <a class="btn-ghost" href="#about">About Your Guide</a>
+      <a class="btn-ghost" href="#about">Meet Your Guide</a>
     </div>
   </div>
   <div class="scroll-hint">

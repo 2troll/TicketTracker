@@ -30,14 +30,16 @@
     .nav-city { font-family:var(--serif); font-size:1.05rem; color:var(--text); }
     .nav-book { font-size:0.65rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; padding:0.55rem 1.4rem; background:var(--grad); color:#fff; border-radius:999px; transition:opacity 0.2s,transform 0.2s; }
     .nav-book:hover { opacity:0.88; transform:translateY(-1px); }
-    .dbh{position:relative;height:100svh;min-height:600px;background-size:cover;background-position:center;background-repeat:no-repeat;display:flex;align-items:flex-end;padding:62px 5% 4.5rem;}
-    .dbh-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,3,2,.85) 0%,rgba(5,3,2,.1) 60%,transparent 100%);}
-    .dbh-txt{position:relative;z-index:2;opacity:0;animation:dbhFU .9s ease .3s forwards;}
-    .dbh-label{display:block;font-size:.58rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:1rem;}
-    .dbh-h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(3.5rem,8vw,7rem);font-weight:300;line-height:.95;color:#fff;margin-bottom:1.2rem;}
-    .dbh-h1 em{font-style:italic;display:block;}
-    .dbh-sub{font-size:.96rem;font-weight:300;color:rgba(255,255,255,.78);max-width:55ch;line-height:1.75;}
-    @keyframes dbhFU{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+    .dph{position:relative;height:100svh;min-height:620px;background:#0B0D14;overflow:hidden;display:flex;align-items:flex-end;padding:62px 5% 4.5rem;}.dph::before{content:'';position:absolute;inset:0;background:var(--dph-glow,radial-gradient(ellipse 60% 65% at 75% 30%,rgba(106,171,168,.1) 0%,transparent 60%));}
+    .dph-kanji{position:absolute;right:-.02em;top:50%;transform:translateY(-52%);font-family:'Cormorant Garamond',Georgia,serif;font-size:min(72vw,68vh);font-weight:300;color:rgba(255,255,255,.022);line-height:1;letter-spacing:-.04em;user-select:none;pointer-events:none;z-index:0;}
+    .dph-card{position:absolute;right:5%;top:50%;transform:translateY(-50%) rotate(-3deg);width:clamp(200px,20vw,320px);aspect-ratio:4/3;border-radius:10px;box-shadow:0 32px 80px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.07);background-size:cover;background-position:center;background-repeat:no-repeat;z-index:1;}
+    .dph-txt{position:relative;z-index:2;opacity:0;animation:dphUp .9s ease .3s forwards;}
+    .dph-label{display:block;font-size:.56rem;letter-spacing:.38em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:1.1rem;}
+    .dph-h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(3.8rem,7.5vw,7.2rem);font-weight:300;line-height:.92;color:#fff;margin-bottom:1.2rem;}
+    .dph-h1 em{font-style:italic;display:block;}
+    .dph-sub{font-size:.94rem;font-weight:300;color:rgba(255,255,255,.68);max-width:46ch;line-height:1.8;}
+    @keyframes dphUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+    @media(max-width:700px){.dph-card{width:clamp(130px,38vw,180px);right:3%;top:auto;bottom:calc(4.5rem + 9rem);}.dph-h1{font-size:clamp(3rem,10vw,4.5rem);}.dph-sub{font-size:.82rem;max-width:100%;}}
     .dest-tag { display:inline-block; font-size:0.6rem; font-weight:600; letter-spacing:0.3em; text-transform:uppercase; color:var(--acc2); border:1px solid rgba(192,132,245,0.35); border-radius:999px; padding:0.35rem 1rem; margin-bottom:1.2rem; }
     .dest-kanji { font-family:var(--serif); font-size:clamp(4rem,12vw,9rem); color:rgba(255,255,255,0.05); position:absolute; top:2rem; right:2.5rem; line-height:1; user-select:none; }
     .dest-title { font-family:var(--serif); font-size:clamp(3rem,8vw,6.5rem); font-weight:300; line-height:0.95; margin-bottom:1rem; }
@@ -119,12 +121,13 @@
   <a href="index.html#contact" class="nav-book">Book Now</a>
 </nav>
 
-<section class="dbh" style="background-image:url('img/koyasan-okunoin.jpg');">
-  <div class="dbh-grad"></div>
-  <div class="dbh-txt">
-    <span class="dbh-label">Route 04 · Spiritual Journey · 2 Days</span>
-    <h1 class="dbh-h1"><em>Kōyasan</em>Pilgrimage</h1>
-    <p class="dbh-sub">Japan's most sacred mountain. Monastery overnight stay, 1,200 stone lanterns lighting the path through the ancient cemetery, and dawn chanting with Shingon Buddhist monks.</p>
+<section class="dph" style="--dph-glow:radial-gradient(ellipse 60% 65% at 75% 30%,rgba(90,50,140,.14) 0%,transparent 60%);">
+  <div class="dph-kanji" aria-hidden="true">高野山</div>
+  <div class="dph-card" style="background-image:url('img/koyasan-okunoin.jpg');"></div>
+  <div class="dph-txt">
+    <span class="dph-label">Route 04 · Spiritual Journey · 2 Days</span>
+    <h1 class="dph-h1"><em>Kōyasan</em>Pilgrimage</h1>
+    <p class="dph-sub">Japan's most sacred mountain — monastery stay, lantern-lit cemetery, and dawn chanting with Buddhist monks.</p>
   </div>
 </section>
 
