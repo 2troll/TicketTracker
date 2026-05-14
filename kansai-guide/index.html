@@ -52,20 +52,19 @@
     .lang-btn.active { background:var(--red); color:#fff; }
 
     /* ── HERO ── */
-    #hero { min-height:100svh; background:#0B0D14; display:flex; flex-direction:column; justify-content:center; position:relative; overflow:hidden; padding:62px 5% 6rem; }
-    #hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 55% 70% at 80% 20%,rgba(106,171,168,.11) 0%,transparent 55%),radial-gradient(ellipse 40% 50% at 10% 85%,rgba(229,48,48,.08) 0%,transparent 50%); }
-    .ih-kanji { position:absolute; right:-.02em; top:50%; transform:translateY(-50%); font-family:var(--serif); font-size:min(80vw,80vh); font-weight:300; color:rgba(255,255,255,.02); line-height:1; letter-spacing:-.04em; user-select:none; pointer-events:none; }
+    #hero { min-height:100svh; background-image:url('img/japan-zen-garden2.jpg'); background-size:cover; background-position:center; display:flex; align-items:flex-end; padding:62px 5% 4.5rem; position:relative; overflow:hidden; }
+    #hero::after { content:''; position:absolute; inset:0; background:linear-gradient(to top,rgba(5,3,2,.9) 0%,rgba(5,3,2,.42) 52%,rgba(5,3,2,.1) 100%); pointer-events:none; }
     .ih-content { position:relative; z-index:2; opacity:0; animation:ihUp .9s ease .3s forwards; }
-    .ih-label { display:block; font-size:.56rem; letter-spacing:.38em; text-transform:uppercase; color:rgba(255,255,255,.5); margin-bottom:1.4rem; }
-    .ih-h1 { font-family:var(--serif); font-size:clamp(4rem,9vw,8.5rem); font-weight:300; line-height:.88; color:#fff; margin-bottom:1.4rem; }
+    .ih-label { display:block; font-size:.56rem; letter-spacing:.38em; text-transform:uppercase; color:rgba(255,255,255,.6); margin-bottom:1.1rem; }
+    .ih-h1 { font-family:var(--serif); font-size:clamp(4rem,8vw,8rem); font-weight:300; line-height:.9; color:#fff; margin-bottom:1.4rem; }
     .ih-h1 em { font-style:italic; display:block; }
-    .ih-sub { font-size:.97rem; font-weight:300; color:rgba(255,255,255,.68); max-width:52ch; line-height:1.85; margin-bottom:2.4rem; }
+    .ih-sub { font-size:.97rem; font-weight:300; color:rgba(255,255,255,.78); max-width:52ch; line-height:1.8; margin-bottom:2.2rem; }
     .ih-ctas { display:flex; gap:.8rem; flex-wrap:wrap; }
     .btn-acc { display:inline-block; padding:.85rem 2.2rem; background:linear-gradient(135deg,#6AABA8,#4A8A87); color:#fff; text-decoration:none; font-size:.7rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; border-radius:999px; transition:transform .2s,box-shadow .2s; }
     .btn-acc:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(106,171,168,.45); }
     .btn-ghost { display:inline-block; padding:.85rem 2.2rem; color:#fff; text-decoration:none; font-size:.7rem; font-weight:500; letter-spacing:.12em; text-transform:uppercase; border:1.5px solid rgba(255,255,255,.35); border-radius:999px; transition:background .2s,transform .2s; }
     .btn-ghost:hover { background:rgba(255,255,255,.1); transform:translateY(-2px); }
-    .scroll-hint { position:absolute; bottom:2.5rem; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:.5rem; z-index:3; opacity:0; animation:ihUp .8s ease 1.5s forwards; }
+    .scroll-hint { position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:.5rem; z-index:3; opacity:0; animation:ihUp .8s ease 1.5s forwards; }
     .scroll-hint span { font-size:.54rem; letter-spacing:.22em; text-transform:uppercase; color:rgba(255,255,255,.4); }
     .scroll-mouse { width:20px; height:32px; border:1.5px solid rgba(255,255,255,.25); border-radius:10px; display:flex; justify-content:center; padding-top:5px; }
     .scroll-dot { width:3px; height:7px; background:#fff; border-radius:2px; animation:dotDrop 1.9s ease-in-out infinite; }
@@ -324,10 +323,9 @@
 
 <!-- HERO -->
 <section id="hero">
-  <div class="ih-kanji" aria-hidden="true">関西</div>
   <div class="ih-content">
     <span class="ih-label">Private Guide · Kansai Region · Japan</span>
-    <h1 class="ih-h1"><em>Discover</em>Japan's<br>True Soul</h1>
+    <h1 class="ih-h1"><em>Discover</em>Japan's True Soul</h1>
     <p class="ih-sub">Beyond the guidebooks — an intimate journey through Osaka, Kyoto, Nara and the Kansai heartland with a private local expert.</p>
     <div class="ih-ctas">
       <a class="btn-acc" href="#contact">Book a Private Tour</a>
@@ -694,6 +692,12 @@
         <a href="osaka-kyoto.html" class="route-page-btn">Photos &amp; Full Itinerary →</a>
       </div>
 
+    </div>
+
+    <div style="text-align:center;margin-top:3.5rem;">
+      <a href="practical.html" style="display:inline-flex;align-items:center;gap:.6rem;font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--text-2);border:1px solid var(--line);border-radius:999px;padding:.75rem 1.8rem;transition:border-color .2s,color .2s;" onmouseover="this.style.color='#fff';this.style.borderColor='rgba(106,171,168,.5)'" onmouseout="this.style.color='';this.style.borderColor=''">
+        🗓 Trains · Hotels · Costs — Practical Guide →
+      </a>
     </div>
   </div>
 </section>

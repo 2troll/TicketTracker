@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plan Your Kansai Trip — Trains, Hotels & Costs | Tony Hanma</title>
+  <meta name="description" content="Complete practical guide to Kansai: JR Pass, IC card, train costs between cities, hotel recommendations by budget, and daily expense breakdown." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    :root {
+      --bg:#080808; --bg-1:#0e0e0e; --bg-2:#161616; --bg-3:#1e1e1e;
+      --glass:rgba(255,255,255,0.05); --glass-b:rgba(255,255,255,0.09);
+      --text:#f2f2f2; --text-2:rgba(242,242,242,0.58); --text-3:rgba(242,242,242,0.28);
+      --acc:#6AABA8; --acc2:#8fcfcc;
+      --gold:#C9A84C; --red:#E53030;
+      --grad:linear-gradient(135deg,#6AABA8,#8fcfcc);
+      --line:rgba(255,255,255,0.08);
+      --serif:'Cormorant Garamond',Georgia,serif;
+      --sans:'Plus Jakarta Sans',system-ui,sans-serif;
+      --radius:16px;
+    }
+    html { scroll-behavior:smooth; }
+    body { background:var(--bg); color:var(--text); font-family:var(--sans); font-size:16px; line-height:1.7; overflow-x:hidden; }
+    ::-webkit-scrollbar { width:3px; } ::-webkit-scrollbar-thumb { background:var(--acc); }
+    a { text-decoration:none; color:inherit; }
+
+    /* NAV */
+    nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:1rem 2rem; display:flex; justify-content:space-between; align-items:center; background:rgba(8,8,8,0.88); backdrop-filter:blur(24px); border-bottom:1px solid var(--line); }
+    .nav-back { font-size:0.7rem; font-weight:500; letter-spacing:0.1em; color:var(--text-2); transition:color 0.2s; display:flex; align-items:center; gap:0.4rem; }
+    .nav-back:hover { color:var(--text); }
+    .nav-city { font-family:var(--serif); font-size:1.05rem; color:var(--text); }
+    .nav-book { font-size:0.65rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; padding:0.55rem 1.4rem; background:var(--grad); color:#fff; border-radius:999px; transition:opacity 0.2s,transform 0.2s; }
+    .nav-book:hover { opacity:0.88; transform:translateY(-1px); }
+
+    /* HERO */
+    .ph { position:relative; height:65vh; min-height:460px; background-image:url('img/japan-stone-lantern-maple.jpg'); background-size:cover; background-position:center 40%; overflow:hidden; display:flex; align-items:flex-end; padding:62px 5% 3.5rem; }
+    .ph::after { content:''; position:absolute; inset:0; background:linear-gradient(to top,rgba(5,3,2,.9) 0%,rgba(5,3,2,.42) 52%,rgba(5,3,2,.1) 100%); pointer-events:none; }
+    .ph-txt { position:relative; z-index:2; opacity:0; animation:phUp .9s ease .3s forwards; }
+    .ph-label { display:block; font-size:.56rem; letter-spacing:.38em; text-transform:uppercase; color:rgba(255,255,255,.6); margin-bottom:1rem; }
+    .ph-h1 { font-family:var(--serif); font-size:clamp(3.2rem,6vw,6rem); font-weight:300; line-height:.92; color:#fff; margin-bottom:1rem; }
+    .ph-h1 em { font-style:italic; display:block; }
+    .ph-sub { font-size:.95rem; font-weight:300; color:rgba(255,255,255,.72); max-width:52ch; line-height:1.8; }
+    @keyframes phUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:none} }
+
+    /* LAYOUT */
+    .wrap { max-width:1100px; margin:0 auto; padding:0 2rem; }
+    section.content { padding:6rem 0; }
+    section.content + section.content { border-top:1px solid var(--line); }
+    .sec-label { display:inline-block; font-size:.57rem; font-weight:600; letter-spacing:.3em; text-transform:uppercase; background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:1rem; }
+    .sec-h2 { font-family:var(--serif); font-size:clamp(2.2rem,4.5vw,3.8rem); font-weight:300; line-height:1.05; margin-bottom:.8rem; }
+    .sec-h2 .acc { font-style:italic; background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .sec-intro { font-size:.95rem; color:var(--text-2); max-width:60ch; line-height:1.85; margin-bottom:3rem; }
+
+    /* CARDS GRID */
+    .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1rem; margin-top:2.5rem; }
+    .card { background:var(--bg-2); border:1px solid var(--glass-b); border-radius:var(--radius); padding:1.8rem; position:relative; overflow:hidden; transition:border-color .2s; }
+    .card:hover { border-color:rgba(106,171,168,.3); }
+    .card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--grad); transform:scaleX(0); transform-origin:left; transition:transform .3s; }
+    .card:hover::before { transform:scaleX(1); }
+    .card-icon { font-size:1.6rem; margin-bottom:1rem; line-height:1; }
+    .card-title { font-family:var(--serif); font-size:1.3rem; font-weight:300; margin-bottom:.5rem; }
+    .card-body { font-size:.88rem; color:var(--text-2); line-height:1.75; }
+    .card-price { font-family:var(--serif); font-size:1.8rem; font-weight:300; background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-top:.8rem; }
+    .card-note { font-size:.72rem; color:var(--text-3); margin-top:.3rem; }
+    .badge { display:inline-block; font-size:.58rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; padding:.22rem .7rem; background:rgba(106,171,168,.12); color:var(--acc2); border-radius:999px; margin-bottom:.8rem; }
+    .badge-gold { background:rgba(201,168,76,.12); color:var(--gold); }
+    .badge-red { background:rgba(229,48,48,.12); color:#f07070; }
+
+    /* TRAIN TABLE */
+    .train-table { width:100%; border-collapse:collapse; margin-top:2rem; }
+    .train-table th { font-size:.58rem; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--text-3); padding:.9rem 1.2rem; text-align:left; border-bottom:1px solid var(--line); }
+    .train-table td { font-size:.9rem; padding:.9rem 1.2rem; border-bottom:1px solid rgba(255,255,255,.04); color:var(--text-2); vertical-align:middle; }
+    .train-table tr:hover td { background:rgba(255,255,255,.02); }
+    .train-table .route { font-weight:500; color:var(--text); }
+    .train-table .price { font-family:var(--serif); font-size:1.05rem; color:var(--acc2); }
+    .train-table .time { font-size:.8rem; color:var(--text-3); }
+
+    /* HOTELS */
+    .hotel-tier { margin-bottom:3rem; }
+    .tier-label { font-size:.6rem; font-weight:700; letter-spacing:.28em; text-transform:uppercase; color:var(--gold); margin-bottom:1.2rem; display:flex; align-items:center; gap:.8rem; }
+    .tier-label::after { content:''; flex:1; height:1px; background:rgba(255,255,255,.07); }
+    .hotel-list { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:.8rem; }
+    .hotel { background:var(--bg-2); border:1px solid var(--glass-b); border-radius:12px; padding:1.4rem; }
+    .hotel-name { font-weight:600; font-size:.95rem; margin-bottom:.3rem; }
+    .hotel-city { font-size:.7rem; color:var(--text-3); letter-spacing:.1em; text-transform:uppercase; margin-bottom:.5rem; }
+    .hotel-price { font-family:var(--serif); font-size:1.15rem; color:var(--acc2); }
+    .hotel-note { font-size:.78rem; color:var(--text-2); margin-top:.3rem; line-height:1.5; }
+
+    /* BUDGET TABLE */
+    .budget-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-top:2rem; }
+    .budget-col { background:var(--bg-2); border:1px solid var(--glass-b); border-radius:var(--radius); overflow:hidden; }
+    .budget-col-head { padding:1.4rem 1.4rem 1rem; border-bottom:1px solid var(--line); }
+    .budget-tier { font-size:.58rem; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--text-3); margin-bottom:.4rem; }
+    .budget-total { font-family:var(--serif); font-size:2rem; font-weight:300; }
+    .budget-total.budget-eco { background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .budget-total.budget-mid { color:var(--gold); }
+    .budget-total.budget-lux { color:#d4a8e8; }
+    .budget-col-body { padding:1rem 1.4rem; }
+    .budget-row { display:flex; justify-content:space-between; align-items:center; padding:.5rem 0; border-bottom:1px solid rgba(255,255,255,.04); font-size:.85rem; }
+    .budget-row:last-child { border-bottom:none; }
+    .budget-row .val { font-family:var(--serif); color:var(--text); }
+
+    /* TIP BOXES */
+    .tips { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1rem; margin-top:2rem; }
+    .tip { background:var(--bg-2); border-left:3px solid var(--acc); border-radius:0 12px 12px 0; padding:1.2rem 1.4rem; }
+    .tip-head { font-size:.82rem; font-weight:600; margin-bottom:.4rem; color:var(--acc2); }
+    .tip-body { font-size:.84rem; color:var(--text-2); line-height:1.7; }
+
+    /* FOOTER */
+    footer { background:var(--bg); border-top:1px solid var(--line); padding:2.5rem 2rem; text-align:center; }
+    footer a { font-size:.75rem; color:var(--text-3); display:inline-flex; align-items:center; gap:.5rem; transition:color .2s; }
+    footer a:hover { color:var(--text); }
+
+    @media(max-width:768px) {
+      .budget-grid { grid-template-columns:1fr; }
+      .train-table th:nth-child(3), .train-table td:nth-child(3) { display:none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-back">← Kansai Guide</a>
+  <span class="nav-city">Plan Your Trip</span>
+  <a href="index.html#contact" class="nav-book">Book Now</a>
+</nav>
+
+<header class="ph">
+  <div class="ph-txt">
+    <span class="ph-label">Practical Guide · Kansai Region</span>
+    <h1 class="ph-h1"><em>Everything</em>You Need to Know</h1>
+    <p class="ph-sub">Trains, hotels, costs, and insider tips — all the practical information to plan your Kansai trip with confidence.</p>
+  </div>
+</header>
+
+<!-- GETTING AROUND -->
+<section class="content" style="background:var(--bg-1);">
+  <div class="wrap">
+    <span class="sec-label">Transport</span>
+    <h2 class="sec-h2">Getting <span class="acc">Around Kansai</span></h2>
+    <p class="sec-intro">Kansai has one of the world's best public transport networks. Two cards cover everything — here's how to choose.</p>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">🚅</div>
+        <span class="badge badge-gold">Best Value</span>
+        <div class="card-title">JR Kansai Pass</div>
+        <div class="card-body">Unlimited rides on JR lines in Kansai including the Haruka Express from Kansai Airport. Covers Osaka–Kyoto–Nara–Kobe–Himeji corridor. Does NOT cover private lines or Osaka Metro.</div>
+        <div class="card-price">¥2,400<span style="font-size:1rem;color:var(--text-3)"> / day</span></div>
+        <div class="card-note">1-day ¥2,400 · 2-day ¥4,600 · 3-day ¥5,600 · 4-day ¥6,800</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">💳</div>
+        <span class="badge">Essential</span>
+        <div class="card-title">ICOCA IC Card</div>
+        <div class="card-body">Rechargeable card that works on all train lines, buses, subways and convenience stores. Tap in, tap out. No need to buy tickets. Works across Japan. Deposit ¥500, keep balance loaded.</div>
+        <div class="card-price">¥500<span style="font-size:1rem;color:var(--text-3)"> deposit</span></div>
+        <div class="card-note">Pick up at any JR station ticket machine on arrival</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🚇</div>
+        <span class="badge">Osaka Only</span>
+        <div class="card-title">Osaka Enjoy Pass</div>
+        <div class="card-body">Unlimited Osaka Metro + free entry to 40+ attractions including Osaka Castle, Osaka Aquarium, and more. Great for a full day in Osaka without a guide.</div>
+        <div class="card-price">¥2,800<span style="font-size:1rem;color:var(--text-3)"> / day</span></div>
+        <div class="card-note">Also available as 2-day ¥3,600 | Sold at airport & major stations</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRAIN COSTS -->
+<section class="content" style="background:var(--bg);">
+  <div class="wrap">
+    <span class="sec-label">Fares</span>
+    <h2 class="sec-h2">Train Costs <span class="acc">Between Cities</span></h2>
+    <p class="sec-intro">One-way fares and journey times for the main routes. JR Pass covers all JR routes — private lines (Hankyu, Kintetsu) are separate.</p>
+
+    <table class="train-table">
+      <thead>
+        <tr>
+          <th>Route</th>
+          <th>Train</th>
+          <th>Duration</th>
+          <th>One-Way Cost</th>
+          <th>JR Pass?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="route">Osaka ↔ Kyoto</td>
+          <td>JR Shinkaisoku</td>
+          <td class="time">28 min</td>
+          <td class="price">¥580</td>
+          <td><span class="badge" style="font-size:.6rem">✓ JR</span></td>
+        </tr>
+        <tr>
+          <td class="route">Osaka ↔ Kyoto</td>
+          <td>Hankyu Express</td>
+          <td class="time">43 min</td>
+          <td class="price">¥410</td>
+          <td><span style="font-size:.75rem;color:var(--text-3)">IC only</span></td>
+        </tr>
+        <tr>
+          <td class="route">Osaka ↔ Nara</td>
+          <td>JR Yamatoji Rapid</td>
+          <td class="time">33 min</td>
+          <td class="price">¥570</td>
+          <td><span class="badge" style="font-size:.6rem">✓ JR</span></td>
+        </tr>
+        <tr>
+          <td class="route">Osaka ↔ Kobe</td>
+          <td>JR Rapid</td>
+          <td class="time">22 min</td>
+          <td class="price">¥420</td>
+          <td><span class="badge" style="font-size:.6rem">✓ JR</span></td>
+        </tr>
+        <tr>
+          <td class="route">Osaka ↔ Kobe</td>
+          <td>Hankyu Kobe line</td>
+          <td class="time">26 min</td>
+          <td class="price">¥330</td>
+          <td><span style="font-size:.75rem;color:var(--text-3)">IC only</span></td>
+        </tr>
+        <tr>
+          <td class="route">Osaka ↔ Himeji</td>
+          <td>JR Shinkaisoku</td>
+          <td class="time">57 min</td>
+          <td class="price">¥1,520</td>
+          <td><span class="badge" style="font-size:.6rem">✓ JR</span></td>
+        </tr>
+        <tr>
+          <td class="route">Osaka ↔ Kōyasan</td>
+          <td>Nankai + Cable Car</td>
+          <td class="time">100 min</td>
+          <td class="price">¥1,640</td>
+          <td><span style="font-size:.75rem;color:var(--text-3)">IC only</span></td>
+        </tr>
+        <tr>
+          <td class="route">Kyoto ↔ Nara</td>
+          <td>Kintetsu Express</td>
+          <td class="time">35 min</td>
+          <td class="price">¥760</td>
+          <td><span style="font-size:.75rem;color:var(--text-3)">IC only</span></td>
+        </tr>
+        <tr>
+          <td class="route">KIX Airport ↔ Osaka</td>
+          <td>JR Haruka Express</td>
+          <td class="time">29 min</td>
+          <td class="price">¥1,910</td>
+          <td><span class="badge" style="font-size:.6rem">✓ JR</span></td>
+        </tr>
+        <tr>
+          <td class="route">KIX Airport ↔ Osaka</td>
+          <td>Nankai Rapi:t</td>
+          <td class="time">38 min</td>
+          <td class="price">¥1,430</td>
+          <td><span style="font-size:.75rem;color:var(--text-3)">IC only</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="tips" style="margin-top:2.5rem;">
+      <div class="tip">
+        <div class="tip-head">IC Card tip</div>
+        <div class="tip-body">Load at least ¥5,000 on your ICOCA before leaving the airport. It saves you queuing at ticket machines throughout the trip.</div>
+      </div>
+      <div class="tip">
+        <div class="tip-head">JR Pass worth it?</div>
+        <div class="tip-body">The 3-day JR Kansai Pass (¥5,600) is worth it if you cover Osaka–Kyoto–Nara–Himeji in 3 days. For shorter or city-focused trips, ICOCA alone is fine.</div>
+      </div>
+      <div class="tip">
+        <div class="tip-head">Night buses</div>
+        <div class="tip-body">Willer Express runs overnight buses between Osaka and Tokyo (¥3,500–8,000) — a great budget option if you have time to spare.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOTELS -->
+<section class="content" style="background:var(--bg-1);">
+  <div class="wrap">
+    <span class="sec-label">Accommodation</span>
+    <h2 class="sec-h2">Where to <span class="acc">Stay in Kansai</span></h2>
+    <p class="sec-intro">Hand-picked neighbourhoods and hotels by budget. For private tours, staying in Osaka or Kyoto gives you the best access to all routes.</p>
+
+    <div class="hotel-tier" style="margin-top:2.5rem;">
+      <div class="tier-label">Budget · ¥5,000–10,000 / night</div>
+      <div class="hotel-list">
+        <div class="hotel">
+          <div class="hotel-name">Sakura Hostel Osaka</div>
+          <div class="hotel-city">Osaka · Shinsaibashi</div>
+          <div class="hotel-price">¥4,500<span style="font-size:.8rem;color:var(--text-3)"> / private room</span></div>
+          <div class="hotel-note">Clean, central, great social atmosphere. 10-min walk to Dotonbori.</div>
+        </div>
+        <div class="hotel">
+          <div class="hotel-name">Piece Hostel Kyoto</div>
+          <div class="hotel-city">Kyoto · Karasuma</div>
+          <div class="hotel-price">¥5,200<span style="font-size:.8rem;color:var(--text-3)"> / private room</span></div>
+          <div class="hotel-note">Modern design hostel, 5 min from Kyoto Station. Excellent breakfast.</div>
+        </div>
+        <div class="hotel">
+          <div class="hotel-name">Khaosan Osaka Namba</div>
+          <div class="hotel-city">Osaka · Namba</div>
+          <div class="hotel-price">¥3,800<span style="font-size:.8rem;color:var(--text-3)"> / dorm</span></div>
+          <div class="hotel-note">Best location in Namba. Steps from all the street food. Very lively.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hotel-tier">
+      <div class="tier-label" style="color:var(--acc2);">Mid-range · ¥12,000–25,000 / night</div>
+      <div class="hotel-list">
+        <div class="hotel">
+          <div class="hotel-name">Cross Hotel Osaka</div>
+          <div class="hotel-city">Osaka · Shinsaibashi</div>
+          <div class="hotel-price">¥14,000<span style="font-size:.8rem;color:var(--text-3)"> / double</span></div>
+          <div class="hotel-note">Design hotel in the heart of the action. Excellent rooftop bar.</div>
+        </div>
+        <div class="hotel">
+          <div class="hotel-name">Hotel Granvia Kyoto</div>
+          <div class="hotel-city">Kyoto · Kyoto Station</div>
+          <div class="hotel-price">¥18,000<span style="font-size:.8rem;color:var(--text-3)"> / double</span></div>
+          <div class="hotel-note">Inside Kyoto Station tower. Unbeatable convenience for day trips.</div>
+        </div>
+        <div class="hotel">
+          <div class="hotel-name">Remm Plus Kobe Motomachi</div>
+          <div class="hotel-city">Kobe · City Centre</div>
+          <div class="hotel-price">¥12,500<span style="font-size:.8rem;color:var(--text-3)"> / double</span></div>
+          <div class="hotel-note">Modern and well-located. Great base for the Kobe Refined tour.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hotel-tier">
+      <div class="tier-label" style="color:var(--gold);">Luxury · ¥35,000+ / night</div>
+      <div class="hotel-list">
+        <div class="hotel">
+          <div class="hotel-name">The St. Regis Osaka</div>
+          <div class="hotel-city">Osaka · Honmachi</div>
+          <div class="hotel-price">¥55,000+<span style="font-size:.8rem;color:var(--text-3)"> / double</span></div>
+          <div class="hotel-note">Butler service, outstanding spa, direct access to the best of Osaka.</div>
+        </div>
+        <div class="hotel">
+          <div class="hotel-name">Roku Kyoto, LXR Hotels</div>
+          <div class="hotel-city">Kyoto · Takagamine</div>
+          <div class="hotel-price">¥80,000+<span style="font-size:.8rem;color:var(--text-3)"> / double</span></div>
+          <div class="hotel-note">Hillside retreat with forest views, onsen, and farm-to-table dining.</div>
+        </div>
+        <div class="hotel">
+          <div class="hotel-name">Kōyasan Ekōin Temple</div>
+          <div class="hotel-city">Kōyasan · Okunoin</div>
+          <div class="hotel-price">¥22,000<span style="font-size:.8rem;color:var(--text-3)"> / person incl. dinner</span></div>
+          <div class="hotel-note">Authentic shukubō (temple lodging). Vegetarian monk cuisine, morning prayers at 6am.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DAILY BUDGET -->
+<section class="content" style="background:var(--bg);">
+  <div class="wrap">
+    <span class="sec-label">Budget Planner</span>
+    <h2 class="sec-h2">Daily Costs <span class="acc">Per Person</span></h2>
+    <p class="sec-intro">Realistic daily budgets covering transport, food, entry fees and accommodation. Private tour fee is in addition to these figures.</p>
+
+    <div class="budget-grid">
+      <div class="budget-col">
+        <div class="budget-col-head">
+          <div class="budget-tier">Backpacker</div>
+          <div class="budget-total budget-eco">¥7,500</div>
+          <div style="font-size:.78rem;color:var(--text-3);margin-top:.3rem;">per day</div>
+        </div>
+        <div class="budget-col-body">
+          <div class="budget-row"><span>Accommodation</span><span class="val">¥3,500</span></div>
+          <div class="budget-row"><span>Transport</span><span class="val">¥800</span></div>
+          <div class="budget-row"><span>Food</span><span class="val">¥2,500</span></div>
+          <div class="budget-row"><span>Entrance fees</span><span class="val">¥700</span></div>
+          <div class="budget-row"><span style="color:var(--text-3);font-size:.82rem">Convenience stores, street food, 1 sit-down meal</span><span></span></div>
+        </div>
+      </div>
+      <div class="budget-col">
+        <div class="budget-col-head">
+          <div class="budget-tier">Comfort</div>
+          <div class="budget-total budget-mid">¥18,000</div>
+          <div style="font-size:.78rem;color:var(--text-3);margin-top:.3rem;">per day</div>
+        </div>
+        <div class="budget-col-body">
+          <div class="budget-row"><span>Accommodation</span><span class="val">¥10,000</span></div>
+          <div class="budget-row"><span>Transport</span><span class="val">¥1,500</span></div>
+          <div class="budget-row"><span>Food</span><span class="val">¥5,000</span></div>
+          <div class="budget-row"><span>Entrance fees</span><span class="val">¥1,500</span></div>
+          <div class="budget-row"><span style="color:var(--text-3);font-size:.82rem">2–3 restaurant meals, occasional taxis</span><span></span></div>
+        </div>
+      </div>
+      <div class="budget-col">
+        <div class="budget-col-head">
+          <div class="budget-tier">Luxury</div>
+          <div class="budget-total budget-lux">¥55,000+</div>
+          <div style="font-size:.78rem;color:var(--text-3);margin-top:.3rem;">per day</div>
+        </div>
+        <div class="budget-col-body">
+          <div class="budget-row"><span>Accommodation</span><span class="val">¥35,000</span></div>
+          <div class="budget-row"><span>Transport</span><span class="val">¥4,000</span></div>
+          <div class="budget-row"><span>Food</span><span class="val">¥12,000</span></div>
+          <div class="budget-row"><span>Experiences</span><span class="val">¥4,000</span></div>
+          <div class="budget-row"><span style="color:var(--text-3);font-size:.82rem">Fine dining, private transport, premium experiences</span><span></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIPS -->
+<section class="content" style="background:var(--bg-1);">
+  <div class="wrap">
+    <span class="sec-label">Insider Tips</span>
+    <h2 class="sec-h2">Before You <span class="acc">Arrive</span></h2>
+    <p class="sec-intro">Small things that make a big difference — from someone who guides Kansai every day.</p>
+
+    <div class="tips">
+      <div class="tip">
+        <div class="tip-head">Best time to visit</div>
+        <div class="tip-body">Late March–early April (cherry blossoms) and mid-November (autumn leaves) are peak. March and November are stunning but busy. May–June and September–October offer great weather with smaller crowds.</div>
+      </div>
+      <div class="tip">
+        <div class="tip-head">Pocket WiFi vs SIM</div>
+        <div class="tip-body">Buy a data SIM at the airport (IIJmio or Mineo, ~¥3,000 for 15 days). Faster and simpler than pocket WiFi. Google Maps works seamlessly — you'll never get lost.</div>
+      </div>
+      <div class="tip">
+        <div class="tip-head">Cash is still king</div>
+        <div class="tip-body">Japan uses cash at many smaller restaurants, shrines and temples. Withdraw ¥30,000–50,000 at a 7-Eleven ATM on arrival (they accept foreign cards, no issues).</div>
+      </div>
+      <div class="tip">
+        <div class="tip-head">Book temples in advance</div>
+        <div class="tip-body">Fushimi Inari is always open, but Kinkaku-ji, Arashiyama and Nijo Castle sell out during peak season. Book entry tickets 2–4 weeks ahead online.</div>
+      </div>
+      <div class="tip">
+        <div class="tip-head">Luggage forwarding</div>
+        <div class="tip-body">Takuhaibin (TA-Q-BIN) courier service lets you send your luggage between hotels for ¥1,500–2,500. Explore cities with just a day bag — very liberating.</div>
+      </div>
+      <div class="tip">
+        <div class="tip-head">Eating cheaply</div>
+        <div class="tip-body">Convenience store food (7-Eleven, Lawson, FamilyMart) is genuinely excellent in Japan. A full breakfast costs ¥600. Ramen lunches run ¥800–1,200. You can eat very well on ¥2,500/day.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="background:var(--bg-2);padding:6rem 2rem;text-align:center;border-top:1px solid var(--line);">
+  <span style="display:block;font-size:.56rem;letter-spacing:.38em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:1.2rem;">Ready to Go?</span>
+  <h2 style="font-family:var(--serif);font-size:clamp(2.5rem,5vw,4.5rem);font-weight:300;color:#fff;line-height:1.05;margin-bottom:1.2rem;">Let me handle <em style="font-style:italic;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">the details</em></h2>
+  <p style="font-size:.95rem;color:var(--text-2);max-width:46ch;margin:0 auto 2.5rem;line-height:1.8;">All transport, tickets, timing and logistics are taken care of. You just show up and experience Japan at its best.</p>
+  <a href="index.html#contact" style="display:inline-block;padding:.9rem 2.5rem;background:linear-gradient(135deg,#6AABA8,#4A8A87);color:#fff;font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border-radius:999px;transition:transform .2s,box-shadow .2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(106,171,168,.45)'" onmouseout="this.style.transform='none';this.style.boxShadow='none'">Book a Private Tour</a>
+</section>
+
+<footer>
+  <a href="index.html">← Back to Tony Hanma — Private Kansai Guide</a>
+</footer>
+
+</body>
+</html>

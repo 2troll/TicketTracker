@@ -105,15 +105,17 @@
       .t-step { gap:1.2rem; padding-left:1.2rem; }
     }
 
-    /* DEST HERO */
-    .dph{position:relative;height:100svh;min-height:620px;background:#0B0D14;overflow:hidden;display:flex;align-items:flex-end;padding:62px 5% 4.5rem;}.dph::before{content:'';position:absolute;inset:0;background:var(--dph-glow,radial-gradient(ellipse 60% 65% at 75% 30%,rgba(106,171,168,.1) 0%,transparent 60%));}
-    .dph-kanji{position:absolute;right:-.02em;top:50%;transform:translateY(-52%);font-family:'Cormorant Garamond',Georgia,serif;font-size:min(72vw,68vh);font-weight:300;color:rgba(255,255,255,.022);line-height:1;letter-spacing:-.04em;user-select:none;pointer-events:none;z-index:0;}
-    .dph-card{position:absolute;right:5%;top:50%;transform:translateY(-50%) rotate(-3deg);width:clamp(200px,20vw,320px);aspect-ratio:704/384;border-radius:10px;box-shadow:0 32px 80px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.07);background-size:200% 200%;background-repeat:no-repeat;z-index:1;}
-    .dph-txt{position:relative;z-index:2;opacity:0;animation:dphUp .9s ease .3s forwards;}
-    .dph-label{display:block;font-size:.56rem;letter-spacing:.38em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:1.1rem;}
-    .dph-h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(3.8rem,7.5vw,7.2rem);font-weight:300;line-height:.92;color:#fff;margin-bottom:1.2rem;}
-    .dph-h1 em{font-style:italic;display:block;}
-    .dph-sub{font-size:.94rem;font-weight:300;color:rgba(255,255,255,.68);max-width:46ch;line-height:1.8;}
+        /* DEST HERO */
+    .ph{position:relative;height:100svh;min-height:620px;background-size:cover;background-position:center;background-repeat:no-repeat;overflow:hidden;display:flex;align-items:flex-end;padding:62px 5% 4.5rem;}
+    .ph::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(5,3,2,.9) 0%,rgba(5,3,2,.42) 52%,rgba(5,3,2,.1) 100%);pointer-events:none;}
+    .ph-txt{position:relative;z-index:2;opacity:0;animation:phUp .9s ease .3s forwards;}
+    .ph-label{display:block;font-size:.56rem;letter-spacing:.38em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:1.1rem;}
+    .ph-h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(4rem,7.5vw,7.5rem);font-weight:300;line-height:.9;color:#fff;margin-bottom:1.4rem;}
+    .ph-h1 em{font-style:italic;display:block;}
+    .ph-sub{font-size:.95rem;font-weight:300;color:rgba(255,255,255,.78);max-width:52ch;line-height:1.8;}
+    @keyframes phUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+    @media(max-width:700px){.ph-h1{font-size:clamp(3.2rem,10vw,5rem);}.ph-sub{font-size:.88rem;}}
+
     @keyframes dphUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
     @media(max-width:700px){.dph-card{width:clamp(130px,38vw,180px);right:3%;top:auto;bottom:calc(4.5rem + 9rem);}.dph-h1{font-size:clamp(3rem,10vw,4.5rem);}.dph-sub{font-size:.82rem;max-width:100%;}}
   </style>
@@ -126,13 +128,11 @@
   <a href="index.html#contact" class="nav-book">Book Now</a>
 </nav>
 
-<section class="dph" style="--dph-glow:radial-gradient(ellipse 60% 65% at 75% 30%,rgba(50,80,180,.12) 0%,transparent 60%);">
-  <div class="dph-kanji" aria-hidden="true">神戸</div>
-  <div class="dph-card" style="background-image:url('img/cards-grid.png');background-position:0% 0%;"></div>
-  <div class="dph-txt">
-    <span class="dph-label">Route 05 · Luxury &amp; Gastronomy</span>
-    <h1 class="dph-h1"><em>Kobe</em>Refined</h1>
-    <p class="dph-sub">Japan's most cosmopolitan port city — Victorian mansions, the world's finest beef.</p>
+<section class="ph" style="background-image:url('img/kobe-harborland.jpg');">
+  <div class="ph-txt">
+    <span class="ph-label">Route 05 · Luxury &amp; Gastronomy</span>
+    <h1 class="ph-h1"><em>Kobe</em>Refined</h1>
+    <p class="ph-sub">Japan's most cosmopolitan port city — Victorian mansions, the world's finest beef.</p>
   </div>
 </section>
 
