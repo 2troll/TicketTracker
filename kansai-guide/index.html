@@ -51,32 +51,33 @@
     .lang-btn { font-family:var(--sans); font-size:0.62rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-3); background:transparent; border:none; border-radius:999px; padding:0.3rem 0.7rem; cursor:pointer; transition:background 0.25s,color 0.25s; }
     .lang-btn.active { background:var(--red); color:#fff; }
 
-    /* ── HERO ── */
-    #hero { min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:9rem 1.5rem 7rem; position:relative; overflow:hidden; }
-    .hero-bg { position:absolute; inset:0; overflow:hidden; pointer-events:none; }
-    .hero-grid { position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.016) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.016) 1px,transparent 1px); background-size:72px 72px; mask-image:radial-gradient(ellipse 80% 70% at 50% 50%,black,transparent); -webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 50%,black,transparent); }
-    .hero-kanji { position:absolute; font-family:var(--serif); font-size:clamp(22rem,55vw,48rem); color:rgba(255,255,255,0.013); top:50%; left:50%; transform:translate(-50%,-50%); user-select:none; white-space:nowrap; line-height:1; will-change:transform; }
-    .hero-orb-r { width:65vw; height:65vw; top:-15%; left:-10%; background:radial-gradient(circle,rgba(229,48,48,0.24) 0%,transparent 65%); animation:drift1 18s ease-in-out infinite; }
-    .hero-orb-o { width:55vw; height:55vw; bottom:-20%; right:-5%; background:radial-gradient(circle,rgba(255,107,53,0.19) 0%,transparent 65%); animation:drift2 22s ease-in-out infinite; }
-    .hero-orb-d { width:45vw; height:45vw; top:42%; left:30%; background:radial-gradient(circle,rgba(120,20,20,0.14) 0%,transparent 65%); animation:drift3 28s ease-in-out infinite; }
-    .hero-content { position:relative; z-index:2; max-width:900px; }
-    .hero-tag { display:inline-block; font-size:0.62rem; font-weight:500; letter-spacing:0.3em; text-transform:uppercase; background:var(--acc); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:2rem; opacity:0; transform:translateY(12px); animation:fadeUp 0.8s ease forwards 0.4s; }
-    .hero-title { font-family:var(--serif); font-size:clamp(4.2rem,11vw,9.5rem); font-weight:300; line-height:0.93; letter-spacing:-0.02em; margin-bottom:2rem; }
-    .h-line { display:block; overflow:hidden; }
-    .h-inner { display:block; opacity:0; transform:translateY(108%); animation:lineUp 0.95s cubic-bezier(0.16,1,0.3,1) forwards; }
-    .h-line:nth-child(1) .h-inner { animation-delay:0.52s; }
-    .h-line:nth-child(2) .h-inner { animation-delay:0.68s; }
-    .h-line:nth-child(3) .h-inner { animation-delay:0.84s; }
-    .hero-title .acc-word { font-style:italic; background:var(--acc); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-    .hero-sub { font-size:1.05rem; font-weight:300; color:var(--text-2); max-width:44ch; line-height:1.85; margin:0 auto 3.2rem; opacity:0; transform:translateY(12px); animation:fadeUp 0.8s ease forwards 1.05s; }
-    .hero-ctas { display:flex; gap:0.9rem; justify-content:center; flex-wrap:wrap; opacity:0; transform:translateY(12px); animation:fadeUp 0.8s ease forwards 1.22s; }
-    .btn-acc { display:inline-block; padding:0.9rem 2.2rem; background:var(--acc); color:#fff; text-decoration:none; font-size:0.72rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; border:none; border-radius:999px; transition:transform 0.25s,box-shadow 0.25s,opacity 0.25s; cursor:pointer; }
-    .btn-acc:hover { transform:translateY(-2px); box-shadow:0 8px 30px rgba(229,48,48,0.35); opacity:0.92; }
-    .btn-ghost { display:inline-block; padding:0.9rem 2.2rem; background:var(--glass); color:var(--text-2); text-decoration:none; font-size:0.72rem; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; border:1px solid var(--glass-b); border-radius:999px; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); transition:color 0.25s,background 0.25s,transform 0.25s; }
-    .btn-ghost:hover { color:var(--text); background:var(--glass-hover); transform:translateY(-2px); }
-    .scroll-hint { position:absolute; bottom:2.5rem; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:0.6rem; opacity:0; animation:fadeUp 0.8s ease forwards 1.5s; z-index:2; }
-    .scroll-hint span { font-size:0.57rem; letter-spacing:0.24em; text-transform:uppercase; color:var(--text-3); }
-    .scroll-mouse { width:22px; height:34px; border:1px solid rgba(255,255,255,0.14); border-radius:11px; display:flex; justify-content:center; padding-top:5px; }
+    /* ── HERO ZEN ── */
+    #hero { min-height:100vh; background:#F8F4EE; display:flex; flex-direction:column; justify-content:center; align-items:center; position:relative; overflow:hidden; padding:5rem 2rem 4rem; }
+    #hero-ptc { position:absolute; inset:0; pointer-events:none; z-index:1; }
+    .zen-torii { position:relative; z-index:2; width:min(460px,72vw); opacity:0; animation:fadeUp .6s ease 0.8s forwards; }
+    .zen-torii .t-stroke { stroke:#6AABA8; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+    .zen-torii .td { stroke-dasharray:800; stroke-dashoffset:800; animation:drawLine 2.4s ease forwards; }
+    .td1{animation-delay:.3s} .td2{animation-delay:.5s} .td3{animation-delay:.7s} .td4{animation-delay:.9s} .td5{animation-delay:1.1s} .td6{animation-delay:1.3s}
+    @keyframes drawLine{to{stroke-dashoffset:0}}
+    .zen-label { position:absolute; bottom:5.5rem; z-index:3; font-family:var(--serif); font-size:clamp(1rem,2.5vw,1.9rem); font-weight:300; letter-spacing:.18em; color:#2A2218; line-height:1.3; opacity:0; animation:fadeUp .7s ease 1.8s forwards; }
+    .zen-lbl-l { left:6%; text-align:left; }
+    .zen-lbl-r { right:6%; text-align:right; }
+    .zen-ctas { position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); display:flex; gap:.8rem; z-index:3; opacity:0; animation:fadeUp .7s ease 2.2s forwards; white-space:nowrap; }
+    .btn-acc { display:inline-block; padding:.8rem 2rem; background:linear-gradient(135deg,#6AABA8,#4A8A87); color:#fff; text-decoration:none; font-size:.7rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; border-radius:999px; transition:transform .2s,box-shadow .2s; }
+    .btn-acc:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(106,171,168,.45); }
+    .btn-ghost { display:inline-block; padding:.8rem 2rem; color:#4A8A87; text-decoration:none; font-size:.7rem; font-weight:500; letter-spacing:.12em; text-transform:uppercase; border:1.5px solid #6AABA8; border-radius:999px; transition:background .2s,color .2s,transform .2s; }
+    .btn-ghost:hover { background:#6AABA8; color:#fff; transform:translateY(-2px); }
+    .zen-spark { position:absolute; z-index:2; pointer-events:none; }
+    .scroll-hint { position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:.5rem; opacity:0; animation:fadeUp .8s ease 2.5s forwards; z-index:4; }
+    .scroll-hint span { font-size:.54rem; letter-spacing:.22em; text-transform:uppercase; color:#8A8070; }
+    .scroll-mouse { width:20px; height:32px; border:1.5px solid rgba(106,171,168,.5); border-radius:10px; display:flex; justify-content:center; padding-top:5px; }
+    .scroll-dot { width:3px; height:8px; background:#6AABA8; border-radius:3px; animation:scrollD 1.6s ease-in-out infinite; }
+    @keyframes scrollD{0%,100%{transform:translateY(0);opacity:1}60%{transform:translateY(8px);opacity:0}}
+    /* light nav override for hero page */
+    nav { background:rgba(248,244,238,0.92) !important; border-bottom:1px solid rgba(106,171,168,.18) !important; }
+    nav .nav-logo, nav a { color:#2A2218 !important; }
+    .hero-content { display:none; }
+    .hero-bg { display:none; }
     .scroll-dot { width:3px; height:7px; background:var(--red); border-radius:2px; animation:dotDrop 1.9s ease-in-out infinite; }
     @keyframes dotDrop  { 0%,100%{transform:translateY(0);opacity:1} 55%{transform:translateY(9px);opacity:.2} }
     @keyframes fadeUp   { to{opacity:1;transform:translateY(0)} }
@@ -331,28 +332,47 @@
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-bg">
-    <div class="hero-grid" aria-hidden="true"></div>
-    <div class="orb hero-orb-r"></div>
-    <div class="orb hero-orb-o"></div>
-    <div class="orb hero-orb-d"></div>
-    <div class="hero-kanji" aria-hidden="true" id="hkanji">関西</div>
+  <canvas id="hero-ptc"></canvas>
+
+  <!-- Torii gate SVG — line-art teal, animated draw-on -->
+  <svg class="zen-torii" viewBox="0 0 420 380" xmlns="http://www.w3.org/2000/svg">
+    <!-- Gate 1 (front, largest) -->
+    <path class="t-stroke td td1" stroke-width="4.5" d="M20,185 Q210,115 400,185"/>
+    <line class="t-stroke td td2" stroke-width="4" x1="75" y1="185" x2="75" y2="360"/>
+    <line class="t-stroke td td2" stroke-width="4" x1="345" y1="185" x2="345" y2="360"/>
+    <line class="t-stroke td td3" stroke-width="3.5" x1="66" y1="225" x2="354" y2="225"/>
+    <!-- Gate 2 (middle) -->
+    <path class="t-stroke td td3" stroke-width="3" d="M100,205 Q210,145 320,205"/>
+    <line class="t-stroke td td4" stroke-width="3" x1="135" y1="205" x2="135" y2="340"/>
+    <line class="t-stroke td td4" stroke-width="3" x1="285" y1="205" x2="285" y2="340"/>
+    <line class="t-stroke td td4" stroke-width="2.5" x1="128" y1="236" x2="292" y2="236"/>
+    <!-- Gate 3 (back, smallest) -->
+    <path class="t-stroke td td5" stroke-width="2.2" d="M155,220 Q210,173 265,220"/>
+    <line class="t-stroke td td6" stroke-width="2" x1="178" y1="220" x2="178" y2="315"/>
+    <line class="t-stroke td td6" stroke-width="2" x1="242" y1="220" x2="242" y2="315"/>
+    <line class="t-stroke td td6" stroke-width="1.8" x1="173" y1="244" x2="247" y2="244"/>
+    <!-- Ground line -->
+    <line class="t-stroke td td6" stroke-width="1.5" x1="30" y1="358" x2="390" y2="358" stroke-dasharray="4 6"/>
+  </svg>
+
+  <!-- ZEN labels -->
+  <div class="zen-label zen-lbl-l">ZEN<br>MINIMALISM</div>
+  <div class="zen-label zen-lbl-r">EXPLORE<br>THE WAY</div>
+
+  <!-- Sparkles -->
+  <svg class="zen-spark" style="top:12%;left:8%;width:18px;opacity:0;animation:fadeUp .5s ease 2s forwards" viewBox="0 0 20 20"><path d="M10,0 L11.8,8.2 L20,10 L11.8,11.8 L10,20 L8.2,11.8 L0,10 L8.2,8.2Z" fill="#E8A0A8" opacity=".6"/></svg>
+  <svg class="zen-spark" style="top:20%;right:12%;width:12px;opacity:0;animation:fadeUp .5s ease 2.3s forwards" viewBox="0 0 20 20"><path d="M10,0 L11.8,8.2 L20,10 L11.8,11.8 L10,20 L8.2,11.8 L0,10 L8.2,8.2Z" fill="#E8A0A8" opacity=".5"/></svg>
+  <svg class="zen-spark" style="top:55%;left:4%;width:10px;opacity:0;animation:fadeUp .5s ease 2.1s forwards" viewBox="0 0 20 20"><path d="M10,0 L11.8,8.2 L20,10 L11.8,11.8 L10,20 L8.2,11.8 L0,10 L8.2,8.2Z" fill="#6AABA8" opacity=".4"/></svg>
+  <svg class="zen-spark" style="top:35%;right:5%;width:14px;opacity:0;animation:fadeUp .5s ease 2.4s forwards" viewBox="0 0 20 20"><path d="M10,0 L11.8,8.2 L20,10 L11.8,11.8 L10,20 L8.2,11.8 L0,10 L8.2,8.2Z" fill="#E8A0A8" opacity=".55"/></svg>
+
+  <!-- CTAs -->
+  <div class="zen-ctas">
+    <a class="btn-acc" href="#contact">Book a Private Tour</a>
+    <a class="btn-ghost" href="#about">About Your Guide</a>
   </div>
-  <div class="hero-content">
-    <p class="hero-tag" data-t="hero.tag">Private Guide · Osaka · Kansai Region · Japan</p>
-    <h1 class="hero-title">
-      <span class="h-line"><span class="h-inner" data-t="hero.l1">Discover</span></span>
-      <span class="h-line"><span class="h-inner"><span class="acc-word" data-t="hero.l2">Japan's</span></span></span>
-      <span class="h-line"><span class="h-inner" data-t="hero.l3">True Soul</span></span>
-    </h1>
-    <p class="hero-sub" data-t="hero.sub">Beyond the guidebooks. An intimate journey through Osaka, Kyoto, Nara, and the hidden corners of the Kansai heartland — led by someone who lives it.</p>
-    <div class="hero-ctas">
-      <a class="btn-acc"   href="#contact" data-t="hero.cta1">Book a Private Tour</a>
-      <a class="btn-ghost" href="#about"   data-t="hero.cta2">About Your Guide</a>
-    </div>
-  </div>
+
   <div class="scroll-hint">
-    <span data-t="scroll">Scroll</span>
+    <span>Scroll</span>
     <div class="scroll-mouse"><div class="scroll-dot"></div></div>
   </div>
 </section>
@@ -1260,6 +1280,20 @@ document.querySelectorAll('.route-card[data-href]').forEach(card => {
   });
 })();
 </script>
-<script src="particles.js"></script>
+<script>
+(function(){
+  var cv=document.getElementById('hero-ptc');if(!cv)return;
+  var ctx=cv.getContext('2d'),W,H,pts=[];
+  function rsz(){W=cv.width=window.innerWidth;H=cv.height=window.innerHeight;}rsz();
+  window.addEventListener('resize',rsz,{passive:true});
+  var COLS=['#F4B8C4','#F9D4DB','#E8A8B4','#FFCDD6','rgba(106,171,168,.3)'];
+  function Pt(){this.reset(true);}
+  Pt.prototype.reset=function(init){this.x=Math.random()*W;this.y=init?Math.random()*H:H+12;this.r=Math.random()*3+1;this.vx=(Math.random()-.5)*.5;this.vy=-(Math.random()*.6+.2);this.op=Math.random()*.3+.06;this.col=COLS[0|Math.random()*5];this.rot=Math.random()*Math.PI*2;this.rs=(Math.random()-.5)*.025;};
+  Pt.prototype.tick=function(){this.x+=this.vx;this.y+=this.vy;this.rot+=this.rs;if(this.y<-12)this.reset(false);};
+  Pt.prototype.draw=function(){ctx.save();ctx.globalAlpha=this.op;ctx.fillStyle=this.col;ctx.translate(this.x,this.y);ctx.rotate(this.rot);ctx.beginPath();ctx.ellipse(0,-this.r,this.r*.45,this.r,0,0,Math.PI*2);ctx.fill();ctx.restore();};
+  for(var i=0;i<55;i++){var p=new Pt();pts.push(p);}
+  function loop(){ctx.clearRect(0,0,W,H);pts.forEach(function(p){p.tick();p.draw();});requestAnimationFrame(loop);}loop();
+})();
+</script>
 </body>
 </html>
