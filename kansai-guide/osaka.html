@@ -129,30 +129,33 @@
       .t-step { gap:1.2rem; padding-left:1.2rem; }
     }
 
-    /* ILLUSTRATED HERO */
-    .illus-hero{position:relative;height:100svh;min-height:600px;overflow:hidden;display:flex;align-items:center;padding-top:62px;}
-    .ih-left{position:relative;z-index:10;width:42%;padding:0 2rem 0 5%;flex-shrink:0;}
-    .ih-right{position:relative;flex:1;height:100%;display:flex;align-items:center;justify-content:center;overflow:hidden;}
-    .ih-parallax{position:relative;width:90%;max-width:520px;}
-    .ih-parallax-bg{position:absolute;inset:-60px;transition:transform .15s ease-out;will-change:transform;}
-    .ih-parallax-fg{position:relative;transition:transform .12s ease-out;will-change:transform;animation:ihFloat 5.5s ease-in-out infinite;}
-    @keyframes ihFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
-    .ih-ptc{position:absolute;inset:0;pointer-events:none;z-index:4;}
-    .ih-tag{font-size:.57rem;font-weight:600;letter-spacing:.35em;text-transform:uppercase;color:#7A9E8A;margin-bottom:1.4rem;display:block;opacity:0;animation:ihFU .8s ease .4s forwards;}
-    .ih-h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(3.2rem,6.5vw,6rem);font-weight:300;line-height:.92;margin-bottom:1.5rem;opacity:0;animation:ihFU .9s ease .6s forwards;}
-    .ih-h1 em{display:block;font-style:italic;color:#A8281A;}
-    .ih-rule{width:1px;height:48px;background:linear-gradient(to bottom,transparent,#A8281A,transparent);margin-bottom:1.5rem;opacity:0;animation:ihFI .8s ease 1s forwards;}
-    .ih-sub{font-size:.92rem;font-weight:300;color:#6B6057;max-width:37ch;line-height:1.92;opacity:0;animation:ihFU .8s ease 1.2s forwards;}
-    .ih-scroll{position:absolute;bottom:2rem;left:5%;z-index:10;display:flex;align-items:center;gap:.7rem;font-size:.54rem;letter-spacing:.28em;text-transform:uppercase;color:#A89F98;opacity:0;animation:ihFI 1s ease 2s forwards;}
-    .ih-scroll-bar{width:34px;height:1px;background:linear-gradient(to right,#A8281A,transparent);animation:sp 2s ease-in-out infinite;}
+    /* PHOTO HERO */
+    .photo-hero{position:relative;height:100svh;min-height:600px;overflow:hidden;display:flex;align-items:center;padding-top:62px;}
+    .ph-left{position:relative;z-index:10;width:42%;padding:0 2rem 0 5%;flex-shrink:0;}
+    .ph-right{flex:1;height:100%;padding:16px 24px 16px 8px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:10px;}
+    .ph-tag{font-size:.57rem;font-weight:600;letter-spacing:.35em;text-transform:uppercase;margin-bottom:1.4rem;display:block;opacity:0;animation:phFU .8s ease .4s forwards;}
+    .ph-h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(3.2rem,6.5vw,6rem);font-weight:300;line-height:.92;margin-bottom:1.5rem;opacity:0;animation:phFU .9s ease .6s forwards;}
+    .ph-h1 em{display:block;font-style:italic;}
+    .ph-rule{width:1px;height:48px;margin-bottom:1.5rem;opacity:0;animation:phFI .8s ease 1s forwards;}
+    .ph-sub{font-size:.92rem;font-weight:300;max-width:37ch;line-height:1.92;opacity:0;animation:phFU .8s ease 1.2s forwards;}
+    .ph-scroll{position:absolute;bottom:2rem;left:5%;z-index:10;display:flex;align-items:center;gap:.7rem;font-size:.54rem;letter-spacing:.28em;text-transform:uppercase;opacity:0;animation:phFI 1s ease 2s forwards;}
+    .ph-scroll-bar{width:34px;height:1px;animation:sp 2s ease-in-out infinite;}
     @keyframes sp{0%,100%{opacity:.3}50%{opacity:1}}
-    @keyframes ihFU{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
-    @keyframes ihFI{from{opacity:0}to{opacity:1}}
+    @keyframes phFU{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+    @keyframes phFI{from{opacity:0}to{opacity:1}}
+    .ph-card{position:relative;overflow:hidden;border-radius:10px;box-shadow:0 6px 28px rgba(0,0,0,.15);}
+    .ph-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;}
+    .ph-card:hover img{transform:scale(1.05);}
+    .ph-cap{position:absolute;bottom:0;left:0;right:0;padding:1.4rem .85rem .7rem;background:linear-gradient(transparent,rgba(0,0,0,.58));color:#fff;font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;}
+    @keyframes phFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+    .ph-card:nth-child(1){animation:phFloat 6s ease-in-out infinite;}
+    .ph-card:nth-child(2){animation:phFloat 6s ease-in-out 1.5s infinite;}
+    .ph-card:nth-child(3){animation:phFloat 6s ease-in-out .75s infinite;}
+    .ph-card:nth-child(4){animation:phFloat 6s ease-in-out 2.25s infinite;}
     @media(max-width:860px){
-      .illus-hero{flex-direction:column-reverse;height:auto;min-height:100svh;}
-      .ih-left{width:100%;padding:2rem 1.5rem 3rem;}
-      .ih-right{width:100%;height:52vw;min-height:260px;flex-shrink:0;}
-      .ih-parallax{max-width:380px;}
+      .photo-hero{flex-direction:column-reverse;height:auto;min-height:100svh;}
+      .ph-left{width:100%;padding:2rem 1.5rem 3rem;}
+      .ph-right{width:100%;height:55vw;min-height:260px;padding:10px;}
     }
   </style>
 </head>
@@ -165,111 +168,19 @@
 </nav>
 
 <!-- HERO -->
-<section class="illus-hero" style="background:#E8EFF6;">
-  <div class="ih-left">
-    <span class="ih-tag">Route 01 · Food &amp; Culture</span>
-    <h1 class="ih-h1" style="color:#2C2320;"><em style="color:#A8281A;">Osaka</em>Food Circuit</h1>
-    <div class="ih-rule"></div>
-    <p class="ih-sub">Neon canals, smoky market halls, and hole-in-the-wall izakayas — the real Osaka that guide books don't show you.</p>
-    <div class="ih-scroll"><div class="ih-scroll-bar"></div><span>Scroll</span></div>
+<section class="photo-hero" style="background:#F2F0EC;">
+  <div class="ph-left">
+    <span class="ph-tag" style="color:#C45A1A;">Route 01 · Food &amp; Culture</span>
+    <h1 class="ph-h1" style="color:#1A1412;"><em style="color:#C45A1A;">Osaka</em>Food Circuit</h1>
+    <div class="ph-rule" style="background:linear-gradient(to bottom,transparent,#C45A1A,transparent);"></div>
+    <p class="ph-sub" style="color:#5A4838;">Neon canals, smoky market halls, and hole-in-the-wall izakayas — the real Osaka that guide books don't show you.</p>
+    <div class="ph-scroll" style="color:#8A7060;"><div class="ph-scroll-bar" style="background:linear-gradient(to right,#C45A1A,transparent);"></div><span>Scroll</span></div>
   </div>
-  <div class="ih-right" id="osaka-scene">
-    <canvas class="ih-ptc" id="osaka-ptc"></canvas>
-    <div class="ih-parallax">
-      <div class="ih-parallax-bg" id="osaka-bg">
-        <svg viewBox="0 0 560 440" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
-          <!-- sky -->
-          <rect width="560" height="440" fill="#E8EFF6"/>
-          <!-- clouds -->
-          <ellipse cx="110" cy="80" rx="55" ry="22" fill="rgba(255,255,255,0.65)"/>
-          <ellipse cx="155" cy="72" rx="38" ry="17" fill="rgba(255,255,255,0.55)"/>
-          <ellipse cx="420" cy="95" rx="48" ry="18" fill="rgba(255,255,255,0.6)"/>
-          <!-- far hills -->
-          <polygon points="0,290 130,195 260,245 380,175 510,220 560,235 560,440 0,440" fill="#B8C8B0"/>
-          <polygon points="0,310 110,230 220,268 330,198 460,240 560,258 560,440 0,440" fill="#C8D4C0"/>
-          <!-- moat water -->
-          <polygon points="0,370 560,370 560,440 0,440" fill="#8BAFC4"/>
-          <polygon points="0,385 560,385 560,440 0,440" fill="#7A9EB4"/>
-          <!-- water reflection lines -->
-          <line x1="60" y1="395" x2="160" y2="395" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
-          <line x1="200" y1="405" x2="320" y2="405" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
-          <line x1="360" y1="392" x2="480" y2="392" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"/>
-          <!-- trees left -->
-          <polygon points="60,370 95,280 130,370" fill="#3D6840"/>
-          <polygon points="75,370 95,260 115,370" fill="#4A7A4C"/>
-          <polygon points="55,370 80,300 105,370" fill="#345C38"/>
-          <!-- trees right -->
-          <polygon points="430,370 465,280 500,370" fill="#3D6840"/>
-          <polygon points="445,370 465,260 485,370" fill="#4A7A4C"/>
-          <polygon points="425,370 450,300 475,370" fill="#345C38"/>
-          <!-- stone foundation -->
-          <polygon points="120,368 440,368 460,340 100,340" fill="#7A6E60"/>
-          <polygon points="110,345 450,345 460,340 100,340" fill="#6A5E52"/>
-        </svg>
-      </div>
-      <div class="ih-parallax-fg" id="osaka-fg">
-        <svg viewBox="0 0 560 440" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;position:relative;z-index:3;">
-          <!-- OSAKA CASTLE -->
-          <!-- foundation walls -->
-          <polygon points="128,340 432,340 445,315 115,315" fill="#8C7E6E"/>
-          <!-- base wall -->
-          <rect x="148" y="268" width="264" height="48" fill="#EDE6D8"/>
-          <!-- wall shadow top -->
-          <rect x="148" y="268" width="264" height="8" fill="#D8D0C0"/>
-          <!-- 1st roof (large) -->
-          <polygon points="118,273 280,215 442,273 420,284 280,232 140,284" fill="#2A5A35"/>
-          <polygon points="118,273 130,265 140,284" fill="#1E4428"/>
-          <polygon points="442,273 430,265 420,284" fill="#1E4428"/>
-          <!-- roof tip ornaments -->
-          <polygon points="120,273 106,267 120,281" fill="#C9A84C"/>
-          <polygon points="440,273 454,267 440,281" fill="#C9A84C"/>
-          <!-- 2nd level -->
-          <rect x="183" y="210" width="194" height="48" fill="#F0E8D8"/>
-          <rect x="183" y="210" width="194" height="7" fill="#DED6C6"/>
-          <!-- 2nd roof -->
-          <polygon points="158,215 280,163 402,215 384,224 280,178 196,224" fill="#2A5A35"/>
-          <polygon points="158,215 169,207 196,224" fill="#1E4428"/>
-          <polygon points="402,215 391,207 384,224" fill="#1E4428"/>
-          <polygon points="160,215 147,209 160,222" fill="#C9A84C"/>
-          <polygon points="400,215 413,209 400,222" fill="#C9A84C"/>
-          <!-- 3rd level -->
-          <rect x="216" y="158" width="128" height="42" fill="#EDE6D8"/>
-          <rect x="216" y="158" width="128" height="6" fill="#D8D0C0"/>
-          <!-- 3rd roof -->
-          <polygon points="192,163 280,118 368,163 352,170 280,132 208,170" fill="#2A5A35"/>
-          <polygon points="192,163 202,155 208,170" fill="#1E4428"/>
-          <polygon points="368,163 358,155 352,170" fill="#1E4428"/>
-          <polygon points="193,163 182,157 193,169" fill="#C9A84C"/>
-          <polygon points="367,163 378,157 367,169" fill="#C9A84C"/>
-          <!-- 4th level -->
-          <rect x="242" y="113" width="76" height="37" fill="#F0E8D8"/>
-          <rect x="242" y="113" width="76" height="6" fill="#DED6C6"/>
-          <!-- top roof -->
-          <polygon points="224,118 280,80 336,118 322,124 280,92 238,124" fill="#2A5A35"/>
-          <polygon points="224,118 233,110 238,124" fill="#1E4428"/>
-          <polygon points="336,118 327,110 322,124" fill="#1E4428"/>
-          <!-- gold roof ornaments top -->
-          <polygon points="270,80 280,60 290,80 280,76" fill="#C9A84C"/>
-          <!-- spire -->
-          <line x1="280" y1="60" x2="280" y2="28" stroke="#C9A84C" stroke-width="4"/>
-          <circle cx="280" cy="24" r="7" fill="#C9A84C"/>
-          <!-- small bridge -->
-          <rect x="148" y="358" width="264" height="12" fill="#8C7E6E"/>
-          <rect x="148" y="356" width="264" height="5" fill="#9E9080"/>
-          <!-- bridge posts -->
-          <rect x="163" y="348" width="7" height="15" fill="#7A6E60"/>
-          <rect x="200" y="348" width="7" height="15" fill="#7A6E60"/>
-          <rect x="240" y="348" width="7" height="15" fill="#7A6E60"/>
-          <rect x="280" y="348" width="7" height="15" fill="#7A6E60"/>
-          <rect x="320" y="348" width="7" height="15" fill="#7A6E60"/>
-          <rect x="353" y="348" width="7" height="15" fill="#7A6E60"/>
-          <rect x="390" y="348" width="7" height="15" fill="#7A6E60"/>
-          <!-- kanji stamp -->
-          <circle cx="502" cy="62" r="30" fill="rgba(168,40,26,0.06)" stroke="#A8281A" stroke-width="1.8"/>
-          <text x="502" y="70" text-anchor="middle" font-family="'Cormorant Garamond',Georgia,serif" font-size="16" fill="#A8281A" opacity=".6">城</text>
-        </svg>
-      </div>
-    </div>
+  <div class="ph-right">
+    <div class="ph-card"><img src="img/osaka-dotonbori-night.jpg" alt="Dōtonbori neon canal Osaka"/><div class="ph-cap">Dōtonbori</div></div>
+    <div class="ph-card"><img src="img/osaka-castle-garden.jpg" alt="Osaka Castle garden"/><div class="ph-cap">Osaka Castle</div></div>
+    <div class="ph-card"><img src="img/osaka-tsutenkaku-street.jpg" alt="Tsutenkaku Shinsekai Osaka"/><div class="ph-cap">Tsutenkaku</div></div>
+    <div class="ph-card"><img src="img/osaka-dotonbori-canal.jpg" alt="Osaka canal boats at night"/><div class="ph-cap">Canal Cruise</div></div>
   </div>
 </section>
 
@@ -525,21 +436,5 @@
   <a href="index.html">← Back to Tony Hanma — Private Kansai Guide</a>
 </footer>
 
-<script src="particles.js"></script>
-<script>
-(function(){
-  var scene=document.getElementById('osaka-scene'),bg=document.getElementById('osaka-bg'),fg=document.getElementById('osaka-fg');
-  if(!scene)return;
-  window.addEventListener('mousemove',function(e){var rx=(e.clientX/innerWidth-.5),ry=(e.clientY/innerHeight-.5);if(bg)bg.style.transform='translate('+(rx*18)+'px,'+(ry*10)+'px)';},{passive:true});
-  var cv=document.getElementById('osaka-ptc');if(!cv)return;
-  var ctx=cv.getContext('2d'),W,H,pts=[];
-  function rsz(){W=cv.width=scene.offsetWidth;H=cv.height=scene.offsetHeight;}rsz();window.addEventListener('resize',rsz,{passive:true});
-  function Pt(){this.x=Math.random()*W;this.y=H+10;this.r=Math.random()*2.5+.6;this.vx=(Math.random()-.5)*.4;this.vy=-(Math.random()*.6+.25);this.op=Math.random()*.3+.06;this.col='rgba(248,244,238,'+(Math.random()*.4+.1)+')';}
-  Pt.prototype.tick=function(){this.x+=this.vx;this.y+=this.vy;if(this.y<-8){this.x=Math.random()*W;this.y=H+8;}};
-  Pt.prototype.draw=function(){ctx.save();ctx.globalAlpha=1;ctx.fillStyle=this.col;ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fill();ctx.restore();};
-  for(var i=0;i<40;i++){var p=new Pt();p.y=Math.random()*H;pts.push(p);}
-  function loop(){ctx.clearRect(0,0,W,H);pts.forEach(function(p){p.tick();p.draw();});requestAnimationFrame(loop);}requestAnimationFrame(loop);
-})();
-</script>
 </body>
 </html>

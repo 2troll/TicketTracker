@@ -105,30 +105,33 @@
       .t-step { gap:1.2rem; padding-left:1.2rem; }
     }
 
-    /* ILLUSTRATED HERO */
-    .illus-hero{position:relative;height:100svh;min-height:600px;overflow:hidden;display:flex;align-items:center;padding-top:62px;}
-    .ih-left{position:relative;z-index:10;width:42%;padding:0 2rem 0 5%;flex-shrink:0;}
-    .ih-right{position:relative;flex:1;height:100%;display:flex;align-items:center;justify-content:center;overflow:hidden;}
-    .ih-parallax{position:relative;width:90%;max-width:520px;}
-    .ih-parallax-bg{position:absolute;inset:-60px;transition:transform .15s ease-out;will-change:transform;}
-    .ih-parallax-fg{position:relative;transition:transform .12s ease-out;will-change:transform;animation:ihFloat 5.5s ease-in-out infinite;}
-    @keyframes ihFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
-    .ih-ptc{position:absolute;inset:0;pointer-events:none;z-index:4;}
-    .ih-tag{font-size:.57rem;font-weight:600;letter-spacing:.35em;text-transform:uppercase;color:#7A9E8A;margin-bottom:1.4rem;display:block;opacity:0;animation:ihFU .8s ease .4s forwards;}
-    .ih-h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(3.2rem,6.5vw,6rem);font-weight:300;line-height:.92;margin-bottom:1.5rem;opacity:0;animation:ihFU .9s ease .6s forwards;}
-    .ih-h1 em{display:block;font-style:italic;color:#A8281A;}
-    .ih-rule{width:1px;height:48px;background:linear-gradient(to bottom,transparent,#A8281A,transparent);margin-bottom:1.5rem;opacity:0;animation:ihFI .8s ease 1s forwards;}
-    .ih-sub{font-size:.92rem;font-weight:300;color:#6B6057;max-width:37ch;line-height:1.92;opacity:0;animation:ihFU .8s ease 1.2s forwards;}
-    .ih-scroll{position:absolute;bottom:2rem;left:5%;z-index:10;display:flex;align-items:center;gap:.7rem;font-size:.54rem;letter-spacing:.28em;text-transform:uppercase;color:#A89F98;opacity:0;animation:ihFI 1s ease 2s forwards;}
-    .ih-scroll-bar{width:34px;height:1px;background:linear-gradient(to right,#A8281A,transparent);animation:sp 2s ease-in-out infinite;}
+    /* PHOTO HERO */
+    .photo-hero{position:relative;height:100svh;min-height:600px;overflow:hidden;display:flex;align-items:center;padding-top:62px;}
+    .ph-left{position:relative;z-index:10;width:42%;padding:0 2rem 0 5%;flex-shrink:0;}
+    .ph-right{flex:1;height:100%;padding:16px 24px 16px 8px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:10px;}
+    .ph-tag{font-size:.57rem;font-weight:600;letter-spacing:.35em;text-transform:uppercase;margin-bottom:1.4rem;display:block;opacity:0;animation:phFU .8s ease .4s forwards;}
+    .ph-h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(3.2rem,6.5vw,6rem);font-weight:300;line-height:.92;margin-bottom:1.5rem;opacity:0;animation:phFU .9s ease .6s forwards;}
+    .ph-h1 em{display:block;font-style:italic;}
+    .ph-rule{width:1px;height:48px;margin-bottom:1.5rem;opacity:0;animation:phFI .8s ease 1s forwards;}
+    .ph-sub{font-size:.92rem;font-weight:300;max-width:37ch;line-height:1.92;opacity:0;animation:phFU .8s ease 1.2s forwards;}
+    .ph-scroll{position:absolute;bottom:2rem;left:5%;z-index:10;display:flex;align-items:center;gap:.7rem;font-size:.54rem;letter-spacing:.28em;text-transform:uppercase;opacity:0;animation:phFI 1s ease 2s forwards;}
+    .ph-scroll-bar{width:34px;height:1px;animation:sp 2s ease-in-out infinite;}
     @keyframes sp{0%,100%{opacity:.3}50%{opacity:1}}
-    @keyframes ihFU{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
-    @keyframes ihFI{from{opacity:0}to{opacity:1}}
+    @keyframes phFU{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+    @keyframes phFI{from{opacity:0}to{opacity:1}}
+    .ph-card{position:relative;overflow:hidden;border-radius:10px;box-shadow:0 6px 28px rgba(0,0,0,.15);}
+    .ph-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;}
+    .ph-card:hover img{transform:scale(1.05);}
+    .ph-cap{position:absolute;bottom:0;left:0;right:0;padding:1.4rem .85rem .7rem;background:linear-gradient(transparent,rgba(0,0,0,.58));color:#fff;font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;}
+    @keyframes phFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+    .ph-card:nth-child(1){animation:phFloat 6s ease-in-out infinite;}
+    .ph-card:nth-child(2){animation:phFloat 6s ease-in-out 1.5s infinite;}
+    .ph-card:nth-child(3){animation:phFloat 6s ease-in-out .75s infinite;}
+    .ph-card:nth-child(4){animation:phFloat 6s ease-in-out 2.25s infinite;}
     @media(max-width:860px){
-      .illus-hero{flex-direction:column-reverse;height:auto;min-height:100svh;}
-      .ih-left{width:100%;padding:2rem 1.5rem 3rem;}
-      .ih-right{width:100%;height:52vw;min-height:260px;flex-shrink:0;}
-      .ih-parallax{max-width:380px;}
+      .photo-hero{flex-direction:column-reverse;height:auto;min-height:100svh;}
+      .ph-left{width:100%;padding:2rem 1.5rem 3rem;}
+      .ph-right{width:100%;height:55vw;min-height:260px;padding:10px;}
     }
   </style>
 </head>
@@ -140,93 +143,19 @@
   <a href="index.html#contact" class="nav-book">Book Now</a>
 </nav>
 
-<section class="illus-hero" style="background:#E4EBF3;">
-  <div class="ih-left">
-    <span class="ih-tag">Route 05 · Luxury &amp; Gastronomy</span>
-    <h1 class="ih-h1" style="color:#2C2320;"><em style="color:#A8281A;">Kobe</em>Refined</h1>
-    <div class="ih-rule"></div>
-    <p class="ih-sub">Japan's most cosmopolitan port city — Victorian mansions, the world's finest beef, and a harbour that glows at golden hour.</p>
-    <div class="ih-scroll"><div class="ih-scroll-bar"></div><span>Scroll</span></div>
+<section class="photo-hero" style="background:#F0F2F5;">
+  <div class="ph-left">
+    <span class="ph-tag" style="color:#1A3A6A;">Route 05 · Luxury &amp; Gastronomy</span>
+    <h1 class="ph-h1" style="color:#0E1E32;"><em style="color:#1A3A6A;">Kobe</em>Refined</h1>
+    <div class="ph-rule" style="background:linear-gradient(to bottom,transparent,#1A3A6A,transparent);"></div>
+    <p class="ph-sub" style="color:#3A4A5A;">Japan's most cosmopolitan port city — Victorian mansions, the world's finest beef, and a harbour that glows at golden hour.</p>
+    <div class="ph-scroll" style="color:#6A7A8A;"><div class="ph-scroll-bar" style="background:linear-gradient(to right,#1A3A6A,transparent);"></div><span>Scroll</span></div>
   </div>
-  <div class="ih-right" id="kobe-scene">
-    <canvas class="ih-ptc" id="kobe-ptc"></canvas>
-    <div class="ih-parallax">
-      <div class="ih-parallax-bg" id="kobe-bg">
-        <svg viewBox="0 0 560 440" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
-          <!-- sky -->
-          <rect width="560" height="440" fill="#E4EBF3"/>
-          <!-- clouds -->
-          <ellipse cx="80" cy="75" rx="52" ry="20" fill="rgba(255,255,255,0.7)"/>
-          <ellipse cx="125" cy="65" rx="35" ry="15" fill="rgba(255,255,255,0.6)"/>
-          <ellipse cx="440" cy="88" rx="60" ry="22" fill="rgba(255,255,255,0.65)"/>
-          <!-- mountains background -->
-          <polygon points="0,260 110,140 230,195 300,115 380,170 480,125 560,165 560,440 0,440" fill="#9890AE"/>
-          <polygon points="0,275 90,178 200,225 310,148 420,195 510,155 560,188 560,440 0,440" fill="#AAA0BE"/>
-          <!-- green hillside terrain -->
-          <polygon points="0,355 180,285 320,310 450,275 560,300 560,440 0,440" fill="#7A9E82"/>
-          <polygon points="0,370 160,315 300,338 460,298 560,330 560,440 0,440" fill="#8AAE90"/>
-          <!-- harbor water -->
-          <polygon points="0,390 560,390 560,440 0,440" fill="#7AB0CC"/>
-          <polygon points="0,408 560,408 560,440 0,440" fill="#6AA0BC"/>
-          <!-- water shimmer -->
-          <line x1="50" y1="400" x2="150" y2="400" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
-          <line x1="200" y1="415" x2="360" y2="415" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
-          <line x1="390" y1="402" x2="510" y2="402" stroke="rgba(255,255,255,0.28)" stroke-width="1.5"/>
-          <!-- harbor dock/platform -->
-          <rect x="210" y="382" width="140" height="14" rx="2" fill="#8C7A62"/>
-          <rect x="215" y="378" width="130" height="8" rx="2" fill="#9E8A72"/>
-        </svg>
-      </div>
-      <div class="ih-parallax-fg" id="kobe-fg">
-        <svg viewBox="0 0 560 440" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;position:relative;z-index:3;">
-          <!-- KOBE PORT TOWER (hyperboloid shape) -->
-          <!-- shadow on ground -->
-          <ellipse cx="280" cy="390" rx="38" ry="8" fill="rgba(0,0,0,0.08)"/>
-          <!-- base platform -->
-          <rect x="248" y="378" width="64" height="14" rx="3" fill="#9E8060"/>
-          <!-- lower column -->
-          <rect x="265" y="358" width="30" height="26" fill="#B8281A"/>
-          <!-- lower flare body -->
-          <polygon points="210,358 350,358 330,275 230,275" fill="#C0392B"/>
-          <!-- lower flare shading right -->
-          <polygon points="280,358 350,358 330,275 280,275" fill="#A8281A"/>
-          <!-- horizontal lattice rings lower -->
-          <line x1="215" y1="340" x2="345" y2="340" stroke="rgba(255,255,255,0.2)" stroke-width="1.8"/>
-          <line x1="220" y1="320" x2="340" y2="320" stroke="rgba(255,255,255,0.18)" stroke-width="1.8"/>
-          <line x1="226" y1="300" x2="334" y2="300" stroke="rgba(255,255,255,0.18)" stroke-width="1.8"/>
-          <!-- observation deck -->
-          <rect x="228" y="258" width="104" height="38" rx="4" fill="#8C1E14"/>
-          <rect x="233" y="263" width="94" height="28" rx="3" fill="#C0392B"/>
-          <!-- deck windows -->
-          <rect x="242" y="268" width="16" height="12" rx="2" fill="rgba(255,255,255,0.3)"/>
-          <rect x="264" y="268" width="16" height="12" rx="2" fill="rgba(255,255,255,0.3)"/>
-          <rect x="286" y="268" width="16" height="12" rx="2" fill="rgba(255,255,255,0.3)"/>
-          <rect x="308" y="268" width="16" height="12" rx="2" fill="rgba(255,255,255,0.3)"/>
-          <!-- upper flare body -->
-          <polygon points="230,258 330,258 310,168 250,168" fill="#C0392B"/>
-          <!-- upper flare shading right -->
-          <polygon points="280,258 330,258 310,168 280,168" fill="#A8281A"/>
-          <!-- horizontal lattice rings upper -->
-          <line x1="234" y1="240" x2="326" y2="240" stroke="rgba(255,255,255,0.2)" stroke-width="1.8"/>
-          <line x1="240" y1="218" x2="320" y2="218" stroke="rgba(255,255,255,0.18)" stroke-width="1.8"/>
-          <line x1="246" y1="196" x2="314" y2="196" stroke="rgba(255,255,255,0.18)" stroke-width="1.8"/>
-          <!-- vertical lattice lines -->
-          <line x1="250" y1="168" x2="218" y2="356" stroke="rgba(255,255,255,0.12)" stroke-width="1.2"/>
-          <line x1="265" y1="168" x2="238" y2="356" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-          <line x1="295" y1="168" x2="322" y2="356" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-          <line x1="310" y1="168" x2="342" y2="356" stroke="rgba(255,255,255,0.12)" stroke-width="1.2"/>
-          <!-- antenna -->
-          <line x1="280" y1="168" x2="280" y2="118" stroke="#C0392B" stroke-width="8" stroke-linecap="round"/>
-          <line x1="280" y1="118" x2="280" y2="80" stroke="#A8281A" stroke-width="4" stroke-linecap="round"/>
-          <line x1="280" y1="80" x2="280" y2="52" stroke="#C0392B" stroke-width="2.5" stroke-linecap="round"/>
-          <!-- antenna tip ball -->
-          <circle cx="280" cy="48" r="6" fill="#C9A84C"/>
-          <!-- kanji stamp -->
-          <circle cx="498" cy="65" r="30" fill="rgba(168,40,26,0.06)" stroke="#A8281A" stroke-width="1.8"/>
-          <text x="498" y="73" text-anchor="middle" font-family="'Cormorant Garamond',Georgia,serif" font-size="16" fill="#A8281A" opacity=".6">港</text>
-        </svg>
-      </div>
-    </div>
+  <div class="ph-right">
+    <div class="ph-card"><img src="img/kobe-port-tower-night.jpg" alt="Kobe Port Tower illuminated at night"/><div class="ph-cap">Port Tower</div></div>
+    <div class="ph-card"><img src="img/kobe-harbor.jpg" alt="Kobe harbor panorama"/><div class="ph-cap">Harbor View</div></div>
+    <div class="ph-card"><img src="img/kobe-harborland.jpg" alt="Kobe Harborland waterfront"/><div class="ph-cap">Harborland</div></div>
+    <div class="ph-card"><img src="img/kobe-port-dusk.jpg" alt="Kobe port at dusk golden hour"/><div class="ph-cap">Golden Hour</div></div>
   </div>
 </section>
 
@@ -446,22 +375,5 @@
   <a href="index.html">← Back to Tony Hanma — Private Kansai Guide</a>
 </footer>
 
-<script src="particles.js"></script>
-<script>
-(function(){
-  var scene=document.getElementById('kobe-scene'),bg=document.getElementById('kobe-bg');
-  if(!scene)return;
-  window.addEventListener('mousemove',function(e){var rx=(e.clientX/innerWidth-.5),ry=(e.clientY/innerHeight-.5);if(bg)bg.style.transform='translate('+(rx*20)+'px,'+(ry*11)+'px)';},{passive:true});
-  var cv=document.getElementById('kobe-ptc');if(!cv)return;
-  var ctx=cv.getContext('2d'),W,H,pts=[];
-  function rsz(){W=cv.width=scene.offsetWidth;H=cv.height=scene.offsetHeight;}rsz();window.addEventListener('resize',rsz,{passive:true});
-  var COLS=['#F0D070','#F5E090','#E8C050','#FFF0A0'];
-  function Pt(){this.x=Math.random()*W;this.y=H+8;this.r=Math.random()*2+.5;this.vx=(Math.random()-.5)*.45;this.vy=-(Math.random()*.65+.2);this.op=Math.random()*.45+.1;this.col=COLS[0|Math.random()*4];this.life=Math.random()*100+50;this.age=0;this.twinkle=Math.random()*Math.PI*2;}
-  Pt.prototype.tick=function(){this.x+=this.vx;this.y+=this.vy;this.age++;this.twinkle+=.08;if(this.y<-8){this.x=Math.random()*W;this.y=H+8;this.age=0;}};
-  Pt.prototype.draw=function(){var o=this.op*((.5+.5*Math.sin(this.twinkle)));ctx.save();ctx.globalAlpha=o;ctx.fillStyle=this.col;ctx.translate(this.x,this.y);ctx.beginPath();for(var i=0;i<4;i++){var a=i*Math.PI/2;ctx.lineTo(Math.cos(a)*this.r*2,Math.sin(a)*this.r*2);ctx.lineTo(Math.cos(a+Math.PI/4)*this.r*.4,Math.sin(a+Math.PI/4)*this.r*.4);}ctx.closePath();ctx.fill();ctx.restore();};
-  for(var i=0;i<35;i++){var p=new Pt();p.y=Math.random()*H;pts.push(p);}
-  function loop(){ctx.clearRect(0,0,W,H);pts.forEach(function(p){p.tick();p.draw();});requestAnimationFrame(loop);}requestAnimationFrame(loop);
-})();
-</script>
 </body>
 </html>

@@ -105,30 +105,33 @@
       .t-step { gap:1.2rem; padding-left:1.2rem; }
     }
 
-    /* ILLUSTRATED HERO */
-    .illus-hero{position:relative;height:100svh;min-height:600px;overflow:hidden;display:flex;align-items:center;padding-top:62px;}
-    .ih-left{position:relative;z-index:10;width:42%;padding:0 2rem 0 5%;flex-shrink:0;}
-    .ih-right{position:relative;flex:1;height:100%;display:flex;align-items:center;justify-content:center;overflow:hidden;}
-    .ih-parallax{position:relative;width:90%;max-width:520px;}
-    .ih-parallax-bg{position:absolute;inset:-60px;transition:transform .15s ease-out;will-change:transform;}
-    .ih-parallax-fg{position:relative;transition:transform .12s ease-out;will-change:transform;animation:ihFloat 5.5s ease-in-out infinite;}
-    @keyframes ihFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
-    .ih-ptc{position:absolute;inset:0;pointer-events:none;z-index:4;}
-    .ih-tag{font-size:.57rem;font-weight:600;letter-spacing:.35em;text-transform:uppercase;color:#7A9E8A;margin-bottom:1.4rem;display:block;opacity:0;animation:ihFU .8s ease .4s forwards;}
-    .ih-h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(3.2rem,6.5vw,6rem);font-weight:300;line-height:.92;margin-bottom:1.5rem;opacity:0;animation:ihFU .9s ease .6s forwards;}
-    .ih-h1 em{display:block;font-style:italic;color:#A8281A;}
-    .ih-rule{width:1px;height:48px;background:linear-gradient(to bottom,transparent,#A8281A,transparent);margin-bottom:1.5rem;opacity:0;animation:ihFI .8s ease 1s forwards;}
-    .ih-sub{font-size:.92rem;font-weight:300;color:#6B6057;max-width:37ch;line-height:1.92;opacity:0;animation:ihFU .8s ease 1.2s forwards;}
-    .ih-scroll{position:absolute;bottom:2rem;left:5%;z-index:10;display:flex;align-items:center;gap:.7rem;font-size:.54rem;letter-spacing:.28em;text-transform:uppercase;color:#A89F98;opacity:0;animation:ihFI 1s ease 2s forwards;}
-    .ih-scroll-bar{width:34px;height:1px;background:linear-gradient(to right,#A8281A,transparent);animation:sp 2s ease-in-out infinite;}
+    /* PHOTO HERO */
+    .photo-hero{position:relative;height:100svh;min-height:600px;overflow:hidden;display:flex;align-items:center;padding-top:62px;}
+    .ph-left{position:relative;z-index:10;width:42%;padding:0 2rem 0 5%;flex-shrink:0;}
+    .ph-right{flex:1;height:100%;padding:16px 24px 16px 8px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:10px;}
+    .ph-tag{font-size:.57rem;font-weight:600;letter-spacing:.35em;text-transform:uppercase;margin-bottom:1.4rem;display:block;opacity:0;animation:phFU .8s ease .4s forwards;}
+    .ph-h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(3.2rem,6.5vw,6rem);font-weight:300;line-height:.92;margin-bottom:1.5rem;opacity:0;animation:phFU .9s ease .6s forwards;}
+    .ph-h1 em{display:block;font-style:italic;}
+    .ph-rule{width:1px;height:48px;margin-bottom:1.5rem;opacity:0;animation:phFI .8s ease 1s forwards;}
+    .ph-sub{font-size:.92rem;font-weight:300;max-width:37ch;line-height:1.92;opacity:0;animation:phFU .8s ease 1.2s forwards;}
+    .ph-scroll{position:absolute;bottom:2rem;left:5%;z-index:10;display:flex;align-items:center;gap:.7rem;font-size:.54rem;letter-spacing:.28em;text-transform:uppercase;opacity:0;animation:phFI 1s ease 2s forwards;}
+    .ph-scroll-bar{width:34px;height:1px;animation:sp 2s ease-in-out infinite;}
     @keyframes sp{0%,100%{opacity:.3}50%{opacity:1}}
-    @keyframes ihFU{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
-    @keyframes ihFI{from{opacity:0}to{opacity:1}}
+    @keyframes phFU{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+    @keyframes phFI{from{opacity:0}to{opacity:1}}
+    .ph-card{position:relative;overflow:hidden;border-radius:10px;box-shadow:0 6px 28px rgba(0,0,0,.15);}
+    .ph-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;}
+    .ph-card:hover img{transform:scale(1.05);}
+    .ph-cap{position:absolute;bottom:0;left:0;right:0;padding:1.4rem .85rem .7rem;background:linear-gradient(transparent,rgba(0,0,0,.58));color:#fff;font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;}
+    @keyframes phFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+    .ph-card:nth-child(1){animation:phFloat 6s ease-in-out infinite;}
+    .ph-card:nth-child(2){animation:phFloat 6s ease-in-out 1.5s infinite;}
+    .ph-card:nth-child(3){animation:phFloat 6s ease-in-out .75s infinite;}
+    .ph-card:nth-child(4){animation:phFloat 6s ease-in-out 2.25s infinite;}
     @media(max-width:860px){
-      .illus-hero{flex-direction:column-reverse;height:auto;min-height:100svh;}
-      .ih-left{width:100%;padding:2rem 1.5rem 3rem;}
-      .ih-right{width:100%;height:52vw;min-height:260px;flex-shrink:0;}
-      .ih-parallax{max-width:380px;}
+      .photo-hero{flex-direction:column-reverse;height:auto;min-height:100svh;}
+      .ph-left{width:100%;padding:2rem 1.5rem 3rem;}
+      .ph-right{width:100%;height:55vw;min-height:260px;padding:10px;}
     }
   </style>
 </head>
@@ -140,140 +143,19 @@
   <a href="index.html#contact" class="nav-book">Book Now</a>
 </nav>
 
-<section class="illus-hero" style="background:#EAE3D2;">
-  <div class="ih-left">
-    <span class="ih-tag">Route 03 · History &amp; Nature</span>
-    <h1 class="ih-h1" style="color:#2C2320;"><em style="color:#A8281A;">Nara</em>&amp; Himeji</h1>
-    <div class="ih-rule"></div>
-    <p class="ih-sub">Sacred deer roaming free at UNESCO temples, then Japan's greatest feudal castle — two of the country's most breathtaking sites in one day.</p>
-    <div class="ih-scroll"><div class="ih-scroll-bar"></div><span>Scroll</span></div>
+<section class="photo-hero" style="background:#F0EDE4;">
+  <div class="ph-left">
+    <span class="ph-tag" style="color:#7A5A1A;">Route 03 · History &amp; Nature</span>
+    <h1 class="ph-h1" style="color:#1E1608;"><em style="color:#7A5A1A;">Nara</em>&amp; Himeji</h1>
+    <div class="ph-rule" style="background:linear-gradient(to bottom,transparent,#7A5A1A,transparent);"></div>
+    <p class="ph-sub" style="color:#4A3A20;">Sacred deer roaming free at UNESCO temples, then Japan's greatest feudal castle — two of the country's most breathtaking sites in one day.</p>
+    <div class="ph-scroll" style="color:#7A6A4A;"><div class="ph-scroll-bar" style="background:linear-gradient(to right,#7A5A1A,transparent);"></div><span>Scroll</span></div>
   </div>
-  <div class="ih-right" id="nara-scene">
-    <canvas class="ih-ptc" id="nara-ptc"></canvas>
-    <div class="ih-parallax">
-      <div class="ih-parallax-bg" id="nara-bg">
-        <svg viewBox="0 0 560 440" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
-          <!-- sky -->
-          <rect width="560" height="440" fill="#EAE3D2"/>
-          <!-- far tree line -->
-          <polygon points="0,280 80,200 140,235 200,185 280,215 350,175 430,210 510,180 560,200 560,440 0,440" fill="#9AAE88"/>
-          <polygon points="0,295 70,228 150,258 240,208 330,238 420,200 510,224 560,215 560,440 0,440" fill="#A8BC96"/>
-          <!-- near forest -->
-          <polygon points="0,355 90,295 170,320 260,280 340,308 420,278 520,305 560,290 560,440 0,440" fill="#7A9A6A"/>
-          <!-- ground -->
-          <polygon points="0,380 560,380 560,440 0,440" fill="#C8BA98"/>
-          <polygon points="0,395 560,395 560,440 0,440" fill="#D4C6A4"/>
-          <!-- path -->
-          <polygon points="220,440 260,380 300,380 340,440" fill="#D8CAAA"/>
-          <!-- small bush left -->
-          <ellipse cx="80" cy="370" rx="35" ry="20" fill="#8AAA78"/>
-          <ellipse cx="100" cy="362" rx="25" ry="16" fill="#7A9A68"/>
-          <!-- small bush right -->
-          <ellipse cx="490" cy="372" rx="32" ry="18" fill="#8AAA78"/>
-        </svg>
-      </div>
-      <div class="ih-parallax-fg" id="nara-fg">
-        <svg viewBox="0 0 560 440" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;position:relative;z-index:3;">
-          <!-- LARGE DEER (left, adult) -->
-          <!-- shadow -->
-          <ellipse cx="195" cy="388" rx="50" ry="10" fill="rgba(0,0,0,0.1)"/>
-          <!-- body -->
-          <polygon points="135,310 250,305 260,355 245,385 160,388 140,360" fill="#C8A87A"/>
-          <!-- belly lighter -->
-          <polygon points="160,340 245,338 250,370 160,375" fill="#D8B88A"/>
-          <!-- neck -->
-          <polygon points="218,308 245,308 250,268 228,258 215,268" fill="#C0A070"/>
-          <!-- head -->
-          <polygon points="218,258 255,254 262,238 252,222 234,218 215,228 213,244" fill="#C8A870"/>
-          <!-- snout/nose -->
-          <polygon points="252,240 268,245 265,255 255,252" fill="#B89860"/>
-          <!-- nose dot -->
-          <ellipse cx="264" cy="247" rx="5" ry="4" fill="#8C7450"/>
-          <!-- ear left -->
-          <polygon points="218,225 208,205 226,218" fill="#D4B47E"/>
-          <polygon points="218,225 212,210 224,220" fill="#C8A870"/>
-          <!-- ear right -->
-          <polygon points="248,222 256,202 262,218" fill="#D4B47E"/>
-          <polygon points="248,222 255,208 260,220" fill="#C8A870"/>
-          <!-- eye -->
-          <ellipse cx="246" cy="234" rx="5" ry="5" fill="#3C2818"/>
-          <ellipse cx="244" cy="232" rx="2" ry="2" fill="rgba(255,255,255,0.5)"/>
-          <!-- ANTLERS -->
-          <line x1="248" y1="222" x2="252" y2="192" stroke="#7A5A30" stroke-width="5" stroke-linecap="round"/>
-          <line x1="252" y1="192" x2="264" y2="175" stroke="#7A5A30" stroke-width="4" stroke-linecap="round"/>
-          <line x1="252" y1="192" x2="246" y2="172" stroke="#7A5A30" stroke-width="3.5" stroke-linecap="round"/>
-          <line x1="264" y1="175" x2="272" y2="158" stroke="#7A5A30" stroke-width="3" stroke-linecap="round"/>
-          <line x1="264" y1="175" x2="278" y2="170" stroke="#7A5A30" stroke-width="3" stroke-linecap="round"/>
-          <line x1="246" y1="172" x2="238" y2="155" stroke="#7A5A30" stroke-width="3" stroke-linecap="round"/>
-          <!-- back leg left -->
-          <polygon points="160,385 180,388 178,430 155,430" fill="#B89868"/>
-          <!-- back leg right -->
-          <polygon points="228,385 248,385 246,430 224,430" fill="#B89868"/>
-          <!-- front leg -->
-          <polygon points="190,375 208,372 206,430 188,430" fill="#B89868"/>
-          <!-- tail -->
-          <polygon points="135,315 122,330 130,345 140,335" fill="#E8D8A8"/>
-          <!-- spots on deer -->
-          <ellipse cx="180" cy="325" rx="8" ry="6" fill="rgba(248,240,200,0.5)"/>
-          <ellipse cx="210" cy="318" rx="7" ry="5" fill="rgba(248,240,200,0.45)"/>
-          <ellipse cx="230" cy="330" rx="6" ry="4.5" fill="rgba(248,240,200,0.4)"/>
-
-          <!-- SMALL DEER (right, young) -->
-          <!-- shadow -->
-          <ellipse cx="390" cy="400" rx="34" ry="7" fill="rgba(0,0,0,0.08)"/>
-          <!-- body -->
-          <polygon points="345,340 430,336 436,372 420,398 358,400 342,374" fill="#D4B484"/>
-          <!-- neck -->
-          <polygon points="400,337 420,337 424,308 408,300 396,308" fill="#C8A870"/>
-          <!-- head -->
-          <polygon points="398,300 426,296 432,282 422,269 408,267 394,275 392,290" fill="#D4B070"/>
-          <!-- snout -->
-          <polygon points="422,284 436,288 434,298 424,295" fill="#C0A060"/>
-          <!-- nose -->
-          <ellipse cx="434" cy="290" rx="4" ry="3" fill="#8C7450"/>
-          <!-- ear -->
-          <polygon points="398,272 390,254 406,268" fill="#D8B87C"/>
-          <polygon points="420,270 426,252 432,268" fill="#D8B87C"/>
-          <!-- eye -->
-          <ellipse cx="418" cy="280" rx="4" ry="4" fill="#3C2818"/>
-          <ellipse cx="416" cy="278" rx="1.8" ry="1.8" fill="rgba(255,255,255,0.5)"/>
-          <!-- small nubs (young deer antlers) -->
-          <line x1="420" y1="270" x2="423" y2="257" stroke="#7A5A30" stroke-width="3.5" stroke-linecap="round"/>
-          <line x1="423" y1="257" x2="430" y2="248" stroke="#7A5A30" stroke-width="3" stroke-linecap="round"/>
-          <!-- legs -->
-          <polygon points="358,398 374,400 372,432 355,432" fill="#C0A068"/>
-          <polygon points="406,397 422,397 420,432 404,432" fill="#C0A068"/>
-          <!-- spots -->
-          <ellipse cx="372" cy="353" rx="7" ry="5" fill="rgba(248,240,200,0.5)"/>
-          <ellipse cx="395" cy="346" rx="6" ry="4" fill="rgba(248,240,200,0.45)"/>
-
-          <!-- STONE LANTERN (kasuga-style) -->
-          <rect x="464" y="330" width="34" height="58" fill="#B0A898"/>
-          <rect x="459" y="325" width="44" height="12" rx="2" fill="#A09888"/>
-          <polygon points="454,325 498,325 490,302 462,302" fill="#B0A898"/>
-          <rect x="462" y="280" width="28" height="22" fill="#C0B8A8"/>
-          <!-- lantern light -->
-          <rect x="466" y="282" width="20" height="18" fill="rgba(255,220,120,0.4)"/>
-          <rect x="463" y="278" width="26" height="6" rx="1" fill="#A09888"/>
-          <rect x="466" y="255" width="20" height="24" fill="#B0A898"/>
-          <polygon points="458,258 504,258 490,238 472,238" fill="#A09888"/>
-          <rect x="474" y="220" width="8" height="20" rx="2" fill="#B0A898"/>
-          <ellipse cx="478" cy="218" rx="10" ry="5" fill="#A09888"/>
-
-          <!-- Japanese fan decoration -->
-          <path d="M72,130 Q148,88 224,130" fill="#E88080" stroke="#C07060" stroke-width="2"/>
-          <path d="M72,130 Q148,105 224,130" fill="#F4A090" stroke="#C07060" stroke-width="1.5"/>
-          <line x1="148" y1="130" x2="148" y2="175" stroke="#8C5A40" stroke-width="4" stroke-linecap="round"/>
-          <line x1="95" y1="136" x2="115" y2="178" stroke="#8C5A40" stroke-width="2.5" stroke-linecap="round"/>
-          <line x1="120" y1="132" x2="132" y2="176" stroke="#8C5A40" stroke-width="2" stroke-linecap="round"/>
-          <line x1="175" y1="132" x2="163" y2="176" stroke="#8C5A40" stroke-width="2" stroke-linecap="round"/>
-          <line x1="200" y1="136" x2="181" y2="178" stroke="#8C5A40" stroke-width="2.5" stroke-linecap="round"/>
-          <!-- kanji stamp -->
-          <circle cx="502" cy="65" r="30" fill="rgba(168,40,26,0.06)" stroke="#A8281A" stroke-width="1.8"/>
-          <text x="502" y="73" text-anchor="middle" font-family="'Cormorant Garamond',Georgia,serif" font-size="16" fill="#A8281A" opacity=".6">鹿</text>
-        </svg>
-      </div>
-    </div>
+  <div class="ph-right">
+    <div class="ph-card"><img src="img/nara-deer-park.jpg" alt="Sacred deer roaming Nara Park"/><div class="ph-cap">Nara Deer Park</div></div>
+    <div class="ph-card"><img src="img/nara-deer-closeup.jpg" alt="Close up of sacred deer Nara"/><div class="ph-cap">Sacred Deer</div></div>
+    <div class="ph-card"><img src="img/himeji-castle-cherry.jpg" alt="Himeji Castle with cherry blossoms"/><div class="ph-cap">Himeji Castle</div></div>
+    <div class="ph-card"><img src="img/nara-autumn-path.jpg" alt="Autumn path Nara"/><div class="ph-cap">Autumn Path</div></div>
   </div>
 </section>
 
@@ -512,22 +394,5 @@
   <a href="index.html">← Back to Tony Hanma — Private Kansai Guide</a>
 </footer>
 
-<script src="particles.js"></script>
-<script>
-(function(){
-  var scene=document.getElementById('nara-scene'),bg=document.getElementById('nara-bg');
-  if(!scene)return;
-  window.addEventListener('mousemove',function(e){var rx=(e.clientX/innerWidth-.5),ry=(e.clientY/innerHeight-.5);if(bg)bg.style.transform='translate('+(rx*16)+'px,'+(ry*9)+'px)';},{passive:true});
-  var cv=document.getElementById('nara-ptc');if(!cv)return;
-  var ctx=cv.getContext('2d'),W,H,pts=[];
-  function rsz(){W=cv.width=scene.offsetWidth;H=cv.height=scene.offsetHeight;}rsz();window.addEventListener('resize',rsz,{passive:true});
-  var COLS=['#D4A060','#C89050','#E0B870','#CC8840'];
-  function Pt(){this.x=Math.random()*W;this.y=-10;this.r=Math.random()*3.5+1.5;this.vx=(Math.random()-.5)*.8+.3;this.vy=Math.random()*.9+.4;this.op=Math.random()*.4+.1;this.col=COLS[0|Math.random()*4];this.rot=Math.random()*Math.PI*2;this.rs=(Math.random()-.5)*.04;}
-  Pt.prototype.tick=function(){this.x+=this.vx;this.y+=this.vy;this.rot+=this.rs;if(this.y>H+10){this.x=Math.random()*W;this.y=-10;}};
-  Pt.prototype.draw=function(){ctx.save();ctx.globalAlpha=this.op;ctx.fillStyle=this.col;ctx.translate(this.x,this.y);ctx.rotate(this.rot);ctx.beginPath();ctx.moveTo(0,-this.r);ctx.lineTo(this.r*.6,0);ctx.lineTo(this.r*.3,this.r);ctx.lineTo(0,this.r*.7);ctx.lineTo(-this.r*.3,this.r);ctx.lineTo(-this.r*.6,0);ctx.closePath();ctx.fill();ctx.restore();};
-  for(var i=0;i<38;i++){var p=new Pt();p.y=Math.random()*H;pts.push(p);}
-  function loop(){ctx.clearRect(0,0,W,H);pts.forEach(function(p){p.tick();p.draw();});requestAnimationFrame(loop);}requestAnimationFrame(loop);
-})();
-</script>
 </body>
 </html>
