@@ -30,11 +30,14 @@
     .nav-city { font-family:var(--serif); font-size:1.05rem; color:var(--text); }
     .nav-book { font-size:0.65rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; padding:0.55rem 1.4rem; background:var(--grad); color:#fff; border-radius:999px; transition:opacity 0.2s,transform 0.2s; }
     .nav-book:hover { opacity:0.88; transform:translateY(-1px); }
-    .dest-hero { position:relative; height:92vh; min-height:560px; display:flex; align-items:flex-end; padding:5rem 2.5rem; overflow:hidden; }
-    .dest-hero-bg { position:absolute; inset:0; }
-    .dest-hero-bg img { object-position:center 55%; filter:brightness(0.36); }
-    .dest-hero-grad { position:absolute; inset:0; background:linear-gradient(to top,rgba(8,8,8,1) 0%,rgba(8,8,8,0.22) 45%,transparent 100%); }
-    .dest-hero-content { position:relative; z-index:2; max-width:900px; }
+    .dbh{position:relative;height:100svh;min-height:600px;background-size:cover;background-position:center;background-repeat:no-repeat;display:flex;align-items:flex-end;padding:62px 5% 4.5rem;}
+    .dbh-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,3,2,.85) 0%,rgba(5,3,2,.1) 60%,transparent 100%);}
+    .dbh-txt{position:relative;z-index:2;opacity:0;animation:dbhFU .9s ease .3s forwards;}
+    .dbh-label{display:block;font-size:.58rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:1rem;}
+    .dbh-h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(3.5rem,8vw,7rem);font-weight:300;line-height:.95;color:#fff;margin-bottom:1.2rem;}
+    .dbh-h1 em{font-style:italic;display:block;}
+    .dbh-sub{font-size:.96rem;font-weight:300;color:rgba(255,255,255,.78);max-width:55ch;line-height:1.75;}
+    @keyframes dbhFU{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
     .dest-tag { display:inline-block; font-size:0.6rem; font-weight:600; letter-spacing:0.3em; text-transform:uppercase; color:var(--acc2); border:1px solid rgba(255,140,53,0.35); border-radius:999px; padding:0.35rem 1rem; margin-bottom:1.2rem; }
     .best-seller-tag { display:inline-block; font-size:0.58rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; background:var(--grad); color:#fff; border-radius:999px; padding:0.3rem 0.9rem; margin-left:0.6rem; }
     .dest-kanji { font-family:var(--serif); font-size:clamp(4rem,12vw,9rem); color:rgba(255,255,255,0.05); position:absolute; top:2rem; right:2.5rem; line-height:1; user-select:none; }
@@ -118,19 +121,12 @@
   <a href="index.html#contact" class="nav-book">Book Now</a>
 </nav>
 
-<section class="dest-hero">
-  <div class="dest-hero-bg">
-    <img src="img/kyoto-torii-dawn.jpg" alt="Kyoto torii gates at dawn"/>
-  </div>
-  <div class="dest-hero-grad"></div>
-  <div class="dest-kanji">全弧</div>
-  <div class="dest-hero-content">
-    <div style="display:flex;align-items:center;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.2rem;">
-      <div class="dest-tag" style="margin-bottom:0">Route 06 · 2 Days</div>
-      <span class="best-seller-tag">Best Seller</span>
-    </div>
-    <h1 class="dest-title"><em>Osaka–Kyoto</em><br>Full Arc</h1>
-    <p class="dest-sub">The complete Kansai experience — Osaka's electric streets and food culture on Day 1, Kyoto's ancient silence and ceremony on Day 2. The tour guests ask for most.</p>
+<section class="dbh" style="background-image:url('img/kyoto-philosophers-path.jpg');">
+  <div class="dbh-grad"></div>
+  <div class="dbh-txt">
+    <span class="dbh-label">Route 06 · 2 Days · Best Seller</span>
+    <h1 class="dbh-h1"><em>Osaka–Kyoto</em>Full Arc</h1>
+    <p class="dbh-sub">The complete Kansai experience — Osaka's electric streets and food culture on Day 1, Kyoto's ancient silence and ceremony on Day 2.</p>
   </div>
 </section>
 

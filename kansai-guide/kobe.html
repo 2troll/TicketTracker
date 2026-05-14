@@ -105,35 +105,16 @@
       .t-step { gap:1.2rem; padding-left:1.2rem; }
     }
 
-    /* PHOTO HERO */
-    .photo-hero{position:relative;height:100svh;min-height:600px;overflow:hidden;display:flex;align-items:center;padding-top:62px;}
-    .ph-left{position:relative;z-index:10;width:42%;padding:0 2rem 0 5%;flex-shrink:0;}
-    .ph-right{flex:1;height:100%;padding:16px 24px 16px 8px;overflow:hidden;}
-    .ph-illus{width:100%;height:100%;background-size:200% 200%;background-repeat:no-repeat;border-radius:14px;box-shadow:0 10px 48px rgba(0,0,0,.13);animation:phFloat 7s ease-in-out infinite;}
-    .ph-tag{font-size:.57rem;font-weight:600;letter-spacing:.35em;text-transform:uppercase;margin-bottom:1.4rem;display:block;opacity:0;animation:phFU .8s ease .4s forwards;}
-    .ph-h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(3.2rem,6.5vw,6rem);font-weight:300;line-height:.92;margin-bottom:1.5rem;opacity:0;animation:phFU .9s ease .6s forwards;}
-    .ph-h1 em{display:block;font-style:italic;}
-    .ph-rule{width:1px;height:48px;margin-bottom:1.5rem;opacity:0;animation:phFI .8s ease 1s forwards;}
-    .ph-sub{font-size:.92rem;font-weight:300;max-width:37ch;line-height:1.92;opacity:0;animation:phFU .8s ease 1.2s forwards;}
-    .ph-scroll{position:absolute;bottom:2rem;left:5%;z-index:10;display:flex;align-items:center;gap:.7rem;font-size:.54rem;letter-spacing:.28em;text-transform:uppercase;opacity:0;animation:phFI 1s ease 2s forwards;}
-    .ph-scroll-bar{width:34px;height:1px;animation:sp 2s ease-in-out infinite;}
-    @keyframes sp{0%,100%{opacity:.3}50%{opacity:1}}
-    @keyframes phFU{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
-    @keyframes phFI{from{opacity:0}to{opacity:1}}
-    .ph-card{position:relative;overflow:hidden;border-radius:10px;box-shadow:0 6px 28px rgba(0,0,0,.15);}
-    .ph-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;}
-    .ph-card:hover img{transform:scale(1.05);}
-    .ph-cap{position:absolute;bottom:0;left:0;right:0;padding:1.4rem .85rem .7rem;background:linear-gradient(transparent,rgba(0,0,0,.58));color:#fff;font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;}
-    @keyframes phFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-    .ph-card:nth-child(1){animation:phFloat 6s ease-in-out infinite;}
-    .ph-card:nth-child(2){animation:phFloat 6s ease-in-out 1.5s infinite;}
-    .ph-card:nth-child(3){animation:phFloat 6s ease-in-out .75s infinite;}
-    .ph-card:nth-child(4){animation:phFloat 6s ease-in-out 2.25s infinite;}
-    @media(max-width:860px){
-      .photo-hero{flex-direction:column-reverse;height:auto;min-height:100svh;}
-      .ph-left{width:100%;padding:2rem 1.5rem 3rem;}
-      .ph-right{width:100%;height:55vw;min-height:260px;padding:10px;}
-    }
+    /* DEST HERO */
+    .dbh{position:relative;height:100svh;min-height:600px;background-size:200% 200%;background-repeat:no-repeat;display:flex;align-items:flex-end;padding:62px 5% 4.5rem;}
+    .dbh-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,3,2,.85) 0%,rgba(5,3,2,.1) 60%,transparent 100%);}
+    .dbh-txt{position:relative;z-index:2;opacity:0;animation:dbhFU .9s ease .3s forwards;}
+    .dbh-label{display:block;font-size:.58rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:1rem;}
+    .dbh-h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(3.5rem,8vw,7rem);font-weight:300;line-height:.95;color:#fff;margin-bottom:1.2rem;}
+    .dbh-h1 em{font-style:italic;display:block;}
+    .dbh-sub{font-size:.96rem;font-weight:300;color:rgba(255,255,255,.78);max-width:55ch;line-height:1.75;}
+    @keyframes dbhFU{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+    @media(max-width:700px){.dbh-h1{font-size:clamp(2.8rem,10vw,4.5rem);}.dbh-sub{font-size:.88rem;}}
   </style>
 </head>
 <body>
@@ -144,16 +125,12 @@
   <a href="index.html#contact" class="nav-book">Book Now</a>
 </nav>
 
-<section class="photo-hero" style="background:#F0F2F5;">
-  <div class="ph-left">
-    <span class="ph-tag" style="color:#1A3A6A;">Route 05 · Luxury &amp; Gastronomy</span>
-    <h1 class="ph-h1" style="color:#0E1E32;"><em style="color:#1A3A6A;">Kobe</em>Refined</h1>
-    <div class="ph-rule" style="background:linear-gradient(to bottom,transparent,#1A3A6A,transparent);"></div>
-    <p class="ph-sub" style="color:#3A4A5A;">Japan's most cosmopolitan port city — Victorian mansions, the world's finest beef, and a harbour that glows at golden hour.</p>
-    <div class="ph-scroll" style="color:#6A7A8A;"><div class="ph-scroll-bar" style="background:linear-gradient(to right,#1A3A6A,transparent);"></div><span>Scroll</span></div>
-  </div>
-  <div class="ph-right">
-    <div class="ph-illus" style="background-image:url('img/cards-grid.png');background-position:0% 0%;"></div>
+<section class="dbh" style="background-image:url('img/cards-grid.png');background-position:0% 0%;">
+  <div class="dbh-grad"></div>
+  <div class="dbh-txt">
+    <span class="dbh-label">Route 05 · Luxury &amp; Gastronomy</span>
+    <h1 class="dbh-h1"><em>Kobe</em>Refined</h1>
+    <p class="dbh-sub">Japan's most cosmopolitan port city — Victorian mansions, the world's finest beef, and a harbour that glows at golden hour.</p>
   </div>
 </section>
 
