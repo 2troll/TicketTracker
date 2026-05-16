@@ -11,13 +11,14 @@
   <style>
     *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
     :root {
-      --bg:#080808; --bg-1:#0e0e0e; --bg-2:#161616;
-      --glass:rgba(255,255,255,0.05); --glass-b:rgba(255,255,255,0.09);
-      --text:#f2f2f2; --text-2:rgba(242,242,242,0.58); --text-3:rgba(242,242,242,0.28);
-      --acc:#6AABA8; --acc2:#8fcfcc;
+      --bg:#040403; --bg-1:#080806; --bg-2:#0d0c09;
+      --glass:rgba(201,168,76,0.04); --glass-b:rgba(201,168,76,0.14);
+      --text:#f5eedc; --text-2:rgba(245,238,220,0.55); --text-3:rgba(245,238,220,0.28);
+      --acc:#C9A84C; --acc2:#F0D06A;
       --gold:#C9A84C;
-      --grad:linear-gradient(135deg,#6AABA8,#8fcfcc);
-      --line:rgba(255,255,255,0.08);
+      --grad:linear-gradient(135deg,#C9A84C,#F0D06A);
+      --line:rgba(201,168,76,0.1);
+      --line-w:rgba(255,255,255,0.07);
       --serif:'Cormorant Garamond',Georgia,serif;
       --sans:'Plus Jakarta Sans',system-ui,sans-serif;
       --radius:16px;
@@ -33,19 +34,19 @@
     .nav-book { font-size:0.65rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; padding:0.55rem 1.4rem; background:var(--grad); color:#fff; border-radius:999px; transition:opacity 0.2s,transform 0.2s; }
     .nav-book:hover { opacity:0.88; transform:translateY(-1px); }
     .ph { position:relative; height:100svh; min-height:620px; background-image:url('img/koyasan-pagoda-forest.jpg'); background-size:cover; background-position:center; overflow:hidden; display:flex; align-items:flex-end; padding:62px 5% 4.5rem; }
-    .ph::after { content:''; position:absolute; inset:0; background:linear-gradient(to top,rgba(5,3,2,.93) 0%,rgba(5,3,2,.48) 50%,rgba(5,3,2,.1) 100%); pointer-events:none; }
+    .ph::after { content:''; position:absolute; inset:0; background:linear-gradient(to top,rgba(4,3,1,.95) 0%,rgba(4,3,1,.45) 50%,rgba(10,8,0,.08) 100%); pointer-events:none; }
     .ph-txt { position:relative; z-index:2; opacity:0; animation:phUp .9s ease .3s forwards; }
     .ph-label { display:block; font-size:.56rem; letter-spacing:.38em; text-transform:uppercase; color:rgba(255,255,255,.6); margin-bottom:1.1rem; }
     .ph-h1 { font-family:var(--serif); font-size:clamp(4rem,7.5vw,7.5rem); font-weight:300; line-height:.9; color:#fff; margin-bottom:1.4rem; }
     .ph-h1 em { font-style:italic; display:block; }
-    .ph-sub { font-size:.95rem; font-weight:300; color:rgba(255,255,255,.75); max-width:52ch; line-height:1.8; }
+    .ph-sub { font-size:.95rem; font-weight:300; color:rgba(245,238,220,.75); max-width:52ch; line-height:1.8; }
     @keyframes phUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:none} }
     .wrap { max-width:1100px; margin:0 auto; padding:0 2rem; }
     section.content { padding:6rem 0; }
     section.content + section.content { border-top:1px solid var(--line); }
     .sec-label { display:inline-block; font-size:.57rem; font-weight:600; letter-spacing:.3em; text-transform:uppercase; background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:1rem; }
     .sec-h2 { font-family:var(--serif); font-size:clamp(2.2rem,4.5vw,3.8rem); font-weight:300; line-height:1.05; margin-bottom:.8rem; }
-    .sec-h2 .acc { font-style:italic; background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .sec-h2 .acc { font-style:italic; background:linear-gradient(135deg,#C9A84C,#F0D06A); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
     .sec-intro { font-size:.95rem; color:var(--text-2); max-width:60ch; line-height:1.85; margin-bottom:3rem; }
     footer { background:var(--bg); border-top:1px solid var(--line); padding:2.5rem 2rem; text-align:center; }
     footer a { font-size:.75rem; color:var(--text-3); display:inline-flex; align-items:center; gap:.5rem; transition:color .2s; }
@@ -53,10 +54,10 @@
 
     /* MOUNTAIN PEAKS */
     .peak-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; margin-top:3rem; }
-    .peak-card { position:relative; height:420px; border-radius:var(--radius); overflow:hidden; }
+    .peak-card { position:relative; height:420px; border-radius:var(--radius); overflow:hidden; border:1px solid rgba(201,168,76,0.12); }
     .pk-bg { position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 8s ease; }
     .peak-card:hover .pk-bg { transform:scale(1.06); }
-    .peak-card::after { content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(5,3,2,.97) 0%,rgba(5,3,2,.62) 42%,rgba(5,3,2,.12) 100%);pointer-events:none;z-index:1; }
+    .peak-card::after { content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(4,3,1,.97) 0%,rgba(10,8,2,.7) 38%,rgba(15,12,2,.18) 100%);pointer-events:none;z-index:1; }
     .peak-txt { position:absolute;bottom:0;left:0;right:0;padding:2rem 2.2rem;z-index:2; }
     .peak-elev { display:block;font-size:.53rem;letter-spacing:.28em;text-transform:uppercase;color:var(--acc);margin-bottom:.65rem; }
     .peak-name { font-family:var(--serif);font-size:2.4rem;font-weight:300;color:#fff;line-height:1;margin-bottom:.15rem; }
@@ -67,19 +68,19 @@
     .peak-tag.hi { background:rgba(229,48,48,.18);border-color:rgba(229,48,48,.3);color:#f08080; }
     .peak-tag.med { background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.3);color:#d4a84a; }
     .peak-tag.easy { background:rgba(106,171,168,.15);border-color:rgba(106,171,168,.3);color:var(--acc2); }
-    .peak-card.wide { grid-column:span 2; height:500px; }
+    .peak-card.wide { grid-column:span 2; height:500px; border:1px solid rgba(201,168,76,0.2); }
 
     /* DATA BADGES row */
     .peak-data { display:flex; gap:1.2rem; margin-top:.7rem; flex-wrap:wrap; }
-    .pd { display:flex; flex-direction:column; align-items:center; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-radius:12px; padding:.5rem .9rem; min-width:60px; }
+    .pd { display:flex; flex-direction:column; align-items:center; background:rgba(201,168,76,.08); border:1px solid rgba(201,168,76,.2); border-radius:12px; padding:.5rem .9rem; min-width:60px; }
     .pd-val { font-family:var(--serif);font-size:1.1rem;font-weight:300;color:#fff;line-height:1; }
     .pd-lbl { font-size:.48rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.42);margin-top:.2rem; }
 
     /* PRICING */
     .price-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; margin-top:3rem; }
-    .price-card { background:var(--glass); border:1px solid var(--glass-b); border-radius:var(--radius); padding:2.2rem 1.8rem; position:relative; overflow:hidden; transition:border-color .3s,transform .3s; }
-    .price-card:hover { border-color:rgba(106,171,168,.3); transform:translateY(-5px); }
-    .price-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--grad); transform:scaleX(0); transform-origin:left; transition:transform .3s; }
+    .price-card { background:rgba(0,0,0,.6); border:1px solid rgba(201,168,76,.18); border-radius:var(--radius); padding:2.4rem 2rem; position:relative; overflow:hidden; transition:border-color .3s,transform .3s; }
+    .price-card:hover { border-color:rgba(201,168,76,.55); transform:translateY(-5px); box-shadow:0 12px 40px rgba(201,168,76,.12); }
+    .price-card::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,#C9A84C,#F0D06A,#C9A84C,transparent); transform:scaleX(0); transform-origin:left; transition:transform .5s; }
     .price-card:hover::before { transform:scaleX(1); }
     .price-tier { font-size:.57rem; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--acc); margin-bottom:.8rem; }
     .price-amount { font-family:var(--serif); font-size:2.8rem; font-weight:300; color:#fff; line-height:1; margin-bottom:.3rem; }
@@ -89,19 +90,19 @@
     .price-inc li { font-size:.84rem; color:var(--text-2); padding:.4rem 0; border-bottom:1px solid rgba(255,255,255,.04); display:flex; align-items:flex-start; gap:.6rem; line-height:1.5; }
     .price-inc li:last-child { border-bottom:none; }
     .price-inc li::before { content:"✦"; color:var(--acc); font-size:.6rem; margin-top:.35rem; flex-shrink:0; }
-    .price-card.featured { border-color:rgba(106,171,168,.22); }
-    .price-card.featured::after { content:'Most Booked'; position:absolute; top:1.4rem; right:1.4rem; font-size:.52rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; background:var(--grad); color:#fff; padding:.25rem .7rem; border-radius:999px; }
+    .price-card.featured { border-color:rgba(201,168,76,.35); background:rgba(201,168,76,.06); }
+    .price-card.featured::after { content:'★  Most Chosen  ★'; position:absolute; top:1.4rem; right:1.4rem; font-size:.5rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; background:linear-gradient(135deg,#C9A84C,#F0D06A); color:#000; padding:.28rem .9rem; border-radius:999px; }
 
     /* PAGE LINKS */
     .page-links { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:5rem; }
     .page-link { background:var(--glass); border:1px solid var(--glass-b); border-radius:var(--radius); padding:1.8rem 2rem; display:flex; align-items:center; gap:1.2rem; transition:border-color .3s,transform .25s; }
-    .page-link:hover { border-color:rgba(106,171,168,.3); transform:translateY(-3px); }
+    .page-link:hover { border-color:rgba(201,168,76,.4); transform:translateY(-3px); box-shadow:0 8px 28px rgba(201,168,76,.08); }
     .page-link-icon { font-size:1.8rem; flex-shrink:0; }
     .page-link-label { font-size:.55rem; letter-spacing:.2em; text-transform:uppercase; color:var(--acc); margin-bottom:.3rem; }
     .page-link-name { font-family:var(--serif); font-size:1.3rem; font-weight:300; color:var(--text); }
     .page-link-arr { margin-left:auto; font-size:1.2rem; color:var(--text-3); flex-shrink:0; }
 
-    .peak-note { margin-top:2.5rem;background:var(--glass);border:1px solid var(--glass-b);border-radius:var(--radius);padding:2rem 2.2rem;display:flex;align-items:center;gap:2rem;flex-wrap:wrap; }
+    .peak-note { margin-top:2.5rem;background:rgba(201,168,76,.05);border:1px solid rgba(201,168,76,.2);border-radius:var(--radius);padding:2rem 2.2rem;display:flex;align-items:center;gap:2rem;flex-wrap:wrap; }
     .peak-cta { margin-left:auto;white-space:nowrap;display:inline-block;padding:.78rem 1.9rem;background:linear-gradient(135deg,#6AABA8,#4A8A87);color:#fff;font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border-radius:999px;flex-shrink:0; }
 
     @media(max-width:700px){
@@ -358,7 +359,7 @@
 </section>
 
 <!-- CTA -->
-<section style="background:var(--bg-2);padding:6rem 2rem;text-align:center;border-top:1px solid var(--line);">
+<section style="background:var(--bg-2);padding:6rem 2rem;text-align:center;border-top:1px solid rgba(201,168,76,.15);">
   <span style="display:block;font-size:.56rem;letter-spacing:.38em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:1.2rem;">Ready to Climb?</span>
   <h2 style="font-family:var(--serif);font-size:clamp(2.5rem,5vw,4.5rem);font-weight:300;color:#fff;line-height:1.05;margin-bottom:1.2rem;">Pick your <em style="font-style:italic;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">mountain</em></h2>
   <p style="font-size:.95rem;color:var(--text-2);max-width:46ch;margin:0 auto 2.5rem;line-height:1.8;">Tell me which peak and I will handle everything — transport, permits, timing, food and the guide. You just show up.</p>

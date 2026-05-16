@@ -11,13 +11,13 @@
   <style>
     *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
     :root {
-      --bg:#080808; --bg-1:#0e0e0e; --bg-2:#161616;
-      --glass:rgba(255,255,255,0.05); --glass-b:rgba(255,255,255,0.09);
-      --text:#f2f2f2; --text-2:rgba(242,242,242,0.58); --text-3:rgba(242,242,242,0.28);
-      --acc:#6AABA8; --acc2:#8fcfcc;
+      --bg:#060408; --bg-1:#0c070d; --bg-2:#120b12;
+      --glass:rgba(192,57,43,0.05); --glass-b:rgba(192,57,43,0.16);
+      --text:#f5ecf0; --text-2:rgba(245,236,240,0.55); --text-3:rgba(245,236,240,0.28);
+      --acc:#C0392B; --acc2:#E74C3C;
       --gold:#C9A84C;
-      --grad:linear-gradient(135deg,#6AABA8,#8fcfcc);
-      --line:rgba(255,255,255,0.08);
+      --grad:linear-gradient(135deg,#7B0D1E,#C0392B,#E74C3C);
+      --line:rgba(192,57,43,0.12);
       --serif:'Cormorant Garamond',Georgia,serif;
       --sans:'Plus Jakarta Sans',system-ui,sans-serif;
       --radius:16px;
@@ -30,11 +30,11 @@
     .nav-back { font-size:0.7rem; font-weight:500; letter-spacing:0.1em; color:var(--text-2); transition:color 0.2s; display:flex; align-items:center; gap:0.4rem; }
     .nav-back:hover { color:var(--text); }
     .nav-city { font-family:var(--serif); font-size:1.05rem; color:var(--text); }
-    .nav-book { font-size:0.65rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; padding:0.55rem 1.4rem; background:var(--grad); color:#fff; border-radius:999px; transition:opacity 0.2s,transform 0.2s; }
+    .nav-book { font-size:0.65rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; padding:0.55rem 1.4rem; background:linear-gradient(135deg,#7B0D1E,#C0392B); color:#fff; border-radius:999px; transition:opacity 0.2s,transform 0.2s; }
     .nav-book:hover { opacity:0.88; transform:translateY(-1px); }
     .ph { position:relative; height:100svh; min-height:620px; overflow:hidden; display:flex; align-items:flex-end; padding:62px 5% 4.5rem; }
     .ph-bg { position:absolute; inset:0; background-size:cover; background-position:center; transition:opacity 2s ease; z-index:0; }
-    .ph::after { content:''; position:absolute; inset:0; background:linear-gradient(to top,rgba(5,3,2,.93) 0%,rgba(5,3,2,.48) 50%,rgba(5,3,2,.1) 100%); pointer-events:none; }
+    .ph::after { content:''; position:absolute; inset:0; background:linear-gradient(to top,rgba(6,2,4,.95) 0%,rgba(8,2,4,.5) 50%,rgba(15,4,8,.1) 100%); pointer-events:none; }
     .ph-txt { position:relative; z-index:2; opacity:0; animation:phUp .9s ease .3s forwards; }
     .ph-label { display:block; font-size:.56rem; letter-spacing:.38em; text-transform:uppercase; color:rgba(255,255,255,.6); margin-bottom:1.1rem; }
     .ph-h1 { font-family:var(--serif); font-size:clamp(4rem,7.5vw,7.5rem); font-weight:300; line-height:.9; color:#fff; margin-bottom:1.4rem; }
@@ -54,9 +54,9 @@
 
     /* COMPANION CARDS */
     .comp-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.6rem; margin-top:3rem; }
-    .comp-card { background:var(--glass); border:1px solid var(--glass-b); border-radius:var(--radius); overflow:hidden; transition:transform .3s,border-color .3s; }
-    .comp-card:hover { transform:translateY(-8px); border-color:rgba(106,171,168,.3); }
-    .comp-hero { height:200px; position:relative; display:flex; align-items:center; justify-content:center; }
+    .comp-card { background:rgba(0,0,0,.55); border:1px solid rgba(192,57,43,.18); border-radius:var(--radius); overflow:hidden; transition:transform .3s,border-color .3s,box-shadow .3s; }
+    .comp-card:hover { transform:translateY(-8px); border-color:rgba(192,57,43,.5); box-shadow:0 16px 48px rgba(192,57,43,.15); }
+    .comp-hero { height:260px; position:relative; display:flex; align-items:center; justify-content:center; overflow:hidden; }
     .comp-hero::after { content:''; position:absolute; inset:0; background:linear-gradient(to top,rgba(8,8,8,1) 0%,rgba(8,8,8,.3) 100%); }
     .comp-avatar { width:100px; height:100px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:var(--serif); font-size:2.8rem; color:#fff; font-weight:300; position:relative; z-index:1; border:2px solid rgba(255,255,255,.15); }
     .comp-body { padding:1.8rem 2rem 2.2rem; }
@@ -70,7 +70,7 @@
     .comp-bio { font-size:.85rem; color:var(--text-2); line-height:1.82; margin-bottom:1.6rem; }
     .comp-price { font-family:var(--serif); font-size:2.4rem; font-weight:300; color:#fff; line-height:1; margin-bottom:.2rem; }
     .comp-price-sub { font-size:.62rem; color:var(--text-3); letter-spacing:.1em; text-transform:uppercase; margin-bottom:1.6rem; }
-    .comp-btn { display:inline-block; padding:.7rem 1.9rem; background:linear-gradient(135deg,#6AABA8,#4A8A87); color:#fff; font-size:.65rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; border-radius:999px; }
+    .comp-btn { display:inline-block; padding:.7rem 1.9rem; background:linear-gradient(135deg,#7B0D1E,#C0392B); color:#fff; font-size:.65rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; border-radius:999px; }
 
     /* COMPARISON TABLE */
     .comp-table { width:100%; border-collapse:collapse; margin-top:2.5rem; }
@@ -93,13 +93,52 @@
     @media(max-width:768px){ .comp-grid{grid-template-columns:1fr} .page-links{grid-template-columns:1fr} }
     /* ACTIVITY GRID */
     .act-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-top:2.5rem; }
-    .act-item { background:var(--glass); border:1px solid var(--glass-b); border-radius:var(--radius); padding:1.6rem 1.4rem; transition:border-color .3s,transform .25s; }
+    .act-item { background:rgba(0,0,0,.4); border:1px solid rgba(192,57,43,.12); border-radius:var(--radius); padding:1.6rem 1.4rem; transition:border-color .3s,transform .25s; }
     .act-item:hover { border-color:rgba(106,171,168,.3); transform:translateY(-4px); }
     .act-icon { font-size:1.8rem; display:block; margin-bottom:.8rem; line-height:1; }
     .act-title { font-family:var(--serif); font-size:1.15rem; font-weight:300; color:var(--text); margin-bottom:.5rem; line-height:1.2; }
     .act-desc { font-size:.82rem; color:var(--text-2); line-height:1.75; }
     @media(max-width:768px){ .act-grid{grid-template-columns:1fr 1fr} }
     @media(max-width:500px){ .act-grid{grid-template-columns:1fr} }
+    /* REAL PHOTOS */
+    .comp-photo { width:100%; height:100%; object-fit:cover; object-position:center 15%; display:block; }
+    .comp-photo.tony { object-position:center 8%; }
+    .comp-photo.larion { object-position:center 10%; }
+
+    /* RUBY diamond facet bg */
+    body::before { content:''; position:fixed; inset:0; 
+      background:repeating-linear-gradient(60deg,transparent,transparent 58px,rgba(192,57,43,.025) 58px,rgba(192,57,43,.025) 59px),
+                 repeating-linear-gradient(-60deg,transparent,transparent 58px,rgba(192,57,43,.025) 58px,rgba(192,57,43,.025) 59px);
+      pointer-events:none; z-index:0; }
+    body > * { position:relative; z-index:1; }
+
+    /* COMP-BTN ruby */
+    .comp-btn { display:inline-block; padding:.7rem 1.9rem; background:linear-gradient(135deg,#7B0D1E,#C0392B); color:#fff; font-size:.65rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; border-radius:999px; transition:opacity .2s,transform .2s; }
+    .comp-btn:hover { opacity:.88; transform:translateY(-1px); }
+
+    /* SPEC TAGS ruby */
+    .comp-spec-tag { display:inline-block; font-size:.65rem; background:rgba(192,57,43,.12); border:1px solid rgba(192,57,43,.25); border-radius:999px; padding:.2rem .7rem; color:#E74C3C; margin:.2rem .2rem 0 0; }
+    .comp-spec-title { font-size:.6rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:#C0392B; margin-bottom:.5rem; }
+
+    /* COMP-LANG ruby */
+    .comp-lang { font-size:.72rem; padding:.25rem .72rem; border:1px solid rgba(192,57,43,.2); border-radius:999px; color:var(--text-2); }
+
+    /* COMP-ROLE ruby */
+    .comp-role { font-size:.58rem; letter-spacing:.18em; text-transform:uppercase; color:#C0392B; margin-bottom:1.2rem; }
+
+    /* COMPARISON TABLE ruby */
+    .comp-table th { font-size:.58rem; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:rgba(192,57,43,.65); padding:.9rem 1.2rem; text-align:left; border-bottom:1px solid rgba(192,57,43,.15); }
+    .comp-table .chk { color:#E74C3C; font-size:1rem; }
+    .comp-table .price-cell { font-family:var(--serif); font-size:1.1rem; color:#E74C3C; }
+
+    /* SEC-LABEL ruby */
+    .sec-label { display:inline-block; font-size:.57rem; font-weight:600; letter-spacing:.3em; text-transform:uppercase; background:linear-gradient(135deg,#C0392B,#E74C3C); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:1rem; }
+
+    /* ACT-ITEM ruby hover */
+    .act-item:hover { border-color:rgba(192,57,43,.4); transform:translateY(-4px); }
+
+    /* PAGE LINK ruby */
+    .page-link:hover { border-color:rgba(192,57,43,.4); transform:translateY(-3px); box-shadow:0 8px 28px rgba(192,57,43,.1); }
   </style>
 </head>
 <body>
@@ -131,8 +170,8 @@
 
       <!-- TONY -->
       <div class="comp-card">
-        <div class="comp-hero" style="background:linear-gradient(135deg,rgba(106,171,168,.3),rgba(8,8,8,.8));">
-          <div class="comp-avatar" style="background:linear-gradient(135deg,#6AABA8,#3a7b78);">T</div>
+        <div class="comp-hero">
+          <img src="img/guide-tony.jpg" class="comp-photo tony" alt="Tony — Private Kansai Guide" />
         </div>
         <div class="comp-body">
           <div class="comp-name">Tony</div>
@@ -184,8 +223,8 @@
 
       <!-- LARION -->
       <div class="comp-card">
-        <div class="comp-hero" style="background:linear-gradient(135deg,rgba(201,131,74,.3),rgba(8,8,8,.8));">
-          <div class="comp-avatar" style="background:linear-gradient(135deg,#c9834a,#9a5828);">L</div>
+        <div class="comp-hero">
+          <img src="img/guide-larion.jpg" class="comp-photo larion" alt="Larion — City & Cultural Guide" />
         </div>
         <div class="comp-body">
           <div class="comp-name">Larion</div>
@@ -366,7 +405,7 @@
 </section>
 
 <!-- CTA -->
-<section style="background:var(--bg-2);padding:6rem 2rem;text-align:center;border-top:1px solid var(--line);">
+<section style="background:var(--bg-2);padding:6rem 2rem;text-align:center;border-top:1px solid rgba(192,57,43,.18);">
   <span style="display:block;font-size:.56rem;letter-spacing:.38em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:1.2rem;">Ready?</span>
   <h2 style="font-family:var(--serif);font-size:clamp(2.5rem,5vw,4.5rem);font-weight:300;color:#fff;line-height:1.05;margin-bottom:1.2rem;">One guide. <em style="font-style:italic;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">All day.</em></h2>
   <p style="font-size:.95rem;color:var(--text-2);max-width:46ch;margin:0 auto 2.5rem;line-height:1.8;">Send us your dates and who you want to go with. We reply within 24 hours with a confirmation and a plan.</p>
