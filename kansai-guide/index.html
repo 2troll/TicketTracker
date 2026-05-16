@@ -7,6 +7,7 @@
   <meta name="description" content="Private guide for Osaka and the Kansai region." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -354,6 +355,8 @@
     <button class="lang-btn active" data-l="en">EN</button>
     <button class="lang-btn"        data-l="es">ES</button>
     <button class="lang-btn"        data-l="ru">RU</button>
+    <button class="lang-btn"        data-l="cs">CS</button>
+    <button class="lang-btn"        data-l="ar">AR</button>
   </div>
 </nav>
 
@@ -494,109 +497,8 @@
       <h2 data-t="map.h2">Our routes across <span class="acc">Kansai</span></h2>
       <p data-t="map.sub">Click a route below the map to highlight it.</p>
     </div>
-    <div class="map-container rev d1">
-      <svg class="map-svg" viewBox="0 0 720 440" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <pattern id="mgrid" width="28" height="28" patternUnits="userSpaceOnUse">
-            <path d="M 28 0 L 0 0 0 28" fill="none" stroke="rgba(255,255,255,0.045)" stroke-width="0.5"/>
-          </pattern>
-          <filter id="mglow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="4" result="blur"/>
-            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-        </defs>
-
-        <!-- Grid -->
-        <rect width="720" height="440" fill="url(#mgrid)" rx="12"/>
-
-        <!-- Osaka Bay water area -->
-        <path d="M 170,310 Q 210,370 260,390 Q 310,405 350,385 Q 380,360 370,330 Q 340,295 295,282 Q 240,265 195,280 Z" fill="rgba(20,50,90,0.3)" stroke="rgba(40,100,180,0.15)" stroke-width="1"/>
-        <text x="260" y="340" text-anchor="middle" fill="rgba(40,120,220,0.25)" font-size="9" font-family="sans-serif" letter-spacing="2">OSAKA BAY</text>
-
-        <!-- Region soft boundary -->
-        <path d="M 55,170 Q 90,95 160,75 Q 230,55 300,65 Q 390,70 450,110 Q 495,145 505,210 Q 510,275 480,330 Q 450,390 390,415 Q 340,432 285,420 Q 225,405 175,375 Q 130,345 98,300 Q 65,255 55,210 Z" fill="rgba(229,48,48,0.025)" stroke="rgba(229,48,48,0.08)" stroke-width="1"/>
-
-        <!-- Mountain hint (north Kyoto) -->
-        <path d="M 340,60 L 360,30 L 380,60 Z M 390,70 L 408,42 L 426,70 Z M 290,68 L 305,45 L 320,68 Z" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-
-        <!-- ROUTE LINES (drawn under city dots) -->
-        <!-- R03: Himeji → Osaka → Nara (amber) -->
-        <path id="rl-3" class="rline" d="M 88,208 L 282,248 L 392,252" stroke="#ffaa00" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
-        <!-- R04: Osaka → Kōyasan (purple) -->
-        <path id="rl-4" class="rline" d="M 282,248 Q 290,310 308,372" stroke="#b06cc8" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/>
-        <!-- R05: Osaka → Kobe (blue) -->
-        <path id="rl-5" class="rline" d="M 282,248 L 192,233" stroke="#4499dd" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/>
-        <!-- R06: Osaka → Kyoto (teal) -->
-        <path id="rl-6" class="rline" d="M 282,248 Q 310,195 355,145" stroke="#22cc88" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/>
-        <!-- R01 loop: Osaka food (red circle) -->
-        <circle id="rl-1" class="rline" cx="282" cy="248" r="38" stroke="#e53030" stroke-width="2.5" stroke-dasharray="8 5" opacity="0.5" fill="none"/>
-        <!-- R02 loop: Kyoto (orange circle) -->
-        <circle id="rl-2" class="rline" cx="355" cy="145" r="32" stroke="#ff6b35" stroke-width="2.5" stroke-dasharray="8 5" opacity="0.5" fill="none"/>
-
-        <!-- City glow halos -->
-        <circle cx="282" cy="248" r="32" fill="rgba(229,48,48,0.07)"/>
-        <circle cx="355" cy="145" r="24" fill="rgba(255,107,53,0.07)"/>
-
-        <!-- CITY MARKERS -->
-        <!-- Himeji -->
-        <g class="city-dot" style="cursor:default">
-          <circle cx="88" cy="208" r="12" class="cpulse" fill="#e53030"/>
-          <circle cx="88" cy="208" r="5" fill="#ff8870" filter="url(#mglow)"/>
-          <text x="88" y="193" text-anchor="middle" fill="rgba(255,255,255,0.75)" font-size="9.5" font-family="'Plus Jakarta Sans',sans-serif" font-weight="600" letter-spacing="1.2">HIMEJI</text>
-          <text x="88" y="228" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="9" font-family="'Cormorant Garamond',serif">姫路</text>
-        </g>
-
-        <!-- Kobe -->
-        <g class="city-dot" style="cursor:default">
-          <circle cx="192" cy="233" r="12" class="cpulse" fill="#e53030" style="animation-delay:0.6s"/>
-          <circle cx="192" cy="233" r="5" fill="#ff8870" filter="url(#mglow)"/>
-          <text x="192" y="218" text-anchor="middle" fill="rgba(255,255,255,0.75)" font-size="9.5" font-family="'Plus Jakarta Sans',sans-serif" font-weight="600" letter-spacing="1.2">KOBE</text>
-          <text x="192" y="253" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="9" font-family="'Cormorant Garamond',serif">神戸</text>
-        </g>
-
-        <!-- Osaka (main hub — bigger) -->
-        <g class="city-dot" style="cursor:default">
-          <circle cx="282" cy="248" r="18" class="cpulse" fill="#e53030" style="animation-delay:0.3s"/>
-          <circle cx="282" cy="248" r="7" fill="#ff5040" filter="url(#mglow)"/>
-          <text x="282" y="230" text-anchor="middle" fill="rgba(255,255,255,0.95)" font-size="12" font-family="'Plus Jakarta Sans',sans-serif" font-weight="700" letter-spacing="2">OSAKA</text>
-          <text x="282" y="272" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="11" font-family="'Cormorant Garamond',serif">大阪</text>
-        </g>
-
-        <!-- Kyoto -->
-        <g class="city-dot" style="cursor:default">
-          <circle cx="355" cy="145" r="15" class="cpulse" fill="#ff6b35" style="animation-delay:0.9s"/>
-          <circle cx="355" cy="145" r="6" fill="#ffaa60" filter="url(#mglow)"/>
-          <text x="355" y="128" text-anchor="middle" fill="rgba(255,255,255,0.88)" font-size="11" font-family="'Plus Jakarta Sans',sans-serif" font-weight="600" letter-spacing="1.5">KYOTO</text>
-          <text x="355" y="165" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="10" font-family="'Cormorant Garamond',serif">京都</text>
-        </g>
-
-        <!-- Nara -->
-        <g class="city-dot" style="cursor:default">
-          <circle cx="392" cy="252" r="12" class="cpulse" fill="#e53030" style="animation-delay:1.1s"/>
-          <circle cx="392" cy="252" r="5" fill="#ff8870" filter="url(#mglow)"/>
-          <text x="420" y="248" text-anchor="start" fill="rgba(255,255,255,0.75)" font-size="9.5" font-family="'Plus Jakarta Sans',sans-serif" font-weight="600" letter-spacing="1.2">NARA</text>
-          <text x="420" y="262" text-anchor="start" fill="rgba(255,255,255,0.3)" font-size="9" font-family="'Cormorant Garamond',serif">奈良</text>
-        </g>
-
-        <!-- Kōyasan -->
-        <g class="city-dot" style="cursor:default">
-          <circle cx="308" cy="372" r="12" class="cpulse" fill="#b06cc8" style="animation-delay:1.4s"/>
-          <circle cx="308" cy="372" r="5" fill="#d090e8" filter="url(#mglow)"/>
-          <text x="308" y="356" text-anchor="middle" fill="rgba(255,255,255,0.72)" font-size="9.5" font-family="'Plus Jakarta Sans',sans-serif" font-weight="600" letter-spacing="0.8">KŌYASAN</text>
-          <text x="308" y="392" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="9" font-family="'Cormorant Garamond',serif">高野山</text>
-        </g>
-
-        <!-- Compass -->
-        <g transform="translate(668,48)">
-          <text x="0" y="-5" text-anchor="middle" fill="rgba(255,255,255,0.22)" font-size="9" font-family="sans-serif" letter-spacing="1">N</text>
-          <line x1="0" y1="0" x2="0" y2="14" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-          <polygon points="0,-2 -3,6 0,4 3,6" fill="rgba(229,48,48,0.5)"/>
-        </g>
-
-        <!-- Region label -->
-        <text x="36" y="430" fill="rgba(255,255,255,0.12)" font-size="8.5" font-family="sans-serif" letter-spacing="3">KANSAI 関西地方</text>
-      </svg>
-
+    <div class="map-container rev d1" style="padding:0;overflow:hidden;">
+      <div id="kansai-map" style="height:500px;border-radius:20px;"></div>
       <!-- Legend -->
       <div class="map-legend" id="map-legend">
         <div class="leg-item" data-route="1"><span class="leg-dot" style="background:#e53030"></span><span data-t="leg.1">Osaka Food Circuit</span></div>
@@ -1212,7 +1114,134 @@ const T = {
     'map.label':'Интерактивная карта','map.h2':'Наши маршруты по <span class="acc">Кансаю</span>','map.sub':'Нажмите на маршрут под картой, чтобы выделить его.',
     'leg.1':'Гастрономический тур','leg.2':'Скрытое Киото','leg.3':'Нара и Химэдзи','leg.4':'Паломничество Коясан','leg.5':'Утончённый Кобе','leg.6':'Маршрут Осака–Киото',
     'gal.label':'Фотогалерея','gal.h2':'Моменты из <span class="acc">наших туров</span>','gal.sub':'Настоящие места. Настоящие впечатления. Каждое фото — история из Кансая.'
+  },
+  cs: {
+    'nav.region':'Kansai','nav.guide':'Průvodce','nav.tours':'Výlety','nav.routes':'Trasy','nav.pricing':'Ceny','nav.langs':'Jazyky','nav.contact':'Kontakt','nav.map':'Mapa','nav.gallery':'Galerie',
+    'hero.tag':'Soukromý Průvodce · Osaka · Region Kansai · Japonsko','hero.l1':'Objevte','hero.l2':'Duši','hero.l3':'Japonska',
+    'hero.sub':'Za hranicemi průvodců. Intimní cesta přes Osaku, Kjóto, Naru a skryté kouty Kansai — s průvodcem, který tu žije.',
+    'hero.cta1':'Rezervovat Soukromý Výlet','hero.cta2':'O Průvodci','scroll':'Dolů',
+    'marq.tours':'Soukromé Výlety','marq.food':'Jídlo a Kultura',
+    'region.label':'Region · 関西地方','region.h2':'Kde se <span class="acc">zrodila japonská historie</span>',
+    'region.p':'Kansai je kulturní a duchovní srdce Japonska. Dvě starověká hlavní města, nejlepší kuchyně v zemi a způsob života, který zůstává výrazně odlišný — teplejší, upřímnější. Sedm prefektur. Staletí příběhů.',
+    'city.osaka':'Kuchyně Japonska. Pouliční jídlo, neon, obchodní duch a nejotevřenější lidé v celé zemi.',
+    'city.kyoto':'Tisíc let císařské kultury. Dřevěné chrámy, bambusové háje, čtvrtě gejš — a skryté cesty.',
+    'city.nara':'Starobylí jeleni se volně procházejí mezi památkami UNESCO. První stálé japonské hlavní město.',
+    'city.kobe':'Přístavní elegance, legendární hovězí wagyu a panorama s evropským vlivem.',
+    'city.himeji':'Nejdokonalejší japonský hrad — bílý jako čapí let, nezměněný čtyři staletí.',
+    'city.koyasan':'Přespěte v horském klášteře. Procházka po hřbitově při světle luceren za úsvitu.',
+    'stat.1':'Prefektur','stat.2':'Dokončených výletů','stat.3':'Jazyků','stat.4':'% Soukromé',
+    'about.label':'Váš Průvodce','about.h2':'Poznajte <span class="acc">Tonyho</span>',
+    'about.p1':'Jsem Tony — soukromý průvodce v regionu Kansai. Přišel jsem do Japonska přitahován kulturou, jídlem a lidmi a zůstal jsem.',
+    'about.p2':'Nenabízím balíčkové zájezdy — nabízím přístup k Japonsku, které znám osobně. Restaurace v uličkách bez Google Maps. Chrám v 6 ráno před davy.',
+    'about.p3':'Plynně mluvím anglicky, španělsky a arabsky a přizpůsobuji se jakémukoli tempu a zájmům.',
+    'about.p4':'Každý výlet je soukromý, plně personalizovaný. Žádné scénáře. Žádné skupinové autobusy. Jen Japonsko.',
+    'exp.label':'Co nabízím','exp.h2':'Výlety <span class="acc">na míru</span>',
+    'exp.1.title':'Celodenní Ponoření do Města','exp.1.desc':'Jedno město, jeden den, správně. Trhy hned ráno, skryté svatyně, oběd na ulici, bary v sousedství za soumraku.',
+    'exp.2.title':'Vícedenní Cesta po Kansai','exp.2.desc':'Kuratovaný oblouk napříč regionem — kombinace ikonických míst a míst, která většina turistů nikdy nenajde.',
+    'exp.3.title':'Gastronomické Výlety','exp.3.desc':'Osaka je gastronomickým hlavním městem Japonska. Procházíme trhem Kuromon a nejlepším sushi barem ve stoje.',
+    'exp.4.title':'Kulturní a Duchovní Cesty','exp.4.desc':'Pobyty v klášterech, úsvitné procházky chrámy, tradiční řemeslné workshopy — pro cestovatele toužící po hloubce.',
+    'tag.1day':'1 Den','tag.group':'1–6 Osob','tag.custom':'Vlastní Trasa','tag.days':'3–7 Dní','tag.log':'Plná Logistika','tag.acc':'Tipy na Ubytování','tag.half':'Půlden','tag.food':'Jídlo Zahrnuto','tag.flex':'Flexibilní','tag.imm':'Pohlcující',
+    'routes.label':'Odchozí Trasy','routes.h2':'Konkrétní <span class="acc">itineráře</span>',
+    'route.n1':'Trasa 01','route.n2':'Trasa 02','route.n3':'Trasa 03','route.n4':'Trasa 04','route.n5':'Trasa 05','route.n6':'Trasa 06',
+    'route.1.title':'Gastronomický Okruh Osakos','route.2.title':'Skryté Kjóto','route.3.title':'Nara a Hrad Himeji','route.4.title':'Pouť na Kōyasan','route.5.title':'Rafinovaný Kobe','route.6.title':'Celý Oblouk Osaka–Kjóto',
+    'rtag.4h':'4 Hodiny','rtag.5h':'5 Hodin','rtag.8h':'8 Hodin','rtag.9h':'9 Hodin','rtag.2d':'2 Dny','rtag.food':'Gastronomie','rtag.culture':'Kultura','rtag.hist':'Historie','rtag.spirit':'Duchovní','rtag.lux':'Luxus','rtag.best':'Bestseller','rtag.any':'Jakákoli Skupina','rtag.max4':'Max 4','rtag.max6':'Max 6',
+    'r1.s1':'Trh Kuromon — k otevření, s prodejci','r1.s2':'Procházka kanálem Dotonbori a takoyaki','r1.s3':'Oběd v čtvrti Shinsekai','r1.s4':'Skrytý shotengai a bar na saké za soumraku',
+    'r1.dep':'St. Namba Vchod 14 · 9:00',
+    'r2.s1':'Fushimi Inari před davy — 8:30','r2.s2':'Filozofova Stezka v tichu','r2.s3':'Tajné uličky Gionu a čajový obřad','r2.s4':'Rezervace večeře kaiseki u řeky',
+    'r2.dep':'Centrální Vchod St. Kjóto · 8:30',
+    'r3.s1':'Tōdai-ji — největší dřevěná stavba na světě','r3.s2':'Jelení park Kasuga Grand Shrine','r3.s3':'Hrad Himeji — UNESCO','r3.s4':'Skryté zahrady hradního města za soumraku',
+    'r3.dep':'Osaka / Kjóto · 8:00',
+    'r4.s1':'Horský vlak a lanovka na Kōyu','r4.s2':'Hřbitov Okunoin při světle luceren — večer','r4.s3':'Pobyt v klášteře shukubō a vegetariánská večeře','r4.s4':'Ranní modlitba s mnichy — návrat odpoledne',
+    'r4.dep':'St. Osaka Namba · 9:00',
+    'r5.s1':'Zahraniční čtvrť Kitano Ijinkan','r5.s2':'Oběd z hovězího wagyu z Kobe','r5.s3':'Degustace v pivovaru saké v Nadě','r5.s4':'Přístav Meriken Park ve zlatou hodinu',
+    'r5.dep':'St. Sannomiya · 10:00',
+    'r6.s1':'Den 1 — Osaka: trh, pouliční jídlo, Shinsekai','r6.s2':'Večer: neon Dotonbori a noční izakaya','r6.s3':'Den 2 — Kjóto: Arashiyama, Gion, skrytý chrám','r6.s4':'Návrat se soukromou degustací saké ve vlaku',
+    'r6.dep':'Transfer z hotelu zahrnut · 8:30',
+    'pricing.label':'Plány a Ceny','pricing.h2':'Vyberte si <span class="acc">zážitek</span>','pricing.sub':'Všechny výlety jsou 100% soukromé. Ceny jsou za osobu s minimem 2 hostů.',
+    'plan.1.name':'Půlden','plan.1.dur':'4 Hodiny · Až 4 osoby','plan.2.name':'Celý Den','plan.2.dur':'8 Hodin · Až 6 osob','plan.3.name':'Vícedenní Cesta','plan.3.dur':'3–7 Dní · Až 6 osob','plan.4.name':'Plně na Míru','plan.4.dur':'Libovolná délka · Libovolná skupina','plan.4.price':'Na dotaz',
+    'plan.perperson':'za osobu · min 2 hosté','plan.perday':'za den · skupina do 4','plan.onrequest':'cena na vyžádání','plan.popular':'Nejpopulárnější',
+    'pf.1city':'Jedna čtvrť nebo oblast','pf.1city-full':'Jedno celé město','pf.pickup':'Místo setkání u hotelu','pf.pickup-drop':'Odvoz z/do hotelu','pf.lunch':'Doporučení a rezervace oběda','pf.custom':'Vlastní itinerář','pf.guide':'Plně soukromý průvodce','pf.24h':'Podpora WhatsApp 24h','pf.multi':'Více měst v Kansai','pf.logistics':'Kompletní logistika','pf.hotel':'Doporučení ubytování','pf.transport':'Pomoc s rezervací dopravy','pf.any':'Bez omezení délky nebo skupiny','pf.corp':'Firemní a rodinné skupiny','pf.special':'Zvláštní příležitosti a návrhy','pf.vip':'VIP rezervace restaurací',
+    'plan.cta':'Rezervovat','plan.cta.bespoke':'Požádat o Nabídku',
+    'test.label':'Hodnocení Klientů','test.h2':'Co říkají <span class="acc">cestovatelé</span>','test.sub':'Přes 200 soukromých výletů. Skuteční lidé, skutečné příběhy.',
+    'test.1.q':'Tony nás zavedl do malé restaurace ramen v uličce Osaky — bez cedule, bez anglického menu, jen dokonalost.',
+    'test.2.q':'Strávili jsme tři dny s Tonym po celém Kansai. Zná každou uličku, každého kuchaře, každý chrám.',
+    'test.3.q':'Nejlepší zážitek celé naší cesty do Japonska. Tony mluví španělsky perfektně.',
+    'test.4.q':'Uskutečnili jsme 5denní cestu z Osaky na Kōyasan. Probuzení v klášteře za úsvitu je nezapomenutelné.',
+    'test.5.q':'Gastronomický výlet přes trh Kuromon byl neuvěřitelný. Tony osobně znal každého prodejce.',
+    'test.6.q':'Jako člověk s japonskými kořeny potřeboval jsem průvodce s hloubkou. Tony nám dal historii, kulturu i emoce.',
+    'contact.label':'Kontaktujte','contact.h2':'Připraveni prozkoumat <span class="acc">Kansai?</span>',
+    'contact.p':'Sdělte mi data cestování, zájmy a velikost skupiny. Odpovím do 24 hodin.',
+    'form.name':'Vaše Jméno','form.email':'Váš Email','form.dates':'Datum Cesty (nepovinné)','form.msg':'Vaše Zpráva','form.send':'Odeslat Zprávu','form.sending':'Odesílám…','form.retry':'Zkusit Znovu',
+    'form.ok.title':'Zpráva Odeslána','form.ok.text':'Děkuji — ozvu se do 24 hodin.',
+    'footer.l':'© 2026 Tony Hanma · Soukromý Průvodce Kansai','footer.r':'Osaka · Kansai · Japonsko',
+    'map.label':'Interaktivní Mapa','map.h2':'Naše trasy po <span class="acc">Kansai</span>','map.sub':'Klikněte na trasu pro její zvýraznění.',
+    'leg.1':'Gastronomický Okruh','leg.2':'Skryté Kjóto','leg.3':'Nara a Himeji','leg.4':'Pouť Kōyasan','leg.5':'Rafinovaný Kobe','leg.6':'Oblouk Osaka–Kjóto',
+    'gal.label':'Fotogalerie','gal.h2':'Momenty z <span class="acc">našich výletů</span>','gal.sub':'Skutečná místa. Skutečné zážitky. Každá fotka vypráví příběh z Kansai.'
+  },
+  ar: {
+    'nav.region':'كانساي','nav.guide':'المرشد','nav.tours':'الجولات','nav.routes':'المسارات','nav.pricing':'الأسعار','nav.langs':'اللغات','nav.contact':'اتصل','nav.map':'الخريطة','nav.gallery':'معرض الصور',
+    'hero.tag':'مرشد خاص · أوساكا · منطقة كانساي · اليابان','hero.l1':'اكتشف','hero.l2':'روح','hero.l3':'اليابان',
+    'hero.sub':'ما وراء الأدلة السياحية. رحلة حميمة عبر أوساكا وكيوتو ونارا والزوايا الخفية لكانساي — بقيادة من يعيش هناك.',
+    'hero.cta1':'احجز جولة خاصة','hero.cta2':'عن المرشد','scroll':'انزل',
+    'marq.tours':'جولات خاصة','marq.food':'الطعام والثقافة',
+    'region.label':'المنطقة · 関西地方','region.h2':'حيث وُلد <span class="acc">تاريخ اليابان</span>',
+    'region.p':'كانساي هي القلب الثقافي والروحي لليابان. موطن عاصمتين قديمتين وأفضل مطبخ في البلاد وأسلوب حياة مختلف تماماً — أدفأ وأكثر صدقاً. سبع محافظات. قرون من القصص.',
+    'city.osaka':'مطبخ اليابان. طعام الشوارع والنيون والروح التجارية وأكثر الناس انفتاحاً في البلاد.',
+    'city.kyoto':'ألف عام من الثقافة الإمبراطورية. معابد خشبية وبساتين الخيزران وأحياء الغيشا — والمسارات الخفية.',
+    'city.nara':'غزلان قديمة تتجول بحرية بين أضرحة اليونسكو. أول عاصمة دائمة في اليابان.',
+    'city.kobe':'أناقة ميناء، لحم واغيو الأسطوري وأفق بتأثير أوروبي بين الجبال والبحر.',
+    'city.himeji':'أكمل قلعة يابانية — بيضاء كطيران الطائر، لم تتغير أربعة قرون.',
+    'city.koyasan':'نم في دير جبلي. تمشَّ في ممرات المقبرة على ضوء الفوانيس عند الفجر.',
+    'stat.1':'محافظات مغطاة','stat.2':'جولات مكتملة','stat.3':'لغات','stat.4':'% خاصة',
+    'about.label':'مرشدك','about.h2':'تعرف على <span class="acc">توني</span>',
+    'about.p1':'أنا توني — مرشد خاص في منطقة كانساي. جئت إلى اليابان منجذباً بثقافتها وطعامها وناسها، ولم أغادر.',
+    'about.p2':'ما أقدمه ليس جولة مُعبأة — بل وصول إلى اليابان التي أعرفها شخصياً. المطاعم في الأزقة التي لا تظهر على خرائط Google. المعبد في الساعة 6 صباحاً قبل الحشود.',
+    'about.p3':'أتحدث الإنجليزية والإسبانية والعربية بطلاقة، وأتكيف مع أي وتيرة واهتمام.',
+    'about.p4':'كل جولة خاصة ومخصصة بالكامل. لا نصوص مسبقة. لا حافلات جماعية. فقط اليابان.',
+    'exp.label':'ما أقدمه','exp.h2':'تجارب <span class="acc">مصممة لك</span>',
+    'exp.1.title':'غمر كامل في المدينة ليوم','exp.1.desc':'مدينة واحدة، يوم واحد، بالشكل الصحيح. الأسواق عند الافتتاح، الأضرحة الخفية، غداء الشوارع، بارات الحي عند الغسق.',
+    'exp.2.title':'رحلة متعددة الأيام في كانساي','exp.2.desc':'مسار منسق عبر المنطقة — التوازن بين المعالم البارزة والأماكن التي نادراً ما يجدها السياح.',
+    'exp.3.title':'جولات الطعام والأسواق','exp.3.desc':'أوساكا هي عاصمة الطعام في اليابان. نتجول في سوق كورومون وأفضل بار سوشي واقف ستزوره على الإطلاق.',
+    'exp.4.title':'رحلات ثقافية وروحانية','exp.4.desc':'إقامة في أديرة ومشي فجري في المعابد وورش الحرف التقليدية — للمسافرين الباحثين عن العمق.',
+    'tag.1day':'يوم واحد','tag.group':'1–6 أشخاص','tag.custom':'مسار مخصص','tag.days':'3–7 أيام','tag.log':'لوجستيات كاملة','tag.acc':'نصائح الإقامة','tag.half':'نصف يوم','tag.food':'طعام مشمول','tag.flex':'مرن','tag.imm':'غامر',
+    'routes.label':'مسارات المغادرة','routes.h2':'مسارات <span class="acc">محددة</span>',
+    'route.n1':'مسار 01','route.n2':'مسار 02','route.n3':'مسار 03','route.n4':'مسار 04','route.n5':'مسار 05','route.n6':'مسار 06',
+    'route.1.title':'دائرة طعام الشوارع في أوساكا','route.2.title':'كيوتو الخفية','route.3.title':'نارا وقلعة هيميجي','route.4.title':'حج كōياسان','route.5.title':'كوبي الراقية','route.6.title':'القوس الكامل أوساكا–كيوتو',
+    'rtag.4h':'4 ساعات','rtag.5h':'5 ساعات','rtag.8h':'8 ساعات','rtag.9h':'9 ساعات','rtag.2d':'يومان','rtag.food':'تركيز على الطعام','rtag.culture':'ثقافة','rtag.hist':'تاريخ','rtag.spirit':'روحاني','rtag.lux':'فاخر','rtag.best':'الأكثر مبيعاً','rtag.any':'أي مجموعة','rtag.max4':'حد 4','rtag.max6':'حد 6',
+    'r1.s1':'سوق كورومون — عند الافتتاح مع الباعة','r1.s2':'جولة قناة دوتونبوري وتذوق تاكوياكي','r1.s3':'غداء في حي شينسيكاي','r1.s4':'شوتينغاي خفي وبار ساكي عند الغسق',
+    'r1.dep':'محطة نامبا مخرج 14 · 9:00 ص',
+    'r2.s1':'فوشيمي إناري قبل الحشود — 8:30 ص','r2.s2':'طريق الفيلسوف في صمت','r2.s3':'أزقة غيون السرية وحفل الشاي','r2.s4':'حجز عشاء كيسيكي على الضفة',
+    'r2.dep':'مخرج محطة كيوتو المركزي · 8:30 ص',
+    'r3.s1':'تōداي-جي — أكبر هيكل خشبي على وجه الأرض','r3.s2':'حديقة الغزلان في ضريح كاسوغا الكبير','r3.s3':'قلعة هيميجي — تراث عالمي يونسكو','r3.s4':'حدائق مخفية في مدينة القلعة عند الغسق',
+    'r3.dep':'أوساكا / كيوتو · 8:00 ص',
+    'r4.s1':'قطار الجبل والحبل الهوائي إلى كōيا','r4.s2':'مقبرة أوكونوين على ضوء الفوانيس — المساء','r4.s3':'إقامة في دير شوكوبō وعشاء نباتي','r4.s4':'صلاة الفجر مع الرهبان — العودة بعد الظهر',
+    'r4.dep':'محطة أوساكا نامبا · 9:00 ص',
+    'r5.s1':'حي المستوطنة الأجنبية كيتانو إيجينكان','r5.s2':'غداء واغيو كوبي في مطعم محلي','r5.s3':'تذوق في مصنع ساكي في حي نادا','r5.s4':'ميناء ميريكن بارك في الساعة الذهبية',
+    'r5.dep':'محطة سانونوميا · 10:00 ص',
+    'r6.s1':'اليوم 1 — أوساكا: سوق، طعام الشوارع، شينسيكاي','r6.s2':'المساء: نيون دوتونبوري وإيزاكايا ليلية','r6.s3':'اليوم 2 — كيوتو: أراشيياما، غيون، معبد خفي','r6.s4':'العودة مع تذوق خاص للساكي في القطار',
+    'r6.dep':'النقل من الفندق مشمول · 8:30 ص',
+    'pricing.label':'الخطط والأسعار','pricing.h2':'اختر <span class="acc">تجربتك</span>','pricing.sub':'جميع الجولات خاصة 100%. الأسعار للفرد بحد أدنى شخصين.',
+    'plan.1.name':'نصف يوم','plan.1.dur':'4 ساعات · حتى 4 أشخاص','plan.2.name':'يوم كامل','plan.2.dur':'8 ساعات · حتى 6 أشخاص','plan.3.name':'رحلة متعددة الأيام','plan.3.dur':'3–7 أيام · حتى 6 أشخاص','plan.4.name':'مصمم بالكامل','plan.4.dur':'أي مدة · أي مجموعة','plan.4.price':'استفسار',
+    'plan.perperson':'للفرد · حد 2 ضيف','plan.perday':'لليوم · مجموعة حتى 4','plan.onrequest':'السعر عند الطلب','plan.popular':'الأكثر شعبية',
+    'pf.1city':'حي أو منطقة واحدة','pf.1city-full':'مدينة كاملة — تجربة شاملة','pf.pickup':'نقطة لقاء في الفندق','pf.pickup-drop':'توصيل من/إلى الفندق','pf.lunch':'توصية وحجز غداء','pf.custom':'مسار مخصص','pf.guide':'مرشد خاص بالكامل','pf.24h':'دعم واتساب 24 ساعة','pf.multi':'مدن متعددة في كانساي','pf.logistics':'لوجستيات كاملة','pf.hotel':'توصيات إقامة','pf.transport':'مساعدة في حجز المواصلات','pf.any':'بدون حدود للمدة أو المجموعة','pf.corp':'مجموعات شركات وعائلات','pf.special':'مناسبات خاصة ومقترحات','pf.vip':'حجوزات مطاعم VIP',
+    'plan.cta':'احجز الآن','plan.cta.bespoke':'اطلب عرضاً',
+    'test.label':'آراء العملاء','test.h2':'ما يقوله <span class="acc">المسافرون</span>','test.sub':'أكثر من 200 جولة خاصة. أشخاص حقيقيون، قصص حقيقية.',
+    'test.1.q':'أخذنا توني إلى مطعم رامن صغير مخفي في زقاق أوساكا — بلا لافتة، بلا قائمة إنجليزية، مجرد كمال.',
+    'test.2.q':'قضينا ثلاثة أيام مع توني في كانساي. يعرف كل زقاق وكل طاهٍ وكل معبد.',
+    'test.3.q':'أفضل تجربة في رحلتنا بأكملها إلى اليابان. توني يتحدث الإسبانية بشكل مثالي.',
+    'test.4.q':'قمنا برحلة 5 أيام من أوساكا إلى كōياسان. الاستيقاظ في دير عند الفجر شيء لن أنساه.',
+    'test.5.q':'جولة الطعام في سوق كورومون كانت رائعة. كان توني يعرف كل بائع شخصياً.',
+    'test.6.q':'كشخص من أصول يابانية يزور لأول مرة، احتجت مرشداً يفهم العمق. أعطانا توني التاريخ والثقافة والمشاعر.',
+    'contact.label':'تواصل معنا','contact.h2':'مستعد لاستكشاف <span class="acc">كانساي؟</span>',
+    'contact.p':'أخبرني بتواريخ سفرك واهتماماتك وحجم مجموعتك. سأرد خلال 24 ساعة.',
+    'form.name':'اسمك','form.email':'بريدك الإلكتروني','form.dates':'تواريخ السفر (اختياري)','form.msg':'رسالتك','form.send':'إرسال الرسالة','form.sending':'جارٍ الإرسال…','form.retry':'حاول مجدداً',
+    'form.ok.title':'تم الإرسال','form.ok.text':'شكراً — سأتواصل معك خلال 24 ساعة.',
+    'footer.l':'© 2026 Tony Hanma · مرشد كانساي الخاص','footer.r':'أوساكا · كانساي · اليابان',
+    'map.label':'خريطة تفاعلية','map.h2':'مساراتنا عبر <span class="acc">كانساي</span>','map.sub':'انقر على مسار لإبرازه.',
+    'leg.1':'دائرة طعام أوساكا','leg.2':'كيوتو الخفية','leg.3':'نارا وهيميجي','leg.4':'حج كōياسان','leg.5':'كوبي الراقية','leg.6':'قوس أوساكا–كيوتو',
+    'gal.label':'معرض الصور','gal.h2':'لحظات من <span class="acc">جولاتنا</span>','gal.sub':'أماكن حقيقية. تجارب حقيقية. كل صورة تروي قصة من كانساي.'
   }
+};
 };
 
 let lang = localStorage.getItem('lang') || 'en';
@@ -1220,6 +1249,7 @@ function applyLang(l) {
   lang = l;
   localStorage.setItem('lang', l);
   document.documentElement.lang = l;
+  document.documentElement.dir = (l === 'ar') ? 'rtl' : 'ltr';
   document.querySelectorAll('[data-t]').forEach(el => {
     const v = T[l][el.dataset.t];
     if (v !== undefined) el.innerHTML = v;
@@ -1313,29 +1343,93 @@ document.querySelectorAll('.route-card[data-href]').forEach(card => {
   });
 });
 
-// ── ROUTE MAP LEGEND ──
-(function(){
-  const legs = document.querySelectorAll('.leg-item[data-route]');
-  const lines = document.querySelectorAll('.rline');
-  if (!legs.length || !lines.length) return;
-  legs.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const r = btn.getAttribute('data-route');
-      if (btn.classList.contains('on')) {
-        // reset all
-        legs.forEach(b => b.classList.remove('on'));
-        lines.forEach(l => { l.classList.remove('dim','hi'); });
-      } else {
-        legs.forEach(b => b.classList.remove('on'));
-        btn.classList.add('on');
-        lines.forEach(l => {
-          if (l.id === 'rl-' + r) { l.classList.remove('dim'); l.classList.add('hi'); }
-          else { l.classList.add('dim'); l.classList.remove('hi'); }
-        });
-      }
+// ── ROUTE MAP LEGEND — handled by Leaflet init below ──
+
+
+// ── LEAFLET MAP ──────────────────────────────────────────────────────────────
+(function() {
+  const script = document.createElement('script');
+  script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+  script.crossOrigin = '';
+  script.onload = initMap;
+  document.head.appendChild(script);
+
+  function initMap() {
+    const lmap = L.map('kansai-map', {
+      center: [34.77, 135.48],
+      zoom: 9,
+      zoomControl: true,
+      scrollWheelZoom: false,
+      attributionControl: false
     });
-  });
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      subdomains: 'abcd', maxZoom: 19
+    }).addTo(lmap);
+
+    function mkIcon(color, sz) {
+      return L.divIcon({
+        className: '',
+        html: '<div style="width:' + sz + 'px;height:' + sz + 'px;background:' + color + ';border-radius:50%;border:2px solid rgba(255,255,255,.3);box-shadow:0 0 ' + (sz + 4) + 'px ' + color + ';"></div>',
+        iconSize: [sz, sz], iconAnchor: [sz/2, sz/2]
+      });
+    }
+
+    const cities = [
+      { name:'OSAKA', kanji:'大阪', ll:[34.6937,135.5023], color:'#e53030', sz:20 },
+      { name:'KYOTO', kanji:'京都', ll:[35.0116,135.7681], color:'#ff6b35', sz:15 },
+      { name:'NARA',  kanji:'奈良', ll:[34.6851,135.8048], color:'#e53030', sz:12 },
+      { name:'KOBE',  kanji:'神戸', ll:[34.6901,135.1956], color:'#4499dd', sz:12 },
+      { name:'HIMEJI',kanji:'姫路', ll:[34.8394,134.6939], color:'#ffaa00', sz:12 },
+      { name:'KŌYASAN',kanji:'高野山',ll:[34.2133,135.5849],color:'#b06cc8',sz:12 }
+    ];
+    cities.forEach(c => {
+      L.marker(c.ll, { icon: mkIcon(c.color, c.sz) })
+        .addTo(lmap)
+        .bindTooltip('<b style="font-size:.8rem;letter-spacing:.08em">' + c.name + '</b> <span style="opacity:.6">' + c.kanji + '</span>', {
+          className: 'leaflet-tooltip', direction: 'top', offset: [0, -8], permanent: false
+        });
+    });
+
+    // Routes — polylines
+    const rLines = [
+      { id:1, coords:null,    color:'#e53030', dash:'8 5',  center:[34.6937,135.5023], r:0.045 }, // circle Osaka
+      { id:2, coords:null,    color:'#ff6b35', dash:'8 5',  center:[35.0116,135.7681], r:0.038 }, // circle Kyoto
+      { id:3, coords:[[34.8394,134.6939],[34.6937,135.5023],[34.6851,135.8048]], color:'#ffaa00', dash:'', weight:2.5 },
+      { id:4, coords:[[34.6937,135.5023],[34.2133,135.5849]], color:'#b06cc8', dash:'', weight:2.5 },
+      { id:5, coords:[[34.6937,135.5023],[34.6901,135.1956]], color:'#4499dd', dash:'', weight:2.5 },
+      { id:6, coords:[[34.6937,135.5023],[35.0116,135.7681]], color:'#22cc88', dash:'', weight:2.5 }
+    ];
+
+    const lLayers = {};
+    rLines.forEach(r => {
+      let layer;
+      if (r.center) {
+        layer = L.circle(r.center, { radius: r.r * 111320, color: r.color, weight: 2.5, dashArray: r.dash, fill: false, opacity: 0.55 }).addTo(lmap);
+      } else {
+        layer = L.polyline(r.coords, { color: r.color, weight: r.weight, opacity: 0.55 }).addTo(lmap);
+      }
+      lLayers[r.id] = layer;
+    });
+
+    // Legend interaction
+    const legs = document.querySelectorAll('.leg-item[data-route]');
+    legs.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const rid = +btn.getAttribute('data-route');
+        if (btn.classList.contains('on')) {
+          legs.forEach(b => b.classList.remove('on'));
+          Object.values(lLayers).forEach(l => l.setStyle({ opacity: 0.55 }));
+        } else {
+          legs.forEach(b => b.classList.remove('on'));
+          btn.classList.add('on');
+          Object.entries(lLayers).forEach(([id, l]) => l.setStyle({ opacity: +id === rid ? 1 : 0.12 }));
+        }
+      });
+    });
+  }
 })();
+
 </script>
 </body>
 </html>

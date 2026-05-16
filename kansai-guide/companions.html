@@ -103,6 +103,7 @@
     /* REAL PHOTOS */
     .comp-photo { width:100%; height:100%; object-fit:cover; object-position:center 15%; display:block; }
     .comp-photo.tony { object-position:center 8%; }
+    .comp-photo.johnny { object-position:center 20%; }
     .comp-photo.larion { object-position:center 10%; }
 
     /* RUBY diamond facet bg */
@@ -139,32 +140,46 @@
 
     /* PAGE LINK ruby */
     .page-link:hover { border-color:rgba(192,57,43,.4); transform:translateY(-3px); box-shadow:0 8px 28px rgba(192,57,43,.1); }
+
+    /* LANG SWITCHER */
+    .lang-sw { display:flex; gap:.3rem; }
+    .lang-btn { background:transparent; border:1px solid rgba(255,255,255,.18); color:rgba(255,255,255,.55); font-size:.6rem; font-weight:600; letter-spacing:.1em; padding:.32rem .72rem; border-radius:999px; cursor:pointer; transition:all .2s; }
+    .lang-btn.active,.lang-btn:hover { background:var(--grad); border-color:transparent; color:#fff; }
   </style>
 </head>
 <body>
 
 <nav>
-  <a href="index.html" class="nav-back">← Kansai Guide</a>
-  <span class="nav-city">Your Private Guide</span>
-  <a href="index.html#contact" class="nav-book">Book Now</a>
+  <a href="index.html" class="nav-back" data-t="nav.back">← Kansai Guide</a>
+  <span class="nav-city" data-t="nav.title">Your Private Guide</span>
+  <div style="display:flex;align-items:center;gap:.8rem;">
+    <div class="lang-sw">
+      <button class="lang-btn active" data-l="en">EN</button>
+      <button class="lang-btn" data-l="es">ES</button>
+      <button class="lang-btn" data-l="ru">РУ</button>
+      <button class="lang-btn" data-l="cs">CS</button>
+      <button class="lang-btn" data-l="ar">AR</button>
+    </div>
+    <a href="index.html#contact" class="nav-book" data-t="nav.book">Book Now</a>
+  </div>
 </nav>
 
 <header class="ph" id="comp-hero">
   <div class="ph-bg" id="bg-cur" style="background-image:url('img/kyoto-gion-alley.jpg');"></div>
   <div class="ph-bg" id="bg-nxt"></div>
   <div class="ph-txt">
-    <span class="ph-label">Private Companions · Kansai · Japan</span>
-    <h1 class="ph-h1"><em>Your Guide,</em>Your Day</h1>
-    <p class="ph-sub">Choose one person. Tell them what you want. They handle everything else. Mountains, food, culture, backstreets — all day, just you and them.</p>
+    <span class="ph-label" data-t="hero.tag">Private Companions · Kansai · Japan</span>
+    <h1 class="ph-h1"><em data-t="hero.h1a">Your Guide,</em><span data-t="hero.h1b">Your Day</span></h1>
+    <p class="ph-sub" data-t="hero.sub">Choose one person. Tell them what you want. They handle everything else. Mountains, food, culture, backstreets — all day, just you and them.</p>
   </div>
 </header>
 
 <!-- GUIDES -->
 <section class="content" style="background:var(--bg-1);">
   <div class="wrap">
-    <span class="sec-label">The Team · 3 Guides</span>
-    <h2 class="sec-h2">Who Do You <span class="acc">Want Today?</span></h2>
-    <p class="sec-intro">Three guides, three styles, four languages between them. One is a mountain specialist, one unlocks local Japan through Japanese, and one bridges the Arabic and Spanish-speaking world into Kansai. Pick yours.</p>
+    <span class="sec-label" data-t="team.label">The Team · 3 Guides</span>
+    <h2 class="sec-h2" data-t="team.h2">Who Do You <span class="acc">Want Today?</span></h2>
+    <p class="sec-intro" data-t="team.intro">Three guides, three styles, four languages between them. One is a mountain specialist, one unlocks local Japan through Japanese, and one bridges the Arabic and Spanish-speaking world into Kansai. Pick yours.</p>
 
     <div class="comp-grid">
 
@@ -175,7 +190,7 @@
         </div>
         <div class="comp-body">
           <div class="comp-name">Tony</div>
-          <div class="comp-role">Founder · Lead Guide</div>
+          <div class="comp-role" data-t="tony.role">Founder · Lead Guide</div>
           <div class="comp-langs">
             <span class="comp-lang">🇪🇸 Español</span>
             <span class="comp-lang">🇬🇧 English</span>
@@ -190,19 +205,19 @@
           </div>
           <p class="comp-bio">Born in Spain, based in Osaka for over a decade. Tony has summited every major peak in Kansai and knows Osaka's food streets like his own kitchen. The only guide in the team who speaks Arabic — which opens doors across the Middle East and North Africa travelling community. Mountains, markets or hidden temples: Tony builds the day around you.</p>
           <div class="comp-price">¥55,000</div>
-          <div class="comp-price-sub">Full Day · Up to 8 hrs · Any Activity</div>
-          <a href="index.html#contact" class="comp-btn">Book Tony</a>
+          <div class="comp-price-sub" data-t="comp.priceSub">Full Day · Up to 8 hrs · Any Activity</div>
+          <a href="index.html#contact" class="comp-btn" data-t="tony.btn">Book Tony</a>
         </div>
       </div>
 
       <!-- JOHNNY -->
       <div class="comp-card">
-        <div class="comp-hero" style="background:linear-gradient(135deg,rgba(139,141,232,.3),rgba(8,8,8,.8));">
-          <div class="comp-avatar" style="background:linear-gradient(135deg,#8b8de8,#5254c0);">J</div>
+        <div class="comp-hero">
+          <img src="img/guide-johnny.jpg" class="comp-photo johnny" alt="Johnny — Mountain & Culture Guide" />
         </div>
         <div class="comp-body">
           <div class="comp-name">Johnny</div>
-          <div class="comp-role">Mountain & Culture Guide</div>
+          <div class="comp-role" data-t="johnny.role">Mountain & Culture Guide</div>
           <div class="comp-langs">
             <span class="comp-lang">🇨🇿 Čeština</span>
             <span class="comp-lang">🇬🇧 English</span>
@@ -216,8 +231,8 @@
           </div>
           <p class="comp-bio">A European wanderer who made Kyoto home. Johnny has climbed the same peaks as Tony and brings the eye of an architect to both mountains and cities — the silent pass nobody uses, the ceramics workshop in the alley behind the famous shrine, the covered market that feels like 1960s Japan. The only guide here who speaks Czech and takes Czech and Slovak guests through Kansai with full cultural context.</p>
           <div class="comp-price">¥50,000</div>
-          <div class="comp-price-sub">Full Day · Up to 8 hrs · Any Activity</div>
-          <a href="index.html#contact" class="comp-btn">Book Johnny</a>
+          <div class="comp-price-sub" data-t="comp.priceSub">Full Day · Up to 8 hrs · Any Activity</div>
+          <a href="index.html#contact" class="comp-btn" data-t="johnny.btn">Book Johnny</a>
         </div>
       </div>
 
@@ -228,7 +243,7 @@
         </div>
         <div class="comp-body">
           <div class="comp-name">Larion</div>
-          <div class="comp-role">City & Cultural Specialist</div>
+          <div class="comp-role" data-t="larion.role">City & Cultural Specialist</div>
           <div class="comp-langs">
             <span class="comp-lang">🇷🇺 Русский</span>
             <span class="comp-lang">🇯🇵 日本語</span>
@@ -244,8 +259,8 @@
           </div>
           <p class="comp-bio">Larion speaks Japanese natively — which is a different world from speaking it conversationally. He talks to shop owners, temple priests, izakaya masters and market vendors the way a local does. That access unlocks places and conversations no other guide can reach. His expertise is in the cultural routes: shotengai arcades, covered markets, rustic ryokan towns, old-town neighborhoods and the kind of evening in a standing bar where you forget you're a tourist.</p>
           <div class="comp-price">¥68,000</div>
-          <div class="comp-price-sub">Full Day · Up to 8 hrs · Any Activity</div>
-          <a href="index.html#contact" class="comp-btn">Book Larion</a>
+          <div class="comp-price-sub" data-t="comp.priceSub">Full Day · Up to 8 hrs · Any Activity</div>
+          <a href="index.html#contact" class="comp-btn" data-t="larion.btn">Book Larion</a>
         </div>
       </div>
 
@@ -443,5 +458,83 @@ function nextSlide(){
 setInterval(nextSlide,6000);
 </script>
 
+
+<script>
+const TC = {
+  en: {
+    'nav.back':'← Kansai Guide','nav.title':'Your Private Guide','nav.book':'Book Now',
+    'hero.tag':'Private Companions · Kansai · Japan','hero.h1a':'Your Guide,','hero.h1b':'Your Day',
+    'hero.sub':'Choose one person. Tell them what you want. They handle everything else. Mountains, food, culture, backstreets — all day, just you and them.',
+    'team.label':'The Team · 3 Guides','team.h2':'Who Do You <span class="acc">Want Today?</span>',
+    'team.intro':'Three guides, three styles, four languages between them. One is a mountain specialist, one unlocks local Japan through Japanese, and one bridges the Arabic and Spanish-speaking world into Kansai. Pick yours.',
+    'tony.role':'Founder · Lead Guide','johnny.role':'Mountain & Culture Guide','larion.role':'City & Cultural Specialist',
+    'comp.priceSub':'Full Day · Up to 8 hrs · Any Activity',
+    'tony.btn':'Book Tony','johnny.btn':'Book Johnny','larion.btn':'Book Larion',
+    'act.label':'A Day With Your Guide','act.h2':'Ideas for <span class="acc">Your Day</span>',
+    'act.intro':'These are examples — your guide will build the day entirely around what you want.'
+  },
+  es: {
+    'nav.back':'← Guía Kansai','nav.title':'Tu Guía Privado','nav.book':'Reservar',
+    'hero.tag':'Acompañantes Privados · Kansai · Japón','hero.h1a':'Tu Guía,','hero.h1b':'Tu Día',
+    'hero.sub':'Elige a una persona. Dile lo que quieres. Ellos se encargan del resto. Montañas, comida, cultura, callejones — todo el día, solo tú y él.',
+    'team.label':'El Equipo · 3 Guías','team.h2':'¿A Quién <span class="acc">Quieres Hoy?</span>',
+    'team.intro':'Tres guías, tres estilos. Uno especializado en montaña, uno accede al Japón local a través del japonés, y uno conecta el mundo hispanohablante y árabe con Kansai.',
+    'tony.role':'Fundador · Guía Principal','johnny.role':'Guía de Montaña y Cultura','larion.role':'Especialista en Ciudad y Cultura',
+    'comp.priceSub':'Día Completo · Hasta 8 hrs · Cualquier Actividad',
+    'tony.btn':'Reservar Tony','johnny.btn':'Reservar Johnny','larion.btn':'Reservar Larion',
+    'act.label':'Un Día Con Tu Guía','act.h2':'Ideas para <span class="acc">Tu Día</span>',
+    'act.intro':'Estos son ejemplos — tu guía construirá el día completamente alrededor de lo que quieras.'
+  },
+  ru: {
+    'nav.back':'← Гид по Кансаю','nav.title':'Ваш Личный Гид','nav.book':'Забронировать',
+    'hero.tag':'Частные Гиды · Кансай · Япония','hero.h1a':'Ваш Гид,','hero.h1b':'Ваш День',
+    'hero.sub':'Выберите одного человека. Скажите, чего хотите. Всё остальное они возьмут на себя. Горы, еда, культура, переулки — весь день только для вас.',
+    'team.label':'Команда · 3 Гида','team.h2':'Кого Вы <span class="acc">Хотите Сегодня?</span>',
+    'team.intro':'Три гида, три стиля. Один специализируется на горах, другой открывает настоящую Японию через японский язык, третий соединяет арабский и испанский мир с Кансаем.',
+    'tony.role':'Основатель · Ведущий Гид','johnny.role':'Горный и Культурный Гид','larion.role':'Специалист по Городу и Культуре',
+    'comp.priceSub':'Полный День · До 8 часов · Любая Активность',
+    'tony.btn':'Забронировать Тони','johnny.btn':'Забронировать Джонни','larion.btn':'Забронировать Лариона',
+    'act.label':'День С Вашим Гидом','act.h2':'Идеи для <span class="acc">Вашего Дня</span>',
+    'act.intro':'Это примеры — ваш гид построит день полностью вокруг ваших желаний.'
+  },
+  cs: {
+    'nav.back':'← Průvodce Kansai','nav.title':'Váš Soukromý Průvodce','nav.book':'Rezervovat',
+    'hero.tag':'Soukromí Průvodci · Kansai · Japonsko','hero.h1a':'Váš Průvodce,','hero.h1b':'Váš Den',
+    'hero.sub':'Vyberte jednu osobu. Řekněte jim, co chcete. Oni se postarají o zbytek. Hory, jídlo, kultura, uličky — celý den jen vy a váš průvodce.',
+    'team.label':'Tým · 3 Průvodci','team.h2':'Koho <span class="acc">Chcete Dnes?</span>',
+    'team.intro':'Tři průvodci, tři styly. Jeden specialista na hory, jeden odemyká místní Japonsko přes japonštinu, třetí spojuje arabský a španělský svět s Kansaiem.',
+    'tony.role':'Zakladatel · Hlavní Průvodce','johnny.role':'Horský a Kulturní Průvodce','larion.role':'Specialista na Město a Kulturu',
+    'comp.priceSub':'Celý Den · Až 8 hod · Jakákoli Aktivita',
+    'tony.btn':'Rezervovat Tonyho','johnny.btn':'Rezervovat Johnnyho','larion.btn':'Rezervovat Lariona',
+    'act.label':'Den S Vaším Průvodcem','act.h2':'Nápady pro <span class="acc">Váš Den</span>',
+    'act.intro':'Toto jsou příklady — váš průvodce sestaví den zcela podle vašich přání.'
+  },
+  ar: {
+    'nav.back':'← دليل كانساي','nav.title':'مرشدك الخاص','nav.book':'احجز الآن',
+    'hero.tag':'مرافقون خاصون · كانساي · اليابان','hero.h1a':'مرشدك،','hero.h1b':'يومك',
+    'hero.sub':'اختر شخصاً واحداً. أخبره بما تريد. سيتولى الباقي. الجبال والطعام والثقافة والأزقة — طوال اليوم، أنت وهو فقط.',
+    'team.label':'الفريق · 3 مرشدين','team.h2':'من <span class="acc">تريد اليوم؟</span>',
+    'team.intro':'ثلاثة مرشدين، ثلاثة أساليب. متخصص في الجبال، ومتخصص يفتح اليابان الحقيقية عبر اللغة اليابانية، ومتخصص يجسر العالمين العربي والإسباني مع كانساي.',
+    'tony.role':'المؤسس · المرشد الرئيسي','johnny.role':'مرشد الجبل والثقافة','larion.role':'متخصص المدينة والثقافة',
+    'comp.priceSub':'يوم كامل · حتى 8 ساعات · أي نشاط',
+    'tony.btn':'احجز توني','johnny.btn':'احجز جوني','larion.btn':'احجز لاريون',
+    'act.label':'يوم مع مرشدك','act.h2':'أفكار <span class="acc">ليومك</span>',
+    'act.intro':'هذه أمثلة — سيبني مرشدك اليوم بالكامل حول ما تريد.'
+  }
+};
+let clang = localStorage.getItem('lang') || 'en';
+function applyCLang(l) {
+  clang = l; localStorage.setItem('lang', l);
+  document.documentElement.lang = l;
+  document.documentElement.dir = (l === 'ar') ? 'rtl' : 'ltr';
+  document.querySelectorAll('[data-t]').forEach(el => {
+    const v = TC[l] && TC[l][el.dataset.t];
+    if (v !== undefined) el.innerHTML = v;
+  });
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.l === l));
+}
+document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => applyCLang(b.dataset.l)));
+applyCLang(clang);
+</script>
 </body>
 </html>

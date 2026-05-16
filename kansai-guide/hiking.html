@@ -112,30 +112,44 @@
       .price-grid{grid-template-columns:1fr}
       .page-links{grid-template-columns:1fr}
     }
+
+    /* LANG SWITCHER */
+    .lang-sw { display:flex; gap:.3rem; }
+    .lang-btn { background:transparent; border:1px solid rgba(255,255,255,.18); color:rgba(255,255,255,.55); font-size:.6rem; font-weight:600; letter-spacing:.1em; padding:.32rem .72rem; border-radius:999px; cursor:pointer; transition:all .2s; }
+    .lang-btn.active,.lang-btn:hover { background:var(--grad); border-color:transparent; color:#fff; }
   </style>
 </head>
 <body>
 
 <nav>
-  <a href="index.html" class="nav-back">← Kansai Guide</a>
-  <span class="nav-city">Mountain Expeditions</span>
-  <a href="index.html#contact" class="nav-book">Book Now</a>
+  <a href="index.html" class="nav-back" data-t="nav.back">← Kansai Guide</a>
+  <span class="nav-city" data-t="nav.title">Mountain Expeditions</span>
+  <div style="display:flex;align-items:center;gap:.8rem;">
+    <div class="lang-sw">
+      <button class="lang-btn active" data-l="en">EN</button>
+      <button class="lang-btn" data-l="es">ES</button>
+      <button class="lang-btn" data-l="ru">РУ</button>
+      <button class="lang-btn" data-l="cs">CS</button>
+      <button class="lang-btn" data-l="ar">AR</button>
+    </div>
+    <a href="index.html#contact" class="nav-book" data-t="nav.book">Book Now</a>
+  </div>
 </nav>
 
 <header class="ph">
   <div class="ph-txt">
-    <span class="ph-label">Premium Expeditions · Kansai Mountains · Japan</span>
-    <h1 class="ph-h1"><em>Summit</em>Kansai</h1>
-    <p class="ph-sub">Six great peaks. Ancient trails. Private guide from base to summit and back. Every route I have climbed personally — every detail I know by heart.</p>
+    <span class="ph-label" data-t="hero.tag">Premium Expeditions · Kansai Mountains · Japan</span>
+    <h1 class="ph-h1"><em data-t="hero.h1a">Summit</em><span data-t="hero.h1b">Kansai</span></h1>
+    <p class="ph-sub" data-t="hero.sub">Six great peaks. Ancient trails. Private guide from base to summit and back. Every route I have climbed personally — every detail I know by heart.</p>
   </div>
 </header>
 
 <!-- PEAKS -->
 <section class="content" style="background:var(--bg-1);">
   <div class="wrap">
-    <span class="sec-label">Tony's Peaks · 登山コース</span>
-    <h2 class="sec-h2">The <span class="acc">Six Routes</span></h2>
-    <p class="sec-intro">From Osaka's snow-capped crown to Japan's oldest pilgrimage road — these are the mountains that define Kansai. Climbed in every season. Guided for every level.</p>
+    <span class="sec-label" data-t="peaks.label">Tony's Peaks · 登山コース</span>
+    <h2 class="sec-h2" data-t="peaks.h2">The <span class="acc">Six Routes</span></h2>
+    <p class="sec-intro" data-t="peaks.intro">From Osaka's snow-capped crown to Japan's oldest pilgrimage road — these are the mountains that define Kansai. Climbed in every season. Guided for every level.</p>
 
     <div class="peak-grid">
 
@@ -267,10 +281,10 @@
     <div class="peak-note">
       <span style="font-size:1.8rem;flex-shrink:0;">🏔</span>
       <div>
-        <div style="font-family:var(--serif);font-size:1.2rem;color:var(--text);margin-bottom:.4rem;">All routes guided privately, on your schedule</div>
-        <div style="font-size:.85rem;color:var(--text-2);line-height:1.75;">We travel by train together. I meet you at your station. Emergency kit, permits and lunch included. Available in 🇬🇧 🇪🇸 🇸🇦 🇷🇺 🇨🇿</div>
+        <div style="font-family:var(--serif);font-size:1.2rem;color:var(--text);margin-bottom:.4rem;" data-t="note.title">All routes guided privately, on your schedule</div>
+        <div style="font-size:.85rem;color:var(--text-2);line-height:1.75;" data-t="note.sub">We travel by train together. I meet you at your station. Emergency kit, permits and lunch included. Available in 🇬🇧 🇪🇸 🇸🇦 🇷🇺 🇨🇿</div>
       </div>
-      <a href="index.html#contact" class="peak-cta">Plan My Summit</a>
+      <a href="index.html#contact" class="peak-cta" data-t="note.cta">Plan My Summit</a>
     </div>
   </div>
 </section>
@@ -278,14 +292,14 @@
 <!-- PRICING -->
 <section class="content" style="background:var(--bg-2);">
   <div class="wrap">
-    <span class="sec-label">Pricing · Per Group</span>
-    <h2 class="sec-h2">One Price, <span class="acc">All Day</span></h2>
-    <p class="sec-intro">Prices are per group (up to 6 people) — not per person. The longer and harder the route, the more value you get. Entry fees and special transport noted below.</p>
+    <span class="sec-label" data-t="price.label">Pricing · Per Group</span>
+    <h2 class="sec-h2" data-t="price.h2">One Price, <span class="acc">All Day</span></h2>
+    <p class="sec-intro" data-t="price.intro">Prices are per group (up to 6 people) — not per person. The longer and harder the route, the more value you get. Entry fees and special transport noted below.</p>
 
     <div class="price-grid">
 
       <div class="price-card">
-        <div class="price-tier">Half Day</div>
+        <div class="price-tier" data-t="tier.half">Half Day</div>
         <div class="price-amount">¥55,000</div>
         <div class="price-note">per group · up to 6 people</div>
         <div class="price-hrs">3–5 hours · Easy or Moderate route · Train together</div>
@@ -299,8 +313,8 @@
       </div>
 
       <div class="price-card featured">
-        <div class="price-tier">Full Day Summit</div>
-        <div class="price-amount">¥115,000</div>
+        <div class="price-tier" data-t="tier.full">Full Day Summit</div>
+        <div class="price-amount">¥78,000</div>
         <div class="price-note">per group · up to 6 people</div>
         <div class="price-hrs">6–9 hours · Any route including Kongō and Rokko · Train together</div>
         <ul class="price-inc">
@@ -314,7 +328,7 @@
       </div>
 
       <div class="price-card">
-        <div class="price-tier">Epic Traverse</div>
+        <div class="price-tier" data-t="tier.epic">Epic Traverse</div>
         <div class="price-amount">¥115,000</div>
         <div class="price-note">per group · up to 6 people</div>
         <div class="price-hrs">Full day · Diamond Trail or Kumano Kodo · Train to trailhead</div>
@@ -335,8 +349,8 @@
 <!-- LINKS TO OTHER PAGES -->
 <section class="content" style="background:var(--bg-1);">
   <div class="wrap">
-    <span class="sec-label">Also Available</span>
-    <h2 class="sec-h2">More <span class="acc">From Tony</span></h2>
+    <span class="sec-label" data-t="also.label">Also Available</span>
+    <h2 class="sec-h2" data-t="also.h2">More <span class="acc">From Tony</span></h2>
     <div class="page-links">
       <a href="companions.html" class="page-link">
         <span class="page-link-icon">👤</span>
@@ -360,15 +374,119 @@
 
 <!-- CTA -->
 <section style="background:var(--bg-2);padding:6rem 2rem;text-align:center;border-top:1px solid rgba(201,168,76,.15);">
-  <span style="display:block;font-size:.56rem;letter-spacing:.38em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:1.2rem;">Ready to Climb?</span>
-  <h2 style="font-family:var(--serif);font-size:clamp(2.5rem,5vw,4.5rem);font-weight:300;color:#fff;line-height:1.05;margin-bottom:1.2rem;">Pick your <em style="font-style:italic;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">mountain</em></h2>
-  <p style="font-size:.95rem;color:var(--text-2);max-width:46ch;margin:0 auto 2.5rem;line-height:1.8;">Tell me which peak and I will handle everything — transport, permits, timing, food and the guide. You just show up.</p>
-  <a href="index.html#contact" style="display:inline-block;padding:.9rem 2.5rem;background:linear-gradient(135deg,#6AABA8,#4A8A87);color:#fff;font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border-radius:999px;transition:transform .2s,box-shadow .2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(106,171,168,.45)'" onmouseout="this.style.transform='none';this.style.boxShadow='none'">Book a Mountain Day</a>
+  <span style="display:block;font-size:.56rem;letter-spacing:.38em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:1.2rem;" data-t="cta.tag">Ready to Climb?</span>
+  <h2 style="font-family:var(--serif);font-size:clamp(2.5rem,5vw,4.5rem);font-weight:300;color:#fff;line-height:1.05;margin-bottom:1.2rem;" data-t="cta.h2">Pick your <em style="font-style:italic;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">mountain</em></h2>
+  <p style="font-size:.95rem;color:var(--text-2);max-width:46ch;margin:0 auto 2.5rem;line-height:1.8;" data-t="cta.sub">Tell me which peak and I will handle everything — transport, permits, timing, food and the guide. You just show up.</p>
+  <a href="index.html#contact" style="display:inline-block;padding:.9rem 2.5rem;background:linear-gradient(135deg,#6AABA8,#4A8A87);color:#fff;font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border-radius:999px;transition:transform .2s,box-shadow .2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(106,171,168,.45)'" onmouseout="this.style.transform='none';this.style.boxShadow='none'" data-t="cta.btn">Book a Mountain Day</a>
 </section>
 
 <footer>
-  <a href="index.html">← Back to Tony Hanma — Private Kansai Guide</a>
+  <a href="index.html" data-t="footer.back">← Back to Tony Hanma — Private Kansai Guide</a>
 </footer>
 
+
+<script>
+const TH = {
+  en: {
+    'nav.back':'← Kansai Guide','nav.title':'Mountain Expeditions','nav.book':'Book Now',
+    'hero.tag':'Premium Expeditions · Kansai Mountains · Japan','hero.h1a':'Summit','hero.h1b':'Kansai',
+    'hero.sub':'Six great peaks. Ancient trails. Private guide from base to summit and back. Every route I have climbed personally.',
+    'peaks.label':"Tony's Peaks · 登山コース",'peaks.h2':'The <span class="acc">Six Routes</span>',
+    'peaks.intro':"From Osaka's snow-capped crown to Japan's oldest pilgrimage road — these are the mountains that define Kansai. Climbed in every season. Guided for every level.",
+    'note.title':'All routes guided privately, on your schedule',
+    'note.sub':'We travel by train together. I meet you at your station. Emergency kit, permits and lunch included. Available in 🇬🇧 🇪🇸 🇸🇦 🇷🇺 🇨🇿',
+    'note.cta':'Plan My Summit',
+    'price.label':'Pricing · Per Group','price.h2':'One Price, <span class="acc">All Day</span>',
+    'price.intro':'Prices are per group (up to 6 people) — not per person. The longer and harder the route, the more value you get.',
+    'tier.half':'Half Day','tier.full':'Full Day Summit','tier.epic':'Epic Traverse',
+    'also.label':'Also Available','also.h2':'More <span class="acc">From Tony</span>',
+    'cta.tag':'Ready to Climb?','cta.h2':'Pick your <em style="font-style:italic;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">mountain</em>',
+    'cta.sub':'Tell me which peak and I will handle everything — transport, permits, timing, food and the guide. You just show up.',
+    'cta.btn':'Book a Mountain Day','footer.back':'← Back to Tony Hanma — Private Kansai Guide'
+  },
+  es: {
+    'nav.back':'← Guía Kansai','nav.title':'Expediciones de Montaña','nav.book':'Reservar',
+    'hero.tag':'Expediciones Premium · Montañas Kansai · Japón','hero.h1a':'Cumbre','hero.h1b':'Kansai',
+    'hero.sub':'Seis grandes picos. Senderos antiguos. Guía privado desde la base hasta la cima. Cada ruta la conozco de memoria.',
+    'peaks.label':"Los Picos de Tony · 登山コース",'peaks.h2':'Las <span class="acc">Seis Rutas</span>',
+    'peaks.intro':'Desde la corona nevada de Osaka hasta el sendero de peregrinación más antiguo de Japón — estas son las montañas que definen Kansai.',
+    'note.title':'Todas las rutas guiadas en privado, a tu ritmo',
+    'note.sub':'Viajamos juntos en tren. Te espero en tu estación. Kit de emergencia, permisos y almuerzo incluidos. Disponible en 🇬🇧 🇪🇸 🇸🇦 🇷🇺 🇨🇿',
+    'note.cta':'Planifica mi Cumbre',
+    'price.label':'Precios · Por Grupo','price.h2':'Un Precio, <span class="acc">Todo el Día</span>',
+    'price.intro':'Los precios son por grupo (hasta 6 personas), no por persona. Cuanto más larga y difícil la ruta, más valor obtienes.',
+    'tier.half':'Medio Día','tier.full':'Día Completo en Cumbre','tier.epic':'Travesía Épica',
+    'also.label':'También Disponible','also.h2':'Más de <span class="acc">Tony</span>',
+    'cta.tag':'¿Listo para Escalar?','cta.h2':'Elige tu <em style="font-style:italic;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">montaña</em>',
+    'cta.sub':'Dime qué pico y yo me encargo de todo — transporte, permisos, horarios, comida y la guía. Tú solo apareces.',
+    'cta.btn':'Reservar un Día de Montaña','footer.back':'← Volver a Tony Hanma — Guía Privado Kansai'
+  },
+  ru: {
+    'nav.back':'← Гид по Кансаю','nav.title':'Горные Экспедиции','nav.book':'Забронировать',
+    'hero.tag':'Премиальные Экспедиции · Горы Кансая · Япония','hero.h1a':'Вершины','hero.h1b':'Кансая',
+    'hero.sub':'Шесть великих вершин. Древние тропы. Личный гид от подножия до вершины. Каждый маршрут знаю наизусть.',
+    'peaks.label':"Вершины Тони · 登山コース",'peaks.h2':'Шесть <span class="acc">Маршрутов</span>',
+    'peaks.intro':'От заснеженной короны Осаки до древнейшей паломнической тропы Японии — эти горы определяют Кансай.',
+    'note.title':'Все маршруты — только частные, в вашем темпе',
+    'note.sub':'Едем вместе на поезде. Встречаю на вашей станции. Аптечка, разрешения и обед включены. Доступно на 🇬🇧 🇪🇸 🇸🇦 🇷🇺 🇨🇿',
+    'note.cta':'Спланировать Восхождение',
+    'price.label':'Цены · За Группу','price.h2':'Одна Цена, <span class="acc">Весь День</span>',
+    'price.intro':'Цены за группу (до 6 человек) — не за человека. Чем длиннее и сложнее маршрут, тем выгоднее.',
+    'tier.half':'Полдня','tier.full':'Полный День','tier.epic':'Эпическое Пересечение',
+    'also.label':'Также Доступно','also.h2':'Ещё от <span class="acc">Тони</span>',
+    'cta.tag':'Готовы Покорить Вершину?','cta.h2':'Выберите <em style="font-style:italic;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">гору</em>',
+    'cta.sub':'Назовите пик — я займусь всем: транспорт, разрешения, время, еда и гид. Вы просто приходите.',
+    'cta.btn':'Забронировать Горный День','footer.back':'← Назад к Tony Hanma — Частный Гид'
+  },
+  cs: {
+    'nav.back':'← Průvodce Kansai','nav.title':'Horské Expedice','nav.book':'Rezervovat',
+    'hero.tag':'Prémiové Expedice · Hory Kansai · Japonsko','hero.h1a':'Vrcholy','hero.h1b':'Kansai',
+    'hero.sub':'Šest velkých vrcholů. Starobylé stezky. Soukromý průvodce od základny po vrchol. Každou trasu znám nazpaměť.',
+    'peaks.label':"Tonyho Vrcholy · 登山コース",'peaks.h2':'Šest <span class="acc">Tras</span>',
+    'peaks.intro':'Od zasněžené koruny Osaky po nejstarší japonskou poutnickou cestu — to jsou hory, které definují Kansai.',
+    'note.title':'Všechny trasy s privátním průvodcem, dle vašeho rozvrhu',
+    'note.sub':'Cestujeme společně vlakem. Čekám na vás na vaší stanici. Lékárnička, povolení a oběd v ceně. Dostupné v 🇬🇧 🇪🇸 🇸🇦 🇷🇺 🇨🇿',
+    'note.cta':'Naplánovat Výstup',
+    'price.label':'Ceny · Za Skupinu','price.h2':'Jedna Cena, <span class="acc">Celý Den</span>',
+    'price.intro':'Ceny jsou za skupinu (až 6 osob) — ne za osobu. Čím delší a náročnější trasa, tím lepší hodnota.',
+    'tier.half':'Půlden','tier.full':'Celodenní Výstup','tier.epic':'Epická Traverse',
+    'also.label':'Také Dostupné','also.h2':'Více od <span class="acc">Tonyho</span>',
+    'cta.tag':'Připraveni Vylézt?','cta.h2':'Vyberte si <em style="font-style:italic;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">horu</em>',
+    'cta.sub':'Řekněte mi, který vrchol, a já se postarám o vše — dopravu, povolení, načasování, jídlo a průvodce.',
+    'cta.btn':'Rezervovat Horský Den','footer.back':'← Zpět na Tony Hanma — Soukromý Průvodce'
+  },
+  ar: {
+    'nav.back':'← دليل كانساي','nav.title':'رحلات الجبل','nav.book':'احجز الآن',
+    'hero.tag':'رحلات متميزة · جبال كانساي · اليابان','hero.h1a':'قمم','hero.h1b':'كانساي',
+    'hero.sub':'ستة قمم عظيمة. مسارات قديمة. مرشد خاص من القاعدة إلى القمة. أعرف كل مسار عن ظهر قلب.',
+    'peaks.label':"قمم توني · 登山コース",'peaks.h2':'الست <span class="acc">مسارات</span>',
+    'peaks.intro':'من التاج المكلل بالثلج في أوساكا إلى أقدم طريق حج في اليابان — هذه هي الجبال التي تحدد كانساي.',
+    'note.title':'جميع المسارات بمرشد خاص، وفق جدولك',
+    'note.sub':'نسافر معاً بالقطار. أنتظرك في محطتك. طقم إسعاف وتصاريح وغداء مشمولة. متوفر بـ 🇬🇧 🇪🇸 🇸🇦 🇷🇺 🇨🇿',
+    'note.cta':'خطط لصعودي',
+    'price.label':'الأسعار · للمجموعة','price.h2':'سعر واحد، <span class="acc">طوال اليوم</span>',
+    'price.intro':'الأسعار للمجموعة (حتى 6 أشخاص) — وليس للفرد. كلما طال المسار وصعب، زادت القيمة.',
+    'tier.half':'نصف يوم','tier.full':'يوم كامل في القمة','tier.epic':'عبور ملحمي',
+    'also.label':'متوفر أيضاً','also.h2':'المزيد من <span class="acc">توني</span>',
+    'cta.tag':'مستعد للتسلق؟','cta.h2':'اختر <em style="font-style:italic;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">جبلك</em>',
+    'cta.sub':'أخبرني بالقمة وسأتولى كل شيء — النقل والتصاريح والتوقيت والطعام والدليل. عليك فقط الحضور.',
+    'cta.btn':'احجز يوم الجبل','footer.back':'← العودة إلى Tony Hanma — مرشد خاص'
+  }
+};
+let hlang = localStorage.getItem('lang') || 'en';
+function applyHLang(l) {
+  hlang = l;
+  localStorage.setItem('lang', l);
+  document.documentElement.lang = l;
+  document.documentElement.dir = (l === 'ar') ? 'rtl' : 'ltr';
+  document.querySelectorAll('[data-t]').forEach(el => {
+    const v = TH[l] && TH[l][el.dataset.t];
+    if (v !== undefined) el.innerHTML = v;
+  });
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.l === l));
+}
+document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => applyHLang(b.dataset.l)));
+applyHLang(hlang);
+</script>
 </body>
 </html>
