@@ -153,6 +153,15 @@
     .comp-price-sub { font-size:.62rem;color:var(--text-3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.6rem; }
     .comp-btn { display:inline-block;padding:.65rem 1.8rem;background:linear-gradient(135deg,#6AABA8,#4A8A87);color:#fff;font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border-radius:999px; }
     @media(max-width:768px){ .comp-grid{grid-template-columns:1fr} }
+    /* PAGE LINKS */
+    .page-links { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:2.5rem; }
+    .page-link { background:var(--glass); border:1px solid var(--glass-b); border-radius:var(--radius); padding:1.8rem 2rem; display:flex; align-items:center; gap:1.2rem; transition:border-color .3s,transform .25s; }
+    .page-link:hover { border-color:rgba(106,171,168,.3); transform:translateY(-3px); }
+    .page-link-icon { font-size:1.8rem; flex-shrink:0; }
+    .page-link-label { font-size:.55rem; letter-spacing:.2em; text-transform:uppercase; color:var(--acc); margin-bottom:.3rem; }
+    .page-link-name { font-family:var(--serif); font-size:1.3rem; font-weight:300; color:var(--text); }
+    .page-link-arr { margin-left:auto; font-size:1.2rem; color:var(--text-3); flex-shrink:0; }
+    @media(max-width:600px){ .page-links{grid-template-columns:1fr} }
   </style>
 </head>
 <body>
@@ -486,178 +495,32 @@
   </div>
 </section>
 
-<!-- MOUNTAINS -->
-<section class="content" style="background:var(--bg);">
-  <div class="wrap">
-    <span class="sec-label">Tony's Peaks · 登山コース</span>
-    <h2 class="sec-h2">Kansai's <span class="acc">Great Mountains</span></h2>
-    <p class="sec-intro">Every summit here I've climbed personally. These are the routes I know by heart — the exact paths, the right seasons, the hidden viewpoints no guidebook mentions. Kansai's peaks begin 30 minutes from the city and end in silence.</p>
-
-    <div class="peak-grid">
-
-
-      <!-- WIDE: Mt. Kongō — Osaka's crown -->
-      <div class="peak-card wide">
-        <div class="pk-bg" style="background-image:url('img/koyasan-pagoda-forest.jpg');"></div>
-        <div class="peak-txt">
-          <span class="peak-elev">1,125 m · Osaka Prefecture · Tony's #1 Summit</span>
-          <div class="peak-name">Mt. Kongō<span class="peak-kanji">金剛山 · Osaka's Crown</span></div>
-          <p class="peak-desc">Osaka's highest peak and its most rewarding. Dense cedar columns rising to a frost-covered summit that turns white in January — a world impossible to believe is 45 minutes from Namba by train. The trail through Chihayafuru is silent, ancient and perfect. I've climbed this mountain in every season.</p>
-          <div class="peak-tags">
-            <span class="peak-tag">Challenging · 10 km · 5 hrs</span>
-            <span class="peak-tag">Snow: Dec–Feb</span>
-            <span class="peak-tag">Year-Round</span>
-            <span class="peak-tag">Tony's Route</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Ponpon-yama -->
-      <div class="peak-card">
-        <div class="pk-bg" style="background-image:url('img/japan-stone-lantern-maple.jpg');"></div>
-        <div class="peak-txt">
-          <span class="peak-elev">678 m · Kyoto–Osaka Border · Zero Tourists</span>
-          <div class="peak-name">Ponpon-yama<span class="peak-kanji">ポンポン山 · The Hidden One</span></div>
-          <p class="peak-desc">A perfectly shaped peak on the Kyoto–Osaka border that almost nobody climbs. Cedar groves, bamboo passages and a summit with absolute silence — ten minutes from civilisation, another world entirely.</p>
-          <div class="peak-tags">
-            <span class="peak-tag">Moderate · 8 km · 3.5 hrs</span>
-            <span class="peak-tag">Year-Round</span>
-            <span class="peak-tag">Secret Route</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Mt. Hiei -->
-      <div class="peak-card">
-        <div class="pk-bg" style="background-image:url('img/japan-temple-pagoda.jpg');"></div>
-        <div class="peak-txt">
-          <span class="peak-elev">848 m · Kyoto–Shiga Border · Tendai Buddhism</span>
-          <div class="peak-name">Mt. Hiei<span class="peak-kanji">比叡山 · Tendai's Throne</span></div>
-          <p class="peak-desc">The mountain that has watched over Kyoto for 1,200 years. Enryaku-ji temple complex at the summit, misty cable-car approach, and a descent through tea plantations to the shores of Lake Biwa.</p>
-          <div class="peak-tags">
-            <span class="peak-tag">Moderate · 9 km · 4 hrs</span>
-            <span class="peak-tag">Cultural + Trail</span>
-            <span class="peak-tag">Year-Round</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Mt. Rokko -->
-      <div class="peak-card">
-        <div class="pk-bg" style="background-image:url('img/kobe-port-dusk.jpg');background-position:center top;"></div>
-        <div class="peak-txt">
-          <span class="peak-elev">931 m · Hyogo Prefecture · Kobe</span>
-          <div class="peak-name">Mt. Rokko<span class="peak-kanji">六甲山 · Above the Port</span></div>
-          <p class="peak-desc">Start in Arima Onsen valley, climb through bamboo and oak to the Rokko ridge, then stand over Kobe's port and Osaka Bay laid out below you. Finish with a cable car descent into the city lights.</p>
-          <div class="peak-tags">
-            <span class="peak-tag">Moderate · 11 km · 4.5 hrs</span>
-            <span class="peak-tag">City Views</span>
-            <span class="peak-tag">Year-Round</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Diamond Trail -->
-      <div class="peak-card">
-        <div class="pk-bg" style="background-image:url('img/nara-autumn-path.jpg');"></div>
-        <div class="peak-txt">
-          <span class="peak-elev">Kongō → Katsuragi → Nijō · Multi-Peak Ridgeline</span>
-          <div class="peak-name">Diamond Trail<span class="peak-kanji">ダイヤモンドトレール · The Ridge</span></div>
-          <p class="peak-desc">Osaka's legendary 45 km ridgeline connecting Kongō, Katsuragi and Nijō peaks along the Osaka–Nara border. We run a signature day section: 22 km of pure ridge above both prefectures.</p>
-          <div class="peak-tags">
-            <span class="peak-tag">Expert · 22 km · Full Day</span>
-            <span class="peak-tag">Best: Oct–Nov</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- WIDE: Kumano Kodo -->
-      <div class="peak-card wide">
-        <div class="pk-bg" style="background-image:url('img/koyasan-okunoin.jpg');background-position:center 30%;"></div>
-        <div class="peak-txt">
-          <span class="peak-elev">UNESCO World Heritage · Wakayama · 1,000 Years Old</span>
-          <div class="peak-name">Kumano Kodo<span class="peak-kanji">熊野古道 · The Emperor's Trail</span></div>
-          <p class="peak-desc">Japan's greatest pilgrimage route — ancient cobblestones through 800-year-old cedar groves, walked by emperors for a thousand years. We take private transport to the trailhead before dawn and arrive at Kumano Hongu Grand Shrine as the morning mist lifts from the valley.</p>
-          <div class="peak-tags">
-            <span class="peak-tag">Challenging · 23 km · Full Day</span>
-            <span class="peak-tag">Best: Apr–Jun</span>
-            <span class="peak-tag">UNESCO Heritage</span>
-            <span class="peak-tag">Private Transport Included</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="peak-note">
-      <span style="font-size:1.8rem;flex-shrink:0;">🏔</span>
-      <div>
-        <div style="font-family:var(--serif);font-size:1.2rem;color:var(--text);margin-bottom:.4rem;">All peaks guided privately, on your schedule</div>
-        <div style="font-size:.85rem;color:var(--text-2);line-height:1.75;">I carry emergency kit, handle permits, plan transport and lunch — you just walk. Available in 🇬🇧 🇪🇸 🇸🇦 🇷🇺 🇨🇿</div>
-      </div>
-      <a href="index.html#contact" class="peak-cta">Plan My Summit</a>
-    </div>
-  </div>
-</section>
-
-<!-- COMPANIONS -->
+<!-- LINKS TO OTHER PAGES -->
 <section class="content" style="background:var(--bg-1);">
   <div class="wrap">
-    <span class="sec-label">Choose Your Companion · Private Guide</span>
-    <h2 class="sec-h2">Your Day, <span class="acc">Your Person</span></h2>
-    <p class="sec-intro">Select one of our guides and spend the full day doing exactly what you want — no script, no itinerary, no group. One person, one city, all day. Food, mountains, culture, or all three.</p>
-
-    <div class="comp-grid">
-
-      <div class="comp-card">
-        <div class="comp-avatar" style="background:linear-gradient(135deg,#6AABA8,#3a7b78);">T</div>
-        <div class="comp-name">Tony</div>
-        <div class="comp-role">Founder · Lead Guide</div>
-        <div class="comp-langs">
-          <span class="comp-lang">🇪🇸 Español</span>
-          <span class="comp-lang">🇬🇧 English</span>
+    <span class="sec-label">Also Available</span>
+    <h2 class="sec-h2">More <span class="acc">From Tony</span></h2>
+    <div class="page-links">
+      <a href="hiking.html" class="page-link">
+        <span class="page-link-icon">🏔</span>
+        <div>
+          <div class="page-link-label">Mountain Expeditions</div>
+          <div class="page-link-name">Kansai's Great Peaks</div>
         </div>
-        <p class="comp-bio">Born in Spain, based in Osaka for over a decade. Tony knows every backstreet, every chef, every trail. Food markets, hidden temples, mountain summits — nothing is off the table.</p>
-        <div class="comp-price">¥35,000</div>
-        <div class="comp-price-sub">Full Day · Up to 8 hrs · Any Activity</div>
-        <a href="index.html#contact" class="comp-btn">Book Tony</a>
-      </div>
-
-      <div class="comp-card">
-        <div class="comp-avatar" style="background:linear-gradient(135deg,#8b8de8,#5254c0);">J</div>
-        <div class="comp-name">Johnny</div>
-        <div class="comp-role">Cultural Expert · City Guide</div>
-        <div class="comp-langs">
-          <span class="comp-lang">🇬🇧 English</span>
-          <span class="comp-lang">🇨🇿 Čeština</span>
+        <span class="page-link-arr">→</span>
+      </a>
+      <a href="companions.html" class="page-link">
+        <span class="page-link-icon">👤</span>
+        <div>
+          <div class="page-link-label">Private Companions</div>
+          <div class="page-link-name">Choose Your Guide</div>
         </div>
-        <p class="comp-bio">European wanderer who made Kyoto home. Johnny's speciality is art, architecture and the quieter side of Japan — hidden galleries, traditional craft studios, ceramics workshops and conversations with artisans.</p>
-        <div class="comp-price">¥32,000</div>
-        <div class="comp-price-sub">Full Day · Up to 8 hrs · Any Activity</div>
-        <a href="index.html#contact" class="comp-btn">Book Johnny</a>
-      </div>
-
-      <div class="comp-card">
-        <div class="comp-avatar" style="background:linear-gradient(135deg,#c9834a,#9a5828);">L</div>
-        <div class="comp-name">Larion</div>
-        <div class="comp-role">Multilingual · Mountain Specialist</div>
-        <div class="comp-langs">
-          <span class="comp-lang">🇷🇺 Русский</span>
-          <span class="comp-lang">🇯🇵 日本語</span>
-          <span class="comp-lang">🇬🇧 English</span>
-          <span class="comp-lang">🇪🇸 Español</span>
-        </div>
-        <p class="comp-bio">Larion is the only guide in the team who speaks Japanese natively to locals — which unlocks places and conversations the others can't reach. Mountains, temple deep dives, izakaya evenings: Larry's access goes furthest.</p>
-        <div class="comp-price">¥42,000</div>
-        <div class="comp-price-sub">Full Day · Up to 8 hrs · Any Activity</div>
-        <a href="index.html#contact" class="comp-btn">Book Larion</a>
-      </div>
-
+        <span class="page-link-arr">→</span>
+      </a>
     </div>
-
-    <p style="text-align:center;font-size:.8rem;color:var(--text-3);margin-top:2rem;line-height:1.7;">Price is per group, not per person. Maximum 6 guests per booking. Entry fees and transport are additional.</p>
   </div>
 </section>
+
 
 <!-- CTA -->
 <section style="background:var(--bg-2);padding:6rem 2rem;text-align:center;border-top:1px solid var(--line);">

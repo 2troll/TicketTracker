@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mountain Expeditions Kansai — Private Summit Guide | Tony Hanma</title>
+  <meta name="description" content="Premium private hiking expeditions across Kansai's greatest peaks — Mt. Kongō, Ponpon-yama, Mt. Hiei, Mt. Rokko, Diamond Trail and the Kumano Kodo UNESCO route." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    :root {
+      --bg:#080808; --bg-1:#0e0e0e; --bg-2:#161616;
+      --glass:rgba(255,255,255,0.05); --glass-b:rgba(255,255,255,0.09);
+      --text:#f2f2f2; --text-2:rgba(242,242,242,0.58); --text-3:rgba(242,242,242,0.28);
+      --acc:#6AABA8; --acc2:#8fcfcc;
+      --gold:#C9A84C;
+      --grad:linear-gradient(135deg,#6AABA8,#8fcfcc);
+      --line:rgba(255,255,255,0.08);
+      --serif:'Cormorant Garamond',Georgia,serif;
+      --sans:'Plus Jakarta Sans',system-ui,sans-serif;
+      --radius:16px;
+    }
+    html { scroll-behavior:smooth; }
+    body { background:var(--bg); color:var(--text); font-family:var(--sans); font-size:16px; line-height:1.7; overflow-x:hidden; }
+    ::-webkit-scrollbar { width:3px; } ::-webkit-scrollbar-thumb { background:var(--acc); }
+    a { text-decoration:none; color:inherit; }
+    nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:1rem 2rem; display:flex; justify-content:space-between; align-items:center; background:rgba(8,8,8,0.88); backdrop-filter:blur(24px); border-bottom:1px solid var(--line); }
+    .nav-back { font-size:0.7rem; font-weight:500; letter-spacing:0.1em; color:var(--text-2); transition:color 0.2s; display:flex; align-items:center; gap:0.4rem; }
+    .nav-back:hover { color:var(--text); }
+    .nav-city { font-family:var(--serif); font-size:1.05rem; color:var(--text); }
+    .nav-book { font-size:0.65rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; padding:0.55rem 1.4rem; background:var(--grad); color:#fff; border-radius:999px; transition:opacity 0.2s,transform 0.2s; }
+    .nav-book:hover { opacity:0.88; transform:translateY(-1px); }
+    .ph { position:relative; height:100svh; min-height:620px; background-image:url('img/koyasan-pagoda-forest.jpg'); background-size:cover; background-position:center; overflow:hidden; display:flex; align-items:flex-end; padding:62px 5% 4.5rem; }
+    .ph::after { content:''; position:absolute; inset:0; background:linear-gradient(to top,rgba(5,3,2,.93) 0%,rgba(5,3,2,.48) 50%,rgba(5,3,2,.1) 100%); pointer-events:none; }
+    .ph-txt { position:relative; z-index:2; opacity:0; animation:phUp .9s ease .3s forwards; }
+    .ph-label { display:block; font-size:.56rem; letter-spacing:.38em; text-transform:uppercase; color:rgba(255,255,255,.6); margin-bottom:1.1rem; }
+    .ph-h1 { font-family:var(--serif); font-size:clamp(4rem,7.5vw,7.5rem); font-weight:300; line-height:.9; color:#fff; margin-bottom:1.4rem; }
+    .ph-h1 em { font-style:italic; display:block; }
+    .ph-sub { font-size:.95rem; font-weight:300; color:rgba(255,255,255,.75); max-width:52ch; line-height:1.8; }
+    @keyframes phUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:none} }
+    .wrap { max-width:1100px; margin:0 auto; padding:0 2rem; }
+    section.content { padding:6rem 0; }
+    section.content + section.content { border-top:1px solid var(--line); }
+    .sec-label { display:inline-block; font-size:.57rem; font-weight:600; letter-spacing:.3em; text-transform:uppercase; background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:1rem; }
+    .sec-h2 { font-family:var(--serif); font-size:clamp(2.2rem,4.5vw,3.8rem); font-weight:300; line-height:1.05; margin-bottom:.8rem; }
+    .sec-h2 .acc { font-style:italic; background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .sec-intro { font-size:.95rem; color:var(--text-2); max-width:60ch; line-height:1.85; margin-bottom:3rem; }
+    footer { background:var(--bg); border-top:1px solid var(--line); padding:2.5rem 2rem; text-align:center; }
+    footer a { font-size:.75rem; color:var(--text-3); display:inline-flex; align-items:center; gap:.5rem; transition:color .2s; }
+    footer a:hover { color:var(--text); }
+
+    /* MOUNTAIN PEAKS */
+    .peak-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; margin-top:3rem; }
+    .peak-card { position:relative; height:420px; border-radius:var(--radius); overflow:hidden; }
+    .pk-bg { position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 8s ease; }
+    .peak-card:hover .pk-bg { transform:scale(1.06); }
+    .peak-card::after { content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(5,3,2,.97) 0%,rgba(5,3,2,.62) 42%,rgba(5,3,2,.12) 100%);pointer-events:none;z-index:1; }
+    .peak-txt { position:absolute;bottom:0;left:0;right:0;padding:2rem 2.2rem;z-index:2; }
+    .peak-elev { display:block;font-size:.53rem;letter-spacing:.28em;text-transform:uppercase;color:var(--acc);margin-bottom:.65rem; }
+    .peak-name { font-family:var(--serif);font-size:2.4rem;font-weight:300;color:#fff;line-height:1;margin-bottom:.15rem; }
+    .peak-kanji { font-size:.8rem;color:rgba(255,255,255,.42);display:block;margin-bottom:.7rem;font-style:italic; }
+    .peak-desc { font-size:.82rem;color:rgba(255,255,255,.72);line-height:1.75;max-width:54ch; }
+    .peak-tags { display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.9rem; }
+    .peak-tag { font-size:.57rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:.22rem .72rem;color:rgba(255,255,255,.62);backdrop-filter:blur(8px); }
+    .peak-tag.hi { background:rgba(229,48,48,.18);border-color:rgba(229,48,48,.3);color:#f08080; }
+    .peak-tag.med { background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.3);color:#d4a84a; }
+    .peak-tag.easy { background:rgba(106,171,168,.15);border-color:rgba(106,171,168,.3);color:var(--acc2); }
+    .peak-card.wide { grid-column:span 2; height:500px; }
+
+    /* DATA BADGES row */
+    .peak-data { display:flex; gap:1.2rem; margin-top:.7rem; flex-wrap:wrap; }
+    .pd { display:flex; flex-direction:column; align-items:center; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-radius:12px; padding:.5rem .9rem; min-width:60px; }
+    .pd-val { font-family:var(--serif);font-size:1.1rem;font-weight:300;color:#fff;line-height:1; }
+    .pd-lbl { font-size:.48rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.42);margin-top:.2rem; }
+
+    /* PRICING */
+    .price-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; margin-top:3rem; }
+    .price-card { background:var(--glass); border:1px solid var(--glass-b); border-radius:var(--radius); padding:2.2rem 1.8rem; position:relative; overflow:hidden; transition:border-color .3s,transform .3s; }
+    .price-card:hover { border-color:rgba(106,171,168,.3); transform:translateY(-5px); }
+    .price-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--grad); transform:scaleX(0); transform-origin:left; transition:transform .3s; }
+    .price-card:hover::before { transform:scaleX(1); }
+    .price-tier { font-size:.57rem; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--acc); margin-bottom:.8rem; }
+    .price-amount { font-family:var(--serif); font-size:2.8rem; font-weight:300; color:#fff; line-height:1; margin-bottom:.3rem; }
+    .price-note { font-size:.7rem; color:var(--text-3); letter-spacing:.08em; margin-bottom:1.4rem; }
+    .price-hrs { font-size:.82rem; color:var(--text-2); margin-bottom:1.4rem; }
+    .price-inc { list-style:none; padding:0; }
+    .price-inc li { font-size:.84rem; color:var(--text-2); padding:.4rem 0; border-bottom:1px solid rgba(255,255,255,.04); display:flex; align-items:flex-start; gap:.6rem; line-height:1.5; }
+    .price-inc li:last-child { border-bottom:none; }
+    .price-inc li::before { content:"✦"; color:var(--acc); font-size:.6rem; margin-top:.35rem; flex-shrink:0; }
+    .price-card.featured { border-color:rgba(106,171,168,.22); }
+    .price-card.featured::after { content:'Most Booked'; position:absolute; top:1.4rem; right:1.4rem; font-size:.52rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; background:var(--grad); color:#fff; padding:.25rem .7rem; border-radius:999px; }
+
+    /* PAGE LINKS */
+    .page-links { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:5rem; }
+    .page-link { background:var(--glass); border:1px solid var(--glass-b); border-radius:var(--radius); padding:1.8rem 2rem; display:flex; align-items:center; gap:1.2rem; transition:border-color .3s,transform .25s; }
+    .page-link:hover { border-color:rgba(106,171,168,.3); transform:translateY(-3px); }
+    .page-link-icon { font-size:1.8rem; flex-shrink:0; }
+    .page-link-label { font-size:.55rem; letter-spacing:.2em; text-transform:uppercase; color:var(--acc); margin-bottom:.3rem; }
+    .page-link-name { font-family:var(--serif); font-size:1.3rem; font-weight:300; color:var(--text); }
+    .page-link-arr { margin-left:auto; font-size:1.2rem; color:var(--text-3); flex-shrink:0; }
+
+    .peak-note { margin-top:2.5rem;background:var(--glass);border:1px solid var(--glass-b);border-radius:var(--radius);padding:2rem 2.2rem;display:flex;align-items:center;gap:2rem;flex-wrap:wrap; }
+    .peak-cta { margin-left:auto;white-space:nowrap;display:inline-block;padding:.78rem 1.9rem;background:linear-gradient(135deg,#6AABA8,#4A8A87);color:#fff;font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border-radius:999px;flex-shrink:0; }
+
+    @media(max-width:700px){
+      .peak-grid{grid-template-columns:1fr}
+      .peak-card,.peak-card.wide{grid-column:span 1;height:380px}
+      .peak-desc{display:none}
+      .price-grid{grid-template-columns:1fr}
+      .page-links{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-back">← Kansai Guide</a>
+  <span class="nav-city">Mountain Expeditions</span>
+  <a href="index.html#contact" class="nav-book">Book Now</a>
+</nav>
+
+<header class="ph">
+  <div class="ph-txt">
+    <span class="ph-label">Premium Expeditions · Kansai Mountains · Japan</span>
+    <h1 class="ph-h1"><em>Summit</em>Kansai</h1>
+    <p class="ph-sub">Six great peaks. Ancient trails. Private guide from base to summit and back. Every route I have climbed personally — every detail I know by heart.</p>
+  </div>
+</header>
+
+<!-- PEAKS -->
+<section class="content" style="background:var(--bg-1);">
+  <div class="wrap">
+    <span class="sec-label">Tony's Peaks · 登山コース</span>
+    <h2 class="sec-h2">The <span class="acc">Six Routes</span></h2>
+    <p class="sec-intro">From Osaka's snow-capped crown to Japan's oldest pilgrimage road — these are the mountains that define Kansai. Climbed in every season. Guided for every level.</p>
+
+    <div class="peak-grid">
+
+      <div class="peak-card wide">
+        <div class="pk-bg" style="background-image:url('img/koyasan-pagoda-forest.jpg');"></div>
+        <div class="peak-txt">
+          <span class="peak-elev">1,125 m · Osaka Prefecture · Tony's #1 Summit</span>
+          <div class="peak-name">Mt. Kongō<span class="peak-kanji">金剛山 · Osaka's Crown</span></div>
+          <p class="peak-desc">Osaka's highest peak and its most rewarding. Dense cedar columns rising to a frost-covered summit that turns white in January — impossible to believe is 45 minutes from Namba. The trail through Chihayafuru is silent, ancient and perfect. I have climbed this mountain in every season and it is never the same twice.</p>
+          <div class="peak-data">
+            <div class="pd"><span class="pd-val">1,125</span><span class="pd-lbl">Metres</span></div>
+            <div class="pd"><span class="pd-val">10 km</span><span class="pd-lbl">Distance</span></div>
+            <div class="pd"><span class="pd-val">5 hrs</span><span class="pd-lbl">Duration</span></div>
+            <div class="pd"><span class="pd-val">850 m</span><span class="pd-lbl">Elevation gain</span></div>
+          </div>
+          <div class="peak-tags" style="margin-top:.7rem;">
+            <span class="peak-tag hi">Challenging</span>
+            <span class="peak-tag">Year-Round</span>
+            <span class="peak-tag">Snow Dec–Feb</span>
+            <span class="peak-tag">Tony's Route</span>
+            <span class="peak-tag">45 min from Osaka</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="peak-card">
+        <div class="pk-bg" style="background-image:url('img/japan-stone-lantern-maple.jpg');"></div>
+        <div class="peak-txt">
+          <span class="peak-elev">678 m · Kyoto–Osaka Border</span>
+          <div class="peak-name">Ponpon-yama<span class="peak-kanji">ポンポン山 · The Hidden One</span></div>
+          <p class="peak-desc">A perfectly shaped peak on the Kyoto–Osaka border that almost nobody climbs. Zero tourists. Cedar groves, bamboo passages and complete silence at the summit.</p>
+          <div class="peak-data">
+            <div class="pd"><span class="pd-val">678</span><span class="pd-lbl">Metres</span></div>
+            <div class="pd"><span class="pd-val">8 km</span><span class="pd-lbl">Distance</span></div>
+            <div class="pd"><span class="pd-val">3.5 h</span><span class="pd-lbl">Duration</span></div>
+            <div class="pd"><span class="pd-val">480 m</span><span class="pd-lbl">Elev. gain</span></div>
+          </div>
+          <div class="peak-tags" style="margin-top:.7rem;">
+            <span class="peak-tag med">Moderate</span>
+            <span class="peak-tag">Year-Round</span>
+            <span class="peak-tag">Secret Route</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="peak-card">
+        <div class="pk-bg" style="background-image:url('img/japan-temple-pagoda.jpg');"></div>
+        <div class="peak-txt">
+          <span class="peak-elev">848 m · Kyoto–Shiga Border</span>
+          <div class="peak-name">Mt. Hiei<span class="peak-kanji">比叡山 · Tendai's Throne</span></div>
+          <p class="peak-desc">The mountain that has watched over Kyoto for 1,200 years. Enryaku-ji temple complex at the summit, misty cable-car approach, descent to Lake Biwa.</p>
+          <div class="peak-data">
+            <div class="pd"><span class="pd-val">848</span><span class="pd-lbl">Metres</span></div>
+            <div class="pd"><span class="pd-val">9 km</span><span class="pd-lbl">Distance</span></div>
+            <div class="pd"><span class="pd-val">4 hrs</span><span class="pd-lbl">Duration</span></div>
+            <div class="pd"><span class="pd-val">620 m</span><span class="pd-lbl">Elev. gain</span></div>
+          </div>
+          <div class="peak-tags" style="margin-top:.7rem;">
+            <span class="peak-tag med">Moderate</span>
+            <span class="peak-tag">Year-Round</span>
+            <span class="peak-tag">Cultural + Trail</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="peak-card">
+        <div class="pk-bg" style="background-image:url('img/kobe-port-dusk.jpg');background-position:center top;"></div>
+        <div class="peak-txt">
+          <span class="peak-elev">931 m · Hyogo Prefecture · Kobe</span>
+          <div class="peak-name">Mt. Rokko<span class="peak-kanji">六甲山 · Above the Port</span></div>
+          <p class="peak-desc">Start in Arima Onsen valley, climb through bamboo and oak to the Rokko ridge, then stand over Kobe's port and Osaka Bay laid out below you.</p>
+          <div class="peak-data">
+            <div class="pd"><span class="pd-val">931</span><span class="pd-lbl">Metres</span></div>
+            <div class="pd"><span class="pd-val">11 km</span><span class="pd-lbl">Distance</span></div>
+            <div class="pd"><span class="pd-val">4.5 h</span><span class="pd-lbl">Duration</span></div>
+            <div class="pd"><span class="pd-val">740 m</span><span class="pd-lbl">Elev. gain</span></div>
+          </div>
+          <div class="peak-tags" style="margin-top:.7rem;">
+            <span class="peak-tag med">Moderate</span>
+            <span class="peak-tag">Year-Round</span>
+            <span class="peak-tag">City Views</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="peak-card">
+        <div class="pk-bg" style="background-image:url('img/nara-autumn-path.jpg');"></div>
+        <div class="peak-txt">
+          <span class="peak-elev">Kongō → Katsuragi → Nijō · Osaka–Nara Ridge</span>
+          <div class="peak-name">Diamond Trail<span class="peak-kanji">ダイヤモンドトレール · The Ridge</span></div>
+          <p class="peak-desc">Osaka's legendary 45 km ridgeline. We run a signature day section: 22 km of pure ridge above both prefectures. For serious hikers only.</p>
+          <div class="peak-data">
+            <div class="pd"><span class="pd-val">1,007</span><span class="pd-lbl">Max m</span></div>
+            <div class="pd"><span class="pd-val">22 km</span><span class="pd-lbl">Distance</span></div>
+            <div class="pd"><span class="pd-val">8 hrs</span><span class="pd-lbl">Duration</span></div>
+            <div class="pd"><span class="pd-val">1,200 m</span><span class="pd-lbl">Total gain</span></div>
+          </div>
+          <div class="peak-tags" style="margin-top:.7rem;">
+            <span class="peak-tag hi">Expert</span>
+            <span class="peak-tag">Best: Oct–Nov</span>
+            <span class="peak-tag">Multi-Peak</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="peak-card wide">
+        <div class="pk-bg" style="background-image:url('img/koyasan-okunoin.jpg');background-position:center 30%;"></div>
+        <div class="peak-txt">
+          <span class="peak-elev">UNESCO World Heritage · Wakayama · 1,000 Years Old</span>
+          <div class="peak-name">Kumano Kodo<span class="peak-kanji">熊野古道 · The Emperor's Trail</span></div>
+          <p class="peak-desc">Japan's greatest pilgrimage route — ancient cobblestones through 800-year-old cedar groves, walked by emperors for a thousand years. Private transport to the trailhead before dawn. Arrive at Kumano Hongu Grand Shrine as the morning mist lifts from the valley floor. A day that changes how you see Japan.</p>
+          <div class="peak-data">
+            <div class="pd"><span class="pd-val">~450</span><span class="pd-lbl">Max m</span></div>
+            <div class="pd"><span class="pd-val">23 km</span><span class="pd-lbl">Distance</span></div>
+            <div class="pd"><span class="pd-val">9 hrs</span><span class="pd-lbl">Full day</span></div>
+            <div class="pd"><span class="pd-val">1,000+</span><span class="pd-lbl">Years old</span></div>
+          </div>
+          <div class="peak-tags" style="margin-top:.7rem;">
+            <span class="peak-tag hi">Challenging</span>
+            <span class="peak-tag">Best: Apr–Jun</span>
+            <span class="peak-tag">UNESCO Heritage</span>
+            <span class="peak-tag">Private Transport Included</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="peak-note">
+      <span style="font-size:1.8rem;flex-shrink:0;">🏔</span>
+      <div>
+        <div style="font-family:var(--serif);font-size:1.2rem;color:var(--text);margin-bottom:.4rem;">All routes guided privately, on your schedule</div>
+        <div style="font-size:.85rem;color:var(--text-2);line-height:1.75;">Emergency kit, transport, permits and lunch included. Available in 🇬🇧 🇪🇸 🇸🇦 🇷🇺 🇨🇿</div>
+      </div>
+      <a href="index.html#contact" class="peak-cta">Plan My Summit</a>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="content" style="background:var(--bg-2);">
+  <div class="wrap">
+    <span class="sec-label">Pricing · Per Group</span>
+    <h2 class="sec-h2">One Price, <span class="acc">All Day</span></h2>
+    <p class="sec-intro">Prices are per group (up to 6 people) — not per person. The longer and harder the route, the more value you get. Entry fees and special transport noted below.</p>
+
+    <div class="price-grid">
+
+      <div class="price-card">
+        <div class="price-tier">Half Day</div>
+        <div class="price-amount">¥38,000</div>
+        <div class="price-note">per group · up to 6 people</div>
+        <div class="price-hrs">3–5 hours · Easy or Moderate route</div>
+        <ul class="price-inc">
+          <li>Private certified mountain guide</li>
+          <li>Transport to and from trailhead</li>
+          <li>Packed Japanese snack lunch</li>
+          <li>Emergency first-aid kit</li>
+          <li>All trail permits included</li>
+        </ul>
+      </div>
+
+      <div class="price-card featured">
+        <div class="price-tier">Full Day Summit</div>
+        <div class="price-amount">¥52,000</div>
+        <div class="price-note">per group · up to 6 people</div>
+        <div class="price-hrs">6–9 hours · Any route including Kongō and Rokko</div>
+        <ul class="price-inc">
+          <li>Private certified mountain guide</li>
+          <li>Private transport door to trailhead</li>
+          <li>Full Japanese mountain bento lunch</li>
+          <li>Emergency kit and satellite communicator</li>
+          <li>All permits and entry fees</li>
+          <li>Post-hike onsen stop (Arima or Minoh)</li>
+        </ul>
+      </div>
+
+      <div class="price-card">
+        <div class="price-tier">Epic Traverse</div>
+        <div class="price-amount">¥78,000</div>
+        <div class="price-note">per group · up to 6 people</div>
+        <div class="price-hrs">Full day + return transfer · Diamond Trail or Kumano Kodo</div>
+        <ul class="price-inc">
+          <li>Private guide + driver for full day</li>
+          <li>Pre-dawn departure from your hotel</li>
+          <li>Full Japanese mountain bento lunch</li>
+          <li>All logistics handled end to end</li>
+          <li>UNESCO entry and shrine fees</li>
+          <li>Onsen recovery stop included</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- LINKS TO OTHER PAGES -->
+<section class="content" style="background:var(--bg-1);">
+  <div class="wrap">
+    <span class="sec-label">Also Available</span>
+    <h2 class="sec-h2">More <span class="acc">From Tony</span></h2>
+    <div class="page-links">
+      <a href="companions.html" class="page-link">
+        <span class="page-link-icon">👤</span>
+        <div>
+          <div class="page-link-label">Private Companions</div>
+          <div class="page-link-name">Choose Your Guide</div>
+        </div>
+        <span class="page-link-arr">→</span>
+      </a>
+      <a href="practical.html" class="page-link">
+        <span class="page-link-icon">🚅</span>
+        <div>
+          <div class="page-link-label">Practical Guide</div>
+          <div class="page-link-name">Trains · Hotels · Costs</div>
+        </div>
+        <span class="page-link-arr">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="background:var(--bg-2);padding:6rem 2rem;text-align:center;border-top:1px solid var(--line);">
+  <span style="display:block;font-size:.56rem;letter-spacing:.38em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:1.2rem;">Ready to Climb?</span>
+  <h2 style="font-family:var(--serif);font-size:clamp(2.5rem,5vw,4.5rem);font-weight:300;color:#fff;line-height:1.05;margin-bottom:1.2rem;">Pick your <em style="font-style:italic;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">mountain</em></h2>
+  <p style="font-size:.95rem;color:var(--text-2);max-width:46ch;margin:0 auto 2.5rem;line-height:1.8;">Tell me which peak and I will handle everything — transport, permits, timing, food and the guide. You just show up.</p>
+  <a href="index.html#contact" style="display:inline-block;padding:.9rem 2.5rem;background:linear-gradient(135deg,#6AABA8,#4A8A87);color:#fff;font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border-radius:999px;transition:transform .2s,box-shadow .2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(106,171,168,.45)'" onmouseout="this.style.transform='none';this.style.boxShadow='none'">Book a Mountain Day</a>
+</section>
+
+<footer>
+  <a href="index.html">← Back to Tony Hanma — Private Kansai Guide</a>
+</footer>
+
+</body>
+</html>
