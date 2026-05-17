@@ -213,6 +213,13 @@ footer{background:#000;border-top:1px solid var(--line);padding:2.5rem 1.8rem}
 .ck-y{padding:.45rem 1.1rem;background:linear-gradient(135deg,#e53030,#ff6b35);color:#fff;border:none;border-radius:999px;font-size:.68rem;font-weight:600;cursor:pointer;font-family:var(--sans)}
 .ck-n{padding:.45rem 1.1rem;background:transparent;color:var(--text3);border:1px solid var(--glassb);border-radius:999px;font-size:.68rem;font-weight:600;cursor:pointer;font-family:var(--sans)}
 
+/* ── RTL overrides (Arabic) ── */
+[dir="rtl"] .ck-bar{left:auto;right:1.4rem}
+[dir="rtl"] .wa{right:auto;left:1.6rem}
+[dir="rtl"] .wa-tip{right:auto;left:62px}
+[dir="rtl"] .price-badge{right:auto;left:1.4rem;border-radius:0 0 0 8px}
+[dir="rtl"] .nav-logo{margin-right:0;margin-left:auto}
+
 /* ── LIGHTBOX ── */
 .lbx{position:fixed;inset:0;z-index:9000;background:rgba(0,0,0,.97);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
 .lbx.on{opacity:1;pointer-events:all}
@@ -290,7 +297,7 @@ footer{background:#000;border-top:1px solid var(--line);padding:2.5rem 1.8rem}
 <section id="hero">
   <div class="hero-bg"></div>
   <div class="hero-c">
-    <span class="hero-badge">Private Guide · Kansai Region · Japan</span>
+    <span class="hero-badge" data-t="hero.badge">Private Guide · Kansai Region · Japan</span>
     <h1 class="hero-h1"><em>Discover</em>Japan's True Soul</h1>
     <p class="hero-p" id="hero-p"></p>
     <div class="hero-btns">
@@ -304,10 +311,10 @@ footer{background:#000;border-top:1px solid var(--line);padding:2.5rem 1.8rem}
 <section id="stats">
   <div class="wrap">
     <div class="stats-g">
-      <div class="stat-box rv d1"><span class="stat-n" data-cnt="7">0</span><span class="stat-l" data-t="stat.1">Prefectures</span></div>
-      <div class="stat-box rv d2"><span class="stat-n" data-cnt="200">0</span><span class="stat-l" data-t="stat.2">Tours Done</span></div>
-      <div class="stat-box rv d3"><span class="stat-n" data-cnt="5">0</span><span class="stat-l" data-t="stat.3">Languages</span></div>
-      <div class="stat-box rv d1"><span class="stat-n" data-cnt="100">0</span><span class="stat-l" data-t="stat.4">% Private</span></div>
+      <div class="stat-box rv d1"><span class="stat-n" data-cnt="7" data-sfx="">0</span><span class="stat-l" data-t="stat.1">Prefectures</span></div>
+      <div class="stat-box rv d2"><span class="stat-n" data-cnt="200" data-sfx="+">0</span><span class="stat-l" data-t="stat.2">Tours Done</span></div>
+      <div class="stat-box rv d3"><span class="stat-n" data-cnt="5" data-sfx="">0</span><span class="stat-l" data-t="stat.3">Languages</span></div>
+      <div class="stat-box rv d1"><span class="stat-n" data-cnt="100" data-sfx="%">0</span><span class="stat-l" data-t="stat.4">Private</span></div>
     </div>
   </div>
 </section>
@@ -605,12 +612,13 @@ const T = {
 en:{
   'nav.tours':'Tours','nav.pricing':'Pricing','nav.guide':'About','nav.faq':'FAQ','nav.booking':'Book Now',
   'nav.hike':'Hiking','nav.langs':'Languages','nav.practical':'Practical Info',
+  'hero.badge':'Private Guide · Kansai Region · Japan',
   'hero.meet':'Meet Tony',
   'about.label':'Your Guide','about.p1':"I'm Tony — a private guide based in Osaka. I came to Japan drawn by its culture, its food, and its people — and I never left.",
   'about.p2':"What I offer is not a packaged tour. It is access to the Japan I know personally — the backstreet izakayas not on Google Maps, the temple at 6am before the crowds arrive, the market vendor who becomes your favourite memory.",
   'about.p3':"I speak English, Spanish and Arabic fluently, and I adapt to any pace or interest — whether you want to eat everything, photograph every corner, or simply walk and let the city breathe around you.",
   'about.team':'Meet All Guides',
-  'stat.1':'Prefectures Covered','stat.2':'Tours Completed','stat.3':'Languages Spoken','stat.4':'% Private',
+  'stat.1':'Prefectures Covered','stat.2':'Tours Completed','stat.3':'Languages Spoken','stat.4':'Private',
   'tours.label':'Experiences','tours.h2':'Choose Your Journey','tours.sub':'Every tour is 100% private and shaped around your group, pace, and interests.',
   'tours.city.tag':'City Experience','tours.city.h3':'Osaka &amp; Kyoto','tours.city.p':'Food markets, ancient temples, neon streets and hidden alleys — the full spectrum of urban Japan.',
   'tours.hike.tag':'Mountain &amp; Nature','tours.hike.h3':'Trails &amp; Peaks','tours.hike.p':'Kōyasan pilgrimages, mountain shrines and forest paths few tourists ever reach.',
@@ -639,12 +647,13 @@ en:{
 es:{
   'nav.tours':'Tours','nav.pricing':'Precios','nav.guide':'Sobre Mí','nav.faq':'FAQ','nav.booking':'Reservar',
   'nav.hike':'Senderismo','nav.langs':'Idiomas','nav.practical':'Info Práctica',
+  'hero.badge':'Guía Privado · Región de Kansai · Japón',
   'hero.meet':'Conoce a Tony',
   'about.label':'Tu Guía','about.p1':'Soy Tony — guía privado en Osaka. Vine a Japón atraído por su cultura, su comida y su gente — y nunca me fui.',
   'about.p2':'Lo que ofrezco no es un tour de paquete. Es acceso al Japón que conozco personalmente — los izakayas de callejuela que no aparecen en Google Maps, el templo a las 6am antes de las multitudes, el vendedor del mercado que se convierte en tu mejor recuerdo.',
   'about.p3':'Hablo inglés, español y árabe con fluidez, y me adapto a cualquier ritmo o interés — tanto si quieres probarlo todo, fotografiar cada rincón, o simplemente caminar y dejar que la ciudad respire a tu alrededor.',
   'about.team':'Conoce a los Guías',
-  'stat.1':'Prefecturas','stat.2':'Tours Realizados','stat.3':'Idiomas','stat.4':'% Privado',
+  'stat.1':'Prefecturas','stat.2':'Tours Realizados','stat.3':'Idiomas','stat.4':'Privado',
   'tours.label':'Experiencias','tours.h2':'Elige tu Aventura','tours.sub':'Cada tour es 100% privado y adaptado a tu grupo, ritmo e intereses.',
   'tours.city.tag':'Experiencia Urbana','tours.city.h3':'Osaka y Kioto','tours.city.p':'Mercados, templos milenarios, calles de neón y callejuelas ocultas — el espectro completo del Japón urbano.',
   'tours.hike.tag':'Montaña y Naturaleza','tours.hike.h3':'Rutas y Cimas','tours.hike.p':'Peregrinaciones a Kōyasan, santuarios de montaña y senderos boscosos que pocos turistas alcanzan.',
@@ -673,12 +682,13 @@ es:{
 ru:{
   'nav.tours':'Туры','nav.pricing':'Цены','nav.guide':'О гиде','nav.faq':'FAQ','nav.booking':'Забронировать',
   'nav.hike':'Походы','nav.langs':'Языки','nav.practical':'Практическая информация',
+  'hero.badge':'Частный гид · Регион Кансай · Япония',
   'hero.meet':'Познакомиться с Тони',
   'about.label':'Ваш гид','about.p1':'Я Тони — частный гид в Осаке. Я приехал в Японию, привлечённый её культурой, едой и людьми — и остался навсегда.',
   'about.p2':'То, что я предлагаю — не туристический пакет. Это доступ к той Японии, которую я знаю лично — закусочные в переулках без Гугл Карт, храм в 6 утра до туристов, продавец на рынке, который станет вашим лучшим воспоминанием.',
   'about.p3':'Я свободно говорю по-английски, по-испански и по-арабски, и адаптируюсь к любому темпу — хотите ли вы попробовать всё, сфотографировать каждый угол, или просто гулять.',
   'about.team':'Все гиды',
-  'stat.1':'Префектур','stat.2':'Завершённых туров','stat.3':'Языков','stat.4':'% Приватно',
+  'stat.1':'Префектур','stat.2':'Завершённых туров','stat.3':'Языков','stat.4':'Приватно',
   'tours.label':'Экспириенс','tours.h2':'Выберите Своё Путешествие','tours.sub':'Каждый тур на 100% приватный и адаптирован под вашу группу.',
   'tours.city.tag':'Городской экспириенс','tours.city.h3':'Осака и Киото','tours.city.p':'Рынки, древние храмы, неоновые улицы и скрытые переулки — весь спектр городской Японии.',
   'tours.hike.tag':'Горы и природа','tours.hike.h3':'Маршруты и вершины','tours.hike.p':'Паломничество в Коясан, горные святилища и лесные тропы, которые видят немногие туристы.',
@@ -707,12 +717,13 @@ ru:{
 cs:{
   'nav.tours':'Výlety','nav.pricing':'Ceny','nav.guide':'O průvodci','nav.faq':'FAQ','nav.booking':'Rezervovat',
   'nav.hike':'Turistika','nav.langs':'Jazyky','nav.practical':'Praktické informace',
+  'hero.badge':'Soukromý průvodce · Region Kansai · Japonsko',
   'hero.meet':'Poznat Tonyho',
   'about.label':'Váš průvodce','about.p1':'Jsem Tony — soukromý průvodce v Ósace. Přišel jsem do Japonska přitahován jeho kulturou, jídlem a lidmi — a nikdy neodešel.',
   'about.p2':'Nenabiízím balíkový zájezd. Nabízím přístup k Japonsku, které znám osobně — izakaya v uličkách bez Google Map, chrám v 6 ráno před davy, prodavač na trhu, který se stane vaším nejlepším vzpomínkou.',
   'about.p3':'Mluvím plynně anglicky, španělsky a arabsky a přizpůsobuji se jakémukoli tempu — ať chcete ochutnat vše, fotografovat každý kout nebo jen procházet.',
   'about.team':'Všichni průvodci',
-  'stat.1':'Prefektur','stat.2':'Dokončených výletů','stat.3':'Jazyků','stat.4':'% Soukromé',
+  'stat.1':'Prefektur','stat.2':'Dokončených výletů','stat.3':'Jazyků','stat.4':'Soukromé',
   'tours.label':'Zážitky','tours.h2':'Vyberte svůj Výlet','tours.sub':'Každý výlet je 100% soukromý a přizpůsobený vaší skupině.',
   'tours.city.tag':'Městský zážitek','tours.city.h3':'Ósaka a Kjóto','tours.city.p':'Trhy, starověké chrámy, neonové ulice — celé spektrum japonského města.',
   'tours.hike.tag':'Hory a příroda','tours.hike.h3':'Stezky a vrcholy','tours.hike.p':'Poutě na Kóyasan, horské svatyně a lesní cesty, kam turisté málokdy dojdou.',
@@ -741,12 +752,13 @@ cs:{
 ar:{
   'nav.tours':'جولات','nav.pricing':'الأسعار','nav.guide':'عن المرشد','nav.faq':'أسئلة','nav.booking':'احجز الآن',
   'nav.hike':'المشي الجبلي','nav.langs':'اللغات','nav.practical':'معلومات عملية',
+  'hero.badge':'مرشد سياحي خاص · منطقة كانساي · اليابان',
   'hero.meet':'تعرّف على توني',
   'about.label':'مرشدك','about.p1':'أنا توني — مرشد سياحي خاص في أوساكا. جئت إلى اليابان مفتوناً بثقافتها وطعامها وناسها — ولم أغادر قط.',
   'about.p2':'ما أقدمه ليس جولة مُعبّأة. إنه وصول إلى اليابان التي أعرفها شخصياً — المطاعم الصغيرة في الأزقة غير الموجودة على خرائط غوغل، المعبد في السادسة صباحاً قبل الحشود.',
   'about.p3':'أتحدث الإنجليزية والإسبانية والعربية بطلاقة، وأتكيّف مع أي وتيرة — سواء أردت تذوق كل شيء أو التصوير في كل زاوية أو مجرد المشي.',
   'about.team':'جميع المرشدين',
-  'stat.1':'محافظات','stat.2':'جولات مكتملة','stat.3':'لغات','stat.4':'% خاص',
+  'stat.1':'محافظات','stat.2':'جولات مكتملة','stat.3':'لغات','stat.4':'خاص',
   'tours.label':'التجارب','tours.h2':'اختر مغامرتك','tours.sub':'كل جولة خاصة 100% ومصمّمة حول مجموعتك وإيقاعك.',
   'tours.city.tag':'تجربة المدينة','tours.city.h3':'أوساكا وكيوتو','tours.city.p':'الأسواق والمعابد القديمة والشوارع المضيئة — الطيف الكامل لليابان الحضرية.',
   'tours.hike.tag':'الجبال والطبيعة','tours.hike.h3':'المسارات والقمم','tours.hike.p':'حج كويسان والمزارات الجبلية ومسارات الغابات التي يصلها قلة من السياح.',
@@ -857,7 +869,7 @@ document.querySelectorAll('.rv').forEach(function(el) { ro.observe(el); });
 
 // ── STAT COUNTERS ──
 function countUp(el, target) {
-  var sfx = target === 100 ? '%' : '+';
+  var sfx = el.dataset.sfx !== undefined ? el.dataset.sfx : '+';
   var t0 = null;
   function tick(ts) {
     if (!t0) t0 = ts;
@@ -959,10 +971,18 @@ var formOkEl = document.getElementById('form-ok');
 if (cformEl) {
   cformEl.addEventListener('submit', function(e) {
     e.preventDefault();
+    var btn = cformEl.querySelector('[type="submit"]');
+    btn.disabled = true;
     var ep = atob('aHR0cHM6Ly9mb3Jtc3VibWl0LmNvL2FqYXgvUHJpbmNlLms3M2tAcHJvdG9uLm1l');
     fetch(ep, { method: 'POST', body: new FormData(cformEl), headers: { Accept: 'application/json' } })
-      .catch(function() {})
-      .finally(function() { cformEl.style.display = 'none'; formOkEl.style.display = 'block'; });
+      .then(function(r) {
+        if (r.ok) { cformEl.style.display = 'none'; formOkEl.style.display = 'block'; }
+        else { btn.disabled = false; alert('Something went wrong. Please try WhatsApp instead.'); }
+      })
+      .catch(function() {
+        btn.disabled = false;
+        window.open('https://wa.me/34634193106?text=' + encodeURIComponent(waMsgs[lang] || waMsgs.en), '_blank');
+      });
   });
 }
 
@@ -1038,7 +1058,7 @@ function renderCal() {
     var prevDis = (calOff + mi === 0) ? 'disabled' : '';
     var navL = mi === 0 ? '<button class="cal-btn" onclick="calNav(-1)" ' + prevDis + '>&#8249;</button>' : '<div></div>';
     var navR = mi === 1 ? '<button class="cal-btn" onclick="calNav(1)">&#8250;</button>' : '<div></div>';
-    html += '<div class="cal-card rv d' + (mi+1) + '">';
+    html += '<div class="cal-card">';
     html += '<div class="cal-nav">' + navL + '<span class="cal-mname">' + mnames[mo] + ' ' + yr + '</span>' + navR + '</div>';
     html += '<div class="cal-grid">';
     dnames.forEach(function(dn) { html += '<div class="cal-dh">' + dn + '</div>'; });
