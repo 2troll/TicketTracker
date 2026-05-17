@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tony Hanma — Private Kansai Guide</title>
-  <meta name="description" content="Private guide for Osaka and the Kansai region." />
+  <meta name="description" content="Private tours across Osaka, Kyoto, Nara, Kobe and the Kansai mountains. Tony Hanma — 5 languages, 200+ tours, 100% personalised. No groups, no scripts — just Japan." />
 
   <!-- Open Graph / Social Sharing -->
   <meta property="og:type" content="website" />
@@ -399,7 +399,89 @@
     .cancel-text { font-size:.82rem; color:var(--text-2); line-height:1.6; }
     .cancel-text strong { color:rgba(37,211,102,.9); }
 
+    /* ── TESTIMONIALS ── */
+    #testimonials { padding:10rem 0; background:var(--bg-1); position:relative; overflow:hidden; }
+    .test-head { text-align:center; margin-bottom:4rem; position:relative; z-index:1; }
+    .test-head p { font-size:.97rem; font-weight:300; color:var(--text-2); max-width:42ch; margin:.8rem auto 0; line-height:1.85; }
+    .test-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; position:relative; z-index:1; }
+    .test-card { background:var(--glass); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border:1px solid var(--glass-b); border-radius:var(--radius); padding:2rem 2rem 1.6rem; transition:border-color .3s,transform .3s; display:flex; flex-direction:column; }
+    .test-card:hover { border-color:rgba(229,48,48,.25); transform:translateY(-5px); }
+    .test-stars { color:#f0c040; font-size:.9rem; letter-spacing:.1em; margin-bottom:1rem; }
+    .test-q { font-family:var(--serif); font-size:1.02rem; font-weight:300; font-style:italic; color:var(--text); line-height:1.78; margin-bottom:1.6rem; flex:1; quotes:none; }
+    .test-author { display:flex; align-items:center; gap:.85rem; border-top:1px solid var(--line); padding-top:1rem; }
+    .test-avi { width:36px; height:36px; border-radius:50%; background:var(--acc); display:flex; align-items:center; justify-content:center; font-size:.8rem; font-weight:700; color:#fff; flex-shrink:0; }
+    .test-name { font-size:.82rem; font-weight:600; color:var(--text); }
+    .test-loc { font-size:.68rem; color:var(--text-3); letter-spacing:.05em; margin-top:.1rem; }
+    .test-agg { display:flex; align-items:center; justify-content:center; gap:1.4rem; margin-top:3.5rem; background:var(--glass); border:1px solid var(--glass-b); border-radius:var(--radius); padding:1.4rem 2.5rem; max-width:360px; margin-left:auto; margin-right:auto; }
+    .agg-stars { color:#f0c040; font-size:1.3rem; }
+    .agg-score { font-family:var(--serif); font-size:2.4rem; font-weight:300; background:var(--acc); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1; }
+    .agg-label { font-size:.7rem; color:var(--text-3); letter-spacing:.08em; }
+    @media(max-width:900px){ .test-grid { grid-template-columns:repeat(2,1fr); } }
+    @media(max-width:600px){ .test-grid { grid-template-columns:1fr; } }
+
+    /* ── HOW IT WORKS ── */
+    #howworks { padding:8rem 0; background:var(--bg-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line); position:relative; overflow:hidden; }
+    .hiw-head { text-align:center; margin-bottom:4rem; }
+    .hiw-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.4rem; position:relative; z-index:1; }
+    .hiw-step { background:var(--glass); border:1px solid var(--glass-b); border-radius:var(--radius); padding:2.5rem 2rem; position:relative; overflow:hidden; transition:border-color .3s,transform .3s; }
+    .hiw-step::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--acc); transform:scaleX(0); transform-origin:left; transition:transform .45s cubic-bezier(.16,1,.3,1); }
+    .hiw-step:hover { border-color:rgba(229,48,48,.22); transform:translateY(-6px); }
+    .hiw-step:hover::before { transform:scaleX(1); }
+    .hiw-num { font-family:var(--serif); font-size:4rem; font-weight:300; background:var(--acc); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; opacity:.18; line-height:1; margin-bottom:.6rem; transition:opacity .3s; }
+    .hiw-step:hover .hiw-num { opacity:.45; }
+    .hiw-icon { font-size:1.9rem; margin-bottom:1rem; line-height:1; }
+    .hiw-step h3 { font-size:1.05rem; font-weight:700; color:var(--text); margin-bottom:.6rem; }
+    .hiw-step p { font-size:.87rem; font-weight:300; color:var(--text-2); line-height:1.8; }
+    @media(max-width:900px){ .hiw-grid { grid-template-columns:repeat(2,1fr); } }
+    @media(max-width:540px){ .hiw-grid { grid-template-columns:1fr; } }
+
+    /* ── FOOTER SOCIAL ── */
+    .footer-social { display:flex; align-items:center; gap:.8rem; }
+    .footer-soc-link { display:flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:50%; border:1px solid var(--line); color:var(--text-3); text-decoration:none; transition:border-color .2s,color .2s; }
+    .footer-soc-link:hover { border-color:rgba(229,48,48,.5); color:var(--red); }
+    .footer-soc-link svg { width:15px; height:15px; }
+
   </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TouristInformationCenter",
+        "@id": "https://tonykansaiguide.surge.sh/#business",
+        "name": "Tony Hanma — Private Kansai Guide",
+        "description": "Private tours across Osaka, Kyoto, Nara, Kobe and the Kansai mountains. 5 languages. 200+ tours. 100% personalised.",
+        "url": "https://tonykansaiguide.surge.sh/",
+        "image": "https://tonykansaiguide.surge.sh/img/osaka-dotonbori-night.jpg",
+        "telephone": "+34634193106",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Osaka",
+          "addressRegion": "Kansai",
+          "addressCountry": "JP"
+        },
+        "areaServed": ["Osaka","Kyoto","Nara","Kobe","Himeji","Koyasan","Kansai"],
+        "availableLanguage": ["English","Spanish","Arabic","Czech","Russian"],
+        "priceRange": "¥¥¥",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5",
+          "reviewCount": "200",
+          "bestRating": "5",
+          "worstRating": "1"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {"@type":"Question","name":"Do you offer group tours?","acceptedAnswer":{"@type":"Answer","text":"No — all tours are 100% private. You will never share your guide with strangers."}},
+          {"@type":"Question","name":"What languages do you speak?","acceptedAnswer":{"@type":"Answer","text":"Our guide team speaks English, Spanish, Arabic, Czech and Russian."}},
+          {"@type":"Question","name":"How do I book?","acceptedAnswer":{"@type":"Answer","text":"Contact Tony via the form or WhatsApp. You'll receive a personalised itinerary and pricing within 24 hours."}}
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -409,10 +491,12 @@
     <li><a href="#region"       data-t="nav.region">Kansai</a></li>
     <li><a href="#about"        data-t="nav.guide">Guide</a></li>
     <li><a href="#experiences"  data-t="nav.tours">Tours</a></li>
+    <li><a href="#howworks"    data-t="nav.hiw">How it Works</a></li>
     <li><a href="#routemap"     data-t="nav.map">Map</a></li>
     <li><a href="#gallery"      data-t="nav.gallery">Gallery</a></li>
     <li><a href="#routes"       data-t="nav.routes">Routes</a></li>
     <li><a href="#pricing"      data-t="nav.pricing">Pricing</a></li>
+    <li><a href="#testimonials" data-t="nav.test">Reviews</a></li>
     <li><a href="#languages"    data-t="nav.langs">Languages</a></li>
     <li><a href="#contact"      data-t="nav.contact">Contact</a></li>
   </ul>
@@ -505,7 +589,7 @@
     <div class="stats-grid">
       <div class="stat-card tilt-card rev"><div class="glare"></div><span class="stat-n" data-target="7">0</span><span class="stat-l" data-t="stat.1">Prefectures Covered</span></div>
       <div class="stat-card tilt-card rev d2"><div class="glare"></div><span class="stat-n" data-target="200">0</span><span class="stat-l" data-t="stat.2">Tours Completed</span></div>
-      <div class="stat-card tilt-card rev d3"><div class="glare"></div><span class="stat-n" data-target="3">0</span><span class="stat-l" data-t="stat.3">Languages Spoken</span></div>
+      <div class="stat-card tilt-card rev d3"><div class="glare"></div><span class="stat-n" data-target="5">0</span><span class="stat-l" data-t="stat.3">Languages Spoken</span></div>
       <div class="stat-card tilt-card rev d4"><div class="glare"></div><span class="stat-n" data-target="100">0</span><span class="stat-l" data-t="stat.4">% Private &amp; Personalised</span></div>
     </div>
   </div>
@@ -557,6 +641,44 @@
     <div class="exp-item tilt-card rev d3"><div class="glare"></div>
       <div class="exp-num">04</div>
       <div class="exp-body"><h3 data-t="exp.4.title">Cultural &amp; Spiritual Journeys</h3><p data-t="exp.4.desc">Monastery stays, dawn temple walks, traditional craft workshops — for travellers who want depth, not just sights on a checklist.</p><div class="etags"><span class="etag" data-t="tag.flex">Flexible</span><span class="etag">Kōyasan</span><span class="etag" data-t="tag.imm">Immersive</span></div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- HOW IT WORKS -->
+<section id="howworks">
+  <div class="orb" style="width:55vw;height:55vw;top:-15%;left:-10%;background:radial-gradient(circle,rgba(229,48,48,0.07) 0%,transparent 65%);animation:drift1 22s ease-in-out infinite;"></div>
+  <div class="wrap">
+    <div class="hiw-head rev">
+      <span class="section-label" data-t="hiw.label">Simple Process</span>
+      <h2 data-t="hiw.h2">How it <span class="acc">works</span></h2>
+    </div>
+    <div class="hiw-grid">
+      <div class="hiw-step tilt-card rev d1"><div class="glare"></div>
+        <div class="hiw-num">01</div>
+        <div class="hiw-icon">✉️</div>
+        <h3 data-t="hiw.1.title">Contact Tony</h3>
+        <p data-t="hiw.1.desc">Send a message via the form or WhatsApp. Tell me your travel dates, group size and what interests you most about Japan.</p>
+      </div>
+      <div class="hiw-step tilt-card rev d2"><div class="glare"></div>
+        <div class="hiw-num">02</div>
+        <div class="hiw-icon">📋</div>
+        <h3 data-t="hiw.2.title">Custom Proposal</h3>
+        <p data-t="hiw.2.desc">Within 24 hours I'll send a personalised itinerary with full pricing. No obligation — just a clear picture of what your tour could look like.</p>
+      </div>
+      <div class="hiw-step tilt-card rev d3"><div class="glare"></div>
+        <div class="hiw-num">03</div>
+        <div class="hiw-icon">✅</div>
+        <h3 data-t="hiw.3.title">Confirm & Relax</h3>
+        <p data-t="hiw.3.desc">Confirm with a simple deposit. I handle every detail — logistics, reservations, route adjustments. You just show up.</p>
+      </div>
+      <div class="hiw-step tilt-card rev d4"><div class="glare"></div>
+        <div class="hiw-num">04</div>
+        <div class="hiw-icon">⛩️</div>
+        <h3 data-t="hiw.4.title">Experience Japan</h3>
+        <p data-t="hiw.4.desc">Meet me at your hotel and let Kansai unfold around you. Private, personalised — and genuinely unforgettable.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -917,6 +1039,99 @@
   </div>
 </section>
 
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="orb" style="width:55vw;height:55vw;top:-15%;right:-10%;background:radial-gradient(circle,rgba(229,48,48,0.07) 0%,transparent 65%);animation:drift2 21s ease-in-out infinite;"></div>
+  <div class="wrap">
+    <div class="test-head rev">
+      <span class="section-label" data-t="test.label">Client Reviews</span>
+      <h2 data-t="test.h2">What travellers <span class="acc">say</span></h2>
+      <p data-t="test.sub">Over 200 private tours. Real people, real stories.</p>
+    </div>
+    <div class="test-grid">
+
+      <div class="test-card tilt-card rev d1"><div class="glare"></div>
+        <div class="test-stars">★★★★★</div>
+        <blockquote class="test-q" data-t="test.1.q">Tony took us to a tiny ramen shop hidden in an Osaka alley — no sign, no English menu, just perfection. That single bowl was worth the whole trip.</blockquote>
+        <div class="test-author">
+          <div class="test-avi">S</div>
+          <div>
+            <div class="test-name">Sofía M.</div>
+            <div class="test-loc">🇪🇸 Spain · Osaka Day Tour</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="test-card tilt-card rev d2"><div class="glare"></div>
+        <div class="test-stars">★★★★★</div>
+        <blockquote class="test-q" data-t="test.2.q">We spent three days with Tony across Kansai. He knows every alley, every chef, every temple. It was the best experience in Japan.</blockquote>
+        <div class="test-author">
+          <div class="test-avi">J</div>
+          <div>
+            <div class="test-name">James K.</div>
+            <div class="test-loc">🇬🇧 United Kingdom · 3-Day Kansai</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="test-card tilt-card rev d3"><div class="glare"></div>
+        <div class="test-stars">★★★★★</div>
+        <blockquote class="test-q" data-t="test.3.q">The best experience of our entire trip to Japan. Tony speaks Spanish perfectly and took us to places we'd never have found on our own.</blockquote>
+        <div class="test-author">
+          <div class="test-avi">M</div>
+          <div>
+            <div class="test-name">María & Carlos</div>
+            <div class="test-loc">🇦🇷 Argentina · Kyoto Hidden Walk</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="test-card tilt-card rev d1"><div class="glare"></div>
+        <div class="test-stars">★★★★★</div>
+        <blockquote class="test-q" data-t="test.4.q">We did a 5-day journey from Osaka to Kōyasan. Tony arranged everything. Waking up in a monastery at dawn is something I'll never forget.</blockquote>
+        <div class="test-author">
+          <div class="test-avi">L</div>
+          <div>
+            <div class="test-name">Larissa V.</div>
+            <div class="test-loc">🇷🇺 Russia · Multi-Day Journey</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="test-card tilt-card rev d2"><div class="glare"></div>
+        <div class="test-stars">★★★★★</div>
+        <blockquote class="test-q" data-t="test.5.q">The food tour through Kuromon market was incredible. Tony knew every vendor personally. We ate things I couldn't name and loved every single one.</blockquote>
+        <div class="test-author">
+          <div class="test-avi">F</div>
+          <div>
+            <div class="test-name">Fatima R.</div>
+            <div class="test-loc">🇸🇦 Saudi Arabia · Osaka Food Tour</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="test-card tilt-card rev d3"><div class="glare"></div>
+        <div class="test-stars">★★★★★</div>
+        <blockquote class="test-q" data-t="test.6.q">As someone with Japanese heritage visiting for the first time, I needed a guide who understood depth. Tony gave us history, culture and emotion all at once.</blockquote>
+        <div class="test-author">
+          <div class="test-avi">M</div>
+          <div>
+            <div class="test-name">Martin D.</div>
+            <div class="test-loc">🇨🇿 Czech Republic · Nara & Himeji</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="test-agg rev">
+      <div class="agg-stars">★★★★★</div>
+      <div class="agg-score">5.0</div>
+      <div class="agg-label" data-t="test.agg">Based on 200+ private tours</div>
+    </div>
+  </div>
+</section>
+
 <!-- LANGUAGES -->
 <!-- UPDATES / BLOG -->
 <section id="updates">
@@ -1109,12 +1324,28 @@
 
 <footer>
   <span data-t="footer.l">© 2026 Tony Hanma · Private Kansai Guide</span>
+  <div class="footer-social">
+    <a href="https://wa.me/34634193106" target="_blank" rel="noopener" class="footer-soc-link" aria-label="WhatsApp">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zm-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884zm8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+    <a href="mailto:tonykansaiguide@proton.me" class="footer-soc-link" aria-label="Email">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg>
+    </a>
+  </div>
   <span data-t="footer.r">Osaka · Kansai · Japan</span>
 </footer>
 
 <script>
 const T = {
   en: {
+    'nav.hiw':'How it Works','nav.test':'Reviews',
+    'hiw.label':'Simple Process',
+    'hiw.h2':'How it <span class=\"acc\">works</span>',
+    'hiw.1.title':'Contact Tony','hiw.1.desc':"Send a message via the form or WhatsApp. Tell me your travel dates, group size and what interests you most about Japan.",
+    'hiw.2.title':'Custom Proposal','hiw.2.desc':"Within 24 hours I'll send a personalised itinerary with full pricing. No obligation — just a clear picture of what your tour could look like.",
+    'hiw.3.title':'Confirm & Relax','hiw.3.desc':"Confirm with a simple deposit. I handle every detail — logistics, reservations, route. You just show up.",
+    'hiw.4.title':'Experience Japan','hiw.4.desc':"Meet me at your hotel and let Kansai unfold around you. Private, personalised — and genuinely unforgettable.",
+    'test.agg':'Based on 200+ private tours',
     'nav.region':'Kansai','nav.guide':'Guide','nav.tours':'Tours','nav.routes':'Routes','nav.pricing':'Pricing','nav.langs':'Languages','nav.contact':'Contact',
     'hero.tag':'Private Guide · Osaka · Kansai Region · Japan',
     'hero.l1':'Discover','hero.l2':"Japan's",'hero.l3':'True Soul',
@@ -1181,6 +1412,14 @@ const T = {
     'footer.l':'© 2026 Tony Hanma · Private Kansai Guide','footer.r':'Osaka · Kansai · Japan'
   },
   es: {
+    'nav.hiw':'Cómo Funciona','nav.test':'Opiniones',
+    'hiw.label':'Proceso Simple',
+    'hiw.h2':'Cómo <span class=\"acc\">funciona</span>',
+    'hiw.1.title':'Contacta a Tony','hiw.1.desc':"Envía un mensaje por el formulario o WhatsApp. Cuéntame tus fechas de viaje, el tamaño del grupo y qué te interesa más de Japón.",
+    'hiw.2.title':'Propuesta Personalizada','hiw.2.desc':"En 24 horas te enviaré un itinerario personalizado con precios. Sin compromiso — solo una imagen clara de cómo podría ser tu tour.",
+    'hiw.3.title':'Confirma y Relájate','hiw.3.desc':"Confirma con un depósito sencillo. Me encargo de todos los detalles — logística, reservas, ruta. Tú solo apareces.",
+    'hiw.4.title':'Vive Japón','hiw.4.desc':"Encuéntrame en tu hotel y deja que Kansai se despliegue ante ti. Privado, personalizado — e inolvidable.",
+    'test.agg':'Más de 200 tours privados',
     'nav.region':'Kansai','nav.guide':'Guía','nav.tours':'Tours','nav.routes':'Rutas','nav.pricing':'Precios','nav.langs':'Idiomas','nav.contact':'Contacto',
     'hero.tag':'Guía Privado · Osaka · Región de Kansai · Japón','hero.l1':'Descubre','hero.l2':'el Alma','hero.l3':'de Japón',
     'hero.sub':'Más allá de las guías turísticas. Un viaje íntimo por Osaka, Kioto, Nara y los rincones ocultos de la región de Kansai — guiado por alguien que vive aquí.',
@@ -1245,6 +1484,14 @@ const T = {
     'gal.label':'Galería de Fotos','gal.h2':'Momentos de <span class="acc">nuestros tours</span>','gal.sub':'Lugares reales. Experiencias reales. Cada foto cuenta una historia de Kansai.'
   },
   ru: {
+    'nav.hiw':'Как Работает','nav.test':'Отзывы',
+    'hiw.label':'Простой Процесс',
+    'hiw.h2':'Как это <span class=\"acc\">работает</span>',
+    'hiw.1.title':'Свяжитесь с Тони','hiw.1.desc':"Напишите через форму или WhatsApp. Расскажите о датах поездки, размере группы и ваших интересах в Японии.",
+    'hiw.2.title':'Индивидуальное Предложение','hiw.2.desc':"В течение 24 часов пришлю персональный маршрут с ценами. Без обязательств — просто чёткое представление о вашем туре.",
+    'hiw.3.title':'Подтвердите и Отдыхайте','hiw.3.desc':"Подтвердите небольшим депозитом. Всё остальное беру на себя — логистика, бронирования, маршрут. Вы просто приходите.",
+    'hiw.4.title':'Откройте Японию','hiw.4.desc':"Встретьтесь со мной у вашего отеля и позвольте Кансай раскрыться перед вами. Приватно, персонально — и незабываемо.",
+    'test.agg':'На основе 200+ частных туров',
     'nav.region':'Кансай','nav.guide':'Гид','nav.tours':'Туры','nav.map':'Карта','nav.gallery':'Галерея','nav.routes':'Маршруты','nav.pricing':'Цены','nav.langs':'Языки','nav.contact':'Контакт',
     'hero.tag':'Частный гид · Осака · Регион Кансай · Япония','hero.l1':'Откройте','hero.l2':'Душу','hero.l3':'Японии',
     'hero.sub':'За пределами путеводителей. Личное путешествие по Осаке, Киото, Нара и скрытым уголкам региона Кансай — с гидом, который здесь живёт.',
@@ -1308,6 +1555,14 @@ const T = {
     'gal.label':'Фотогалерея','gal.h2':'Моменты из <span class="acc">наших туров</span>','gal.sub':'Настоящие места. Настоящие впечатления. Каждое фото — история из Кансая.'
   },
   cs: {
+    'nav.hiw':'Jak to Funguje','nav.test':'Recenze',
+    'hiw.label':'Jednoduchý Postup',
+    'hiw.h2':'Jak to <span class=\"acc\">funguje</span>',
+    'hiw.1.title':'Kontaktujte Tonyho','hiw.1.desc':"Pošlete zprávu přes formulář nebo WhatsApp. Řekněte mi svá data cesty, velikost skupiny a co vás na Japonsku nejvíce zajímá.",
+    'hiw.2.title':'Osobní Návrh','hiw.2.desc':"Do 24 hodin pošlu personalizovaný itiněrář s cenami. Bez závazků — jen jasný přehled toho, jak by váš výlet mohl vypadat.",
+    'hiw.3.title':'Potvrte a Odpočívejte','hiw.3.desc':"Potvrte jednoduchým depositem. Postarám se o vše ostatní — logistiku, rezervace, trasu. Vy jen přijdete.",
+    'hiw.4.title':'Zažijte Japonsko','hiw.4.desc':"Setkám se s vámi u vašeho hotelu a nechte Kansai, aby se před vámi rozvinul. Soukromě, osobně — a nezapomenutelno.",
+    'test.agg':'Na základě 200+ soukromých výletů',
     'nav.region':'Kansai','nav.guide':'Průvodce','nav.tours':'Výlety','nav.routes':'Trasy','nav.pricing':'Ceny','nav.langs':'Jazyky','nav.contact':'Kontakt','nav.map':'Mapa','nav.gallery':'Galerie',
     'hero.tag':'Soukromý Průvodce · Osaka · Region Kansai · Japonsko','hero.l1':'Objevte','hero.l2':'Duši','hero.l3':'Japonska',
     'hero.sub':'Za hranicemi průvodců. Intimní cesta přes Osaku, Kjóto, Naru a skryté kouty Kansai — s průvodcem, který tu žije.',
@@ -1371,6 +1626,14 @@ const T = {
     'gal.label':'Fotogalerie','gal.h2':'Momenty z <span class="acc">našich výletů</span>','gal.sub':'Skutečná místa. Skutečné zážitky. Každá fotka vypráví příběh z Kansai.'
   },
   ar: {
+    'nav.hiw':'كيف يعمل','nav.test':'آراء',
+    'hiw.label':'عملية بسيطة',
+    'hiw.h2':'كيف <span class=\"acc\">يعمل</span>',
+    'hiw.1.title':'تواصل مع توني','hiw.1.desc':"أرسل رسالة عبر النموذج أو واتساب. أخبرني بتواريخ سفرك وعدد المجموعة وما يثير اهتمامك في اليابان.",
+    'hiw.2.title':'اقتراح مخصص','hiw.2.desc':"خلال 24 ساعة سأرسل لك خط سير مخصص مع الأسعار. بدون التزام — فقط صورة واضحة عما يمكن أن تكون عليه جولتك.",
+    'hiw.3.title':'تأكيد والاسترخاء','hiw.3.desc':"أكّد بإيداع بسيط. أتولى كل التفاصيل — اللوجستيات والحجوزات والمسار. أنت فقط تحضر.",
+    'hiw.4.title':'اكتشف اليابان','hiw.4.desc':"التقِ بي في فندقك ودع كانساي تتكشف أمامك. خاص، مخصص — ولا يُنسى حقاً.",
+    'test.agg':'بناءً على 200+ جولة خاصة',
     'nav.region':'كانساي','nav.guide':'المرشد','nav.tours':'الجولات','nav.routes':'المسارات','nav.pricing':'الأسعار','nav.langs':'اللغات','nav.contact':'اتصل','nav.map':'الخريطة','nav.gallery':'معرض الصور',
     'hero.tag':'مرشد خاص · أوساكا · منطقة كانساي · اليابان','hero.l1':'اكتشف','hero.l2':'روح','hero.l3':'اليابان',
     'hero.sub':'ما وراء الأدلة السياحية. رحلة حميمة عبر أوساكا وكيوتو ونارا والزوايا الخفية لكانساي — بقيادة من يعيش هناك.',
