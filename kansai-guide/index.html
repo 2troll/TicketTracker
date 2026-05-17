@@ -246,7 +246,7 @@ footer{background:#070810;border-top:1px solid var(--border2);padding:3rem 1.8re
 <body>
 
 <div id="prog"></div>
-<a href="versions.html" style="position:fixed;bottom:1.4rem;left:50%;transform:translateX(-50%);z-index:999;background:rgba(229,48,48,.12);border:1px solid rgba(229,48,48,.35);color:#E53030;font-family:'Plus Jakarta Sans',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:.28rem .85rem;border-radius:999px;text-decoration:none;white-space:nowrap" title="View all versions">v12 — NOT YET DEPLOYED TO SURGE</a>
+<a href="versions.html" style="position:fixed;bottom:1.4rem;left:50%;transform:translateX(-50%);z-index:999;background:rgba(229,48,48,.12);border:1px solid rgba(229,48,48,.35);color:#E53030;font-family:'Plus Jakarta Sans',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:.28rem .85rem;border-radius:999px;text-decoration:none;white-space:nowrap" title="View all versions">v13 · Historial de actualizaciones</a>
 
 <!-- NAV -->
 <nav>
@@ -571,6 +571,68 @@ footer{background:#070810;border-top:1px solid var(--border2);padding:3rem 1.8re
       </div>
 
     </div>
+  </div>
+</section>
+
+<!-- ══ UPDATE LOG — obligatorio actualizar en cada cambio ══ -->
+<section id="updates" style="background:#07080F;border-top:1px solid rgba(255,255,255,.06);padding:4rem 0">
+  <div class="wrap">
+    <span class="lbl" style="color:#E53030">Registro de Actualizaciones</span>
+    <h2 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:2rem;font-weight:300;margin-bottom:2rem">
+      Historial · <span style="background:linear-gradient(135deg,#E53030,#FF6B35);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Todo lo que se ha cambiado</span>
+    </h2>
+    <div style="display:flex;flex-direction:column;gap:0;max-width:780px">
+
+      <!-- ENTRADA v13 — AÑADIR NUEVA ENTRADA AQUÍ ARRIBA -->
+      <div style="border-left:2px solid rgba(229,48,48,.4);padding:.9rem 0 .9rem 1.5rem;margin-left:.4rem;position:relative">
+        <div style="position:absolute;left:-5px;top:1.1rem;width:8px;height:8px;border-radius:50%;background:#E53030;box-shadow:0 0 8px rgba(229,48,48,.6)"></div>
+        <div style="font-size:.55rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#E53030;margin-bottom:.2rem">v13 · 17 Mayo 2026 · ACTUAL</div>
+        <div style="font-size:.9rem;font-weight:500;color:#EBE8E0;margin-bottom:.35rem">Despliegue real a Surge + sección de actualizaciones permanente</div>
+        <div style="font-size:.8rem;font-weight:300;color:rgba(235,232,224,.5);line-height:1.7">
+          Primera vez que el código se despliega correctamente a tonykansaiguide.surge.sh usando las credenciales recuperadas del historial de sesión.
+          Se añade esta sección obligatoria al final de la página para rastrear todos los cambios futuros.
+          Se crea versions.html con el historial completo de las 12 versiones anteriores y sus errores.
+        </div>
+      </div>
+
+      <div style="border-left:2px solid rgba(255,255,255,.06);padding:.9rem 0 .9rem 1.5rem;margin-left:.4rem;position:relative">
+        <div style="position:absolute;left:-5px;top:1.1rem;width:8px;height:8px;border-radius:50%;background:#1C1F30;border:2px solid rgba(255,255,255,.15)"></div>
+        <div style="font-size:.55rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(229,48,48,.5);margin-bottom:.2rem">v12 · 17 Mayo 2026</div>
+        <div style="font-size:.9rem;font-weight:500;color:#EBE8E0;margin-bottom:.35rem">Reescritura completa — diseño nuevo, traducciones garantizadas</div>
+        <div style="font-size:.8rem;font-weight:300;color:rgba(235,232,224,.5);line-height:1.7">
+          Código reescrito desde cero. Sistema de traducción con <code>data-i</code>. Calendario eliminado y reemplazado por 5 botones WhatsApp por idioma. Formulario con manejo real de errores. RTL árabe corregido.
+        </div>
+      </div>
+
+      <div style="border-left:2px solid rgba(255,255,255,.06);padding:.9rem 0 .9rem 1.5rem;margin-left:.4rem;position:relative">
+        <div style="position:absolute;left:-5px;top:1.1rem;width:8px;height:8px;border-radius:50%;background:#1C1F30;border:2px solid rgba(255,255,255,.15)"></div>
+        <div style="font-size:.55rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(229,48,48,.5);margin-bottom:.2rem">v11 · 17 Mayo 2026</div>
+        <div style="font-size:.9rem;font-weight:500;color:#EBE8E0;margin-bottom:.35rem">Corrección de 7 bugs (incompleta — traducciones seguían sin verse)</div>
+        <div style="font-size:.8rem;font-weight:300;color:rgba(235,232,224,.5);line-height:1.7">
+          Calendario invisible arreglado parcialmente. Doble % en estadísticas corregido. Badge de héroe sin traducir añadido. Posiciones RTL árabe añadidas.
+        </div>
+      </div>
+
+      <div style="border-left:2px solid rgba(255,255,255,.06);padding:.9rem 0 .9rem 1.5rem;margin-left:.4rem;position:relative">
+        <div style="position:absolute;left:-5px;top:1.1rem;width:8px;height:8px;border-radius:50%;background:#1C1F30;border:2px solid rgba(255,255,255,.15)"></div>
+        <div style="font-size:.55rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(229,48,48,.5);margin-bottom:.2rem">v9–v10 · 17 Mayo 2026</div>
+        <div style="font-size:.9rem;font-weight:500;color:#EBE8E0;margin-bottom:.35rem">Rediseño completo + refactorización CSS (desplegado a Surge)</div>
+        <div style="font-size:.8rem;font-weight:300;color:rgba(235,232,224,.5);line-height:1.7">
+          Tema oscuro con glassmorphism. Mapa Leaflet con 6 ciudades. Calendario dinámico (con bug invisible). Foto Tony. JS visible como texto en pantalla corregido.
+        </div>
+      </div>
+
+      <div style="border-left:2px solid rgba(255,255,255,.06);padding:.9rem 0 .9rem 1.5rem;margin-left:.4rem;position:relative">
+        <div style="position:absolute;left:-5px;top:1.1rem;width:8px;height:8px;border-radius:50%;background:#1C1F30;border:2px solid rgba(255,255,255,.15)"></div>
+        <div style="font-size:.55rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(229,48,48,.5);margin-bottom:.2rem">v1–v8 · 7 Mayo 2026</div>
+        <div style="font-size:.9rem;font-weight:500;color:#EBE8E0;margin-bottom:.35rem">Construcción inicial — WhatsApp, SEO, 5 idiomas, testimonios, FAQ, mapa</div>
+        <div style="font-size:.8rem;font-weight:300;color:rgba(235,232,224,.5);line-height:1.7">
+          Página construida desde cero. Desplegada en Surge. Ver <a href="versions.html" style="color:#E53030">versions.html</a> para detalle completo de cada versión.
+        </div>
+      </div>
+
+    </div>
+    <a href="versions.html" style="display:inline-block;margin-top:1.5rem;font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(229,48,48,.7);text-decoration:none;border-bottom:1px solid rgba(229,48,48,.3);padding-bottom:.1rem">Ver historial completo →</a>
   </div>
 </section>
 
