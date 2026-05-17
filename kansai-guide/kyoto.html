@@ -221,6 +221,7 @@
       .hero-h1 { font-size:clamp(3.5rem,16vw,6rem); }
     }
   </style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
 </head>
 <body>
 
@@ -238,7 +239,7 @@
 
 <!-- NAV -->
 <nav id="main-nav">
-  <a href="index.html" class="nav-back">← Kansai Guide</a>
+  <a href="routes.html" class="nav-back">← City Routes</a>
   <span class="nav-logo">京都 Kyoto</span>
   <a href="index.html#contact" class="nav-cta">Book Now</a>
 </nav>
@@ -461,63 +462,16 @@
   </div>
 </section>
 
-<!-- MAP -->
 <section class="dest-map">
   <div class="wrap">
-    <div class="sec-head rv">
+    <div class="sec-head">
       <span class="sec-label">Route Map</span>
       <h2 class="sec-h2">The <span class="acc">Kyoto arc</span></h2>
     </div>
-    <div class="flow-wrap rv">
-      <svg class="flow-svg" viewBox="0 0 940 180" width="940" height="180" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="lg2" x1="0" x2="1" y1="0" y2="0">
-            <stop offset="0%" stop-color="#A8281A"/><stop offset="100%" stop-color="#C9A84C"/>
-          </linearGradient>
-          <marker id="arr2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-            <path d="M0,0 L0,6 L8,3 z" fill="#C9A84C"/>
-          </marker>
-        </defs>
-        <line x1="78" y1="90" x2="860" y2="90" stroke="url(#lg2)" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arr2)"/>
-        <circle cx="78" cy="90" r="22" fill="#fff" stroke="#A8281A" stroke-width="2"/>
-        <text x="78" y="86" text-anchor="middle" fill="#A8281A" font-size="9" font-family="'Plus Jakarta Sans',sans-serif" font-weight="700">START</text>
-        <text x="78" y="98" text-anchor="middle" fill="rgba(44,35,32,.4)" font-size="7.5">8:30</text>
-        <text x="78" y="126" text-anchor="middle" fill="rgba(44,35,32,.7)" font-size="9" font-family="'Plus Jakarta Sans',sans-serif" font-weight="600">Kyoto St.</text>
-        <text x="78" y="139" text-anchor="middle" fill="rgba(44,35,32,.3)" font-size="8" font-family="'Cormorant Garamond',serif">京都駅</text>
-        <circle cx="238" cy="90" r="20" fill="#fff" stroke="url(#lg2)" stroke-width="1.5"/>
-        <text x="238" y="94" text-anchor="middle" fill="rgba(44,35,32,.7)" font-size="11" font-family="'Cormorant Garamond',serif">鳥</text>
-        <text x="238" y="62" text-anchor="middle" fill="#A8281A" font-size="8">9:00 AM</text>
-        <text x="238" y="126" text-anchor="middle" fill="rgba(44,35,32,.7)" font-size="9" font-family="'Plus Jakarta Sans',sans-serif" font-weight="600">Fushimi Inari</text>
-        <text x="238" y="139" text-anchor="middle" fill="rgba(44,35,32,.3)" font-size="8" font-family="'Cormorant Garamond',serif">伏見稲荷</text>
-        <text x="155" y="80" text-anchor="middle" fill="rgba(44,35,32,.25)" font-size="7.5">JR 5 min</text>
-        <circle cx="398" cy="90" r="20" fill="#fff" stroke="url(#lg2)" stroke-width="1.5"/>
-        <text x="398" y="94" text-anchor="middle" fill="rgba(44,35,32,.7)" font-size="11" font-family="'Cormorant Garamond',serif">道</text>
-        <text x="398" y="62" text-anchor="middle" fill="#A8281A" font-size="8">11:00 AM</text>
-        <text x="398" y="126" text-anchor="middle" fill="rgba(44,35,32,.7)" font-size="9" font-family="'Plus Jakarta Sans',sans-serif" font-weight="600">Philosopher's Path</text>
-        <text x="398" y="139" text-anchor="middle" fill="rgba(44,35,32,.3)" font-size="8" font-family="'Cormorant Garamond',serif">哲学の道</text>
-        <text x="315" y="80" text-anchor="middle" fill="rgba(44,35,32,.25)" font-size="7.5">bus 30 min</text>
-        <circle cx="558" cy="90" r="20" fill="#fff" stroke="url(#lg2)" stroke-width="1.5"/>
-        <text x="558" y="94" text-anchor="middle" fill="rgba(44,35,32,.7)" font-size="11" font-family="'Cormorant Garamond',serif">茶</text>
-        <text x="558" y="62" text-anchor="middle" fill="#A8281A" font-size="8">2:30 PM</text>
-        <text x="558" y="126" text-anchor="middle" fill="rgba(44,35,32,.7)" font-size="9" font-family="'Plus Jakarta Sans',sans-serif" font-weight="600">Gion + Tea</text>
-        <text x="558" y="139" text-anchor="middle" fill="rgba(44,35,32,.3)" font-size="8" font-family="'Cormorant Garamond',serif">祇園</text>
-        <text x="475" y="80" text-anchor="middle" fill="rgba(44,35,32,.25)" font-size="7.5">walk 20 min</text>
-        <circle cx="718" cy="90" r="20" fill="#fff" stroke="url(#lg2)" stroke-width="1.5"/>
-        <text x="718" y="94" text-anchor="middle" fill="rgba(44,35,32,.7)" font-size="11" font-family="'Cormorant Garamond',serif">食</text>
-        <text x="718" y="62" text-anchor="middle" fill="#A8281A" font-size="8">5:00 PM</text>
-        <text x="718" y="126" text-anchor="middle" fill="rgba(44,35,32,.7)" font-size="9" font-family="'Plus Jakarta Sans',sans-serif" font-weight="600">Riverside Dinner</text>
-        <text x="718" y="139" text-anchor="middle" fill="rgba(44,35,32,.3)" font-size="8" font-family="'Cormorant Garamond',serif">鴨川</text>
-        <text x="635" y="80" text-anchor="middle" fill="rgba(44,35,32,.25)" font-size="7.5">walk 10 min</text>
-        <circle cx="860" cy="90" r="22" fill="#A8281A"/>
-        <text x="860" y="86" text-anchor="middle" fill="#fff" font-size="9" font-family="'Plus Jakarta Sans',sans-serif" font-weight="700">FINISH</text>
-        <text x="860" y="98" text-anchor="middle" fill="rgba(255,255,255,.7)" font-size="7.5">8:00 PM</text>
-        <text x="860" y="126" text-anchor="middle" fill="rgba(44,35,32,.7)" font-size="9" font-family="'Plus Jakarta Sans',sans-serif" font-weight="600">Kawaramachi</text>
-        <text x="860" y="139" text-anchor="middle" fill="rgba(44,35,32,.3)" font-size="8" font-family="'Cormorant Garamond',serif">河原町</text>
-        <text x="787" y="80" text-anchor="middle" fill="rgba(44,35,32,.25)" font-size="7.5">walk 5 min</text>
-      </svg>
-    </div>
   </div>
+  <div id="route-map" style="height:480px;width:100%;margin-top:2rem;border-top:1px solid rgba(44,35,32,.08)"></div>
 </section>
+
 
 <!-- PRICE -->
 <section class="dest-price">
@@ -557,7 +511,7 @@
 </section>
 
 <footer class="dest-footer">
-  <a href="index.html">← Back to Tony Hanma — Private Kansai Guide</a>
+  <a href="routes.html">← All City Routes</a>
 </footer>
 
 <script>
@@ -668,6 +622,36 @@
     if(e.key==='ArrowRight') openAt(cur+1);
   });
 
+})();
+</script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script>
+(function(){
+  var m=L.map("route-map",{scrollWheelZoom:false}).setView([34.985,135.77],13);
+  L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",{attribution:"© <a href='https://carto.com/attributions'>CARTO</a>",maxZoom:19}).addTo(m);
+  var stops=[{"ll": [34.9858, 135.7588], "n": "Kyoto Station", "k": "京都駅", "t": "8:30 AM · Start", "d": "JR gateway to the old capital"}, {"ll": [34.9671, 135.7727], "n": "Fushimi Inari", "k": "伏見稲荷", "t": "9:00 AM · JR 5 min", "d": "10,000 vermilion torii before the crowds arrive"}, {"ll": [35.0226, 135.793], "n": "Philosopher's Path", "k": "哲学の道", "t": "11:00 AM · bus 30 min", "d": "2km canal walk lined with cherry trees &amp; hidden temples"}, {"ll": [35.0036, 135.7756], "n": "Gion and Tea Ceremony", "k": "祇園", "t": "2:30 PM · walk 20 min", "d": "Machiya streets, geiko district, private tea ceremony"}, {"ll": [35.0044, 135.7698], "n": "Nishiki Market", "k": "錦市場", "t": "5:00 PM · walk 10 min", "d": "Kyoto's kitchen — pickles, tofu, seasonal delicacies"}, {"ll": [35.0059, 135.7684], "n": "Riverside Dinner", "k": "鴨川", "t": "8:00 PM · Finish", "d": "Dinner on wooden platforms above the Kamo river"}];
+  var col="#A8281A",nc="#2C2320",kc="rgba(44,35,32,.38)",dc="rgba(44,35,32,.62)";
+  var pts=[];
+  stops.forEach(function(s,i){
+    var ic=L.divIcon({className:"",html:'<div style="width:36px;height:36px;border-radius:50%;background:'+col+';border:3px solid rgba(255,255,255,.9);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:14px;box-shadow:0 2px 10px rgba(0,0,0,.5)">'+(i+1)+'</div>',iconSize:[36,36],iconAnchor:[18,18],popupAnchor:[0,-20]});
+    L.marker(s.ll,{icon:ic}).addTo(m).bindPopup('<b style="color:'+nc+';font-size:.9rem">'+s.n+'</b> <span style="color:'+kc+';font-size:.7rem">'+s.k+'</span><br><span style="color:'+col+';font-size:.72rem;font-weight:600">'+s.t+'</span><br><span style="color:'+dc+';font-size:.78rem;line-height:1.5">'+s.d+'</span>',{maxWidth:260});
+    pts.push(s.ll);
+  });
+  L.polyline(pts,{color:col,weight:2,opacity:.5,dashArray:"7,9"}).addTo(m);
+})();
+</script>
+<script>
+(function(){
+  var back={en:'← City Routes',es:'← Rutas Urbanas',ru:'← Городские Маршруты',cs:'← Městské Trasy',ar:'المسارات الحضرية ←'};
+  var book={en:'Book Now',es:'Reservar',ru:'Забронировать',cs:'Rezervovat',ar:'احجز الآن'};
+  var l='en';
+  try{var s=localStorage.getItem('lang');if(s)l=s;}catch(e){}
+  document.documentElement.lang=l;
+  document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+  var nb=document.querySelector('.nav-back');
+  var bk=document.querySelector('.nav-book,.nav-cta');
+  if(nb&&back[l])nb.innerHTML=back[l];
+  if(bk&&book[l])bk.innerHTML=book[l];
 })();
 </script>
 </body>
