@@ -459,6 +459,47 @@
     .share-toast { position:fixed; bottom:8rem; left:50%; transform:translateX(-50%) translateY(16px); background:rgba(0,0,0,.92); color:#fff; font-size:.76rem; padding:.55rem 1.3rem; border-radius:999px; border:1px solid rgba(255,255,255,.12); opacity:0; pointer-events:none; transition:opacity .3s,transform .3s; white-space:nowrap; z-index:9998; }
     .share-toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
 
+
+    /* ── BOOKING CALENDAR ── */
+    #booking { padding:10rem 0; background:var(--bg-1); border-top:1px solid var(--line); position:relative; overflow:hidden; }
+    .cal-wrap { max-width:860px; margin:0 auto; }
+    .cal-head { text-align:center; margin-bottom:3.5rem; }
+    .cal-head p { font-size:.97rem; font-weight:300; color:var(--text-2); max-width:46ch; margin:.8rem auto 0; line-height:1.85; }
+    .cal-months { display:grid; grid-template-columns:1fr 1fr; gap:1.8rem; }
+    .cal-month-card { background:var(--glass); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border:1px solid var(--glass-b); border-radius:24px; padding:1.8rem; }
+    .cal-nav-row { display:flex; align-items:center; justify-content:space-between; margin-bottom:1.4rem; }
+    .cal-nav-btn { background:transparent; border:1px solid var(--line); color:var(--text-3); width:32px; height:32px; border-radius:50%; cursor:pointer; font-size:1rem; display:flex; align-items:center; justify-content:center; transition:border-color .2s,color .2s; }
+    .cal-nav-btn:hover { border-color:rgba(229,48,48,.5); color:var(--red); }
+    .cal-nav-btn:disabled { opacity:.2; pointer-events:none; }
+    .cal-month-name { font-family:var(--serif); font-size:1.25rem; font-weight:300; color:var(--text); letter-spacing:.03em; }
+    .cal-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:3px; }
+    .cal-dh { font-size:.52rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--text-3); text-align:center; padding:.5rem 0; }
+    .cal-cell { aspect-ratio:1; border-radius:8px; display:flex; flex-direction:column; align-items:center; justify-content:center; font-size:.8rem; font-weight:500; position:relative; transition:background .2s,transform .15s; }
+    .cal-cell.empty { background:transparent; }
+    .cal-cell.past { color:var(--text-3); opacity:.35; }
+    .cal-cell.avail { color:var(--text); cursor:pointer; }
+    .cal-cell.avail:hover { background:rgba(229,48,48,.18); transform:scale(1.12); color:#fff; border-radius:10px; }
+    .cal-cell.avail::after { content:''; position:absolute; bottom:3px; left:50%; transform:translateX(-50%); width:4px; height:4px; border-radius:50%; background:rgba(34,200,120,.8); }
+    .cal-cell.busy { color:rgba(229,48,48,.5); background:rgba(229,48,48,.07); cursor:default; }
+    .cal-cell.busy .cal-x { font-size:.42rem; letter-spacing:.06em; text-transform:uppercase; color:rgba(229,48,48,.5); display:block; line-height:1; }
+    .cal-cell.today { background:rgba(229,48,48,.15); color:#fff; font-weight:700; border:1px solid rgba(229,48,48,.4); }
+    .cal-legend { display:flex; gap:1.5rem; justify-content:center; margin-top:2rem; flex-wrap:wrap; }
+    .cal-leg-item { display:flex; align-items:center; gap:.5rem; font-size:.7rem; color:var(--text-3); }
+    .cal-leg-dot { width:10px; height:10px; border-radius:50%; }
+    .cal-leg-dot.avail { background:rgba(34,200,120,.8); }
+    .cal-leg-dot.busy { background:rgba(229,48,48,.5); }
+    .cal-leg-dot.today { background:rgba(229,48,48,.7); }
+    .cal-tip { text-align:center; margin-top:2.2rem; font-size:.86rem; font-weight:300; color:var(--text-3); line-height:1.7; }
+    .cal-tip strong { color:var(--text-2); }
+    .cal-book-cta { display:flex; gap:.8rem; justify-content:center; margin-top:2rem; flex-wrap:wrap; }
+    .cal-btn-wa { display:inline-flex; align-items:center; gap:.6rem; padding:.85rem 2rem; background:#25D366; color:#fff; border-radius:999px; font-size:.72rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; text-decoration:none; transition:transform .2s,box-shadow .2s; }
+    .cal-btn-wa:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(37,211,102,.4); }
+    .cal-btn-wa svg { width:16px; height:16px; flex-shrink:0; }
+    .cal-btn-form { display:inline-flex; align-items:center; padding:.85rem 2rem; background:var(--glass); border:1px solid var(--glass-b); color:var(--text-2); border-radius:999px; font-size:.72rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; text-decoration:none; transition:background .2s,color .2s; }
+    .cal-btn-form:hover { background:var(--glass-hover); color:var(--text); }
+    @media(max-width:700px){ .cal-months{grid-template-columns:1fr;} }
+    @media(max-width:400px){ .cal-cell{font-size:.72rem;} }
+
     /* ── BEST TIME TO VISIT ── */
     #besttime { padding:8rem 0; background:var(--bg); border-top:1px solid var(--line); position:relative; overflow:hidden; }
     .bt-head { text-align:center; margin-bottom:4rem; }
@@ -664,6 +705,7 @@
     <li><a href="#testimonials" data-t="nav.test">Reviews</a></li>
     <li><a href="#reviews"       data-t="nav.review">Leave a Review</a></li>
     <li><a href="#languages"    data-t="nav.langs">Languages</a></li>
+    <li><a href="#booking"      data-t="nav.booking">Availability</a></li>
     <li><a href="#contact"      data-t="nav.contact">Contact</a></li>
   </ul>
   <div class="lang-sw">
@@ -689,6 +731,7 @@
   <a href="#testimonials" onclick="closeMob()">Reviews</a>
   <a href="#reviews" onclick="closeMob()">Leave a Review</a>
   <a href="#newsletter" onclick="closeMob()">Newsletter</a>
+  <a href="#booking"  onclick="closeMob()">Availability</a>
   <a href="#contact"      onclick="closeMob()">Contact</a>
   <div class="mob-nav-divider"></div>
   <div class="mob-nav-lang">
@@ -1588,6 +1631,35 @@
 </section>
 
 
+
+<!-- BOOKING CALENDAR -->
+<section id="booking">
+  <div class="orb" style="width:50vw;height:50vw;top:-10%;left:-8%;background:radial-gradient(circle,rgba(229,48,48,0.07) 0%,transparent 65%);animation:drift1 20s ease-in-out infinite;"></div>
+  <div class="wrap cal-wrap">
+    <div class="cal-head rev">
+      <span class="section-label" data-t="cal.label">Availability Calendar</span>
+      <h2 data-t="cal.h2">Check <span class="acc">available dates</span></h2>
+      <p data-t="cal.sub">Click any available date to send a booking request to Tony instantly via WhatsApp.</p>
+    </div>
+    <div class="cal-months" id="cal-months">
+      <!-- Rendered by JS -->
+    </div>
+    <div class="cal-legend rev">
+      <div class="cal-leg-item"><div class="cal-leg-dot avail"></div><span data-t="cal.leg.avail">Available — click to book</span></div>
+      <div class="cal-leg-item"><div class="cal-leg-dot busy"></div><span data-t="cal.leg.busy">Already booked</span></div>
+      <div class="cal-leg-item"><div class="cal-leg-dot today"></div><span data-t="cal.leg.today">Today</span></div>
+    </div>
+    <p class="cal-tip rev" data-t="cal.tip">Tony replies within <strong>24 hours</strong> to confirm. No payment required to request a date.</p>
+    <div class="cal-book-cta rev">
+      <a id="cal-wa-btn" href="https://wa.me/34634193106?text=Hi%20Tony!%20I%27d%20like%20to%20book%20a%20tour.%20Are%20you%20available%3F" target="_blank" rel="noopener" class="cal-btn-wa">
+        <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zm-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884zm8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <span data-t="cal.wa">Book via WhatsApp</span>
+      </a>
+      <a href="#contact" class="cal-btn-form" data-t="cal.form">Or use the contact form</a>
+    </div>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact">
   <div class="orb contact-orb"></div>
@@ -1655,7 +1727,7 @@ const T = {
     'meta.title':'Tony Hanma — Private Kansai Guide | Osaka · Kyoto · Japan',
     'meta.desc':'Private tours across Osaka, Kyoto, Nara & Kobe in 5 languages. 200+ tours. Fully personalised — no groups, no scripts.',
     'meta.kw':'private guide Osaka, private tour Kyoto, Kansai tour Japan, English guide Japan, personal guide Kansai',
-    'nav.region':'Kansai','nav.guide':'Guide','nav.tours':'Tours','nav.routes':'Routes','nav.pricing':'Pricing','nav.langs':'Languages','nav.contact':'Contact',
+    'nav.region':'Kansai','cal.label':'Availability Calendar','cal.h2':'Check <span class="acc">available dates</span>','cal.sub':'Click any available date to send a booking request instantly via WhatsApp.','cal.leg.avail':'Available — click to book','cal.leg.busy':'Already booked','cal.leg.today':'Today','cal.tip':'Tony replies within <strong>24 hours</strong> to confirm. No payment required to request a date.','cal.wa':'Book via WhatsApp','cal.form':'Or use the contact form','nav.booking':'Availability','nav.guide':'Guide','nav.tours':'Tours','nav.routes':'Routes','nav.pricing':'Pricing','nav.langs':'Languages','nav.contact':'Contact',
     'hero.tag':'Private Guide · Osaka · Kansai Region · Japan',
     'hero.l1':'Discover','hero.l2':"Japan's",'hero.l3':'True Soul',
     'hero.sub':"Beyond the guidebooks. An intimate journey through Osaka, Kyoto, Nara, and the hidden corners of the Kansai heartland — led by someone who lives it.",
@@ -1732,7 +1804,7 @@ const T = {
     'meta.title':'Tony Hanma — Guía Privado Kansai | Osaka · Kioto · Japón',
     'meta.desc':'Tours privados por Osaka, Kioto, Nara y Kobe en 5 idiomas. Más de 200 tours. 100% personalizado.',
     'meta.kw':'guía privado Osaka, tour privado Japón, guía español Japón, guía turístico Kansai, viaje Japón guía personalizado',
-    'nav.region':'Kansai','nav.guide':'Guía','nav.tours':'Tours','nav.routes':'Rutas','nav.pricing':'Precios','nav.langs':'Idiomas','nav.contact':'Contacto',
+    'nav.region':'Kansai','cal.label':'Calendario de Disponibilidad','cal.h2':'Consulta <span class="acc">fechas disponibles</span>','cal.sub':'Haz clic en cualquier fecha disponible para enviar una solicitud de reserva por WhatsApp.','cal.leg.avail':'Disponible — clic para reservar','cal.leg.busy':'Ya reservado','cal.leg.today':'Hoy','cal.tip':'Tony responde en <strong>24 horas</strong>. No se requiere pago para solicitar una fecha.','cal.wa':'Reservar por WhatsApp','cal.form':'O usa el formulario de contacto','nav.booking':'Disponibilidad','nav.guide':'Guía','nav.tours':'Tours','nav.routes':'Rutas','nav.pricing':'Precios','nav.langs':'Idiomas','nav.contact':'Contacto',
     'hero.tag':'Guía Privado · Osaka · Región de Kansai · Japón','hero.l1':'Descubre','hero.l2':'el Alma','hero.l3':'de Japón',
     'hero.sub':'Más allá de las guías turísticas. Un viaje íntimo por Osaka, Kioto, Nara y los rincones ocultos de la región de Kansai — guiado por alguien que vive aquí.',
     'hero.cta1':'Reservar un Tour Privado','hero.cta2':'Sobre el Guía','scroll':'Bajar',
@@ -1807,7 +1879,7 @@ const T = {
     'meta.title':'Тони Ханма — Частный Гид Кансай | Осака · Киото · Япония',
     'meta.desc':'Частные туры по Осаке, Киото, Нара и Кобе на 5 языках. 200+ туров. Полностью персонализировано.',
     'meta.kw':'частный гид Осака, частный тур Япония, гид по Японии, персональный гид Кансай',
-    'nav.region':'Кансай','nav.guide':'Гид','nav.tours':'Туры','nav.map':'Карта','nav.gallery':'Галерея','nav.routes':'Маршруты','nav.pricing':'Цены','nav.langs':'Языки','nav.contact':'Контакт',
+    'nav.region':'Кансай','cal.label':'Календарь доступности','cal.h2':'Проверьте <span class="acc">свободные даты</span>','cal.sub':'Нажмите на любую доступную дату, чтобы отправить запрос на бронирование через WhatsApp.','cal.leg.avail':'Свободно — нажмите для брони','cal.leg.busy':'Уже забронировано','cal.leg.today':'Сегодня','cal.tip':'Тони отвечает в течение <strong>24 часов</strong>. Предоплата не требуется.','cal.wa':'Забронировать через WhatsApp','cal.form':'Или используйте форму','nav.booking':'Доступность','nav.guide':'Гид','nav.tours':'Туры','nav.map':'Карта','nav.gallery':'Галерея','nav.routes':'Маршруты','nav.pricing':'Цены','nav.langs':'Языки','nav.contact':'Контакт',
     'hero.tag':'Частный гид · Осака · Регион Кансай · Япония','hero.l1':'Откройте','hero.l2':'Душу','hero.l3':'Японии',
     'hero.sub':'За пределами путеводителей. Личное путешествие по Осаке, Киото, Нара и скрытым уголкам региона Кансай — с гидом, который здесь живёт.',
     'hero.cta1':'Забронировать тур','hero.cta2':'О гиде','scroll':'Вниз',
@@ -1881,7 +1953,7 @@ const T = {
     'meta.title':'Tony Hanma — Soukromý Průvodce Kansai | Osaka · Kjóto · Japonsko',
     'meta.desc':'Soukromé výlety v Osace, Kjótu, Naře a Kóbe v 5 jazycích. 200+ výletů. 100% personalizováno.',
     'meta.kw':'soukromý průvodce Osaka, soukromý výlet Japonsko, průvodce Kjóto, osobní průvodce Kansai',
-    'nav.region':'Kansai','nav.guide':'Průvodce','nav.tours':'Výlety','nav.routes':'Trasy','nav.pricing':'Ceny','nav.langs':'Jazyky','nav.contact':'Kontakt','nav.map':'Mapa','nav.gallery':'Galerie',
+    'nav.region':'Kansai','cal.label':'Kalendář dostupnosti','cal.h2':'Zkontrolujte <span class="acc">volné termíny</span>','cal.sub':'Klikněte na libovolný volný termín a odešlete žádost o rezervaci přes WhatsApp.','cal.leg.avail':'Volné — klikněte pro rezervaci','cal.leg.busy':'Již rezervováno','cal.leg.today':'Dnes','cal.tip':'Tony odpovídá do <strong>24 hodin</strong>. K žádosti o termín není nutná platba.','cal.wa':'Rezervovat přes WhatsApp','cal.form':'Nebo použijte kontaktní formulář','nav.booking':'Dostupnost','nav.guide':'Průvodce','nav.tours':'Výlety','nav.routes':'Trasy','nav.pricing':'Ceny','nav.langs':'Jazyky','nav.contact':'Kontakt','nav.map':'Mapa','nav.gallery':'Galerie',
     'hero.tag':'Soukromý Průvodce · Osaka · Region Kansai · Japonsko','hero.l1':'Objevte','hero.l2':'Duši','hero.l3':'Japonska',
     'hero.sub':'Za hranicemi průvodců. Intimní cesta přes Osaku, Kjóto, Naru a skryté kouty Kansai — s průvodcem, který tu žije.',
     'hero.cta1':'Rezervovat Soukromý Výlet','hero.cta2':'O Průvodci','scroll':'Dolů',
@@ -1955,7 +2027,7 @@ const T = {
     'meta.title':'توني هانما — مرشد كانساي الخاص | أوساكا · كيوتو · اليابان',
     'meta.desc':'جولات خاصة عبر أوساكا وكيوتو ونارا وكوبي بـ5 لغات. أكثر من 200 جولة. مخصصة بالكامل.',
     'meta.kw':'مرشد خاص أوساكا, جولة خاصة اليابان, مرشد سياحي كانساي, دليل ياباني عربي, جولة مخصصة اليابان',
-    'nav.region':'كانساي','nav.guide':'المرشد','nav.tours':'الجولات','nav.routes':'المسارات','nav.pricing':'الأسعار','nav.langs':'اللغات','nav.contact':'اتصل','nav.map':'الخريطة','nav.gallery':'معرض الصور',
+    'nav.region':'كانساي','cal.label':'تقويم التوفر','cal.h2':'تحقق من <span class="acc">التواريخ المتاحة</span>','cal.sub':'انقر على أي تاريخ متاح لإرسال طلب حجز فوري عبر واتساب.','cal.leg.avail':'متاح — انقر للحجز','cal.leg.busy':'محجوز بالفعل','cal.leg.today':'اليوم','cal.tip':'يرد توني خلال <strong>24 ساعة</strong>. لا يلزم دفع لطلب تاريخ.','cal.wa':'احجز عبر واتساب','cal.form':'أو استخدم نموذج التواصل','nav.booking':'التوفر','nav.guide':'المرشد','nav.tours':'الجولات','nav.routes':'المسارات','nav.pricing':'الأسعار','nav.langs':'اللغات','nav.contact':'اتصل','nav.map':'الخريطة','nav.gallery':'معرض الصور',
     'hero.tag':'مرشد خاص · أوساكا · منطقة كانساي · اليابان','hero.l1':'اكتشف','hero.l2':'روح','hero.l3':'اليابان',
     'hero.sub':'ما وراء الأدلة السياحية. رحلة حميمة عبر أوساكا وكيوتو ونارا والزوايا الخفية لكانساي — بقيادة من يعيش هناك.',
     'hero.cta1':'احجز جولة خاصة','hero.cta2':'عن المرشد','scroll':'انزل',
@@ -2405,6 +2477,110 @@ let exitTimer = setTimeout(() => {
   }
 }, 90000);
 document.addEventListener('click', () => clearTimeout(exitTimer), { once: true });
+
+
+// ════════════════════════════════════════════════════════════════
+// BOOKING CALENDAR
+// ════════════════════════════════════════════════════════════════
+// ▼▼▼ TONY: add dates that are already booked below ▼▼▼
+const CAL_BUSY = new Set([
+  // Format: 'YYYY-MM-DD'
+  // Example: '2026-06-15', '2026-06-16',
+  // Update this list whenever you confirm a booking!
+]);
+// ▲▲▲ TONY: add dates that are already booked above ▲▲▲
+
+const CAL_MONTHS_NAMES = {
+  en:['January','February','March','April','May','June','July','August','September','October','November','December'],
+  es:['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+  ru:['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
+  cs:['Leden','Únor','Březen','Duben','Květen','Červen','Červenec','Srpen','Září','Říjen','Listopad','Prosinec'],
+  ar:['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر']
+};
+const CAL_DAYS_NAMES = {
+  en:['Su','Mo','Tu','We','Th','Fr','Sa'],
+  es:['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+  ru:['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],
+  cs:['Ne','Po','Út','St','Čt','Pá','So'],
+  ar:['أح','اث','ثل','أر','خم','جم','سب']
+};
+const CAL_BOOK_MSG = {
+  en: d => `Hi Tony! I'd like to book a tour on ${d}. Is that date available?`,
+  es: d => `¡Hola Tony! Me gustaría reservar un tour el ${d}. ¿Está disponible?`,
+  ru: d => `Привет, Тони! Хочу забронировать тур на ${d}. Эта дата свободна?`,
+  cs: d => `Ahoj Tony! Rád bych si zarezervoval výlet dne ${d}. Je tento datum volný?`,
+  ar: d => `مرحباً توني! أود حجز جولة في ${d}. هل هذا التاريخ متاح؟`,
+};
+
+let calOffset = 0; // 0 = current+next month, 1 = shift by 1, etc.
+
+function renderCalendar() {
+  const now = new Date();
+  const todayStr = now.toISOString().split('T')[0];
+  const container = document.getElementById('cal-months');
+  if (!container) return;
+  const l = lang || 'en';
+  const mnames = CAL_MONTHS_NAMES[l] || CAL_MONTHS_NAMES.en;
+  const dnames = CAL_DAYS_NAMES[l]  || CAL_DAYS_NAMES.en;
+
+  let html = '';
+  for (let mi = 0; mi < 2; mi++) {
+    const d = new Date(now.getFullYear(), now.getMonth() + calOffset + mi, 1);
+    const yr = d.getFullYear(), mo = d.getMonth();
+    const firstDay = d.getDay();
+    const daysInMo = new Date(yr, mo + 1, 0).getDate();
+    const isPrevDisabled = (calOffset + mi === 0) ? 'disabled' : '';
+    const navLeft  = mi === 0 ? `<button class="cal-nav-btn" onclick="calShift(-1)" ${isPrevDisabled} aria-label="Previous">&#8249;</button>` : '<div></div>';
+    const navRight = mi === 1 ? `<button class="cal-nav-btn" onclick="calShift(1)" aria-label="Next">&#8250;</button>` : '<div></div>';
+
+    html += `<div class="cal-month-card rev d${mi+1}"><div class="cal-nav-row">${navLeft}<span class="cal-month-name">${mnames[mo]} ${yr}</span>${navRight}</div><div class="cal-grid">`;
+    dnames.forEach(dn => { html += `<div class="cal-dh">${dn}</div>`; });
+    for (let s = 0; s < firstDay; s++) html += '<div class="cal-cell empty"></div>';
+    for (let day = 1; day <= daysInMo; day++) {
+      const ds = `${yr}-${String(mo+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+      const cellDate = new Date(yr, mo, day);
+      const isToday = ds === todayStr;
+      const isPast  = cellDate < now && !isToday;
+      const isBusy  = CAL_BUSY.has(ds);
+      let cls = 'cal-cell';
+      if (isPast) cls += ' past';
+      else if (isBusy) cls += ' busy';
+      else cls += ' avail';
+      if (isToday) cls += ' today';
+      const onclick = (!isPast && !isBusy) ? `onclick="calBook('${ds}','${mnames[mo]} ${day} ${yr}')"` : '';
+      const inner = isBusy ? `${day}<span class="cal-x">✕</span>` : day;
+      html += `<div class="${cls}" ${onclick} ${(!isPast&&!isBusy)?'role="button" tabindex="0"':''} title="${ds}">${inner}</div>`;
+    }
+    html += '</div></div>';
+  }
+  container.innerHTML = html;
+}
+
+function calShift(dir) {
+  const minOffset = 0;
+  if (calOffset + dir < minOffset) return;
+  calOffset += dir;
+  renderCalendar();
+}
+
+function calBook(dateStr, dateLabel) {
+  const l = lang || 'en';
+  const msgFn = CAL_BOOK_MSG[l] || CAL_BOOK_MSG.en;
+  const msg = encodeURIComponent(msgFn(dateLabel));
+  window.open(`https://wa.me/34634193106?text=${msg}`, '_blank');
+}
+
+// Keyboard support for calendar cells
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && e.target.classList.contains('avail')) {
+    e.target.click();
+  }
+});
+
+renderCalendar();
+// Re-render calendar when language changes
+const _calOrigApply = applyLang;
+applyLang = function(l_) { _calOrigApply(l_); renderCalendar(); };
 
 // ── SCROLL PROGRESS BAR ──
 const sprog = document.getElementById('scroll-prog');
