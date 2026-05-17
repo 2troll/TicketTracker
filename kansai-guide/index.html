@@ -30,6 +30,7 @@
   <meta name="keywords" content="private guide Osaka, private tour Kyoto, Kansai guide Japan, guía privado Japón, частный гид Япония, جولة خاصة اليابان, soukromý průvodce Japonsko, Japan private tour, personal guide Kansai" />
   <meta name="robots" content="index, follow" />
   <meta name="author" content="Tony Hanma" />
+  <link rel="preload" as="image" href="img/japan-zen-garden2.jpg" fetchpriority="high" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
@@ -412,6 +413,54 @@
     .cancel-text { font-size:.82rem; color:var(--text-2); line-height:1.6; }
     .cancel-text strong { color:rgba(37,211,102,.9); }
 
+
+    /* ── BEST TIME TO VISIT ── */
+    #besttime { padding:8rem 0; background:var(--bg); border-top:1px solid var(--line); position:relative; overflow:hidden; }
+    .bt-head { text-align:center; margin-bottom:4rem; }
+    .bt-head p { font-size:.97rem;font-weight:300;color:var(--text-2);max-width:44ch;margin:.8rem auto 0;line-height:1.85; }
+    .bt-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:.7rem; position:relative; z-index:1; }
+    .bt-month { background:var(--glass); border:1px solid var(--glass-b); border-radius:var(--radius); padding:1.3rem .9rem; text-align:center; transition:border-color .3s,transform .3s; position:relative; overflow:hidden; }
+    .bt-month:hover { transform:translateY(-4px); }
+    .bt-month.peak { border-color:rgba(229,48,48,.35); background:rgba(229,48,48,.07); }
+    .bt-month.great { border-color:rgba(255,107,53,.25); background:rgba(255,107,53,.05); }
+    .bt-emoji { font-size:1.6rem; line-height:1; margin-bottom:.5rem; }
+    .bt-name { font-size:.62rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--text-3); margin-bottom:.7rem; }
+    .bt-bar-wrap { height:3px; background:rgba(255,255,255,.08); border-radius:2px; margin-bottom:.6rem; overflow:hidden; }
+    .bt-bar-fill { height:100%; border-radius:2px; background:var(--acc); transition:width 1s ease; }
+    .bt-score { font-family:var(--serif); font-size:1.4rem; font-weight:300; background:var(--acc); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1; margin-bottom:.35rem; }
+    .bt-note { font-size:.56rem; color:var(--text-3); line-height:1.4; letter-spacing:.02em; }
+    .bt-month.peak .bt-note { color:rgba(229,48,48,.75); }
+    .bt-legend { display:flex; gap:1.5rem; justify-content:center; margin-top:2rem; flex-wrap:wrap; }
+    .bt-leg-item { display:flex; align-items:center; gap:.5rem; font-size:.68rem; color:var(--text-3); letter-spacing:.06em; }
+    .bt-leg-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+    .bt-leg-dot.peak { background:var(--red); }
+    .bt-leg-dot.great { background:var(--orange); }
+    .bt-leg-dot.good { background:rgba(255,255,255,.25); }
+    .bt-tip { background:rgba(229,48,48,.06); border:1px solid rgba(229,48,48,.2); border-radius:14px; padding:1.4rem 2rem; margin-top:2.5rem; text-align:center; font-size:.88rem; font-weight:300; color:var(--text-2); line-height:1.8; max-width:640px; margin-left:auto; margin-right:auto; }
+    @media(max-width:900px){ .bt-grid{grid-template-columns:repeat(4,1fr);} }
+    @media(max-width:560px){ .bt-grid{grid-template-columns:repeat(3,1fr);} }
+
+    /* ── CURRENCY TOGGLE ── */
+    .cur-toggle { display:flex; gap:.3rem; justify-content:center; margin-bottom:2.5rem; background:rgba(255,255,255,.04); border:1px solid var(--line); border-radius:999px; padding:.25rem; width:fit-content; margin-left:auto; margin-right:auto; }
+    .cur-btn { font-size:.62rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--text-3); background:transparent; border:none; border-radius:999px; padding:.32rem .85rem; cursor:pointer; transition:background .25s,color .25s; }
+    .cur-btn.active { background:var(--acc); color:#fff; }
+
+    /* ── EXIT INTENT POPUP ── */
+    .exit-pop { position:fixed; inset:0; z-index:99999; background:rgba(0,0,0,.88); display:flex; align-items:center; justify-content:center; padding:1.5rem; opacity:0; pointer-events:none; transition:opacity .4s; }
+    .exit-pop.open { opacity:1; pointer-events:all; }
+    .exit-box { background:var(--bg-1); border:1px solid rgba(229,48,48,.3); border-radius:24px; padding:3rem 3rem 2.5rem; max-width:480px; width:100%; text-align:center; position:relative; transform:scale(.92); transition:transform .4s; }
+    .exit-pop.open .exit-box { transform:scale(1); }
+    .exit-close { position:absolute; top:1rem; right:1.2rem; background:transparent; border:none; color:var(--text-3); font-size:1.3rem; cursor:pointer; transition:color .2s; }
+    .exit-close:hover { color:var(--text); }
+    .exit-kanji { font-family:var(--serif); font-size:3.5rem; font-weight:300; background:var(--acc); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1; margin-bottom:1rem; opacity:.5; }
+    .exit-box h3 { font-family:var(--serif); font-size:2rem; font-weight:300; margin-bottom:.6rem; }
+    .exit-box p { font-size:.9rem; font-weight:300; color:var(--text-2); line-height:1.8; margin-bottom:1.8rem; max-width:34ch; margin-left:auto; margin-right:auto; }
+    .exit-wa { display:inline-flex; align-items:center; gap:.7rem; padding:.9rem 2.2rem; background:#25D366; color:#fff; border-radius:999px; font-size:.72rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; text-decoration:none; transition:transform .2s,box-shadow .2s; }
+    .exit-wa:hover { transform:translateY(-2px); box-shadow:0 6px 24px rgba(37,211,102,.45); }
+    .exit-wa svg { width:18px; height:18px; flex-shrink:0; }
+    .exit-skip { display:block; margin-top:1rem; font-size:.68rem; color:var(--text-3); cursor:pointer; transition:color .2s; background:none; border:none; }
+    .exit-skip:hover { color:var(--text); }
+
     /* ── TESTIMONIALS ── */
     #testimonials { padding:10rem 0; background:var(--bg-1); position:relative; overflow:hidden; }
     .test-head { text-align:center; margin-bottom:4rem; position:relative; z-index:1; }
@@ -542,7 +591,11 @@
           {"@type":"Question","name":"What languages do you speak?","acceptedAnswer":{"@type":"Answer","text":"Our guide team speaks English, Spanish, Arabic, Czech and Russian."}},
           {"@type":"Question","name":"How do I book?","acceptedAnswer":{"@type":"Answer","text":"Contact Tony via the form or WhatsApp. You'll receive a personalised itinerary and pricing within 24 hours."}}
         ]
-      }
+      },
+      {"@type":"Review","author":{"@type":"Person","name":"Sofía M."},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"itemReviewed":{"@id":"https://tonykansaiguide.surge.sh/#business"},"reviewBody":"Tony took us to a tiny ramen shop hidden in an Osaka alley — no sign, no English menu, just perfection. That single bowl was worth the whole trip."},
+      {"@type":"Review","author":{"@type":"Person","name":"James K."},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"itemReviewed":{"@id":"https://tonykansaiguide.surge.sh/#business"},"reviewBody":"We spent three days with Tony across Kansai. He knows every alley, every chef, every temple. Best experience in Japan."},
+      {"@type":"Review","author":{"@type":"Person","name":"Larissa V."},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"itemReviewed":{"@id":"https://tonykansaiguide.surge.sh/#business"},"reviewBody":"Five days from Osaka to Koyasan. Tony arranged everything. Waking up in a monastery at dawn is something I will never forget."},
+      {"@type":"Review","author":{"@type":"Person","name":"Fatima R."},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"itemReviewed":{"@id":"https://tonykansaiguide.surge.sh/#business"},"reviewBody":"The food tour through Kuromon market was incredible. Tony knew every vendor personally. We ate things I couldn't name and loved every single one."}
     ]
   }
   </script>
@@ -560,6 +613,7 @@
     <li><a href="#gallery"      data-t="nav.gallery">Gallery</a></li>
     <li><a href="#routes"       data-t="nav.routes">Routes</a></li>
     <li><a href="#pricing"      data-t="nav.pricing">Pricing</a></li>
+    <li><a href="#besttime"     data-t="nav.when">Best Time</a></li>
     <li><a href="#testimonials" data-t="nav.test">Reviews</a></li>
     <li><a href="#languages"    data-t="nav.langs">Languages</a></li>
     <li><a href="#contact"      data-t="nav.contact">Contact</a></li>
@@ -583,6 +637,7 @@
   <a href="#howworks"     onclick="closeMob()">How it Works</a>
   <a href="#routemap"     onclick="closeMob()">Map</a>
   <a href="#pricing"      onclick="closeMob()">Pricing</a>
+  <a href="#besttime"     onclick="closeMob()">Best Time</a>
   <a href="#testimonials" onclick="closeMob()">Reviews</a>
   <a href="#contact"      onclick="closeMob()">Contact</a>
   <div class="mob-nav-divider"></div>
@@ -1052,13 +1107,18 @@
       <h2 data-t="pricing.h2">Choose your <span class="acc">experience</span></h2>
       <p data-t="pricing.sub">All tours are 100% private. Prices below are per person with a minimum of 2 guests. Solo travellers welcome — contact me for a quote.</p>
     </div>
+    <div class="cur-toggle">
+      <button class="cur-btn active" data-cur="jpy">¥ JPY</button>
+      <button class="cur-btn" data-cur="usd">$ USD</button>
+      <button class="cur-btn" data-cur="eur">€ EUR</button>
+    </div>
     <div class="pricing-grid">
 
       <div class="plan-card tilt-card rev d1"><div class="glare"></div>
         <div class="plan-icon">半</div>
         <div class="plan-name" data-t="plan.1.name">Half Day</div>
         <div class="plan-dur"  data-t="plan.1.dur">4 Hours · Up to 4 people</div>
-        <div class="plan-price">¥18,000</div>
+        <div class="plan-price" data-price="18000" data-base="18000">¥18,000</div>
         <div class="plan-price-note" data-t="plan.perperson">per person · min 2 guests</div>
         <ul class="plan-features">
           <li data-t="pf.1city">One district or neighbourhood</li>
@@ -1074,7 +1134,7 @@
         <div class="plan-icon">日</div>
         <div class="plan-name" data-t="plan.2.name">Full Day</div>
         <div class="plan-dur"  data-t="plan.2.dur">8 Hours · Up to 6 people</div>
-        <div class="plan-price">¥28,000</div>
+        <div class="plan-price" data-price="28000" data-base="28000">¥28,000</div>
         <div class="plan-price-note" data-t="plan.perperson">per person · min 2 guests</div>
         <ul class="plan-features">
           <li data-t="pf.1city-full">One full city — complete experience</li>
@@ -1091,7 +1151,7 @@
         <div class="plan-icon">旅</div>
         <div class="plan-name" data-t="plan.3.name">Multi-Day Journey</div>
         <div class="plan-dur"  data-t="plan.3.dur">3–7 Days · Up to 6 people</div>
-        <div class="plan-price">¥65,000</div>
+        <div class="plan-price" data-price="65000" data-base="65000">¥65,000</div>
         <div class="plan-price-note" data-t="plan.perday">per day · group up to 4</div>
         <ul class="plan-features">
           <li data-t="pf.multi">Multiple cities across Kansai</li>
@@ -1125,6 +1185,39 @@
   </div>
 </section>
 
+
+
+<!-- BEST TIME TO VISIT -->
+<section id="besttime">
+  <div class="orb" style="width:55vw;height:55vw;top:-15%;right:-10%;background:radial-gradient(circle,rgba(255,107,53,0.06) 0%,transparent 65%);animation:drift2 22s ease-in-out infinite;"></div>
+  <div class="wrap">
+    <div class="bt-head rev">
+      <span class="section-label">When to Come</span>
+      <h2>Best time to <span class="acc">visit Kansai</span></h2>
+      <p>Every season has its own beauty — but some windows are unmissable. Here's an honest month-by-month guide.</p>
+    </div>
+    <div class="bt-grid">
+      <div class="bt-month rev d1"><div class="bt-emoji">⛄</div><div class="bt-name">Jan</div><div class="bt-bar-wrap"><div class="bt-bar-fill" style="width:52%"></div></div><div class="bt-score">5.2</div><div class="bt-note">Cold & quiet. Kōyasan in snow.</div></div>
+      <div class="bt-month rev d2"><div class="bt-emoji">🌱</div><div class="bt-name">Feb</div><div class="bt-bar-wrap"><div class="bt-bar-fill" style="width:60%"></div></div><div class="bt-score">6.0</div><div class="bt-note">Plum blossoms begin.</div></div>
+      <div class="bt-month peak rev d3"><div class="bt-emoji">🌸</div><div class="bt-name">Mar</div><div class="bt-bar-wrap"><div class="bt-bar-fill" style="width:95%"></div></div><div class="bt-score">9.5</div><div class="bt-note">Cherry blossom peak!</div></div>
+      <div class="bt-month peak rev d4"><div class="bt-emoji">🌸</div><div class="bt-name">Apr</div><div class="bt-bar-wrap"><div class="bt-bar-fill" style="width:90%"></div></div><div class="bt-score">9.0</div><div class="bt-note">Late sakura + green hills.</div></div>
+      <div class="bt-month great rev d5"><div class="bt-emoji">🍃</div><div class="bt-name">May</div><div class="bt-bar-wrap"><div class="bt-bar-fill" style="width:84%"></div></div><div class="bt-score">8.4</div><div class="bt-note">Perfect weather, less crowds.</div></div>
+      <div class="bt-month rev d6"><div class="bt-emoji">🌧</div><div class="bt-name">Jun</div><div class="bt-bar-wrap"><div class="bt-bar-fill" style="width:58%"></div></div><div class="bt-score">5.8</div><div class="bt-note">Rainy season. Good value.</div></div>
+      <div class="bt-month rev d1"><div class="bt-emoji">☀️</div><div class="bt-name">Jul</div><div class="bt-bar-wrap"><div class="bt-bar-fill" style="width:55%"></div></div><div class="bt-score">5.5</div><div class="bt-note">Hot & humid. Gion Matsuri.</div></div>
+      <div class="bt-month rev d2"><div class="bt-emoji">🏮</div><div class="bt-name">Aug</div><div class="bt-bar-wrap"><div class="bt-bar-fill" style="width:58%"></div></div><div class="bt-score">5.8</div><div class="bt-note">Obon festivals & fireworks.</div></div>
+      <div class="bt-month great rev d3"><div class="bt-emoji">🌤</div><div class="bt-name">Sep</div><div class="bt-bar-wrap"><div class="bt-bar-fill" style="width:72%"></div></div><div class="bt-score">7.2</div><div class="bt-note">Cooling down, fewer tourists.</div></div>
+      <div class="bt-month great rev d4"><div class="bt-emoji">🍁</div><div class="bt-name">Oct</div><div class="bt-bar-wrap"><div class="bt-bar-fill" style="width:88%"></div></div><div class="bt-score">8.8</div><div class="bt-note">Autumn colours begin.</div></div>
+      <div class="bt-month peak rev d5"><div class="bt-emoji">🍂</div><div class="bt-name">Nov</div><div class="bt-bar-wrap"><div class="bt-bar-fill" style="width:96%"></div></div><div class="bt-score">9.6</div><div class="bt-note">Peak autumn foliage! Book early.</div></div>
+      <div class="bt-month rev d6"><div class="bt-emoji">✨</div><div class="bt-name">Dec</div><div class="bt-bar-wrap"><div class="bt-bar-fill" style="width:66%"></div></div><div class="bt-score">6.6</div><div class="bt-note">Winter lights & year-end calm.</div></div>
+    </div>
+    <div class="bt-legend rev">
+      <div class="bt-leg-item"><div class="bt-leg-dot peak"></div>Peak season — book 3+ months ahead</div>
+      <div class="bt-leg-item"><div class="bt-leg-dot great"></div>Great time — comfortable crowds</div>
+      <div class="bt-leg-item"><div class="bt-leg-dot good"></div>Quieter — best value, fewer tourists</div>
+    </div>
+    <p class="bt-tip rev">🌸 <strong>March–April</strong> and 🍁 <strong>October–November</strong> are the most sought-after windows. If your dates are flexible, these will give you the most memorable experience — but they fill up fast. <a href="#contact" style="color:var(--red);text-decoration:none;font-weight:500;">Tell me your dates ↗</a></p>
+  </div>
+</section>
 
 <!-- TESTIMONIALS -->
 <section id="testimonials">
@@ -1424,7 +1517,7 @@
 <script>
 const T = {
   en: {
-    'nav.hiw':'How it Works','nav.test':'Reviews',
+    'nav.hiw':'How it Works','nav.when':'Best Time','nav.test':'Reviews',
     'hiw.label':'Simple Process',
     'hiw.h2':'How it <span class=\"acc\">works</span>',
     'hiw.1.title':'Contact Tony','hiw.1.desc':"Send a message via the form or WhatsApp. Tell me your travel dates, group size and what interests you most about Japan.",
@@ -1501,7 +1594,7 @@ const T = {
     'footer.l':'© 2026 Tony Hanma · Private Kansai Guide','footer.r':'Osaka · Kansai · Japan'
   },
   es: {
-    'nav.hiw':'Cómo Funciona','nav.test':'Opiniones',
+    'nav.hiw':'Cómo Funciona','nav.when':'Mejor Época','nav.test':'Opiniones',
     'hiw.label':'Proceso Simple',
     'hiw.h2':'Cómo <span class=\"acc\">funciona</span>',
     'hiw.1.title':'Contacta a Tony','hiw.1.desc':"Envía un mensaje por el formulario o WhatsApp. Cuéntame tus fechas de viaje, el tamaño del grupo y qué te interesa más de Japón.",
@@ -1576,7 +1669,7 @@ const T = {
     'gal.label':'Galería de Fotos','gal.h2':'Momentos de <span class="acc">nuestros tours</span>','gal.sub':'Lugares reales. Experiencias reales. Cada foto cuenta una historia de Kansai.'
   },
   ru: {
-    'nav.hiw':'Как Работает','nav.test':'Отзывы',
+    'nav.hiw':'Как Работает','nav.when':'Лучшее время','nav.test':'Отзывы',
     'hiw.label':'Простой Процесс',
     'hiw.h2':'Как это <span class=\"acc\">работает</span>',
     'hiw.1.title':'Свяжитесь с Тони','hiw.1.desc':"Напишите через форму или WhatsApp. Расскажите о датах поездки, размере группы и ваших интересах в Японии.",
@@ -1650,7 +1743,7 @@ const T = {
     'gal.label':'Фотогалерея','gal.h2':'Моменты из <span class="acc">наших туров</span>','gal.sub':'Настоящие места. Настоящие впечатления. Каждое фото — история из Кансая.'
   },
   cs: {
-    'nav.hiw':'Jak to Funguje','nav.test':'Recenze',
+    'nav.hiw':'Jak to Funguje','nav.when':'Nejlepší čas','nav.test':'Recenze',
     'hiw.label':'Jednoduchý Postup',
     'hiw.h2':'Jak to <span class=\"acc\">funguje</span>',
     'hiw.1.title':'Kontaktujte Tonyho','hiw.1.desc':"Pošlete zprávu přes formulář nebo WhatsApp. Řekněte mi svá data cesty, velikost skupiny a co vás na Japonsku nejvíce zajímá.",
@@ -1724,7 +1817,7 @@ const T = {
     'gal.label':'Fotogalerie','gal.h2':'Momenty z <span class="acc">našich výletů</span>','gal.sub':'Skutečná místa. Skutečné zážitky. Každá fotka vypráví příběh z Kansai.'
   },
   ar: {
-    'nav.hiw':'كيف يعمل','nav.test':'آراء',
+    'nav.hiw':'كيف يعمل','nav.when':'أفضل وقت','nav.test':'آراء',
     'hiw.label':'عملية بسيطة',
     'hiw.h2':'كيف <span class=\"acc\">يعمل</span>',
     'hiw.1.title':'تواصل مع توني','hiw.1.desc':"أرسل رسالة عبر النموذج أو واتساب. أخبرني بتواريخ سفرك وعدد المجموعة وما يثير اهتمامك في اليابان.",
@@ -1800,7 +1893,18 @@ const T = {
 };
 };
 
-let lang = localStorage.getItem('lang') || 'en';
+// Auto-detect browser language on first visit (if no saved preference)
+function detectLang() {
+  const saved = localStorage.getItem('lang');
+  if (saved) return saved;
+  const bl = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+  if (bl.startsWith('es'))                         return 'es';
+  if (bl.startsWith('ru')||bl.startsWith('uk')||bl.startsWith('be')) return 'ru';
+  if (bl.startsWith('cs')||bl.startsWith('sk'))    return 'cs';
+  if (bl.startsWith('ar'))                         return 'ar';
+  return 'en';
+}
+let lang = detectLang();
 function applyLang(l) {
   lang = l;
   localStorage.setItem('lang', l);
@@ -1996,6 +2100,22 @@ document.querySelectorAll('.route-card[data-href]').forEach(card => {
 </script>
 
 
+
+<!-- EXIT INTENT POPUP -->
+<div class="exit-pop" id="exit-pop">
+  <div class="exit-box">
+    <button class="exit-close" id="exit-close" aria-label="Close">×</button>
+    <div class="exit-kanji">待</div>
+    <h3>Before you go…</h3>
+    <p>Tell me your dates and I'll send you a free personalised proposal — no commitment, just ideas.</p>
+    <a href="https://wa.me/34634193106?text=Hi%20Tony!%20I%27d%20like%20a%20free%20tour%20proposal%20for%20Kansai." target="_blank" rel="noopener" class="exit-wa">
+      <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zm-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884zm8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Get a Free Proposal
+    </a>
+    <button class="exit-skip" id="exit-skip">No thanks, I'll keep browsing</button>
+  </div>
+</div>
+
 <!-- LIGHTBOX -->
 <div class="lbx" id="lbx" role="dialog" aria-modal="true" aria-label="Image viewer">
   <button class="lbx-close" id="lbx-close" aria-label="Close">×</button>
@@ -2121,6 +2241,43 @@ document.getElementById('cookie-decline').addEventListener('click', () => {
   localStorage.setItem('cookie-consent', 'declined');
   cookieBar.classList.remove('show');
 });
+
+// ── CURRENCY TOGGLE ──
+const curRates = { jpy:{sym:'¥',r:1}, usd:{sym:'$',r:0.0066}, eur:{sym:'€',r:0.006} };
+function setCurrency(cur) {
+  const {sym,r} = curRates[cur];
+  document.querySelectorAll('[data-base]').forEach(el => {
+    const base = parseInt(el.dataset.base);
+    const v = Math.round(base * r);
+    el.textContent = cur === 'jpy' ? sym + v.toLocaleString() : sym + v.toLocaleString();
+  });
+  document.querySelectorAll('.cur-btn').forEach(b => b.classList.toggle('active', b.dataset.cur === cur));
+}
+document.querySelectorAll('.cur-btn').forEach(b => b.addEventListener('click', () => setCurrency(b.dataset.cur)));
+
+// ── EXIT INTENT ──
+const exitPop = document.getElementById('exit-pop');
+let exitFired = false;
+function closeExit() { exitPop.classList.remove('open'); }
+document.getElementById('exit-close').addEventListener('click', closeExit);
+document.getElementById('exit-skip').addEventListener('click', closeExit);
+exitPop.addEventListener('click', e => { if (e.target === exitPop) closeExit(); });
+document.addEventListener('mouseleave', e => {
+  if (e.clientY < 8 && !exitFired && !sessionStorage.getItem('exit-done')) {
+    exitFired = true;
+    sessionStorage.setItem('exit-done', '1');
+    setTimeout(() => exitPop.classList.add('open'), 200);
+  }
+});
+// Mobile: show after 90s of inactivity on page
+let exitTimer = setTimeout(() => {
+  if (!exitFired && !sessionStorage.getItem('exit-done')) {
+    exitFired = true;
+    sessionStorage.setItem('exit-done', '1');
+    exitPop.classList.add('open');
+  }
+}, 90000);
+document.addEventListener('click', () => clearTimeout(exitTimer), { once: true });
 
 </body>
 </html>

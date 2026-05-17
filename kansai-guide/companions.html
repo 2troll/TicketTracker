@@ -544,7 +544,18 @@ const TC = {
     'act.intro':'هذه أمثلة — سيبني مرشدك اليوم بالكامل حول ما تريد.'
   }
 };
-let clang = localStorage.getItem('lang') || 'en';
+// Auto-detect browser language on first visit (if no saved preference)
+function detectLang() {
+  const saved = localStorage.getItem('lang');
+  if (saved) return saved;
+  const bl = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+  if (bl.startsWith('es'))                         return 'es';
+  if (bl.startsWith('ru')||bl.startsWith('uk')||bl.startsWith('be')) return 'ru';
+  if (bl.startsWith('cs')||bl.startsWith('sk'))    return 'cs';
+  if (bl.startsWith('ar'))                         return 'ar';
+  return 'en';
+}
+let clang = detectLang();
 function applyCLang(l) {
   clang = l; localStorage.setItem('lang', l);
   document.documentElement.lang = l;

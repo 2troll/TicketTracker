@@ -495,7 +495,18 @@ const TH = {
     'cta.btn':'احجز يوم الجبل','footer.back':'← العودة إلى Tony Hanma — مرشد خاص'
   }
 };
-let hlang = localStorage.getItem('lang') || 'en';
+// Auto-detect browser language on first visit (if no saved preference)
+function detectLang() {
+  const saved = localStorage.getItem('lang');
+  if (saved) return saved;
+  const bl = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+  if (bl.startsWith('es'))                         return 'es';
+  if (bl.startsWith('ru')||bl.startsWith('uk')||bl.startsWith('be')) return 'ru';
+  if (bl.startsWith('cs')||bl.startsWith('sk'))    return 'cs';
+  if (bl.startsWith('ar'))                         return 'ar';
+  return 'en';
+}
+let hlang = detectLang();
 function applyHLang(l) {
   hlang = l;
   localStorage.setItem('lang', l);
