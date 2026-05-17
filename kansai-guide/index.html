@@ -414,6 +414,51 @@
     .cancel-text strong { color:rgba(37,211,102,.9); }
 
 
+
+    /* ── SCROLL PROGRESS BAR ── */
+    .scroll-prog { position:fixed; top:0; left:0; height:2px; background:linear-gradient(90deg,#e53030,#ff6b35); z-index:10001; width:0%; transition:width .08s linear; pointer-events:none; }
+
+    /* ── REVIEW PLATFORMS SECTION ── */
+    #reviews { padding:8rem 0; background:var(--bg-1); border-top:1px solid var(--line); position:relative; overflow:hidden; }
+    .rev-head { text-align:center; margin-bottom:4rem; }
+    .rev-head p { font-size:.97rem;font-weight:300;color:var(--text-2);max-width:44ch;margin:.8rem auto 0;line-height:1.85; }
+    .rev-platforms { display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; margin-bottom:2.5rem; }
+    .rev-platform { background:var(--glass); border:1px solid var(--glass-b); border-radius:var(--radius); padding:2.2rem 2rem; text-align:center; text-decoration:none; color:inherit; transition:border-color .3s,transform .3s; display:flex; flex-direction:column; align-items:center; gap:.8rem; }
+    .rev-platform:hover { transform:translateY(-6px); border-color:rgba(255,255,255,.25); }
+    .rev-platform-logo { width:48px; height:48px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.4rem; font-weight:700; flex-shrink:0; }
+    .rev-platform-logo.google { background:linear-gradient(135deg,#4285f4,#34a853); }
+    .rev-platform-logo.trip { background:linear-gradient(135deg,#00aa6c,#007a4e); }
+    .rev-platform-logo.trust { background:linear-gradient(135deg,#00b67a,#007a50); }
+    .rev-platform-logo.gye { background:linear-gradient(135deg,#ff6d00,#e55a00); }
+    .rev-platform h3 { font-size:1rem; font-weight:700; color:var(--text); }
+    .rev-platform p { font-size:.8rem; color:var(--text-3); line-height:1.5; }
+    .rev-platform .rev-stars { color:#f0c040; font-size:.9rem; letter-spacing:.06em; }
+    .rev-cta-row { display:flex; align-items:center; justify-content:center; gap:.8rem; margin-top:2rem; }
+    .rev-wa-btn { display:inline-flex; align-items:center; gap:.6rem; padding:.85rem 2rem; background:#25D366; color:#fff; border-radius:999px; font-size:.72rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; text-decoration:none; transition:transform .2s,box-shadow .2s; }
+    .rev-wa-btn:hover { transform:translateY(-2px); box-shadow:0 6px 24px rgba(37,211,102,.4); }
+    .rev-wa-btn svg { width:16px; height:16px; }
+    .rev-share-btn { display:inline-flex; align-items:center; gap:.5rem; padding:.85rem 1.6rem; background:var(--glass); border:1px solid var(--glass-b); color:var(--text-2); border-radius:999px; font-size:.72rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; cursor:pointer; transition:background .2s,color .2s; }
+    .rev-share-btn:hover { background:var(--glass-hover); color:var(--text); }
+    @media(max-width:700px){ .rev-platforms{grid-template-columns:1fr 1fr;} }
+    @media(max-width:500px){ .rev-platforms{grid-template-columns:1fr;} }
+
+    /* ── NEWSLETTER ── */
+    #newsletter { padding:6rem 0; background:var(--bg-2); border-top:1px solid var(--line); }
+    .nl-inner { max-width:560px; margin:0 auto; text-align:center; }
+    .nl-inner p { font-size:.93rem; font-weight:300; color:var(--text-2); margin:.8rem 0 2rem; line-height:1.85; }
+    .nl-form { display:flex; gap:.6rem; max-width:440px; margin:0 auto; }
+    .nl-input { flex:1; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.1); color:var(--text); font-family:var(--sans); font-size:.9rem; padding:.85rem 1.1rem; border-radius:999px; outline:none; transition:border-color .3s; }
+    .nl-input::placeholder { color:var(--text-3); }
+    .nl-input:focus { border-color:rgba(229,48,48,.4); }
+    .nl-btn { padding:.85rem 1.8rem; background:var(--acc); color:#fff; border:none; border-radius:999px; font-family:var(--sans); font-size:.7rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; cursor:pointer; white-space:nowrap; transition:opacity .2s,transform .2s; flex-shrink:0; }
+    .nl-btn:hover { opacity:.88; transform:translateY(-1px); }
+    .nl-ok { display:none; font-size:.9rem; color:var(--text-2); padding:1rem 0; }
+    @media(max-width:500px){ .nl-form{flex-direction:column;} .nl-input,.nl-btn{width:100%;border-radius:14px;} }
+
+    /* ── SOCIAL SHARE TOOLTIP ── */
+    .share-toast { position:fixed; bottom:8rem; left:50%; transform:translateX(-50%) translateY(16px); background:rgba(0,0,0,.92); color:#fff; font-size:.76rem; padding:.55rem 1.3rem; border-radius:999px; border:1px solid rgba(255,255,255,.12); opacity:0; pointer-events:none; transition:opacity .3s,transform .3s; white-space:nowrap; z-index:9998; }
+    .share-toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+
     /* ── BEST TIME TO VISIT ── */
     #besttime { padding:8rem 0; background:var(--bg); border-top:1px solid var(--line); position:relative; overflow:hidden; }
     .bt-head { text-align:center; margin-bottom:4rem; }
@@ -602,6 +647,8 @@
 </head>
 <body>
 
+<div class="scroll-prog" id="scroll-prog"></div>
+<div class="share-toast" id="share-toast">Link copied to clipboard!</div>
 <nav>
   <a class="nav-logo" href="#">Tony Hanma</a>
   <ul class="nav-center">
@@ -615,6 +662,7 @@
     <li><a href="#pricing"      data-t="nav.pricing">Pricing</a></li>
     <li><a href="#besttime"     data-t="nav.when">Best Time</a></li>
     <li><a href="#testimonials" data-t="nav.test">Reviews</a></li>
+    <li><a href="#reviews"       data-t="nav.review">Leave a Review</a></li>
     <li><a href="#languages"    data-t="nav.langs">Languages</a></li>
     <li><a href="#contact"      data-t="nav.contact">Contact</a></li>
   </ul>
@@ -639,6 +687,8 @@
   <a href="#pricing"      onclick="closeMob()">Pricing</a>
   <a href="#besttime"     onclick="closeMob()">Best Time</a>
   <a href="#testimonials" onclick="closeMob()">Reviews</a>
+  <a href="#reviews" onclick="closeMob()">Leave a Review</a>
+  <a href="#newsletter" onclick="closeMob()">Newsletter</a>
   <a href="#contact"      onclick="closeMob()">Contact</a>
   <div class="mob-nav-divider"></div>
   <div class="mob-nav-lang">
@@ -1311,6 +1361,65 @@
   </div>
 </section>
 
+
+<!-- REVIEW PLATFORMS -->
+<section id="reviews">
+  <div class="orb" style="width:50vw;height:50vw;bottom:-20%;left:-10%;background:radial-gradient(circle,rgba(229,48,48,0.06) 0%,transparent 65%);animation:drift1 24s ease-in-out infinite;"></div>
+  <div class="wrap">
+    <div class="rev-head">
+      <span class="section-label">Share Your Experience</span>
+      <h2>Leave a <span class="acc">review</span></h2>
+      <p>Your honest review helps other travellers find the right guide — and means the world to us.</p>
+    </div>
+    <div class="rev-platforms">
+
+      <!-- GOOGLE: Replace YOUR_GOOGLE_PLACE_ID with your actual Place ID from Google Business Profile -->
+      <a class="rev-platform rev d1" href="https://search.google.com/local/writereview?placeid=YOUR_GOOGLE_PLACE_ID" target="_blank" rel="noopener" id="rev-google">
+        <div class="rev-platform-logo google">G</div>
+        <div class="rev-stars">★★★★★</div>
+        <h3>Google Reviews</h3>
+        <p>The most visible — helps you appear on Google Maps & Search</p>
+      </a>
+
+      <!-- TRIPADVISOR: Replace with your TripAdvisor Experiences URL -->
+      <a class="rev-platform rev d2" href="https://www.tripadvisor.com/Attraction_Review-g298566-d_YOURID-Reviews-Kansai_Private_Guide_Tony.html" target="_blank" rel="noopener" id="rev-trip">
+        <div class="rev-platform-logo trip">TA</div>
+        <div class="rev-stars">★★★★★</div>
+        <h3>TripAdvisor</h3>
+        <p>Millions of travellers search for experiences here every day</p>
+      </a>
+
+      <!-- TRUSTPILOT: Uses your domain automatically once your profile is claimed -->
+      <a class="rev-platform rev d3" href="https://www.trustpilot.com/review/tonykansaiguide.surge.sh" target="_blank" rel="noopener">
+        <div class="rev-platform-logo trust">★</div>
+        <div class="rev-stars">★★★★★</div>
+        <h3>Trustpilot</h3>
+        <p>Internationally recognised — builds trust with European clients</p>
+      </a>
+
+    </div>
+
+    <!-- Platform setup note (only visible in dev — remove before launch if preferred) -->
+    <div style="background:rgba(229,48,48,.05);border:1px dashed rgba(229,48,48,.2);border-radius:12px;padding:1.2rem 1.6rem;margin-bottom:2rem;font-size:.8rem;color:var(--text-3);line-height:1.8;" id="setup-note">
+      <strong style="color:rgba(229,48,48,.7);">Setup required (for Tony):</strong><br>
+      1. <strong>Google:</strong> Create a free <a href="https://business.google.com" target="_blank" style="color:var(--red);">Google Business Profile</a> → get your Place ID → replace <code>YOUR_GOOGLE_PLACE_ID</code> in the link above.<br>
+      2. <strong>TripAdvisor:</strong> Register at <a href="https://www.tripadvisor.com/Owners" target="_blank" style="color:var(--red);">tripadvisor.com/Owners</a> as an Experience provider → replace the link above with your listing URL.<br>
+      3. <strong>Trustpilot:</strong> Claim your free business profile at <a href="https://business.trustpilot.com" target="_blank" style="color:var(--red);">business.trustpilot.com</a> — the link above already uses your domain.
+    </div>
+
+    <div class="rev-cta-row rev">
+      <a href="https://wa.me/34634193106?text=Hi%20Tony%2C%20I%20wanted%20to%20share%20my%20experience%20with%20your%20tour!" target="_blank" rel="noopener" class="rev-wa-btn" id="rev-wa-link">
+        <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zm-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884zm8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Send feedback on WhatsApp
+      </a>
+      <button class="rev-share-btn" id="share-page-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        Share this page
+      </button>
+    </div>
+  </div>
+</section>
+
 <!-- LANGUAGES -->
 <!-- UPDATES / BLOG -->
 <section id="updates">
@@ -1395,6 +1504,24 @@
         <div class="lang-name">Čeština</div>
         <div class="lang-native">Czech</div>
       </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- NEWSLETTER -->
+<section id="newsletter">
+  <div class="wrap">
+    <div class="nl-inner rev">
+      <span class="section-label">Stay Updated</span>
+      <h2>Tips from <span class="acc">the trail</span></h2>
+      <p>Seasonal guides, cherry blossom alerts, hidden routes — straight to your inbox. No spam, unsubscribe any time.</p>
+      <form class="nl-form" id="nl-form" novalidate>
+        <input class="nl-input" type="email" id="nl-email" placeholder="your@email.com" required />
+        <input type="hidden" name="_subject" value="New subscriber — Tony Kansai Guide" />
+        <button class="nl-btn" type="submit">Subscribe</button>
+      </form>
+      <p class="nl-ok" id="nl-ok">✦ &nbsp;You're in! Watch for an email from Tony soon.</p>
     </div>
   </div>
 </section>
@@ -1517,7 +1644,7 @@
 <script>
 const T = {
   en: {
-    'nav.hiw':'How it Works','nav.when':'Best Time','nav.test':'Reviews',
+    'nav.hiw':'How it Works','nav.when':'Best Time','nav.test':'Reviews','nav.review':'Leave a Review',
     'hiw.label':'Simple Process',
     'hiw.h2':'How it <span class=\"acc\">works</span>',
     'hiw.1.title':'Contact Tony','hiw.1.desc':"Send a message via the form or WhatsApp. Tell me your travel dates, group size and what interests you most about Japan.",
@@ -1594,7 +1721,7 @@ const T = {
     'footer.l':'© 2026 Tony Hanma · Private Kansai Guide','footer.r':'Osaka · Kansai · Japan'
   },
   es: {
-    'nav.hiw':'Cómo Funciona','nav.when':'Mejor Época','nav.test':'Opiniones',
+    'nav.hiw':'Cómo Funciona','nav.when':'Mejor Época','nav.test':'Opiniones','nav.review':'Deja una Reseña',
     'hiw.label':'Proceso Simple',
     'hiw.h2':'Cómo <span class=\"acc\">funciona</span>',
     'hiw.1.title':'Contacta a Tony','hiw.1.desc':"Envía un mensaje por el formulario o WhatsApp. Cuéntame tus fechas de viaje, el tamaño del grupo y qué te interesa más de Japón.",
@@ -1669,7 +1796,7 @@ const T = {
     'gal.label':'Galería de Fotos','gal.h2':'Momentos de <span class="acc">nuestros tours</span>','gal.sub':'Lugares reales. Experiencias reales. Cada foto cuenta una historia de Kansai.'
   },
   ru: {
-    'nav.hiw':'Как Работает','nav.when':'Лучшее время','nav.test':'Отзывы',
+    'nav.hiw':'Как Работает','nav.when':'Лучшее время','nav.test':'Отзывы','nav.review':'Оставить отзыв',
     'hiw.label':'Простой Процесс',
     'hiw.h2':'Как это <span class=\"acc\">работает</span>',
     'hiw.1.title':'Свяжитесь с Тони','hiw.1.desc':"Напишите через форму или WhatsApp. Расскажите о датах поездки, размере группы и ваших интересах в Японии.",
@@ -1743,7 +1870,7 @@ const T = {
     'gal.label':'Фотогалерея','gal.h2':'Моменты из <span class="acc">наших туров</span>','gal.sub':'Настоящие места. Настоящие впечатления. Каждое фото — история из Кансая.'
   },
   cs: {
-    'nav.hiw':'Jak to Funguje','nav.when':'Nejlepší čas','nav.test':'Recenze',
+    'nav.hiw':'Jak to Funguje','nav.when':'Nejlepší čas','nav.test':'Recenze','nav.review':'Napsat recenzi',
     'hiw.label':'Jednoduchý Postup',
     'hiw.h2':'Jak to <span class=\"acc\">funguje</span>',
     'hiw.1.title':'Kontaktujte Tonyho','hiw.1.desc':"Pošlete zprávu přes formulář nebo WhatsApp. Řekněte mi svá data cesty, velikost skupiny a co vás na Japonsku nejvíce zajímá.",
@@ -1817,7 +1944,7 @@ const T = {
     'gal.label':'Fotogalerie','gal.h2':'Momenty z <span class="acc">našich výletů</span>','gal.sub':'Skutečná místa. Skutečné zážitky. Každá fotka vypráví příběh z Kansai.'
   },
   ar: {
-    'nav.hiw':'كيف يعمل','nav.when':'أفضل وقت','nav.test':'آراء',
+    'nav.hiw':'كيف يعمل','nav.when':'أفضل وقت','nav.test':'آراء','nav.review':'اترك تقييماً',
     'hiw.label':'عملية بسيطة',
     'hiw.h2':'كيف <span class=\"acc\">يعمل</span>',
     'hiw.1.title':'تواصل مع توني','hiw.1.desc':"أرسل رسالة عبر النموذج أو واتساب. أخبرني بتواريخ سفرك وعدد المجموعة وما يثير اهتمامك في اليابان.",
@@ -2278,6 +2405,80 @@ let exitTimer = setTimeout(() => {
   }
 }, 90000);
 document.addEventListener('click', () => clearTimeout(exitTimer), { once: true });
+
+// ── SCROLL PROGRESS BAR ──
+const sprog = document.getElementById('scroll-prog');
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+  sprog.style.width = Math.min(100, pct * 100) + '%';
+}, { passive:true });
+
+// ── LANGUAGE-SPECIFIC WHATSAPP LINKS ──
+const waMsg = {
+  en: "Hi Tony! I'd like to know more about your private tours in Kansai.",
+  es: "¡Hola Tony! Me gustaría saber más sobre tus tours privados en Kansai.",
+  ru: "Привет, Тони! Хотел бы узнать больше о ваших частных турах в Кансай.",
+  cs: "Ahoj Tony! Rád bych se dozvěděl více o vašich soukromých výletech v Kansai.",
+  ar: "مرحباً توني! أود معرفة المزيد عن جولاتك الخاصة في كانساي."
+};
+const waFeedback = {
+  en: "Hi Tony, I wanted to share my experience with your tour!",
+  es: "¡Hola Tony, quería compartir mi experiencia con tu tour!",
+  ru: "Привет, Тони! Хочу поделиться своими впечатлениями о туре.",
+  cs: "Ahoj Tony, chtěl jsem se podělit o svůj zážitek z výletu!",
+  ar: "مرحباً توني، أردت مشاركة تجربتي مع جولتك!"
+};
+function updateWaLinks(l) {
+  const msg = encodeURIComponent(waMsg[l] || waMsg.en);
+  const fb  = encodeURIComponent(waFeedback[l] || waFeedback.en);
+  document.querySelectorAll('a[href*="wa.me"]').forEach(a => {
+    const url = a.href;
+    if (url.includes('share') || url.includes('feedback') || a.id === 'rev-wa-link') {
+      a.href = `https://wa.me/34634193106?text=${fb}`;
+    } else if (!url.includes('proposal')) {
+      a.href = `https://wa.me/34634193106?text=${msg}`;
+    }
+  });
+}
+const _origApply = applyLang;
+applyLang = function(l) { _origApply(l); updateWaLinks(l); };
+updateWaLinks(lang);
+
+// ── SOCIAL SHARE ──
+const shareToast = document.getElementById('share-toast');
+function showToast(msg) {
+  shareToast.textContent = msg;
+  shareToast.classList.add('show');
+  setTimeout(() => shareToast.classList.remove('show'), 2500);
+}
+document.getElementById('share-page-btn').addEventListener('click', async () => {
+  const shareData = { title: 'Tony Hanma — Private Kansai Guide', text: 'Private tours across Osaka, Kyoto & Kansai — 5 languages, 200+ tours.', url: 'https://tonykansaiguide.surge.sh/' };
+  if (navigator.share) {
+    try { await navigator.share(shareData); } catch(e) {}
+  } else {
+    navigator.clipboard.writeText(shareData.url).then(() => showToast('Link copied to clipboard!'));
+  }
+});
+
+// ── NEWSLETTER FORM ──
+const nlForm = document.getElementById('nl-form');
+const nlOk = document.getElementById('nl-ok');
+if (nlForm) {
+  nlForm.addEventListener('submit', async e => {
+    e.preventDefault();
+    const email = document.getElementById('nl-email').value;
+    if (!email) return;
+    const ep2 = atob('aHR0cHM6Ly9mb3Jtc3VibWl0LmNvL2FqYXgvUHJpbmNlLms3M2tAcHJvdG9uLm1l');
+    const fd = new FormData();
+    fd.append('email', email);
+    fd.append('_subject', 'Newsletter subscriber');
+    try {
+      await fetch(ep2, { method:'POST', body:fd, headers:{Accept:'application/json'} });
+    } catch(e) {}
+    nlForm.style.display = 'none';
+    nlOk.style.display = 'block';
+  });
+}
 
 </body>
 </html>
