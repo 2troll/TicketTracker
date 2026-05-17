@@ -73,12 +73,12 @@
     .dest-route { padding:8rem 0; background:var(--bg-1); }
     .day-label { font-size:0.65rem; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:var(--acc2); background:rgba(139,63,191,0.12); border:1px solid rgba(192,132,245,0.2); border-radius:999px; padding:0.3rem 1rem; display:inline-block; margin-bottom:2rem; margin-left:8.2rem; }
     .timeline { position:relative; max-width:720px; margin:0 auto; }
-    .timeline::before { content:''; position:absolute; left:3.2rem; top:0; bottom:0; width:1px; background:var(--line); }
+    .timeline::before { content:''; position:absolute; left:6.6rem; top:0; bottom:0; width:1px; background:var(--line); }
     .t-step { display:flex; gap:1.8rem; margin-bottom:2.8rem; position:relative; }
     .t-step:last-child { margin-bottom:0; }
     .t-num { flex-shrink:0; width:6.4rem; text-align:right; padding-top:0.15rem; }
     .t-time { font-size:0.72rem; font-weight:600; letter-spacing:0.08em; color:var(--acc2); display:block; }
-    .t-dot { position:absolute; left:3.2rem; top:0.45rem; width:10px; height:10px; background:var(--acc); border-radius:50%; transform:translateX(-50%); box-shadow:0 0 0 3px rgba(139,63,191,0.2); }
+    .t-dot { position:absolute; left:6.6rem; top:0.45rem; width:10px; height:10px; background:var(--acc); border-radius:50%; transform:translateX(-50%); box-shadow:0 0 0 3px rgba(139,63,191,0.2); }
     .t-body { flex:1; background:var(--glass); border:1px solid var(--line); border-radius:14px; padding:1.2rem 1.4rem; }
     .t-place { font-size:0.95rem; font-weight:600; margin-bottom:0.3rem; }
     .t-desc { font-size:0.85rem; color:var(--text-2); line-height:1.65; }
@@ -134,7 +134,7 @@
   <div class="facts-inner">
     <div class="fact"><div class="fact-label">Duration</div><div class="fact-val">2 Days</div><div class="fact-note">overnight monastery</div></div>
     <div class="fact"><div class="fact-label">Group Size</div><div class="fact-val">2–4</div><div class="fact-note">intimate only</div></div>
-    <div class="fact"><div class="fact-label">From</div><div class="fact-val">¥38,000</div><div class="fact-note">per person · incl. lodging</div></div>
+    <div class="fact"><div class="fact-label">From</div><div class="fact-val">¥95,000</div><div class="fact-note">per person · incl. lodging</div></div>
     <div class="fact"><div class="fact-label">Departure</div><div class="fact-val" style="font-size:0.9rem;padding-top:0.3rem;">Osaka Namba</div><div class="fact-note">9:00 AM Day 1</div></div>
   </div>
 </div>
@@ -322,8 +322,8 @@
     </div>
     <div class="price-card">
       <div class="price-city">Kōyasan — 2 Day Overnight Pilgrimage</div>
-      <div class="price-main">¥38,000</div>
-      <div class="price-note">per person · minimum 2 guests · all accommodation included</div>
+      <div class="price-main">¥95,000</div>
+      <div class="price-note">per group · up to 6 guests · all accommodation included</div>
       <ul class="price-includes">
         <li>100% private — just your group</li>
         <li>1 night shukubō monastery accommodation</li>
@@ -347,7 +347,7 @@
 <script>
 (function(){
   var m=L.map("route-map",{scrollWheelZoom:false}).setView([34.2135,135.585],15);
-  L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",{attribution:"© <a href='https://carto.com/attributions'>CARTO</a>",maxZoom:19}).addTo(m);
+  L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",{attribution:"© <a href='https://carto.com/attributions'>CARTO</a>",maxZoom:19}).addTo(m);
   var stops=[{"ll": [34.213, 135.5851], "n": "Danjogaran", "k": "壇上伽藍", "t": "11:30 AM · After cable car", "d": "The sacred precinct Kobo Daishi founded in 819"}, {"ll": [34.2128, 135.5814], "n": "Kongobu-ji Temple", "k": "金剛峯寺", "t": "12:00 PM · 5 min walk", "d": "Head temple of Shingon Buddhism, stone rock garden"}, {"ll": [34.2153, 135.5945], "n": "Ichinohashi Gate", "k": "一の橋", "t": "3:00 PM · 20 min walk", "d": "The entrance gate to Okunoin — cross into another world"}, {"ll": [34.2148, 135.5961], "n": "Okunoin Cemetery", "k": "奥院", "t": "3:30 PM · 10 min walk", "d": "200,000 moss-covered stone lanterns under cedar giants"}, {"ll": [34.2155, 135.5975], "n": "Torodo Lantern Hall", "k": "燈籠堂", "t": "4:00 PM · Finish", "d": "10,000 lanterns burning continuously since the 11th century"}];
   var col="#8b3fbf",nc="#fff",kc="rgba(255,255,255,.38)",dc="rgba(255,255,255,.62)";
   var pts=[];

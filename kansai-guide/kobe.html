@@ -67,12 +67,12 @@
     .g-fallback { width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-family:var(--serif); font-size:4rem; color:rgba(255,255,255,0.08); }
     .dest-route { padding:8rem 0; background:var(--bg-1); }
     .timeline { position:relative; max-width:720px; margin:0 auto; }
-    .timeline::before { content:''; position:absolute; left:3.2rem; top:0; bottom:0; width:1px; background:var(--line); }
+    .timeline::before { content:''; position:absolute; left:6.6rem; top:0; bottom:0; width:1px; background:var(--line); }
     .t-step { display:flex; gap:1.8rem; margin-bottom:2.8rem; position:relative; }
     .t-step:last-child { margin-bottom:0; }
     .t-num { flex-shrink:0; width:6.4rem; text-align:right; padding-top:0.15rem; }
     .t-time { font-size:0.72rem; font-weight:600; letter-spacing:0.08em; color:var(--acc2); display:block; }
-    .t-dot { position:absolute; left:3.2rem; top:0.45rem; width:10px; height:10px; background:var(--acc); border-radius:50%; transform:translateX(-50%); box-shadow:0 0 0 3px rgba(26,107,186,0.22); }
+    .t-dot { position:absolute; left:6.6rem; top:0.45rem; width:10px; height:10px; background:var(--acc); border-radius:50%; transform:translateX(-50%); box-shadow:0 0 0 3px rgba(26,107,186,0.22); }
     .t-body { flex:1; background:var(--glass); border:1px solid var(--line); border-radius:14px; padding:1.2rem 1.4rem; }
     .t-place { font-size:0.95rem; font-weight:600; margin-bottom:0.3rem; }
     .t-desc { font-size:0.85rem; color:var(--text-2); line-height:1.65; }
@@ -141,7 +141,7 @@
   <div class="facts-inner">
     <div class="fact"><div class="fact-label">Duration</div><div class="fact-val">5 h</div><div class="fact-note">half day from Osaka</div></div>
     <div class="fact"><div class="fact-label">Group Size</div><div class="fact-val">2–6</div><div class="fact-note">fully private</div></div>
-    <div class="fact"><div class="fact-label">From</div><div class="fact-val">¥20,000</div><div class="fact-note">per person</div></div>
+    <div class="fact"><div class="fact-label">From</div><div class="fact-val">¥50,000</div><div class="fact-note">per person</div></div>
     <div class="fact"><div class="fact-label">Departure</div><div class="fact-val" style="font-size:0.9rem;padding-top:0.3rem;">Sannomiya</div><div class="fact-note">Station · 10:00 AM</div></div>
   </div>
 </div>
@@ -287,8 +287,8 @@
     </div>
     <div class="price-card">
       <div class="price-city">Kobe Refined — Half Day</div>
-      <div class="price-main">¥20,000</div>
-      <div class="price-note">per person · minimum 2 guests · wagyu lunch extra</div>
+      <div class="price-main">¥50,000</div>
+      <div class="price-note">per group · up to 6 guests · wagyu lunch extra</div>
       <ul class="price-includes">
         <li>100% private — just your group</li>
         <li>Teppanyaki wagyu counter reservation</li>
@@ -311,7 +311,7 @@
 <script>
 (function(){
   var m=L.map("route-map",{scrollWheelZoom:false}).setView([34.691,135.188],13);
-  L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",{attribution:"© <a href='https://carto.com/attributions'>CARTO</a>",maxZoom:19}).addTo(m);
+  L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",{attribution:"© <a href='https://carto.com/attributions'>CARTO</a>",maxZoom:19}).addTo(m);
   var stops=[{"ll": [34.6941, 135.1961], "n": "Sannomiya", "k": "三宮駅", "t": "10:00 AM · Start", "d": "Kobe's central hub — start here"}, {"ll": [34.6984, 135.1892], "n": "Kitano Ijinkan", "k": "北野異人館", "t": "10:20 AM · 15 min walk", "d": "19th-century foreigner residences, Western architecture"}, {"ll": [34.6874, 135.1853], "n": "Wagyu Lunch", "k": "神戸牛", "t": "12:00 PM · 10 min walk", "d": "Kobe beef at a local restaurant, not a tourist trap"}, {"ll": [34.7121, 135.2102], "n": "Nada Sake Brewery", "k": "灘の酒", "t": "2:00 PM · bus 20 min", "d": "Japan's most famous sake district, free tastings"}, {"ll": [34.6853, 135.1826], "n": "Meriken Park", "k": "メリケンパーク", "t": "4:00 PM · Finish", "d": "The harbour at golden hour, Port Tower in red steel"}];
   var col="#1a6bba",nc="#fff",kc="rgba(255,255,255,.38)",dc="rgba(255,255,255,.62)";
   var pts=[];

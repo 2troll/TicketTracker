@@ -67,12 +67,12 @@
     .g-fallback { width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-family:var(--serif); font-size:4rem; color:rgba(255,255,255,0.08); }
     .dest-route { padding:8rem 0; background:var(--bg-1); }
     .timeline { position:relative; max-width:720px; margin:0 auto; }
-    .timeline::before { content:''; position:absolute; left:3.2rem; top:0; bottom:0; width:1px; background:var(--line); }
+    .timeline::before { content:''; position:absolute; left:6.6rem; top:0; bottom:0; width:1px; background:var(--line); }
     .t-step { display:flex; gap:1.8rem; margin-bottom:2.8rem; position:relative; }
     .t-step:last-child { margin-bottom:0; }
     .t-num { flex-shrink:0; width:6.4rem; text-align:right; padding-top:0.15rem; }
     .t-time { font-size:0.72rem; font-weight:600; letter-spacing:0.08em; color:var(--acc2); display:block; }
-    .t-dot { position:absolute; left:3.2rem; top:0.45rem; width:10px; height:10px; background:var(--acc); border-radius:50%; transform:translateX(-50%); box-shadow:0 0 0 3px rgba(42,157,92,0.2); }
+    .t-dot { position:absolute; left:6.6rem; top:0.45rem; width:10px; height:10px; background:var(--acc); border-radius:50%; transform:translateX(-50%); box-shadow:0 0 0 3px rgba(42,157,92,0.2); }
     .t-body { flex:1; background:var(--glass); border:1px solid var(--line); border-radius:14px; padding:1.2rem 1.4rem; }
     .t-place { font-size:0.95rem; font-weight:600; margin-bottom:0.3rem; }
     .t-desc { font-size:0.85rem; color:var(--text-2); line-height:1.65; }
@@ -141,7 +141,7 @@
   <div class="facts-inner">
     <div class="fact"><div class="fact-label">Duration</div><div class="fact-val">9 h</div><div class="fact-note">full day trip</div></div>
     <div class="fact"><div class="fact-label">Group Size</div><div class="fact-val">2–6</div><div class="fact-note">fully private</div></div>
-    <div class="fact"><div class="fact-label">From</div><div class="fact-val">¥24,000</div><div class="fact-note">per person</div></div>
+    <div class="fact"><div class="fact-label">From</div><div class="fact-val">¥60,000</div><div class="fact-note">per person</div></div>
     <div class="fact"><div class="fact-label">Departure</div><div class="fact-val" style="font-size:0.9rem;padding-top:0.3rem;">Osaka / Kyoto</div><div class="fact-note">8:00 AM · hotel area</div></div>
   </div>
 </div>
@@ -305,8 +305,8 @@
     </div>
     <div class="price-card">
       <div class="price-city">Nara &amp; Himeji Castle — Full Day</div>
-      <div class="price-main">¥24,000</div>
-      <div class="price-note">per person · minimum 2 guests · Shinkansen tickets included</div>
+      <div class="price-main">¥60,000</div>
+      <div class="price-note">per group · up to 6 guests · Shinkansen tickets included</div>
       <ul class="price-includes">
         <li>100% private — just your group</li>
         <li>Shinkansen Osaka–Himeji included</li>
@@ -329,7 +329,7 @@
 <script>
 (function(){
   var m=L.map("route-map",{scrollWheelZoom:false}).setView([34.686,135.84],14);
-  L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",{attribution:"© <a href='https://carto.com/attributions'>CARTO</a>",maxZoom:19}).addTo(m);
+  L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",{attribution:"© <a href='https://carto.com/attributions'>CARTO</a>",maxZoom:19}).addTo(m);
   var stops=[{"ll": [34.6866, 135.8295], "n": "Nara Station", "k": "奈良駅", "t": "9:00 AM · Start", "d": "Arrive by JR or Kintetsu from Osaka or Kyoto"}, {"ll": [34.6888, 135.8398], "n": "Todai-ji Temple", "k": "東大寺", "t": "9:30 AM · 10 min walk", "d": "World's largest wooden building, Great Buddha inside"}, {"ll": [34.6842, 135.8395], "n": "Nara Deer Park", "k": "奈良公園", "t": "11:00 AM · 5 min walk", "d": "1,200 sacred deer roam free — they bow for crackers"}, {"ll": [34.6815, 135.8481], "n": "Kasuga Grand Shrine", "k": "春日大社", "t": "1:00 PM · 15 min walk", "d": "3,000 stone lanterns line the forest path to the shrine"}, {"ll": [34.6863, 135.8371], "n": "Isuien Garden", "k": "依水園", "t": "3:00 PM · 10 min walk", "d": "Meiji-era garden with Todai-ji as borrowed scenery"}];
   var col="#2a9d5c",nc="#fff",kc="rgba(255,255,255,.38)",dc="rgba(255,255,255,.62)";
   var pts=[];

@@ -83,12 +83,12 @@
     /* ITINERARY */
     .dest-route { padding:8rem 0; background:var(--bg-1); }
     .timeline { position:relative; max-width:720px; margin:0 auto; }
-    .timeline::before { content:''; position:absolute; left:3.2rem; top:0; bottom:0; width:1px; background:var(--line); }
+    .timeline::before { content:''; position:absolute; left:6.6rem; top:0; bottom:0; width:1px; background:var(--line); }
     .t-step { display:flex; gap:1.8rem; margin-bottom:2.8rem; position:relative; }
     .t-step:last-child { margin-bottom:0; }
     .t-num { flex-shrink:0; width:6.4rem; text-align:right; padding-top:0.15rem; }
     .t-time { font-size:0.72rem; font-weight:600; letter-spacing:0.08em; color:var(--acc); display:block; }
-    .t-dot { position:absolute; left:3.2rem; top:0.45rem; width:10px; height:10px; background:var(--acc); border-radius:50%; transform:translateX(-50%); box-shadow:0 0 0 3px rgba(229,48,48,0.18); }
+    .t-dot { position:absolute; left:6.6rem; top:0.45rem; width:10px; height:10px; background:var(--acc); border-radius:50%; transform:translateX(-50%); box-shadow:0 0 0 3px rgba(229,48,48,0.18); }
     .t-body { flex:1; background:var(--glass); border:1px solid var(--line); border-radius:14px; padding:1.2rem 1.4rem; }
     .t-place { font-size:0.95rem; font-weight:600; margin-bottom:0.3rem; color:var(--text); }
     .t-desc { font-size:0.85rem; color:var(--text-2); line-height:1.65; }
@@ -177,7 +177,7 @@
     </div>
     <div class="fact">
       <div class="fact-label">From</div>
-      <div class="fact-val">¥18,000</div>
+      <div class="fact-val">¥45,000</div>
       <div class="fact-note">per person</div>
     </div>
     <div class="fact">
@@ -341,8 +341,8 @@
     </div>
     <div class="price-card">
       <div class="price-city">Osaka Food Circuit</div>
-      <div class="price-main">¥18,000</div>
-      <div class="price-note">per person · minimum 2 guests · full day ¥28,000</div>
+      <div class="price-main">¥45,000</div>
+      <div class="price-note">per group · up to 6 guests · full day ¥70,000</div>
       <ul class="price-includes">
         <li>100% private — just your group</li>
         <li>Food tastings at every stop</li>
@@ -365,7 +365,7 @@
 <script>
 (function(){
   var m=L.map("route-map",{scrollWheelZoom:false}).setView([34.665,135.503],14);
-  L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",{attribution:"© <a href='https://carto.com/attributions'>CARTO</a>",maxZoom:19}).addTo(m);
+  L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",{attribution:"© <a href='https://carto.com/attributions'>CARTO</a>",maxZoom:19}).addTo(m);
   var stops=[{"ll": [34.6662, 135.5009], "n": "Namba", "k": "難波駅", "t": "9:00 AM · Start", "d": "Meeting point for your Osaka day"}, {"ll": [34.6687, 135.5065], "n": "Kuromon Market", "k": "黒門市場", "t": "9:20 AM · 10 min walk", "d": "Osaka's kitchen — fresh fish &amp; street food"}, {"ll": [34.6686, 135.5021], "n": "Dotonbori", "k": "道頓堀", "t": "10:45 AM · 12 min walk", "d": "The canal district, Glico Man, real Osaka energy"}, {"ll": [34.6525, 135.5062], "n": "Shinsekai", "k": "新世界", "t": "12:30 PM · 20 min south", "d": "Retro 1950s neighbourhood, kushikatsu, Tsutenkaku Tower"}, {"ll": [34.6614, 135.498], "n": "Standing Sake Bar", "k": "立ち飲み", "t": "4:00 PM · Finish", "d": "40 sake labels, the perfect close to the day"}];
   var col="#e53030",nc="#fff",kc="rgba(255,255,255,.38)",dc="rgba(255,255,255,.62)";
   var pts=[];
