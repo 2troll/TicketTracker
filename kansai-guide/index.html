@@ -369,6 +369,10 @@
     .wa-float svg { width:28px; height:28px; flex-shrink:0; }
     .wa-label { position:absolute; right:68px; top:50%; transform:translateY(-50%); background:rgba(6,6,6,.92); color:#fff; font-size:.7rem; font-weight:600; white-space:nowrap; padding:.38rem .9rem; border-radius:8px; opacity:0; pointer-events:none; transition:opacity .2s; border:1px solid rgba(37,211,102,.3); font-family:'Plus Jakarta Sans',sans-serif; letter-spacing:.04em; }
     .wa-float:hover .wa-label { opacity:1; }
+    .wa-avail { position:absolute; top:-2px; right:-2px; width:14px; height:14px; border-radius:50%; border:2px solid #080808; background:#22c87a; }
+    .wa-avail.offline { background:#888; }
+    .wa-avail-tip { position:absolute; right:68px; top:-28px; background:rgba(6,6,6,.92); color:#fff; font-size:.62rem; font-weight:600; white-space:nowrap; padding:.28rem .7rem; border-radius:6px; opacity:0; pointer-events:none; transition:opacity .2s; font-family:'Plus Jakarta Sans',sans-serif; border:1px solid rgba(255,255,255,.1); }
+    .wa-float:hover .wa-avail-tip { opacity:1; }
 
     /* TRUST BAR */
     .trust-bar { background:var(--bg-1); border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:.9rem 2rem; display:flex; justify-content:center; gap:2.5rem; flex-wrap:wrap; }
@@ -756,7 +760,7 @@
   <div class="ih-content">
     <span class="ih-label">Private Guide · Kansai Region · Japan</span>
     <h1 class="ih-h1"><em>Discover</em>Japan's True Soul</h1>
-    <p class="ih-sub">Beyond the guidebooks — an intimate journey through Osaka, Kyoto, Nara and the Kansai heartland with a private local expert.</p>
+    <p class="ih-sub" id="hero-sub" aria-live="polite"></p>
     <div class="ih-ctas">
       <a class="btn-acc" href="#contact">Book a Private Tour</a>
       <a class="btn-ghost" href="#about">Meet Your Guide</a>
@@ -2330,9 +2334,78 @@ document.querySelectorAll('.route-card[data-href]').forEach(card => {
 <!-- WHATSAPP FLOAT -->
 <a href="https://wa.me/34634193106?text=Hi%20Tony!%20I%27d%20like%20to%20know%20more%20about%20your%20private%20tours%20in%20Kansai." target="_blank" rel="noopener noreferrer" class="wa-float" aria-label="Chat on WhatsApp">
   <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zm-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884zm8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-  <span class="wa-label">Chat with Tony</span>
+  <span class="wa-label" id="wa-label-txt">Chat with Tony</span>
+  <span class="wa-avail" id="wa-avail-dot"></span>
+  <span class="wa-avail-tip" id="wa-avail-tip"></span>
 </a>
 <script>
+// ── AVAILABILITY INDICATOR ──
+(function() {
+  const dot = document.getElementById('wa-avail-dot');
+  const tip = document.getElementById('wa-avail-tip');
+  const lbl = document.getElementById('wa-label-txt');
+  if (!dot) return;
+  const avail = {
+    en: ['🟢 Tony is available now', '🌙 Replies within 24 h'],
+    es: ['🟢 Tony está disponible', '🌙 Responde en < 24 h'],
+    ru: ['🟢 Тони сейчас доступен', '🌙 Ответит в течение 24 ч'],
+    cs: ['🟢 Tony je nyní dostupný', '🌙 Odpoví do 24 h'],
+    ar: ['🟢 توني متاح الآن', '🌙 يرد خلال 24 ساعة'],
+  };
+  function setAvail() {
+    const now = new Date();
+    const jst = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Tokyo' }));
+    const h = jst.getHours();
+    const online = h >= 9 && h < 21;
+    const l = (typeof lang !== 'undefined' && avail[lang]) ? lang : 'en';
+    dot.className = 'wa-avail' + (online ? '' : ' offline');
+    tip.textContent = avail[l][online ? 0 : 1];
+  }
+  setAvail();
+  setInterval(setAvail, 60000);
+  // re-run when language switches
+  const _origApply = window.applyLang;
+  if (typeof _origApply === 'function') {
+    window.applyLang = function(l_) { _origApply(l_); setAvail(); };
+  }
+})();
+
+// ── TYPEWRITER HERO ──
+(function() {
+  const el = document.getElementById('hero-sub');
+  if (!el) return;
+  const texts = {
+    en: "Beyond the guidebooks — an intimate journey through Osaka, Kyoto, Nara and the hidden corners of Kansai, led by someone who lives it.",
+    es: "Más allá de las guías turísticas — un viaje íntimo por Osaka, Kioto, Nara y los rincones ocultos de Kansai, guiado por alguien que vive aquí.",
+    ru: "За пределами путеводителей — личное путешествие по Осаке, Киото, Нара и скрытым уголкам Кансай с гидом, который здесь живёт.",
+    cs: "Za hranicemi průvodců — intimní cesta přes Osaku, Kjóto, Naru a skryté kouty Kansai s průvodcem, který tu žije.",
+    ar: "ما وراء الأدلة السياحية — رحلة حميمة عبر أوساكا وكيوتو ونارا والزوايا الخفية لكانساي بقيادة من يعيش هناك.",
+  };
+  let twTimer = null;
+  function typeWrite(l) {
+    if (twTimer) { clearTimeout(twTimer); twTimer = null; }
+    const txt = texts[l] || texts.en;
+    el.textContent = '';
+    let i = 0;
+    const speed = txt.length > 100 ? 22 : 28;
+    function step() {
+      if (i <= txt.length) {
+        el.textContent = txt.slice(0, i);
+        i++;
+        twTimer = setTimeout(step, speed);
+      }
+    }
+    step();
+  }
+  // Start after 600ms on load
+  setTimeout(() => typeWrite(typeof lang !== 'undefined' ? lang : 'en'), 600);
+  // Re-type when language switches
+  const _origApplyTW = window.applyLang;
+  if (typeof _origApplyTW === 'function') {
+    window.applyLang = function(l_) { _origApplyTW(l_); setTimeout(() => typeWrite(l_), 80); };
+  }
+})();
+
 // FAQ accordion
 document.querySelectorAll('.faq-q').forEach(btn => {
   btn.addEventListener('click', () => {
