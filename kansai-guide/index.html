@@ -17,6 +17,19 @@
   <meta name="twitter:title" content="Tony Hanma — Private Kansai Guide" />
   <meta name="twitter:description" content="Private tours across Osaka, Kyoto, Nara & Kansai mountains in 5 languages. 100% personalised." />
   <meta name="twitter:image" content="https://tonykansaiguide.surge.sh/img/osaka-dotonbori-night.jpg" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23080808'/%3E%3Ctext x='16' y='24' text-anchor='middle' font-family='serif' font-size='19' fill='%23e53030'%3E日%3C/text%3E%3C/svg%3E" />
+  <link rel="canonical" href="https://tonykansaiguide.surge.sh/" />
+  <link rel="alternate" hreflang="en"    href="https://tonykansaiguide.surge.sh/" />
+  <link rel="alternate" hreflang="es"    href="https://tonykansaiguide.surge.sh/" />
+  <link rel="alternate" hreflang="es-ES" href="https://tonykansaiguide.surge.sh/" />
+  <link rel="alternate" hreflang="es-419" href="https://tonykansaiguide.surge.sh/" />
+  <link rel="alternate" hreflang="ru"    href="https://tonykansaiguide.surge.sh/" />
+  <link rel="alternate" hreflang="cs"    href="https://tonykansaiguide.surge.sh/" />
+  <link rel="alternate" hreflang="ar"    href="https://tonykansaiguide.surge.sh/" />
+  <link rel="alternate" hreflang="x-default" href="https://tonykansaiguide.surge.sh/" />
+  <meta name="keywords" content="private guide Osaka, private tour Kyoto, Kansai guide Japan, guía privado Japón, частный гид Япония, جولة خاصة اليابان, soukromý průvodce Japonsko, Japan private tour, personal guide Kansai" />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Tony Hanma" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
@@ -441,6 +454,57 @@
     .footer-soc-link:hover { border-color:rgba(229,48,48,.5); color:var(--red); }
     .footer-soc-link svg { width:15px; height:15px; }
 
+
+    /* ── HAMBURGER MOBILE MENU ── */
+    .ham-btn { display:none; flex-direction:column; justify-content:center; gap:5px; width:40px; height:40px; background:transparent; border:1px solid var(--line); border-radius:10px; cursor:pointer; padding:8px; flex-shrink:0; }
+    .ham-btn span { display:block; width:100%; height:1.5px; background:var(--text); border-radius:2px; transition:transform .3s,opacity .3s; transform-origin:center; }
+    .ham-btn.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
+    .ham-btn.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
+    .ham-btn.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
+    .mob-nav { position:fixed; inset:0; z-index:999; background:rgba(6,6,6,.97); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.5rem; opacity:0; pointer-events:none; transition:opacity .3s; }
+    .mob-nav.open { opacity:1; pointer-events:all; }
+    .mob-nav a { font-family:var(--serif); font-size:2.2rem; font-weight:300; color:rgba(255,255,255,.7); text-decoration:none; letter-spacing:.04em; padding:.4rem 1.2rem; transition:color .2s; }
+    .mob-nav a:hover { color:#fff; }
+    .mob-nav-lang { display:flex; gap:.5rem; margin-top:1.5rem; }
+    .mob-nav-divider { width:40px; height:1px; background:var(--line); margin:.5rem 0; }
+    @media(max-width:900px){ .ham-btn{display:flex;} }
+
+    /* ── LIGHTBOX ── */
+    .lbx { position:fixed; inset:0; z-index:9998; background:rgba(0,0,0,.95); display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity .3s; }
+    .lbx.open { opacity:1; pointer-events:all; }
+    .lbx-img { max-width:92vw; max-height:88vh; object-fit:contain; border-radius:8px; box-shadow:0 0 60px rgba(0,0,0,.8); transform:scale(.94); transition:transform .3s; }
+    .lbx.open .lbx-img { transform:scale(1); }
+    .lbx-close { position:absolute; top:1.2rem; right:1.4rem; background:transparent; border:1px solid rgba(255,255,255,.2); color:#fff; font-size:1.4rem; width:40px; height:40px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .2s; }
+    .lbx-close:hover { background:rgba(229,48,48,.5); }
+    .lbx-arrow { position:absolute; top:50%; transform:translateY(-50%); background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.15); color:#fff; font-size:1.6rem; width:48px; height:48px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .2s; }
+    .lbx-arrow:hover { background:rgba(229,48,48,.4); }
+    .lbx-prev { left:1.2rem; }
+    .lbx-next { right:1.2rem; }
+    .lbx-cap { position:absolute; bottom:1.4rem; left:50%; transform:translateX(-50%); background:rgba(0,0,0,.6); color:rgba(255,255,255,.85); font-size:.78rem; letter-spacing:.12em; text-transform:uppercase; padding:.45rem 1.2rem; border-radius:999px; white-space:nowrap; }
+
+    /* ── BACK TO TOP ── */
+    .btt { position:fixed; bottom:6rem; right:1.8rem; z-index:9990; width:42px; height:42px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.15); border-radius:50%; color:var(--text-2); display:flex; align-items:center; justify-content:center; cursor:pointer; transition:opacity .3s,transform .3s,background .2s; opacity:0; transform:translateY(12px); pointer-events:none; }
+    .btt.show { opacity:1; transform:translateY(0); pointer-events:all; }
+    .btt:hover { background:rgba(229,48,48,.3); color:#fff; }
+    .btt svg { width:16px; height:16px; }
+
+    /* ── COOKIE CONSENT ── */
+    .cookie-bar { position:fixed; bottom:0; left:0; right:0; z-index:9995; background:rgba(12,12,12,.97); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-top:1px solid var(--line); padding:1.1rem 2rem; display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap; transform:translateY(100%); transition:transform .4s ease; }
+    .cookie-bar.show { transform:translateY(0); }
+    .cookie-bar p { font-size:.78rem; color:var(--text-2); flex:1; min-width:200px; line-height:1.6; }
+    .cookie-bar p a { color:var(--red); text-decoration:none; }
+    .cookie-bar p a:hover { text-decoration:underline; }
+    .cookie-btns { display:flex; gap:.6rem; flex-shrink:0; }
+    .cookie-accept { padding:.52rem 1.4rem; background:var(--red); color:#fff; border:none; border-radius:999px; font-size:.7rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; cursor:pointer; transition:opacity .2s; }
+    .cookie-accept:hover { opacity:.85; }
+    .cookie-decline { padding:.52rem 1.2rem; background:transparent; color:var(--text-3); border:1px solid var(--line); border-radius:999px; font-size:.7rem; font-weight:500; letter-spacing:.08em; text-transform:uppercase; cursor:pointer; transition:color .2s; }
+    .cookie-decline:hover { color:var(--text); }
+
+    /* ── FOOTER UPDATE ── */
+    footer { padding:2.5rem 2.5rem; background:#000; border-top:1px solid var(--line); display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:1rem; }
+    footer > span:last-child { text-align:right; }
+    @media(max-width:600px){ footer { grid-template-columns:1fr; text-align:center; } footer > span:last-child { text-align:center; } .footer-social{justify-content:center;} }
+
   </style>
   <script type="application/ld+json">
   {
@@ -507,7 +571,29 @@
     <button class="lang-btn"        data-l="cs">CS</button>
     <button class="lang-btn"        data-l="ar">AR</button>
   </div>
+  <button class="ham-btn" id="ham-btn" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE NAV -->
+<div class="mob-nav" id="mob-nav">
+  <a href="#about"        onclick="closeMob()">Guide</a>
+  <a href="#experiences"  onclick="closeMob()">Tours</a>
+  <a href="#howworks"     onclick="closeMob()">How it Works</a>
+  <a href="#routemap"     onclick="closeMob()">Map</a>
+  <a href="#pricing"      onclick="closeMob()">Pricing</a>
+  <a href="#testimonials" onclick="closeMob()">Reviews</a>
+  <a href="#contact"      onclick="closeMob()">Contact</a>
+  <div class="mob-nav-divider"></div>
+  <div class="mob-nav-lang">
+    <button class="lang-btn" data-l="en">EN</button>
+    <button class="lang-btn" data-l="es">ES</button>
+    <button class="lang-btn" data-l="ru">RU</button>
+    <button class="lang-btn" data-l="cs">CS</button>
+    <button class="lang-btn" data-l="ar">AR</button>
+  </div>
+</div>
 
 <div class="trust-bar">
   <div class="trust-item"><span>✦</span><span>Private tours only — no shared groups</span></div>
@@ -879,7 +965,7 @@
       <h2 data-t="gal.h2">Moments from <span class="acc">our tours</span></h2>
       <p data-t="gal.sub">Real places. Real experiences. Every photo tells a story from Kansai.</p>
     </div>
-    <div class="gal-grid">
+    <div class="gal-grid" id="gal-grid">
 
       <div class="g-item g-wide g-tall rev d1">
         <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=900&q=80" alt="Fushimi Inari" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.g-fallback').style.display='flex'"/>
@@ -1346,6 +1432,9 @@ const T = {
     'hiw.3.title':'Confirm & Relax','hiw.3.desc':"Confirm with a simple deposit. I handle every detail — logistics, reservations, route. You just show up.",
     'hiw.4.title':'Experience Japan','hiw.4.desc':"Meet me at your hotel and let Kansai unfold around you. Private, personalised — and genuinely unforgettable.",
     'test.agg':'Based on 200+ private tours',
+    'meta.title':'Tony Hanma — Private Kansai Guide | Osaka · Kyoto · Japan',
+    'meta.desc':'Private tours across Osaka, Kyoto, Nara & Kobe in 5 languages. 200+ tours. Fully personalised — no groups, no scripts.',
+    'meta.kw':'private guide Osaka, private tour Kyoto, Kansai tour Japan, English guide Japan, personal guide Kansai',
     'nav.region':'Kansai','nav.guide':'Guide','nav.tours':'Tours','nav.routes':'Routes','nav.pricing':'Pricing','nav.langs':'Languages','nav.contact':'Contact',
     'hero.tag':'Private Guide · Osaka · Kansai Region · Japan',
     'hero.l1':'Discover','hero.l2':"Japan's",'hero.l3':'True Soul',
@@ -1420,6 +1509,9 @@ const T = {
     'hiw.3.title':'Confirma y Relájate','hiw.3.desc':"Confirma con un depósito sencillo. Me encargo de todos los detalles — logística, reservas, ruta. Tú solo apareces.",
     'hiw.4.title':'Vive Japón','hiw.4.desc':"Encuéntrame en tu hotel y deja que Kansai se despliegue ante ti. Privado, personalizado — e inolvidable.",
     'test.agg':'Más de 200 tours privados',
+    'meta.title':'Tony Hanma — Guía Privado Kansai | Osaka · Kioto · Japón',
+    'meta.desc':'Tours privados por Osaka, Kioto, Nara y Kobe en 5 idiomas. Más de 200 tours. 100% personalizado.',
+    'meta.kw':'guía privado Osaka, tour privado Japón, guía español Japón, guía turístico Kansai, viaje Japón guía personalizado',
     'nav.region':'Kansai','nav.guide':'Guía','nav.tours':'Tours','nav.routes':'Rutas','nav.pricing':'Precios','nav.langs':'Idiomas','nav.contact':'Contacto',
     'hero.tag':'Guía Privado · Osaka · Región de Kansai · Japón','hero.l1':'Descubre','hero.l2':'el Alma','hero.l3':'de Japón',
     'hero.sub':'Más allá de las guías turísticas. Un viaje íntimo por Osaka, Kioto, Nara y los rincones ocultos de la región de Kansai — guiado por alguien que vive aquí.',
@@ -1492,6 +1584,9 @@ const T = {
     'hiw.3.title':'Подтвердите и Отдыхайте','hiw.3.desc':"Подтвердите небольшим депозитом. Всё остальное беру на себя — логистика, бронирования, маршрут. Вы просто приходите.",
     'hiw.4.title':'Откройте Японию','hiw.4.desc':"Встретьтесь со мной у вашего отеля и позвольте Кансай раскрыться перед вами. Приватно, персонально — и незабываемо.",
     'test.agg':'На основе 200+ частных туров',
+    'meta.title':'Тони Ханма — Частный Гид Кансай | Осака · Киото · Япония',
+    'meta.desc':'Частные туры по Осаке, Киото, Нара и Кобе на 5 языках. 200+ туров. Полностью персонализировано.',
+    'meta.kw':'частный гид Осака, частный тур Япония, гид по Японии, персональный гид Кансай',
     'nav.region':'Кансай','nav.guide':'Гид','nav.tours':'Туры','nav.map':'Карта','nav.gallery':'Галерея','nav.routes':'Маршруты','nav.pricing':'Цены','nav.langs':'Языки','nav.contact':'Контакт',
     'hero.tag':'Частный гид · Осака · Регион Кансай · Япония','hero.l1':'Откройте','hero.l2':'Душу','hero.l3':'Японии',
     'hero.sub':'За пределами путеводителей. Личное путешествие по Осаке, Киото, Нара и скрытым уголкам региона Кансай — с гидом, который здесь живёт.',
@@ -1563,6 +1658,9 @@ const T = {
     'hiw.3.title':'Potvrte a Odpočívejte','hiw.3.desc':"Potvrte jednoduchým depositem. Postarám se o vše ostatní — logistiku, rezervace, trasu. Vy jen přijdete.",
     'hiw.4.title':'Zažijte Japonsko','hiw.4.desc':"Setkám se s vámi u vašeho hotelu a nechte Kansai, aby se před vámi rozvinul. Soukromě, osobně — a nezapomenutelno.",
     'test.agg':'Na základě 200+ soukromých výletů',
+    'meta.title':'Tony Hanma — Soukromý Průvodce Kansai | Osaka · Kjóto · Japonsko',
+    'meta.desc':'Soukromé výlety v Osace, Kjótu, Naře a Kóbe v 5 jazycích. 200+ výletů. 100% personalizováno.',
+    'meta.kw':'soukromý průvodce Osaka, soukromý výlet Japonsko, průvodce Kjóto, osobní průvodce Kansai',
     'nav.region':'Kansai','nav.guide':'Průvodce','nav.tours':'Výlety','nav.routes':'Trasy','nav.pricing':'Ceny','nav.langs':'Jazyky','nav.contact':'Kontakt','nav.map':'Mapa','nav.gallery':'Galerie',
     'hero.tag':'Soukromý Průvodce · Osaka · Region Kansai · Japonsko','hero.l1':'Objevte','hero.l2':'Duši','hero.l3':'Japonska',
     'hero.sub':'Za hranicemi průvodců. Intimní cesta přes Osaku, Kjóto, Naru a skryté kouty Kansai — s průvodcem, který tu žije.',
@@ -1634,6 +1732,9 @@ const T = {
     'hiw.3.title':'تأكيد والاسترخاء','hiw.3.desc':"أكّد بإيداع بسيط. أتولى كل التفاصيل — اللوجستيات والحجوزات والمسار. أنت فقط تحضر.",
     'hiw.4.title':'اكتشف اليابان','hiw.4.desc':"التقِ بي في فندقك ودع كانساي تتكشف أمامك. خاص، مخصص — ولا يُنسى حقاً.",
     'test.agg':'بناءً على 200+ جولة خاصة',
+    'meta.title':'توني هانما — مرشد كانساي الخاص | أوساكا · كيوتو · اليابان',
+    'meta.desc':'جولات خاصة عبر أوساكا وكيوتو ونارا وكوبي بـ5 لغات. أكثر من 200 جولة. مخصصة بالكامل.',
+    'meta.kw':'مرشد خاص أوساكا, جولة خاصة اليابان, مرشد سياحي كانساي, دليل ياباني عربي, جولة مخصصة اليابان',
     'nav.region':'كانساي','nav.guide':'المرشد','nav.tours':'الجولات','nav.routes':'المسارات','nav.pricing':'الأسعار','nav.langs':'اللغات','nav.contact':'اتصل','nav.map':'الخريطة','nav.gallery':'معرض الصور',
     'hero.tag':'مرشد خاص · أوساكا · منطقة كانساي · اليابان','hero.l1':'اكتشف','hero.l2':'روح','hero.l3':'اليابان',
     'hero.sub':'ما وراء الأدلة السياحية. رحلة حميمة عبر أوساكا وكيوتو ونارا والزوايا الخفية لكانساي — بقيادة من يعيش هناك.',
@@ -1710,6 +1811,13 @@ function applyLang(l) {
     if (v !== undefined) el.innerHTML = v;
   });
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.l === l));
+  // Update meta for SEO / social
+  const tl = T[l]; if (!tl) return;
+  if (tl['meta.title'])  document.title = tl['meta.title'];
+  const md = document.querySelector('meta[name="description"]');
+  if (md && tl['meta.desc']) md.setAttribute('content', tl['meta.desc']);
+  const mk = document.querySelector('meta[name="keywords"]');
+  if (mk && tl['meta.kw']) mk.setAttribute('content', tl['meta.kw']);
 }
 document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => applyLang(b.dataset.l)));
 applyLang(lang);
@@ -1887,6 +1995,19 @@ document.querySelectorAll('.route-card[data-href]').forEach(card => {
 
 </script>
 
+
+<!-- LIGHTBOX -->
+<div class="lbx" id="lbx" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="lbx-close" id="lbx-close" aria-label="Close">×</button>
+  <button class="lbx-arrow lbx-prev" id="lbx-prev" aria-label="Previous">‹</button>
+  <img class="lbx-img" id="lbx-img" src="" alt="" />
+  <button class="lbx-arrow lbx-next" id="lbx-next" aria-label="Next">›</button>
+  <div class="lbx-cap" id="lbx-cap"></div>
+</div>
+
+<button class="btt" id="btt-btn" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
 <!-- WHATSAPP FLOAT -->
 <a href="https://wa.me/34634193106?text=Hi%20Tony!%20I%27d%20like%20to%20know%20more%20about%20your%20private%20tours%20in%20Kansai." target="_blank" rel="noopener noreferrer" class="wa-float" aria-label="Chat on WhatsApp">
   <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zm-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884zm8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -1903,6 +2024,103 @@ document.querySelectorAll('.faq-q').forEach(btn => {
   });
 });
 </script>
+
+<div class="cookie-bar" id="cookie-bar">
+  <p>We use cookies to improve your experience. By continuing you agree to our <a href="privacy.html">Privacy Policy</a>.</p>
+  <div class="cookie-btns">
+    <button class="cookie-accept" id="cookie-accept">Accept</button>
+    <button class="cookie-decline" id="cookie-decline">Decline</button>
+  </div>
+</div>
+
+// ── HAMBURGER MENU ──
+const hamBtn = document.getElementById('ham-btn');
+const mobNav = document.getElementById('mob-nav');
+function closeMob() {
+  hamBtn.classList.remove('open');
+  mobNav.classList.remove('open');
+  document.body.style.overflow = '';
+}
+hamBtn.addEventListener('click', () => {
+  const isOpen = mobNav.classList.contains('open');
+  if (isOpen) { closeMob(); }
+  else {
+    hamBtn.classList.add('open');
+    mobNav.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+});
+// Close mobile nav when clicking outside links
+mobNav.addEventListener('click', e => { if (e.target === mobNav) closeMob(); });
+
+// ── GALLERY LIGHTBOX ──
+const lbx = document.getElementById('lbx');
+const lbxImg = document.getElementById('lbx-img');
+const lbxCap = document.getElementById('lbx-cap');
+let lbxItems = [], lbxIdx = 0;
+
+function openLbx(idx) {
+  lbxIdx = idx;
+  const item = lbxItems[idx];
+  lbxImg.src = item.src;
+  lbxImg.alt = item.cap;
+  lbxCap.textContent = item.cap;
+  lbx.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLbx() {
+  lbx.classList.remove('open');
+  document.body.style.overflow = '';
+}
+function lbxGo(dir) {
+  lbxIdx = (lbxIdx + dir + lbxItems.length) % lbxItems.length;
+  openLbx(lbxIdx);
+}
+
+document.getElementById('lbx-close').addEventListener('click', closeLbx);
+document.getElementById('lbx-prev').addEventListener('click', () => lbxGo(-1));
+document.getElementById('lbx-next').addEventListener('click', () => lbxGo(+1));
+lbx.addEventListener('click', e => { if (e.target === lbx) closeLbx(); });
+
+// Collect gallery items
+document.querySelectorAll('#gal-grid .g-item').forEach((el, i) => {
+  const img = el.querySelector('img');
+  const cap = el.querySelector('.g-cap strong');
+  if (!img) return;
+  const item = { src: img.src, cap: cap ? cap.textContent : img.alt };
+  lbxItems.push(item);
+  el.style.cursor = 'pointer';
+  el.addEventListener('click', () => openLbx(lbxItems.indexOf(item)));
+});
+
+// Keyboard navigation
+document.addEventListener('keydown', e => {
+  if (!lbx.classList.contains('open')) return;
+  if (e.key === 'Escape') closeLbx();
+  if (e.key === 'ArrowLeft') lbxGo(-1);
+  if (e.key === 'ArrowRight') lbxGo(+1);
+});
+
+// ── BACK TO TOP ──
+const bttBtn = document.getElementById('btt-btn');
+window.addEventListener('scroll', () => {
+  bttBtn.classList.toggle('show', window.scrollY > 400);
+}, { passive:true });
+bttBtn.addEventListener('click', () => window.scrollTo({ top:0, behavior:'smooth' }));
+
+// ── COOKIE CONSENT ──
+const cookieBar = document.getElementById('cookie-bar');
+if (!localStorage.getItem('cookie-consent')) {
+  setTimeout(() => cookieBar.classList.add('show'), 1200);
+}
+document.getElementById('cookie-accept').addEventListener('click', () => {
+  localStorage.setItem('cookie-consent', 'accepted');
+  cookieBar.classList.remove('show');
+});
+document.getElementById('cookie-decline').addEventListener('click', () => {
+  localStorage.setItem('cookie-consent', 'declined');
+  cookieBar.classList.remove('show');
+});
 
 </body>
 </html>
