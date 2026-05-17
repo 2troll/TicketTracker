@@ -2161,10 +2161,10 @@ const co = new IntersectionObserver(es => {
 }, { threshold: 0.6 });
 document.querySelectorAll('.stat-n[data-target]').forEach(el => co.observe(el));
 
-// ── HERO KANJI PARALLAX ──
-const hkanji = document.getElementById('hkanji');
+// ── HERO PARALLAX ──
+const heroBg = document.querySelector('#hero');
 window.addEventListener('scroll', () => {
-  if (hkanji) hkanji.style.transform = `translate(-50%, calc(-50% + ${window.scrollY * 0.28}px))`;
+  if (heroBg) heroBg.style.backgroundPositionY = `calc(50% + ${window.scrollY * 0.3}px)`;
 }, { passive: true });
 
 // ── 3D CARD TILT ──
@@ -2424,7 +2424,7 @@ document.querySelectorAll('.faq-q').forEach(btn => {
     <button class="cookie-decline" id="cookie-decline">Decline</button>
   </div>
 </div>
-
+<script>
 // ── HAMBURGER MENU ──
 const hamBtn = document.getElementById('ham-btn');
 const mobNav = document.getElementById('mob-nav');
@@ -2728,6 +2728,6 @@ if (nlForm) {
     nlOk.style.display = 'block';
   });
 }
-
+</script>
 </body>
 </html>
