@@ -5,6 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tony Hanma — Private Kansai Guide</title>
   <meta name="description" content="Private guide for Osaka and the Kansai region." />
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Tony Hanma — Private Kansai Guide · Osaka · Japan" />
+  <meta property="og:description" content="Private tours across Osaka, Kyoto, Nara, Kobe & the Kansai mountains. 5 languages. 100% personalised. No groups, no scripts — just Japan." />
+  <meta property="og:image" content="https://tonykansaiguide.surge.sh/img/osaka-dotonbori-night.jpg" />
+  <meta property="og:url" content="https://tonykansaiguide.surge.sh/" />
+  <meta property="og:site_name" content="Tony Hanma — Private Kansai Guide" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Tony Hanma — Private Kansai Guide" />
+  <meta name="twitter:description" content="Private tours across Osaka, Kyoto, Nara & Kansai mountains in 5 languages. 100% personalised." />
+  <meta name="twitter:image" content="https://tonykansaiguide.surge.sh/img/osaka-dotonbori-night.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
@@ -334,6 +346,59 @@
     .route-page-btn { display:block; margin-top:1.4rem; padding:0.8rem 1rem; text-align:center; font-size:0.68rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--text); background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.13); border-radius:12px; text-decoration:none; transition:all 0.25s; }
     .route-page-btn:hover { background:rgba(229,48,48,0.16); border-color:rgba(229,48,48,0.45); color:#fff; }
     .route-card[data-href] { cursor:pointer; }
+
+    /* WHATSAPP FLOAT */
+    .wa-float { position:fixed; bottom:1.8rem; right:1.8rem; z-index:9999; width:58px; height:58px; background:#25D366; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 22px rgba(37,211,102,.45); transition:transform .2s,box-shadow .2s; text-decoration:none; }
+    .wa-float::before { content:''; position:absolute; inset:-5px; border-radius:50%; border:2px solid rgba(37,211,102,.5); animation:waPulse 2.2s ease-in-out infinite; pointer-events:none; }
+    @keyframes waPulse { 0%,100%{transform:scale(1);opacity:.8} 60%{transform:scale(1.25);opacity:0} }
+    .wa-float:hover { transform:scale(1.1); box-shadow:0 6px 30px rgba(37,211,102,.65); }
+    .wa-float svg { width:28px; height:28px; flex-shrink:0; }
+    .wa-label { position:absolute; right:68px; top:50%; transform:translateY(-50%); background:rgba(6,6,6,.92); color:#fff; font-size:.7rem; font-weight:600; white-space:nowrap; padding:.38rem .9rem; border-radius:8px; opacity:0; pointer-events:none; transition:opacity .2s; border:1px solid rgba(37,211,102,.3); font-family:'Plus Jakarta Sans',sans-serif; letter-spacing:.04em; }
+    .wa-float:hover .wa-label { opacity:1; }
+
+    /* TRUST BAR */
+    .trust-bar { background:var(--bg-1); border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:.9rem 2rem; display:flex; justify-content:center; gap:2.5rem; flex-wrap:wrap; }
+    .trust-item { display:flex; align-items:center; gap:.5rem; font-size:.72rem; color:var(--text-2); letter-spacing:.06em; }
+    .trust-item span:first-child { color:var(--red); font-size:.9rem; }
+
+    /* FAQ */
+    #faq { padding:6rem 0; background:var(--bg-2); border-top:1px solid var(--line); }
+    .faq-head { text-align:center; margin-bottom:3.5rem; }
+    .faq-head .section-label { display:inline-block; margin-bottom:.8rem; }
+    .faq-list { max-width:780px; margin:0 auto; display:flex; flex-direction:column; gap:.6rem; }
+    .faq-item { background:var(--glass); border:1px solid var(--line); border-radius:14px; overflow:hidden; transition:border-color .2s; }
+    .faq-item.open { border-color:rgba(229,48,48,.3); }
+    .faq-q { width:100%; background:transparent; border:none; color:var(--text); font-family:var(--sans); font-size:.97rem; font-weight:500; text-align:left; padding:1.4rem 1.8rem; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:1rem; }
+    .faq-q:hover { color:#fff; }
+    .faq-arrow { font-size:1.3rem; line-height:1; flex-shrink:0; transition:transform .3s; color:var(--red); }
+    .faq-item.open .faq-arrow { transform:rotate(45deg); }
+    .faq-a { max-height:0; overflow:hidden; transition:max-height .4s ease,padding .3s; font-size:.9rem; color:var(--text-2); line-height:1.82; padding:0 1.8rem; }
+    .faq-item.open .faq-a { max-height:300px; padding:.2rem 1.8rem 1.5rem; }
+    .faq-wa-cta { text-align:center; margin-top:2.5rem; }
+    .faq-wa-btn { display:inline-flex; align-items:center; gap:.7rem; padding:.85rem 2rem; background:#25D366; color:#fff; border-radius:999px; font-size:.78rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; text-decoration:none; transition:transform .2s,box-shadow .2s; }
+    .faq-wa-btn:hover { transform:translateY(-2px); box-shadow:0 6px 24px rgba(37,211,102,.4); }
+    .faq-wa-btn svg { width:18px; height:18px; }
+
+    /* BLOG / UPDATES */
+    #updates { padding:6rem 0; background:var(--bg); border-top:1px solid var(--line); }
+    .upd-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; margin-top:3rem; }
+    .upd-card { background:var(--glass); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; transition:border-color .25s,transform .25s; }
+    .upd-card:hover { border-color:rgba(229,48,48,.3); transform:translateY(-4px); }
+    .upd-thumb { height:200px; background-size:cover; background-position:center; position:relative; }
+    .upd-thumb::after { content:''; position:absolute; inset:0; background:linear-gradient(to top,rgba(8,8,8,.85),transparent 50%); }
+    .upd-tag { position:absolute; bottom:.9rem; left:1rem; z-index:1; font-size:.54rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase; background:var(--red); color:#fff; padding:.2rem .65rem; border-radius:999px; }
+    .upd-body { padding:1.4rem 1.6rem 1.8rem; }
+    .upd-date { font-size:.65rem; color:var(--text-3); letter-spacing:.1em; margin-bottom:.5rem; }
+    .upd-title { font-family:var(--serif); font-size:1.45rem; font-weight:300; color:var(--text); line-height:1.15; margin-bottom:.7rem; }
+    .upd-excerpt { font-size:.83rem; color:var(--text-2); line-height:1.78; }
+    @media(max-width:700px){ .upd-grid{grid-template-columns:1fr} }
+
+    /* CANCELLATION PILL */
+    .cancel-note { display:flex; align-items:center; gap:.8rem; background:rgba(37,211,102,.06); border:1px solid rgba(37,211,102,.2); border-radius:12px; padding:1rem 1.4rem; margin-top:2rem; flex-wrap:wrap; }
+    .cancel-icon { font-size:1.2rem; flex-shrink:0; }
+    .cancel-text { font-size:.82rem; color:var(--text-2); line-height:1.6; }
+    .cancel-text strong { color:rgba(37,211,102,.9); }
+
   </style>
 </head>
 <body>
@@ -359,6 +424,14 @@
     <button class="lang-btn"        data-l="ar">AR</button>
   </div>
 </nav>
+
+<div class="trust-bar">
+  <div class="trust-item"><span>✦</span><span>Private tours only — no shared groups</span></div>
+  <div class="trust-item"><span>✦</span><span>5 languages spoken</span></div>
+  <div class="trust-item"><span>✦</span><span>Reply within 24 hours</span></div>
+  <div class="trust-item"><span>✦</span><span>Free cancellation 48h before</span></div>
+  <div class="trust-item"><span>✦</span><span>All travel by train — no private car</span></div>
+</div>
 
 <!-- HERO -->
 <section id="hero">
@@ -845,6 +918,55 @@
 </section>
 
 <!-- LANGUAGES -->
+<!-- UPDATES / BLOG -->
+<section id="updates">
+  <div class="orb" style="width:50vw;height:50vw;top:-10%;left:60%;background:radial-gradient(circle,rgba(229,48,48,0.06) 0%,transparent 65%);animation:drift3 20s ease-in-out infinite;"></div>
+  <div class="wrap">
+    <div class="rev">
+      <span class="section-label">From the Trail</span>
+      <h2>Latest <span class="acc">from Tony</span></h2>
+      <p style="font-size:.95rem;color:var(--text-2);max-width:52ch;line-height:1.85;margin-top:.6rem;">Notes, guides and seasonal tips — updated regularly so you always know the best time to visit.</p>
+    </div>
+    <div class="upd-grid">
+
+      <article class="upd-card rev d1">
+        <div class="upd-thumb" style="background-image:url('img/kyoto-torii-dawn.jpg');">
+          <span class="upd-tag">Seasonal</span>
+        </div>
+        <div class="upd-body">
+          <div class="upd-date">May 2026</div>
+          <div class="upd-title">Early Summer in Kansai — What Nobody Tells You</div>
+          <p class="upd-excerpt">June is rainy season — but also the emptiest, greenest, most photogenic Kyoto you will ever see. The temples are yours. The hydrangeas are perfect. I'll show you exactly where.</p>
+        </div>
+      </article>
+
+      <article class="upd-card rev d2">
+        <div class="upd-thumb" style="background-image:url('img/nara-deer-park.jpg');">
+          <span class="upd-tag">Insider</span>
+        </div>
+        <div class="upd-body">
+          <div class="upd-date">April 2026</div>
+          <div class="upd-title">Five Things Osaka Does Better Than Tokyo</div>
+          <p class="upd-excerpt">Osaka is louder, cheaper, funnier and more honest about what it is. The food is better. The people talk to strangers. And the backstreets make Tokyo look like a museum.</p>
+        </div>
+      </article>
+
+      <article class="upd-card rev d3">
+        <div class="upd-thumb" style="background-image:url('img/koyasan-okunoin.jpg');background-position:center 40%;">
+          <span class="upd-tag">Trail Guide</span>
+        </div>
+        <div class="upd-body">
+          <div class="upd-date">March 2026</div>
+          <div class="upd-title">Kumano Kodo in One Day — The Complete Guide</div>
+          <p class="upd-excerpt">The most beautiful walk in Japan, done in a single day by train from Osaka. Which trailhead. Which train. What to carry. And why you should start before the sun rises.</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
 <section id="languages">
   <div class="orb lang-orb"></div>
   <div class="wrap">
@@ -883,6 +1005,68 @@
   </div>
 </section>
 
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="faq-head rev">
+      <span class="section-label">Questions & Answers</span>
+      <h2>Everything You <span class="acc">Need to Know</span></h2>
+    </div>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-q"><span>Do I need to speak any Japanese?</span><span class="faq-arrow">+</span></button>
+        <div class="faq-a">Not a single word. I handle all communication — with restaurants, vendors, temple staff and locals. You just enjoy Japan. All tours are available in English, Spanish, Arabic, Russian and Czech.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q"><span>How do I pay?</span><span class="faq-arrow">+</span></button>
+        <div class="faq-a">Cash in Japanese Yen on the day, or bank transfer before the tour. No card machines needed — I'll confirm all details by WhatsApp or email beforehand so there are no surprises.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q"><span>What is your cancellation policy?</span><span class="faq-arrow">+</span></button>
+        <div class="faq-a">Free cancellation up to 48 hours before. Within 48–24 hours: 50% applies. Within 24 hours: full fee. If I need to cancel for any reason, you receive a 100% refund. Rescheduling is always free.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q"><span>Is this suitable for children or elderly guests?</span><span class="faq-arrow">+</span></button>
+        <div class="faq-a">Yes. The city tours are completely adaptable — pace, distance and activities are built around your group. Hiking tours have three difficulty levels. Families with young children regularly join the city and cultural tours.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q"><span>What should I bring for a hiking tour?</span><span class="faq-arrow">+</span></button>
+        <div class="faq-a">Comfortable walking shoes (trail shoes for harder routes), layers (Japanese mountains change fast), and a small daypack with water. I provide snacks, a packed Japanese bento lunch, first-aid kit and all trail permits.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q"><span>What happens if it rains?</span><span class="faq-arrow">+</span></button>
+        <div class="faq-a">Light rain doesn't stop us — Japan is beautiful in the rain and most routes are fine. For heavy rain or typhoon warnings, we reschedule at no charge and find the best alternative. I monitor forecasts and contact you in advance.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q"><span>Can you accommodate dietary restrictions?</span><span class="faq-arrow">+</span></button>
+        <div class="faq-a">Yes. Vegetarian, vegan, halal, gluten-free — Japan has more options than most people expect. Just tell me beforehand and I'll plan the food stops and bento accordingly. I've guided guests with every kind of dietary requirement.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q"><span>How far in advance should I book?</span><span class="faq-arrow">+</span></button>
+        <div class="faq-a">For peak seasons (cherry blossom in April, autumn leaves in November) I recommend booking 4–6 weeks ahead. For other times, 1–2 weeks is usually fine. Last-minute requests sometimes work — just ask on WhatsApp.</div>
+      </div>
+
+    </div>
+
+    <div class="faq-wa-cta">
+      <p style="font-size:.88rem;color:var(--text-2);margin-bottom:1.2rem;">Still have questions? Ask me directly.</p>
+      <a href="https://wa.me/34634193106?text=Hi%20Tony!%20I%27d%20like%20to%20know%20more%20about%20your%20private%20tours%20in%20Kansai." target="_blank" rel="noopener" class="faq-wa-btn">
+        <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zm-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884zm8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Ask on WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+
 <!-- CONTACT -->
 <section id="contact">
   <div class="orb contact-orb"></div>
@@ -909,6 +1093,14 @@
           <span class="ok-icon">✦</span>
           <h3 data-t="form.ok.title">Message Sent</h3>
           <p data-t="form.ok.text">Thank you — I'll be in touch within 24 hours.</p>
+        </div>
+
+        <div style="text-align:center;margin-top:1.8rem;padding-top:1.8rem;border-top:1px solid var(--line);">
+          <p style="font-size:.8rem;color:var(--text-3);margin-bottom:.9rem;letter-spacing:.06em;">OR REACH ME DIRECTLY</p>
+          <a href="https://wa.me/34634193106?text=Hi%20Tony!%20I%27d%20like%20to%20know%20more%20about%20your%20private%20tours%20in%20Kansai." target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.6rem;padding:.75rem 1.8rem;background:#25D366;color:#fff;border-radius:999px;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:transform .2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
+            <svg viewBox="0 0 24 24" fill="white" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zm-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884zm8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp Tony
+          </a>
         </div>
       </div>
     </div>
@@ -1431,5 +1623,23 @@ document.querySelectorAll('.route-card[data-href]').forEach(card => {
 })();
 
 </script>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/34634193106?text=Hi%20Tony!%20I%27d%20like%20to%20know%20more%20about%20your%20private%20tours%20in%20Kansai." target="_blank" rel="noopener noreferrer" class="wa-float" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zm-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884zm8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <span class="wa-label">Chat with Tony</span>
+</a>
+<script>
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+</script>
+
 </body>
 </html>
