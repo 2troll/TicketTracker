@@ -109,6 +109,19 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:.9rem 2rem;display:f
 .lang-pill:hover{border-color:rgba(229,48,48,.4);color:var(--text)}
 .lang-pill.on{border-color:rgba(229,48,48,.7);background:rgba(229,48,48,.18);color:#fff}
 
+/* Route price tag inside pill */
+.r-price{display:block;font-size:.65rem;color:var(--red);margin-top:.2rem;font-weight:600;letter-spacing:.02em}
+.route-pill.on .r-price{color:#ff9070}
+
+/* Price breakdown box */
+.price-box{background:rgba(229,48,48,.06);border:1px solid rgba(229,48,48,.22);border-radius:14px;padding:1.3rem 1.5rem;display:flex;flex-direction:column;gap:.55rem}
+.price-row{display:flex;justify-content:space-between;align-items:baseline;gap:.5rem}
+.price-lbl{font-size:.66rem;color:var(--text2);letter-spacing:.04em}
+.price-total{font-family:var(--serif);font-size:1.75rem;font-weight:300;color:#fff;white-space:nowrap}
+.price-sub{font-size:.68rem;color:var(--text3)}
+.price-per{font-size:.9rem;color:#ff9070;font-weight:600;white-space:nowrap}
+.price-note{font-size:.62rem;color:var(--text3);border-top:1px solid rgba(229,48,48,.14);padding-top:.55rem;line-height:1.5}
+
 /* Notes */
 .notes-in{width:100%;background:var(--glass);border:1px solid var(--linew);border-radius:10px;padding:.75rem 1rem;color:var(--text);font-size:.85rem;resize:none;outline:none;transition:border-color .2s;height:72px;line-height:1.55}
 .notes-in:focus{border-color:rgba(229,48,48,.45)}
@@ -244,6 +257,19 @@ footer a:hover{color:var(--text)}
         </div>
       </div>
 
+      <!-- Price breakdown -->
+      <div class="price-box" id="priceBox">
+        <div class="price-row">
+          <span class="price-lbl" data-i="price.total">Total for your group</span>
+          <span class="price-total" id="priceTotal">¥45,000</span>
+        </div>
+        <div class="price-row">
+          <span class="price-sub"><span data-i="price.per">Per person</span> · <span id="priceGuestCtx">1 guest</span></span>
+          <span class="price-per" id="pricePer">~¥45,000</span>
+        </div>
+        <div class="price-note" data-i="price.note">Private group · up to 5 people · no hidden fees</div>
+      </div>
+
       <!-- Guests -->
       <div>
         <span class="field-lbl" data-i="form.guests">Number of guests</span>
@@ -306,6 +332,19 @@ var BUSY = [
 ];
 
 // ═══════════════════════════════════════════════════
+// PRICES — per group (up to 5 people), in JPY
+// ═══════════════════════════════════════════════════
+var PRICES = [
+  45000,  // Osaka Food Circuit
+  55000,  // Hidden Kyoto
+  50000,  // Kobe Refined
+  60000,  // Nara Sacred Forest
+  95000,  // Kōyasan Pilgrimage
+  80000,  // Osaka × Kyoto Grand Day
+  65000,  // Mountain Hiking
+];
+
+// ═══════════════════════════════════════════════════
 // TRANSLATIONS
 // ═══════════════════════════════════════════════════
 var T = {
@@ -326,6 +365,9 @@ en:{
   'form.lang':'Preferred language',
   'form.notes':'Notes (optional)',
   'form.notes.ph':'Dietary requirements, special requests, interests…',
+  'price.total':'Total for your group','price.per':'Per person',
+  'price.guest':'guest','price.guests':'guests',
+  'price.note':'Private group · up to 5 people · no hidden fees',
   'form.wa':'Send request on WhatsApp',
   'form.wa.note':'Opens WhatsApp with all your details pre-filled. Tony replies within 2 h.',
   'foot.back':'← Back to Tony Kansai Guide',
@@ -358,6 +400,9 @@ es:{
   'form.lang':'Idioma preferido',
   'form.notes':'Notas (opcional)',
   'form.notes.ph':'Alergias, peticiones especiales, intereses…',
+  'price.total':'Total para tu grupo','price.per':'Por persona',
+  'price.guest':'persona','price.guests':'personas',
+  'price.note':'Grupo privado · hasta 5 personas · sin costes ocultos',
   'form.wa':'Enviar solicitud por WhatsApp',
   'form.wa.note':'Abre WhatsApp con todos tus datos ya escritos. Tony responde en menos de 2 h.',
   'foot.back':'← Volver a la Guía Kansai de Tony',
@@ -390,6 +435,9 @@ ru:{
   'form.lang':'Предпочтительный язык',
   'form.notes':'Заметки (необязательно)',
   'form.notes.ph':'Диетические требования, особые пожелания…',
+  'price.total':'Итого для группы','price.per':'На человека',
+  'price.guest':'гость','price.guests':'гостей',
+  'price.note':'Частная группа · до 5 человек · без скрытых платежей',
   'form.wa':'Отправить заявку в WhatsApp',
   'form.wa.note':'Откроет WhatsApp с уже заполненными данными. Тони ответит в течение 2 ч.',
   'foot.back':'← Назад к Гиду Тони по Кансай',
@@ -422,6 +470,9 @@ cs:{
   'form.lang':'Preferovaný jazyk',
   'form.notes':'Poznámky (nepovinné)',
   'form.notes.ph':'Dieta, zvláštní přání, zájmy…',
+  'price.total':'Celkem pro skupinu','price.per':'Na osobu',
+  'price.guest':'host','price.guests':'hostů',
+  'price.note':'Soukromá skupina · až 5 osob · žádné skryté poplatky',
   'form.wa':'Odeslat žádost přes WhatsApp',
   'form.wa.note':'Otevře WhatsApp s předvyplněnými údaji. Tony odpoví do 2 h.',
   'foot.back':'← Zpět na Tonyho průvodce Kansai',
@@ -454,6 +505,9 @@ ar:{
   'form.lang':'اللغة المفضلة',
   'form.notes':'ملاحظات (اختياري)',
   'form.notes.ph':'متطلبات غذائية، طلبات خاصة، اهتمامات…',
+  'price.total':'الإجمالي لمجموعتك','price.per':'لكل شخص',
+  'price.guest':'ضيف','price.guests':'ضيوف',
+  'price.note':'مجموعة خاصة · حتى 5 أشخاص · بدون رسوم مخفية',
   'form.wa':'إرسال الطلب عبر واتساب',
   'form.wa.note':'يفتح واتساب مع تفاصيلك معبأة مسبقاً. يرد توني خلال ساعتين.',
   'foot.back':'→ العودة إلى دليل توني كانساي',
@@ -633,6 +687,18 @@ function showBookForm(d){
 // ═══════════════════════════════════════════════════
 // ROUTES
 // ═══════════════════════════════════════════════════
+function fmtYen(n){ return '¥'+n.toLocaleString(); }
+
+function updatePrice(){
+  var price=PRICES[selectedRoute]||0;
+  var per=Math.round(price/Math.max(guestCount,1));
+  document.getElementById('priceTotal').textContent=fmtYen(price);
+  document.getElementById('pricePer').textContent='~'+fmtYen(per);
+  var t=T[lang];
+  var gw=guestCount===1?(t['price.guest']||'guest'):(t['price.guests']||'guests');
+  document.getElementById('priceGuestCtx').textContent=guestCount+' '+gw;
+}
+
 function renderRoutes(){
   var t=T[lang];
   var grid=document.getElementById('routeGrid');
@@ -640,13 +706,14 @@ function renderRoutes(){
   t.routes.forEach(function(r,i){
     var btn=document.createElement('button');
     btn.className='route-pill'+(i===selectedRoute?' on':'');
-    btn.innerHTML='<span>'+r.name+'</span><span class="r-kanji">'+r.kanji+'</span>';
+    btn.innerHTML='<span>'+r.name+'</span><span class="r-kanji">'+r.kanji+'</span><span class="r-price">'+fmtYen(PRICES[i])+'</span>';
     btn.addEventListener('click',function(){
       selectedRoute=i;
       renderRoutes();
     });
     grid.appendChild(btn);
   });
+  updatePrice();
 }
 
 // ═══════════════════════════════════════════════════
@@ -655,10 +722,12 @@ function renderRoutes(){
 document.getElementById('guestMinus').addEventListener('click',function(){
   if(guestCount>1)guestCount--;
   document.getElementById('guestNum').textContent=guestCount;
+  updatePrice();
 });
 document.getElementById('guestPlus').addEventListener('click',function(){
   if(guestCount<5)guestCount++;
   document.getElementById('guestNum').textContent=guestCount;
+  updatePrice();
 });
 
 // ═══════════════════════════════════════════════════
@@ -690,16 +759,19 @@ document.getElementById('waBtn').addEventListener('click',function(){
   var monthName=t.months[selectedDate.getMonth()];
   var dateStr=dayName+', '+monthName+' '+selectedDate.getDate()+' '+selectedDate.getFullYear();
   var notes=document.getElementById('notesIn').value.trim()||'–';
+  var price=PRICES[selectedRoute]||0;
+  var perPerson=Math.round(price/Math.max(guestCount,1));
+  var priceStr=fmtYen(price)+' total · ~'+fmtYen(perPerson)+'/person';
 
   var msg;
   if(lang==='es'){
-    msg='¡Hola Tony! Me gustaría reservar un tour privado.\n\n📅 Fecha: '+dateStr+'\n🗺️ Ruta: '+route.name+'\n👥 Personas: '+guestCount+'\n🌍 Idioma: '+selLang+'\n📝 Notas: '+notes+'\n\n¡Espero tu respuesta! 😊';
+    msg='¡Hola Tony! Me gustaría reservar un tour privado.\n\n📅 Fecha: '+dateStr+'\n🗺️ Ruta: '+route.name+'\n👥 Personas: '+guestCount+'\n💴 Precio: ¥'+price.toLocaleString()+' total · ~¥'+perPerson.toLocaleString()+'/persona\n🌍 Idioma: '+selLang+'\n📝 Notas: '+notes+'\n\n¡Espero tu respuesta! 😊';
   } else if(lang==='ru'){
-    msg='Привет Тони! Хочу забронировать частный тур.\n\n📅 Дата: '+dateStr+'\n🗺️ Маршрут: '+route.name+'\n👥 Гостей: '+guestCount+'\n🌍 Язык: '+selLang+'\n📝 Заметки: '+notes;
+    msg='Привет Тони! Хочу забронировать частный тур.\n\n📅 Дата: '+dateStr+'\n🗺️ Маршрут: '+route.name+'\n👥 Гостей: '+guestCount+'\n💴 Цена: ¥'+price.toLocaleString()+' всего · ~¥'+perPerson.toLocaleString()+'/чел\n🌍 Язык: '+selLang+'\n📝 Заметки: '+notes;
   } else if(lang==='ar'){
-    msg='مرحباً توني! أود حجز جولة خاصة.\n\n📅 التاريخ: '+dateStr+'\n🗺️ المسار: '+route.name+'\n👥 الضيوف: '+guestCount+'\n🌍 اللغة: '+selLang+'\n📝 ملاحظات: '+notes;
+    msg='مرحباً توني! أود حجز جولة خاصة.\n\n📅 التاريخ: '+dateStr+'\n🗺️ المسار: '+route.name+'\n👥 الضيوف: '+guestCount+'\n💴 السعر: ¥'+price.toLocaleString()+' المجموع · ~¥'+perPerson.toLocaleString()+'/شخص\n🌍 اللغة: '+selLang+'\n📝 ملاحظات: '+notes;
   } else {
-    msg='Hi Tony! I\'d like to book a private tour.\n\n📅 Date: '+dateStr+'\n🗺️ Route: '+route.name+' '+route.kanji+'\n👥 Guests: '+guestCount+' people\n🌍 Language: '+selLang+'\n📝 Notes: '+notes+'\n\nLooking forward to hearing from you!';
+    msg='Hi Tony! I\'d like to book a private tour.\n\n📅 Date: '+dateStr+'\n🗺️ Route: '+route.name+' '+route.kanji+'\n👥 Guests: '+guestCount+' people\n💴 Price: '+priceStr+'\n🌍 Language: '+selLang+'\n📝 Notes: '+notes+'\n\nLooking forward to hearing from you!';
   }
 
   window.open('https://wa.me/34634193106?text='+encodeURIComponent(msg),'_blank');
