@@ -249,7 +249,7 @@ footer a:hover{color:var(--text)}
         <span class="field-lbl" data-i="form.guests">Number of guests</span>
         <div class="stepper">
           <button class="step-btn" id="guestMinus">−</button>
-          <span class="step-num" id="guestNum">2</span>
+          <span class="step-num" id="guestNum">1</span>
           <button class="step-btn" id="guestPlus">+</button>
         </div>
         <div class="step-lbl" data-i="form.guestlbl">guests (min 2 · max 8)</div>
@@ -288,7 +288,7 @@ footer a:hover{color:var(--text)}
 <footer>
   <a href="index.html" data-i="foot.back">← Back to Tony Kansai Guide</a>
   &nbsp;·&nbsp;
-  <a href="versions.html" style="color:rgba(240,234,216,.12);font-size:.52rem">v15</a>
+  <a href="versions.html" style="color:rgba(240,234,216,.12);font-size:.52rem">v16</a>
 </footer>
 
 <a href="https://wa.me/34634193106" target="_blank" rel="noopener noreferrer" class="wa-float" aria-label="WhatsApp">
@@ -300,12 +300,9 @@ footer a:hover{color:var(--text)}
 // CONFIGURATION — update BUSY to manage availability
 // Format: 'YYYY-MM-DD'
 // ═══════════════════════════════════════════════════
+// Add specific unavailable dates here (holidays, personal days, etc.)
+// Format: 'YYYY-MM-DD'  — Fridays are ALWAYS blocked automatically, no need to list them.
 var BUSY = [
-  '2026-05-18','2026-05-19','2026-05-23','2026-05-24','2026-05-30','2026-05-31',
-  '2026-06-06','2026-06-07','2026-06-13','2026-06-14','2026-06-20','2026-06-21',
-  '2026-06-27','2026-06-28',
-  '2026-07-04','2026-07-05','2026-07-11','2026-07-12','2026-07-18','2026-07-19',
-  '2026-07-25','2026-07-26',
 ];
 
 // ═══════════════════════════════════════════════════
@@ -325,7 +322,7 @@ en:{
   'form.seldate':'Selected Date',
   'form.route':'Choose your route',
   'form.guests':'Number of guests',
-  'form.guestlbl':'guests (min 2 · max 8)',
+  'form.guestlbl':'guests (min 1 · max 5)',
   'form.lang':'Preferred language',
   'form.notes':'Notes (optional)',
   'form.notes.ph':'Dietary requirements, special requests, interests…',
@@ -357,7 +354,7 @@ es:{
   'form.seldate':'Fecha Seleccionada',
   'form.route':'Elige tu ruta',
   'form.guests':'Número de personas',
-  'form.guestlbl':'personas (mín 2 · máx 8)',
+  'form.guestlbl':'personas (mín 1 · máx 5)',
   'form.lang':'Idioma preferido',
   'form.notes':'Notas (opcional)',
   'form.notes.ph':'Alergias, peticiones especiales, intereses…',
@@ -389,7 +386,7 @@ ru:{
   'form.seldate':'Выбранная дата',
   'form.route':'Выберите маршрут',
   'form.guests':'Количество гостей',
-  'form.guestlbl':'гостей (мин 2 · макс 8)',
+  'form.guestlbl':'гостей (мин 1 · макс 5)',
   'form.lang':'Предпочтительный язык',
   'form.notes':'Заметки (необязательно)',
   'form.notes.ph':'Диетические требования, особые пожелания…',
@@ -421,7 +418,7 @@ cs:{
   'form.seldate':'Vybrané datum',
   'form.route':'Vyberte trasu',
   'form.guests':'Počet hostů',
-  'form.guestlbl':'hosté (min 2 · max 8)',
+  'form.guestlbl':'hosté (min 1 · max 5)',
   'form.lang':'Preferovaný jazyk',
   'form.notes':'Poznámky (nepovinné)',
   'form.notes.ph':'Dieta, zvláštní přání, zájmy…',
@@ -453,7 +450,7 @@ ar:{
   'form.seldate':'التاريخ المختار',
   'form.route':'اختر مسارك',
   'form.guests':'عدد الضيوف',
-  'form.guestlbl':'ضيوف (الحد الأدنى 2 · الأقصى 8)',
+  'form.guestlbl':'ضيوف (الحد الأدنى 1 · الأقصى 5)',
   'form.lang':'اللغة المفضلة',
   'form.notes':'ملاحظات (اختياري)',
   'form.notes.ph':'متطلبات غذائية، طلبات خاصة، اهتمامات…',
@@ -483,7 +480,7 @@ var viewYear = today.getFullYear();
 var viewMonth = today.getMonth();
 var selectedDate = null;
 var selectedRoute = 0;
-var guestCount = 2;
+var guestCount = 1;
 var selLang = 'English';
 
 // ═══════════════════════════════════════════════════
@@ -532,7 +529,8 @@ function toKey(d){
   return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
 }
 
-function isBusy(d){ return BUSY.indexOf(toKey(d)) !== -1; }
+function isFriday(d){ return d.getDay()===5; }
+function isBusy(d){ return isFriday(d) || BUSY.indexOf(toKey(d)) !== -1; }
 
 function renderCal(){
   var t=T[lang];
@@ -655,11 +653,11 @@ function renderRoutes(){
 // GUEST STEPPER
 // ═══════════════════════════════════════════════════
 document.getElementById('guestMinus').addEventListener('click',function(){
-  if(guestCount>2)guestCount--;
+  if(guestCount>1)guestCount--;
   document.getElementById('guestNum').textContent=guestCount;
 });
 document.getElementById('guestPlus').addEventListener('click',function(){
-  if(guestCount<8)guestCount++;
+  if(guestCount<5)guestCount++;
   document.getElementById('guestNum').textContent=guestCount;
 });
 
