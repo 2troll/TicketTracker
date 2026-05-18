@@ -49,12 +49,29 @@ h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:3rem;font-weight:300
 
   <div class="divider"></div>
 
-  <!-- V18 -->
+  <!-- V19 -->
   <div class="entry current">
+    <div class="ver">
+      <span class="ver-num">v19</span>
+      <span class="ver-badge add">UX + DETAIL</span>
+      <span class="ver-badge live">CURRENT CODE</span>
+    </div>
+    <div class="date">18 May 2026</div>
+    <div class="entry-title">Route pre-selection · specific cost breakdown · Kōyasan 2-day detail</div>
+    <ul class="changes">
+      <li class="fix-item">booking.html: reads ?route=N URL param — arrives pre-selecting the correct route with route name shown in the prompt</li>
+      <li class="fix-item">All city pages updated: Book Now / Request Tour buttons pass ?route=N (osaka→0, kyoto→1, kobe→2, nara→3, koyasan→4, osaka-kyoto→5, hiking→6)</li>
+      <li class="fix-item">INCLUDES array updated with exact costs: train lines + fares (e.g. JR Osaka→Nara ¥1,720/pp), entry fees, tea ceremony ¥3,500, sake bar cover charge</li>
+      <li class="fix-item">Kōyasan: 2-day badge added, shukubo lodging cost shown as ¥18,000/pp incl., Okunoin Cemetery detail, all 2-day costs transparent</li>
+      <li class="fix-item">All routes: replaced generic "included" with exact ¥ amounts per line so visitors know exactly what they are paying for</li>
+    </ul>
+  </div>
+
+  <!-- V18 -->
+  <div class="entry">
     <div class="ver">
       <span class="ver-num">v18</span>
       <span class="ver-badge fix">LINKS + PRICES</span>
-      <span class="ver-badge live">CURRENT CODE</span>
     </div>
     <div class="date">18 May 2026</div>
     <div class="entry-title">All booking links fixed site-wide · prices unified across every page</div>

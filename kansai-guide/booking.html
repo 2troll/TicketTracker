@@ -334,7 +334,7 @@ footer a:hover{color:var(--text)}
 <footer>
   <a href="index.html" data-i="foot.back">← Back to Tony Kansai Guide</a>
   &nbsp;·&nbsp;
-  <a href="versions.html" style="color:rgba(240,234,216,.12);font-size:.52rem">v18</a>
+  <a href="versions.html" style="color:rgba(240,234,216,.12);font-size:.52rem">v19</a>
 </footer>
 
 <a href="https://wa.me/34634193106" target="_blank" rel="noopener noreferrer" class="wa-float" aria-label="WhatsApp">
@@ -371,56 +371,57 @@ var MULT = {1:1.35, 2:1.00, 3:0.90, 4:0.82, 5:0.75};
 // ok:1 = included · ok:0 = not included / extra cost
 // ═══════════════════════════════════════════════════
 var INCLUDES = [
-  [ // Osaka
-    {ok:1,t:'Private guide · full day (7–8 h)'},
-    {ok:1,t:'Metro Namba ↔ Shinsekai · ¥320/person'},
-    {ok:1,t:'Kuromon Market · Dotonbori · Shinsekai'},
-    {ok:1,t:'Sake bar session · 40 premium labels'},
-    {ok:0,t:'Food & drinks (est. ¥3,000–5,000)'},
+  [ // Route 0: Osaka Food Circuit
+    {ok:1,t:'Private guide · 7–8 h full day'},
+    {ok:1,t:'Metro Namba → Kuromon → Shinsekai · ¥320/pp incl.'},
+    {ok:1,t:'Kuromon Market · Dotonbori canal · Shinsekai retro district'},
+    {ok:1,t:'Standing sake bar · 40 premium labels · cover charge incl.'},
+    {ok:0,t:'Food & drinks — est. ¥3,000–5,000/pp (markets & street food)'},
   ],
-  [ // Kyoto
-    {ok:1,t:'Private guide · full day (9–10 h)'},
-    {ok:1,t:'JR train Osaka → Kyoto · ¥1,140/person'},
-    {ok:1,t:'Fushimi Inari · Philosopher\'s Path · Gion'},
-    {ok:1,t:'Private tea ceremony · ¥3,500/person incl.'},
-    {ok:0,t:'Dinner (Tony makes the reservation · cost separate)'},
+  [ // Route 1: Hidden Kyoto
+    {ok:1,t:'Private guide · 9–10 h full day'},
+    {ok:1,t:'JR Osaka → Kyoto + return · ¥2,280/pp incl.'},
+    {ok:1,t:'Fushimi Inari Taisha (free) · Philosopher\'s Path · Gion'},
+    {ok:1,t:'Private tea ceremony Gion · ¥3,500/pp incl.'},
+    {ok:0,t:'Dinner — est. ¥4,000–8,000/pp (Tony books the table)'},
   ],
-  [ // Kobe
-    {ok:1,t:'Private guide · full day (8 h)'},
-    {ok:1,t:'Train Osaka → Kobe · ¥390/person'},
-    {ok:1,t:'Kitano Ijinkan residences ticket · ¥700/person'},
-    {ok:1,t:'Nada Sake Brewery · free entry + tastings'},
-    {ok:0,t:'Kobe beef lunch (Tony pre-books · cost separate)'},
+  [ // Route 2: Kobe Refined
+    {ok:1,t:'Private guide · 8 h full day'},
+    {ok:1,t:'Train Osaka → Kobe + return · ¥780/pp incl.'},
+    {ok:1,t:'Kitano Ijinkan foreigner residences · ¥700/pp incl.'},
+    {ok:1,t:'Nada Sake Brewery · free entry + sake tastings incl.'},
+    {ok:0,t:'Kobe beef lunch — est. ¥8,000–25,000/pp (Tony pre-books)'},
   ],
-  [ // Nara
-    {ok:1,t:'Private guide · full day (7–8 h)'},
-    {ok:1,t:'JR/Kintetsu train from Osaka · ¥860/person'},
-    {ok:1,t:'Todai-ji Great Buddha Hall · ¥600/person'},
-    {ok:1,t:'Isuien Garden · ¥900/person · Nara Deer Park'},
-    {ok:0,t:'Lunch (Tony recommends local spots · cost separate)'},
+  [ // Route 3: Nara Sacred Forest
+    {ok:1,t:'Private guide · 7–8 h full day'},
+    {ok:1,t:'JR Osaka Namba → Nara + return · ¥1,720/pp incl.'},
+    {ok:1,t:'Todai-ji Great Buddha Hall · ¥600/pp incl.'},
+    {ok:1,t:'Isuien Garden · ¥900/pp incl. · Nara Deer Park (free)'},
+    {ok:0,t:'Lunch — est. ¥1,500–3,000/pp (Tony picks the spot)'},
   ],
-  [ // Koyasan
-    {ok:1,t:'Private guide · 2-day overnight pilgrimage'},
-    {ok:1,t:'Nankai train + Kōyasan cable car · ¥1,990/person'},
-    {ok:1,t:'Kongobu-ji Temple · ¥1,000/person'},
-    {ok:1,t:'Okunoin Cemetery lantern walk'},
-    {ok:1,t:'Shukubo temple lodging · dinner + breakfast'},
-    {ok:0,t:'Personal expenses & souvenirs'},
+  [ // Route 4: Kōyasan — 2-Day Overnight
+    {ok:1,t:'⚡ 2-DAY TOUR — price covers both days completely'},
+    {ok:1,t:'Private guide · guide fee for 2 full days incl.'},
+    {ok:1,t:'Nankai express + Kōyasan cable car · ¥1,990/pp incl.'},
+    {ok:1,t:'Kongobu-ji Temple · ¥1,000/pp incl. · Danjogaran (free)'},
+    {ok:1,t:'Shukubo temple lodge · ¥18,000/pp incl. (veg. dinner + breakfast)'},
+    {ok:1,t:'Okunoin Cemetery lantern walk · 200,000 ancient stones'},
+    {ok:0,t:'Souvenirs & personal spending — est. ¥2,000–5,000/pp'},
   ],
-  [ // Osaka × Kyoto
+  [ // Route 5: Osaka × Kyoto Grand Day
     {ok:1,t:'Private guide · 12 h two-city day'},
-    {ok:1,t:'All trains Osaka ↔ Kyoto · included'},
-    {ok:1,t:'Fushimi Inari dawn access · Gion district'},
-    {ok:1,t:'Private tea ceremony · ¥3,500/person incl.'},
-    {ok:1,t:'Dotonbori · Kuromon Market · sake bar'},
-    {ok:0,t:'Food & drinks (est. ¥4,000–6,000)'},
+    {ok:1,t:'All trains Osaka ↔ Kyoto + local metro · ¥2,280/pp incl.'},
+    {ok:1,t:'Fushimi Inari dawn access · Philosopher\'s Path · Gion'},
+    {ok:1,t:'Private tea ceremony Gion · ¥3,500/pp incl.'},
+    {ok:1,t:'Dotonbori · Kuromon Market · sake bar (cover incl.)'},
+    {ok:0,t:'Food & drinks — est. ¥4,000–6,000/pp'},
   ],
-  [ // Mountain Hiking
-    {ok:1,t:'Private guide · full day (8–9 h)'},
-    {ok:1,t:'Train to trailhead · ~¥700/person'},
-    {ok:1,t:'Custom trail by season & fitness level'},
-    {ok:1,t:'5–6 h guided mountain hike'},
-    {ok:0,t:'Hiking gear & equipment (bring your own)'},
+  [ // Route 6: Mountain Hiking
+    {ok:1,t:'Private guide · 8–9 h full day'},
+    {ok:1,t:'Train to trailhead + return · ~¥1,400/pp incl. (varies by trail)'},
+    {ok:1,t:'Trail selected for your season, weather & fitness level'},
+    {ok:1,t:'5–6 h guided mountain hike · safety briefing incl.'},
+    {ok:0,t:'Hiking gear & equipment — please bring your own'},
   ],
 ];
 
@@ -438,6 +439,7 @@ en:{
   'inf2.t':'100% Private','inf2.d':'Every tour is exclusively for your group. No shared tours, no strangers.',
   'inf3.t':'Free to Request','inf3.d':'No payment now. Tony confirms, then you decide. No obligation.',
   'prompt':'Select an available date on the calendar to continue',
+  'prompt.routed':'Route pre-selected — pick your date to confirm',
   'form.seldate':'Selected Date',
   'form.route':'Choose your route',
   'form.guests':'Number of guests',
@@ -474,6 +476,7 @@ es:{
   'inf2.t':'100% Privado','inf2.d':'Cada tour es exclusivo para tu grupo. Sin tours compartidos.',
   'inf3.t':'Sin Compromiso','inf3.d':'Sin pago ahora. Tony confirma y tú decides. Sin obligación.',
   'prompt':'Selecciona una fecha disponible en el calendario para continuar',
+  'prompt.routed':'Ruta preseleccionada — elige tu fecha para confirmar',
   'form.seldate':'Fecha Seleccionada',
   'form.route':'Elige tu ruta',
   'form.guests':'Número de personas',
@@ -510,6 +513,7 @@ ru:{
   'inf2.t':'100% приватно','inf2.d':'Каждый тур только для вашей группы. Без совместных туров.',
   'inf3.t':'Без обязательств','inf3.d':'Без оплаты сейчас. Тони подтверждает — вы решаете.',
   'prompt':'Выберите доступную дату в календаре, чтобы продолжить',
+  'prompt.routed':'Маршрут выбран — выберите дату для подтверждения',
   'form.seldate':'Выбранная дата',
   'form.route':'Выберите маршрут',
   'form.guests':'Количество гостей',
@@ -546,6 +550,7 @@ cs:{
   'inf2.t':'100% soukromé','inf2.d':'Každý výlet je výhradně pro vaši skupinu. Bez sdílených výletů.',
   'inf3.t':'Bez závazků','inf3.d':'Bez platby nyní. Tony potvrdí a vy rozhodnete.',
   'prompt':'Vyberte dostupné datum v kalendáři a pokračujte',
+  'prompt.routed':'Trasa předvybrána — zvolte datum pro potvrzení',
   'form.seldate':'Vybrané datum',
   'form.route':'Vyberte trasu',
   'form.guests':'Počet hostů',
@@ -582,6 +587,7 @@ ar:{
   'inf2.t':'خصوصية تامة','inf2.d':'كل جولة حصرية لمجموعتك فقط. بدون جولات مشتركة.',
   'inf3.t':'بدون التزام','inf3.d':'لا دفع الآن. توني يؤكد ثم تقرر أنت.',
   'prompt':'اختر تاريخاً متاحاً من التقويم للمتابعة',
+  'prompt.routed':'المسار محدد — اختر تاريخك للتأكيد',
   'form.seldate':'التاريخ المختار',
   'form.route':'اختر مسارك',
   'form.guests':'عدد الضيوف',
@@ -896,7 +902,26 @@ document.getElementById('waBtn').addEventListener('click',function(){
 if(today.getDate()>25){viewMonth++;if(viewMonth>11){viewMonth=0;viewYear++;}}
 
 applyLang(detectLang());
-renderRoutes();
+
+// ── Route pre-selection from URL param ?route=N
+(function(){
+  var rp=parseInt(new URLSearchParams(window.location.search).get('route'));
+  if(isNaN(rp)||rp<0||rp>=RATE.length)return;
+  selectedRoute=rp;
+  renderRoutes();
+  // Update prompt to show the pre-selected route with a hint
+  var t=T[lang];
+  var rname=t.routes[rp].name;
+  var prompt=document.getElementById('bookPrompt');
+  prompt.innerHTML=
+    '<span class="prompt-icon">🗺️</span>'+
+    '<p class="prompt-txt">'+
+      '<span style="display:block;font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;'+
+      'background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;'+
+      'background-clip:text;margin-bottom:.55rem">'+rname+'</span>'+
+      (t['prompt.routed']||'Route pre-selected — pick your date to confirm')+
+    '</p>';
+})();
 </script>
 </body>
 </html>
