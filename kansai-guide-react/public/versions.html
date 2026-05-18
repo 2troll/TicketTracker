@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Changelog — Tony Kansai Guide</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0C0D16;color:#EBE8E0;font-family:'Plus Jakarta Sans',system-ui,sans-serif;padding:0;min-height:100vh}
+a{color:#E53030;text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:860px;margin:0 auto;padding:4rem 2rem}
+h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:3rem;font-weight:300;font-style:italic;margin-bottom:.4rem}
+.subtitle{font-size:.8rem;color:rgba(235,232,224,.45);letter-spacing:.15em;text-transform:uppercase;margin-bottom:3rem}
+.back{display:inline-flex;align-items:center;gap:.4rem;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(235,232,224,.4);margin-bottom:2.5rem;transition:color .2s}
+.back:hover{color:#E53030;text-decoration:none}
+.entry{border-left:2px solid rgba(255,255,255,.08);padding:0 0 3rem 2rem;position:relative;margin-left:.6rem}
+.entry:last-child{padding-bottom:0;border-color:transparent}
+.entry::before{content:'';position:absolute;left:-5px;top:.4rem;width:8px;height:8px;border-radius:50%;background:#1C1F30;border:2px solid rgba(255,255,255,.18)}
+.entry.current::before{background:#E53030;border-color:#E53030;box-shadow:0 0 10px rgba(229,48,48,.5)}
+.ver{display:inline-flex;align-items:center;gap:.6rem;margin-bottom:.5rem}
+.ver-num{font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;background:linear-gradient(135deg,#E53030,#FF6B35);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.ver-badge{font-size:.55rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.18rem .55rem;border-radius:999px;border:1px solid}
+.ver-badge.live{border-color:rgba(229,48,48,.4);color:#E53030}
+.ver-badge.bug{border-color:rgba(255,80,80,.4);color:#ff5050}
+.ver-badge.rewrite{border-color:rgba(255,107,53,.4);color:#FF6B35}
+.ver-badge.fix{border-color:rgba(100,180,255,.35);color:#64b4ff}
+.ver-badge.add{border-color:rgba(34,200,120,.35);color:#22c878}
+.date{font-size:.68rem;color:rgba(235,232,224,.35);margin-bottom:.9rem;letter-spacing:.05em}
+.entry-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.5rem;font-weight:300;margin-bottom:.8rem;line-height:1.2}
+.changes{list-style:none;display:flex;flex-direction:column;gap:.4rem}
+.changes li{font-size:.85rem;font-weight:300;color:rgba(235,232,224,.65);line-height:1.7;display:flex;gap:.6rem;align-items:flex-start}
+.changes li::before{content:'→';color:rgba(229,48,48,.6);flex-shrink:0;margin-top:.05rem}
+.changes li.bug-item::before{content:'🐛';font-style:normal}
+.changes li.fix-item::before{content:'✓';color:#22c878;flex-shrink:0}
+.note{font-size:.78rem;background:rgba(229,48,48,.07);border:1px solid rgba(229,48,48,.2);border-radius:8px;padding:.7rem 1rem;margin-top:.8rem;color:rgba(235,232,224,.55);line-height:1.6}
+.note strong{color:#E53030}
+.divider{height:1px;background:rgba(255,255,255,.06);margin:0 0 3rem 0}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet"/>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="back" href="index.html">← Back to site</a>
+
+  <h1>Version History</h1>
+  <p class="subtitle">tonykansaiguide.surge.sh · All updates since launch</p>
+
+  <div class="divider"></div>
+
+  <!-- V20 -->
+  <div class="entry current">
+    <div class="ver">
+      <span class="ver-num">v20</span>
+      <span class="ver-badge rewrite">REACT REWRITE</span>
+      <span class="ver-badge live">CURRENT CODE</span>
+    </div>
+    <div class="date">18 May 2026</div>
+    <div class="entry-title">React + Framer Motion + Tailwind rebuild · PRO MAX UI</div>
+    <ul class="changes">
+      <li class="fix-item">New standalone project: kansai-guide-react/ — React 18, Framer Motion 11, Tailwind CSS 3, TypeScript, Vite 5</li>
+      <li class="fix-item">cn() utility (clsx + tailwind-merge) — clean class merging, same pattern as 21st.dev components</li>
+      <li class="fix-item">Button component: spring-physics magnetic hover (cursor attracts the button), GPU-only animation (transform + opacity)</li>
+      <li class="fix-item">MagicCard component: Vercel-style radial gradient glow that follows mouse cursor position exactly</li>
+      <li class="fix-item">AnimatedCounter: spring easing count-up from 0 when scrolled into view (Stats section)</li>
+      <li class="fix-item">Hero: stagger entrance variants (eye → h1 → bar → p → buttons), animated ambient gradient orbs, scroll indicator</li>
+      <li class="fix-item">Nav: scroll-aware blur + opacity transition, spring underline on hover, animated hamburger icon</li>
+      <li class="fix-item">Pricing: spinning conic-gradient shimmer border on featured card, pulsing glow on standard cards</li>
+      <li class="fix-item">Testimonials: CSS infinite marquee (pause on hover), edge fade with mask-image</li>
+      <li class="fix-item">FAQ: AnimatePresence spring accordion, + icon rotates 45° with spring on open</li>
+      <li class="fix-item">Booking: form with animated focus rings, loading spinner state, success animation with spring scale</li>
+      <li class="fix-item">All whileInView entrance animations use staggerChildren with spring physics (no linear easing anywhere)</li>
+      <li class="bug-item">booking.html WhatsApp bug fixed: ES/RU/AR message templates referenced undefined variable `price` — corrected to `total`</li>
+    </ul>
+    <div class="note"><strong>Errors committed this version:</strong> Hero.tsx initial TypeScript error — Orb component's `style` prop was missing from interface definition and `animate` was typed as `object` instead of specific record type. Fixed before build.</div>
+  </div>
+
+  <!-- V19 -->
+  <div class="entry">
+    <div class="ver">
+      <span class="ver-num">v19</span>
+      <span class="ver-badge add">UX + DETAIL</span>
+    </div>
+    <div class="date">18 May 2026</div>
+    <div class="entry-title">Route pre-selection · specific cost breakdown · Kōyasan 2-day detail</div>
+    <ul class="changes">
+      <li class="fix-item">booking.html: reads ?route=N URL param — arrives pre-selecting the correct route with route name shown in the prompt</li>
+      <li class="fix-item">All city pages updated: Book Now / Request Tour buttons pass ?route=N (osaka→0, kyoto→1, kobe→2, nara→3, koyasan→4, osaka-kyoto→5, hiking→6)</li>
+      <li class="fix-item">INCLUDES array updated with exact costs: train lines + fares (e.g. JR Osaka→Nara ¥1,720/pp), entry fees, tea ceremony ¥3,500, sake bar cover charge</li>
+      <li class="fix-item">Kōyasan: 2-day badge added, shukubo lodging cost shown as ¥18,000/pp incl., Okunoin Cemetery detail, all 2-day costs transparent</li>
+      <li class="fix-item">All routes: replaced generic "included" with exact ¥ amounts per line so visitors know exactly what they are paying for</li>
+    </ul>
+  </div>
+
+  <!-- V18 -->
+  <div class="entry">
+    <div class="ver">
+      <span class="ver-num">v18</span>
+      <span class="ver-badge fix">LINKS + PRICES</span>
+    </div>
+    <div class="date">18 May 2026</div>
+    <div class="entry-title">All booking links fixed site-wide · prices unified across every page</div>
+    <ul class="changes">
+      <li class="fix-item">osaka-kyoto.html, hiking.html, practical.html, companions.html — all "Book Now" and CTA buttons now link to booking.html (12 more broken links fixed)</li>
+      <li class="fix-item">osaka-kyoto.html: price updated ¥32,000 → ¥92,000/person · group size 2–6 → 1–5 · tour renamed "Osaka × Kyoto Grand Day — 12 h" to match booking calendar</li>
+      <li class="fix-item">hiking.html: all price cards changed from "per group · up to 6 people" → "per person · up to 5 people" across all 3 tiers (Half Day, Full Day, Epic)</li>
+      <li class="fix-item">hiking.html intro text updated to reflect per-person model</li>
+    </ul>
+    <div class="note"><strong>Errors corrected this version:</strong> v17 only fixed 5 city pages — missed osaka-kyoto.html, hiking.html, practical.html, companions.html which still had broken links. osaka-kyoto.html had a wildly wrong price (¥32,000 per person for a 2-day tour vs ¥92,000 in the booking calendar). hiking.html showed "per group" when the whole site now uses per-person pricing.</div>
+  </div>
+
+  <!-- V17 -->
+  <div class="entry">
+    <div class="ver">
+      <span class="ver-num">v17</span>
+      <span class="ver-badge add">PRICING</span>
+    </div>
+    <div class="date">18 May 2026</div>
+    <div class="entry-title">Per-person pricing · inclusions breakdown · city page fixes · Friday rule</div>
+    <ul class="changes">
+      <li class="fix-item">booking.html: Fridays auto-blocked (isFriday check) — all other days including weekends now available</li>
+      <li class="fix-item">Pricing model changed to per-person: RATE array (¥55k–¥120k base for 2-person group)</li>
+      <li class="fix-item">Group multipliers: solo +35%, 3 pax −10%, 4 pax −18%, 5 pax −25% — badge shown in price box</li>
+      <li class="fix-item">INCLUDES array: 5–6 line ✓/✗ breakdown per route — exact transport costs, entry fees, food exclusions</li>
+      <li class="fix-item">Price box redesigned: per-person + total side-by-side figures, route name header, live updates on guest change</li>
+      <li class="fix-item">Route pills now show "from ¥XX,XXX/pp" — visitors can compare routes at a glance</li>
+      <li class="fix-item">All 5 city pages: Book Now + Request Tour buttons now link to booking.html (were going to index.html#contact)</li>
+      <li class="fix-item">City pages: group size corrected 2–6 → 1–5 everywhere; Kōyasan stays 2–4 intimate</li>
+      <li class="fix-item">City page prices updated to match new RATE: Osaka ¥55k, Kobe ¥62k, Kyoto ¥68k, Nara ¥72k, Kōyasan ¥120k</li>
+      <li class="fix-item">Nara price card: removed wrong "Himeji Castle" reference (different prefecture, different tour)</li>
+      <li class="fix-item">WhatsApp pre-fill now includes per-person rate + total price line in all 5 languages</li>
+    </ul>
+    <div class="note"><strong>Errors corrected this version:</strong> v16 launched with weekends blocked (Tony works weekends); guest min 2/max 8 instead of 1/5; prices set as per-group totals instead of per-person; city pages had wrong 6-person max everywhere; Nara mentioned Himeji Castle which is a completely different route.</div>
+  </div>
+
+  <!-- V16 -->
+  <div class="entry">
+    <div class="ver">
+      <span class="ver-num">v16</span>
+      <span class="ver-badge add">BOOKING</span>
+    </div>
+    <div class="date">17 May 2026</div>
+    <div class="entry-title">Professional booking calendar — date picker · route selection · WhatsApp pre-fill</div>
+    <ul class="changes">
+      <li class="fix-item">booking.html created — full professional calendar page with dark premium design matching main site</li>
+      <li class="fix-item">Monthly calendar grid (Mon-first) with prev/next navigation — 3 states: available, busy, past</li>
+      <li class="fix-item">BUSY array: Tony edits one array to block unavailable dates</li>
+      <li class="fix-item">Booking panel: date confirmed → route pills (7 routes), guest stepper (2–8), language selector (5 flags), notes textarea</li>
+      <li class="fix-item">Green WhatsApp CTA button → opens wa.me with full pre-filled message (date, route, guests, language, notes)</li>
+      <li class="fix-item">Full 5-language system (EN/ES/RU/CS/AR) including localized month and weekday names</li>
+      <li class="fix-item">index.html: prominent "Check Availability &amp; Book" button added to booking section linking to booking.html</li>
+      <li class="fix-item">routes.html: info-banner and bottom CTA now link to booking.html instead of index.html#booking</li>
+    </ul>
+  </div>
+
+  <!-- V15 -->
+  <div class="entry">
+    <div class="ver">
+      <span class="ver-num">v15</span>
+      <span class="ver-badge add">MAPS</span>
+    </div>
+    <div class="date">17 May 2026</div>
+    <div class="entry-title">City routes hub · real Leaflet maps · translation system</div>
+    <ul class="changes">
+      <li class="fix-item">routes.html created — premium city route hub with 6 cards (Osaka wide, Kyoto, Kobe, Nara, Koyasan wide, Osaka×Kyoto) each linking to a full detail page</li>
+      <li class="fix-item">Leaflet.js interactive maps added to all 5 city detail pages (osaka, kobe, nara, koyasan, kyoto) — numbered circular markers, dashed polyline route, real CartoDB tiles</li>
+      <li class="fix-item">Dark tiles for osaka/kobe/nara/koyasan — light CartoDB tiles for kyoto (matches page's cream theme)</li>
+      <li class="fix-item">routes.html: full 5-language translation system — EN/ES/RU/CS/AR language switcher in nav, all key UI text translated</li>
+      <li class="fix-item">City detail pages: localStorage lang sync — nav back-link and book button translate to match selected language</li>
+      <li class="fix-item">index.html: "Osaka &amp; Kyoto" tour card EXPLORE button now links to routes.html instead of practical.html</li>
+      <li class="fix-item">Discreet v15 link added to routes.html footer</li>
+    </ul>
+  </div>
+
+  <!-- V14 -->
+  <div class="entry">
+    <div class="ver">
+      <span class="ver-num">v14</span>
+      <span class="ver-badge add">DESIGN</span>
+    </div>
+    <div class="date">17 May 2026</div>
+    <div class="entry-title">Hero slideshow · uniform tour cards · discreet version link</div>
+    <ul class="changes">
+      <li class="fix-item">Hero: automatic crossfade slideshow cycling 6 Japan photos every 5 s (zen garden, Fushimi Inari, bamboo, torii dawn, sakura, autumn maple)</li>
+      <li class="fix-item">Tour cards: unified height 240 px, red top-edge accent bar, consistent gradient overlay across all 3 cards</li>
+      <li class="fix-item">Update log section removed — replaced with invisible "v14" link in footer (only the owner knows it's there)</li>
+      <li class="fix-item">Fixed version badge (centered bottom) removed — cleaner page for visitors</li>
+    </ul>
+  </div>
+
+  <!-- V13 -->
+  <div class="entry">
+    <div class="ver">
+      <span class="ver-num">v13</span>
+      <span class="ver-badge add">ADD</span>
+    </div>
+    <div class="date">17 May 2026</div>
+    <div class="entry-title">First real Surge deploy + mandatory update log section</div>
+    <ul class="changes">
+      <li class="fix-item">Surge credentials recovered from session transcript — first successful deployment</li>
+      <li class="fix-item">Permanent update log section added to track all changes</li>
+      <li class="fix-item">versions.html created with full history of all 12 prior versions and their bugs</li>
+    </ul>
+  </div>
+
+  <!-- V12 -->
+  <div class="entry">
+    <div class="ver">
+      <span class="ver-num">v12</span>
+      <span class="ver-badge rewrite">REWRITE</span>
+    </div>
+    <div class="date">17 May 2026</div>
+    <div class="entry-title">Complete rewrite — clean code, translations guaranteed</div>
+    <ul class="changes">
+      <li class="fix-item">Full rewrite from zero — no legacy broken code carried over</li>
+      <li class="fix-item">Translation system rebuilt: <code>data-i</code> attribute, <code>applyLang()</code> touches every element</li>
+      <li class="fix-item">Stats: <code>data-count + data-sfx</code> — 7 / 200+ / 5 / 100% with correct suffixes</li>
+      <li class="fix-item">Calendar removed — replaced with 5 WhatsApp buttons (one per language, pre-filled message)</li>
+      <li class="fix-item">Contact form: real error handling, WhatsApp fallback on failure</li>
+      <li class="fix-item">RTL Arabic: cookie bar, WhatsApp float, price badge, nav logo all correct</li>
+      <li class="fix-item">Reveal animations: only on static HTML elements — IntersectionObserver always catches them</li>
+    </ul>
+  </div>
+
+  <!-- V11 -->
+  <div class="entry">
+    <div class="ver">
+      <span class="ver-num">v11</span>
+      <span class="ver-badge bug">BUGS FOUND</span>
+    </div>
+    <div class="date">17 May 2026</div>
+    <div class="entry-title">Fix 7 bugs (some fixed, some introduced)</div>
+    <ul class="changes">
+      <li class="fix-item">Calendar invisible bug: removed .rv class from dynamically generated cards</li>
+      <li class="fix-item">Double % symbol: stat.4 label "% Private" → "Private"</li>
+      <li class="fix-item">Stat suffixes: added data-sfx attribute per element</li>
+      <li class="fix-item">RTL positions for Arabic added</li>
+      <li class="bug-item">Translations STILL not working visually (dark theme hid the change)</li>
+      <li class="bug-item">Calendar was still broken due to inner structure issues</li>
+    </ul>
+  </div>
+
+  <!-- V10 -->
+  <div class="entry">
+    <div class="ver">
+      <span class="ver-num">v10</span>
+      <span class="ver-badge fix">REFACTOR</span>
+    </div>
+    <div class="date">17 May 2026</div>
+    <div class="entry-title">CSS minification and variable name cleanup</div>
+    <ul class="changes">
+      <li>Tightened CSS whitespace, renamed CSS variables for consistency</li>
+      <li>Net result: 297 fewer lines</li>
+      <li class="bug-item">No visual changes — underlying bugs still present</li>
+    </ul>
+  </div>
+
+  <!-- V9 -->
+  <div class="entry">
+    <div class="ver">
+      <span class="ver-num">v9</span>
+      <span class="ver-badge rewrite">REDESIGN</span>
+    </div>
+    <div class="date">17 May 2026</div>
+    <div class="entry-title">Complete page redesign — "clean, minimal, all bugs fixed"</div>
+    <ul class="changes">
+      <li>Dark theme redesign with glass morphism cards</li>
+      <li>Leaflet map with 6 city pins</li>
+      <li>Multi-language calendar with WhatsApp integration</li>
+      <li class="bug-item">Calendar cards used .rv class on dynamically generated elements → invisible</li>
+      <li class="bug-item">Stat counter: all non-100 values got "+" suffix (7+, 5+ were wrong)</li>
+      <li class="bug-item">100% stat label "% Private" + number "100%" = double % symbol</li>
+      <li class="bug-item">Hero badge never translated (no data-t attribute)</li>
+    </ul>
+  </div>
+
+  <!-- V8 -->
+  <div class="entry">
+    <div class="ver">
+      <span class="ver-num">v8</span>
+      <span class="ver-badge bug">CRITICAL FIX</span>
+    </div>
+    <div class="date">17 May 2026</div>
+    <div class="entry-title">Fix: JS code rendered as visible text on page</div>
+    <ul class="changes">
+      <li class="fix-item">JavaScript code was appearing as plain text visible on screen</li>
+      <li class="fix-item">Fixed script tag structure</li>
+    </ul>
+  </div>
+
+  <!-- V7 -->
+  <div class="entry">
+    <div class="ver">
+      <span class="ver-num">v7</span>
+      <span class="ver-badge add">ADD</span>
+    </div>
+    <div class="date">17 May 2026</div>
+    <div class="entry-title">Tony's real photos added to About section</div>
+    <ul class="changes">
+      <li>tony-portrait.jpg, tony-bamboo.jpg, tony-fushimi.jpg, tony-garden.jpg integrated</li>
+      <li>Photo gallery in About section</li>
+    </ul>
+  </div>
+
+  <!-- V6 -->
+  <div class="entry">
+    <div class="ver">
+      <span class="ver-num">v6</span>
+      <span class="ver-badge add">ADD</span>
+    </div>
+    <div class="date">7 May 2026</div>
+    <div class="entry-title">Typewriter hero + WhatsApp availability indicator</div>
+    <ul class="changes">
+      <li>Typewriter animation for hero paragraph</li>
+      <li>WhatsApp button shows online/offline based on Japan time (9am–9pm JST)</li>
+    </ul>
+  </div>
+
+  <!-- V5 -->
+  <div class="entry">
+    <div class="ver">
+      <span class="ver-num">v5</span>
+      <span class="ver-badge add">ADD</span>
+    </div>
+    <div class="date">7 May 2026</div>
+    <div class="entry-title">Booking calendar with multi-language WhatsApp</div>
+    <ul class="changes">
+      <li>Interactive calendar with available/busy dates</li>
+      <li>Click date → opens WhatsApp with date pre-filled in selected language</li>
+      <li class="bug-item">Calendar later found to be invisible due to .rv class bug</li>
+    </ul>
+  </div>
+
+  <!-- V4 -->
+  <div class="entry">
+    <div class="ver">
+      <span class="ver-num">v4</span>
+      <span class="ver-badge add">ADD</span>
+    </div>
+    <div class="date">7 May 2026</div>
+    <div class="entry-title">Review platforms, newsletter, social share</div>
+    <ul class="changes">
+      <li>TripAdvisor / Google reviews integration links</li>
+      <li>Newsletter signup section</li>
+      <li>Social share buttons</li>
+      <li>Scroll progress bar</li>
+      <li>Language-aware WhatsApp messages</li>
+    </ul>
+  </div>
+
+  <!-- V3 -->
+  <div class="entry">
+    <div class="ver">
+      <span class="ver-num">v3</span>
+      <span class="ver-badge add">ADD</span>
+    </div>
+    <div class="date">7 May 2026</div>
+    <div class="entry-title">Auto language detection + currency toggle + cookie consent</div>
+    <ul class="changes">
+      <li>Browser language auto-detection</li>
+      <li>Currency toggle JPY / EUR / USD</li>
+      <li>Exit intent popup</li>
+      <li>Cookie consent bar</li>
+      <li>Review schema (JSON-LD)</li>
+    </ul>
+  </div>
+
+  <!-- V2 -->
+  <div class="entry">
+    <div class="ver">
+      <span class="ver-num">v2</span>
+      <span class="ver-badge add">ADD</span>
+    </div>
+    <div class="date">7 May 2026</div>
+    <div class="entry-title">International SEO, mobile menu, lightbox</div>
+    <ul class="changes">
+      <li>hreflang tags for 5 languages</li>
+      <li>Mobile hamburger menu overlay</li>
+      <li>Photo lightbox</li>
+      <li>404 page</li>
+      <li>Privacy page</li>
+    </ul>
+  </div>
+
+  <!-- V1 -->
+  <div class="entry">
+    <div class="ver">
+      <span class="ver-num">v1</span>
+      <span class="ver-badge live">DEPLOYED ON SURGE</span>
+    </div>
+    <div class="date">7 May 2026</div>
+    <div class="entry-title">Initial launch — this is what the Surge link shows today</div>
+    <ul class="changes">
+      <li>WhatsApp button linking to +34 634 193 106</li>
+      <li>OG tags / meta descriptions</li>
+      <li>FAQ accordion</li>
+      <li>Testimonials section</li>
+      <li>Basic 5-language translations</li>
+      <li>Schema.org structured data</li>
+      <li>Sitemap + robots.txt</li>
+    </ul>
+    <div class="note"><strong>This is the version live on Surge.</strong> All improvements from v2 to v12 exist only in GitHub — never deployed to the public URL.</div>
+  </div>
+
+</div>
+</body>
+</html>

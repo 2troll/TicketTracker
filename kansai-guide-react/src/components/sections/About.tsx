@@ -54,7 +54,7 @@ export function About() {
           >
             <div className="relative rounded-2xl overflow-hidden">
               <img
-                src="../kansai-guide/tony-portrait.jpg"
+                src="/tony-portrait.jpg"
                 alt="Tony Hanma"
                 className="w-full aspect-[3/4] object-cover object-top block"
               />
@@ -114,7 +114,7 @@ export function About() {
 
             <motion.div className="flex gap-3 flex-wrap mt-2" variants={fadeUp(0)}>
               <Button href="booking.html" variant="primary">Book a Tour</Button>
-              <Button href="companions.html" variant="ghost">Meet All Guides</Button>
+              <Button href="/companions.html" variant="ghost">Meet All Guides</Button>
             </motion.div>
           </motion.div>
         </div>

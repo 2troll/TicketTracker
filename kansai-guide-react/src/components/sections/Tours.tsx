@@ -9,22 +9,22 @@ const TOURS = [
     tag: "City Experience",
     title: "Osaka & Kyoto",
     description: "Temples, street food, sake bars and hidden alleys — two iconic cities in one utterly private day.",
-    img: "../kansai-guide/img/kyoto-fushimi.jpg",
-    href: "../kansai-guide/osaka.html",
+    img: "/img/kyoto-fushimi-inari.jpg",
+    href: "/osaka.html",
   },
   {
     tag: "Mountain & Nature",
     title: "Trails & Peaks",
     description: "Seasonal hiking routes in Kansai's mountains, guided at your pace for any fitness level.",
-    img: "../kansai-guide/img/japan-nature.jpg",
-    href: "../kansai-guide/hiking.html",
+    img: "/img/japan-stone-lantern-maple.jpg",
+    href: "/hiking.html",
   },
   {
     tag: "Multi-Language",
     title: "Meet the Team",
     description: "Five languages, five personalities, one team. Your guide speaks your native tongue.",
-    img: "../kansai-guide/tony-garden.jpg",
-    href: "../kansai-guide/companions.html",
+    img: "/tony-garden.jpg",
+    href: "/companions.html",
   },
 ];
 

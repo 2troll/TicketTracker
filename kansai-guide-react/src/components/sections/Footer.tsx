@@ -3,11 +3,11 @@ import { motion } from "framer-motion";
 import { MessageCircle } from "lucide-react";
 
 const LINKS = [
-  { label: "Hiking Tours",    href: "../kansai-guide/hiking.html"     },
-  { label: "Our Guides",      href: "../kansai-guide/companions.html" },
-  { label: "Practical Info",  href: "../kansai-guide/practical.html"  },
-  { label: "Privacy",         href: "../kansai-guide/privacy.html"    },
-  { label: "Updates",         href: "../kansai-guide/versions.html"   },
+  { label: "Hiking Tours",    href: "/hiking.html"     },
+  { label: "Our Guides",      href: "/companions.html" },
+  { label: "Practical Info",  href: "/practical.html"  },
+  { label: "Privacy",         href: "/privacy.html"    },
+  { label: "Updates",         href: "/versions.html"   },
 ];
 
 const WA_FLOAT = "https://wa.me/34634193106";

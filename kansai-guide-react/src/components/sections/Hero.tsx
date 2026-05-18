@@ -55,7 +55,7 @@ export function Hero() {
       {/* Background photo (uses the same img folder as the static site) */}
       <div
         className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: "url('../kansai-guide/img/japan-zen-garden2.jpg')" }}
+        style={{ backgroundImage: "url('/img/japan-zen-garden2.jpg')" }}
       />
 
       {/* Dark overlay */}
