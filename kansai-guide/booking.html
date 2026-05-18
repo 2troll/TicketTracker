@@ -883,11 +883,11 @@ document.getElementById('waBtn').addEventListener('click',function(){
 
   var msg;
   if(lang==='es'){
-    msg='¡Hola Tony! Me gustaría reservar un tour privado.\n\n📅 Fecha: '+dateStr+'\n🗺️ Ruta: '+route.name+'\n👥 Personas: '+guestCount+'\n💴 Precio: ¥'+price.toLocaleString()+' total · ~¥'+perPerson.toLocaleString()+'/persona\n🌍 Idioma: '+selLang+'\n📝 Notas: '+notes+'\n\n¡Espero tu respuesta! 😊';
+    msg='¡Hola Tony! Me gustaría reservar un tour privado.\n\n📅 Fecha: '+dateStr+'\n🗺️ Ruta: '+route.name+'\n👥 Personas: '+guestCount+'\n💴 Precio: ¥'+total.toLocaleString()+' total · ~¥'+perPerson.toLocaleString()+'/persona\n🌍 Idioma: '+selLang+'\n📝 Notas: '+notes+'\n\n¡Espero tu respuesta! 😊';
   } else if(lang==='ru'){
-    msg='Привет Тони! Хочу забронировать частный тур.\n\n📅 Дата: '+dateStr+'\n🗺️ Маршрут: '+route.name+'\n👥 Гостей: '+guestCount+'\n💴 Цена: ¥'+price.toLocaleString()+' всего · ~¥'+perPerson.toLocaleString()+'/чел\n🌍 Язык: '+selLang+'\n📝 Заметки: '+notes;
+    msg='Привет Тони! Хочу забронировать частный тур.\n\n📅 Дата: '+dateStr+'\n🗺️ Маршрут: '+route.name+'\n👥 Гостей: '+guestCount+'\n💴 Цена: ¥'+total.toLocaleString()+' всего · ~¥'+perPerson.toLocaleString()+'/чел\n🌍 Язык: '+selLang+'\n📝 Заметки: '+notes;
   } else if(lang==='ar'){
-    msg='مرحباً توني! أود حجز جولة خاصة.\n\n📅 التاريخ: '+dateStr+'\n🗺️ المسار: '+route.name+'\n👥 الضيوف: '+guestCount+'\n💴 السعر: ¥'+price.toLocaleString()+' المجموع · ~¥'+perPerson.toLocaleString()+'/شخص\n🌍 اللغة: '+selLang+'\n📝 ملاحظات: '+notes;
+    msg='مرحباً توني! أود حجز جولة خاصة.\n\n📅 التاريخ: '+dateStr+'\n🗺️ المسار: '+route.name+'\n👥 الضيوف: '+guestCount+'\n💴 السعر: ¥'+total.toLocaleString()+' المجموع · ~¥'+perPerson.toLocaleString()+'/شخص\n🌍 اللغة: '+selLang+'\n📝 ملاحظات: '+notes;
   } else {
     msg='Hi Tony! I\'d like to book a private tour.\n\n📅 Date: '+dateStr+'\n🗺️ Route: '+route.name+' '+route.kanji+'\n👥 Guests: '+guestCount+' people\n💴 Price: '+priceStr+'\n🌍 Language: '+selLang+'\n📝 Notes: '+notes+'\n\nLooking forward to hearing from you!';
   }

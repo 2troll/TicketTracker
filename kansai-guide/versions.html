@@ -49,12 +49,38 @@ h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:3rem;font-weight:300
 
   <div class="divider"></div>
 
-  <!-- V19 -->
+  <!-- V20 -->
   <div class="entry current">
+    <div class="ver">
+      <span class="ver-num">v20</span>
+      <span class="ver-badge rewrite">REACT REWRITE</span>
+      <span class="ver-badge live">CURRENT CODE</span>
+    </div>
+    <div class="date">18 May 2026</div>
+    <div class="entry-title">React + Framer Motion + Tailwind rebuild · PRO MAX UI</div>
+    <ul class="changes">
+      <li class="fix-item">New standalone project: kansai-guide-react/ — React 18, Framer Motion 11, Tailwind CSS 3, TypeScript, Vite 5</li>
+      <li class="fix-item">cn() utility (clsx + tailwind-merge) — clean class merging, same pattern as 21st.dev components</li>
+      <li class="fix-item">Button component: spring-physics magnetic hover (cursor attracts the button), GPU-only animation (transform + opacity)</li>
+      <li class="fix-item">MagicCard component: Vercel-style radial gradient glow that follows mouse cursor position exactly</li>
+      <li class="fix-item">AnimatedCounter: spring easing count-up from 0 when scrolled into view (Stats section)</li>
+      <li class="fix-item">Hero: stagger entrance variants (eye → h1 → bar → p → buttons), animated ambient gradient orbs, scroll indicator</li>
+      <li class="fix-item">Nav: scroll-aware blur + opacity transition, spring underline on hover, animated hamburger icon</li>
+      <li class="fix-item">Pricing: spinning conic-gradient shimmer border on featured card, pulsing glow on standard cards</li>
+      <li class="fix-item">Testimonials: CSS infinite marquee (pause on hover), edge fade with mask-image</li>
+      <li class="fix-item">FAQ: AnimatePresence spring accordion, + icon rotates 45° with spring on open</li>
+      <li class="fix-item">Booking: form with animated focus rings, loading spinner state, success animation with spring scale</li>
+      <li class="fix-item">All whileInView entrance animations use staggerChildren with spring physics (no linear easing anywhere)</li>
+      <li class="bug-item">booking.html WhatsApp bug fixed: ES/RU/AR message templates referenced undefined variable `price` — corrected to `total`</li>
+    </ul>
+    <div class="note"><strong>Errors committed this version:</strong> Hero.tsx initial TypeScript error — Orb component's `style` prop was missing from interface definition and `animate` was typed as `object` instead of specific record type. Fixed before build.</div>
+  </div>
+
+  <!-- V19 -->
+  <div class="entry">
     <div class="ver">
       <span class="ver-num">v19</span>
       <span class="ver-badge add">UX + DETAIL</span>
-      <span class="ver-badge live">CURRENT CODE</span>
     </div>
     <div class="date">18 May 2026</div>
     <div class="entry-title">Route pre-selection · specific cost breakdown · Kōyasan 2-day detail</div>
