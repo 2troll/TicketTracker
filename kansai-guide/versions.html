@@ -49,19 +49,43 @@ h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:3rem;font-weight:300
 
   <div class="divider"></div>
 
-  <!-- V16 -->
+  <!-- V17 -->
   <div class="entry current">
+    <div class="ver">
+      <span class="ver-num">v17</span>
+      <span class="ver-badge add">PRICING</span>
+      <span class="ver-badge live">CURRENT CODE</span>
+    </div>
+    <div class="date">18 May 2026</div>
+    <div class="entry-title">Per-person pricing · inclusions breakdown · city page fixes · Friday rule</div>
+    <ul class="changes">
+      <li class="fix-item">booking.html: Fridays auto-blocked (isFriday check) — all other days including weekends now available</li>
+      <li class="fix-item">Pricing model changed to per-person: RATE array (¥55k–¥120k base for 2-person group)</li>
+      <li class="fix-item">Group multipliers: solo +35%, 3 pax −10%, 4 pax −18%, 5 pax −25% — badge shown in price box</li>
+      <li class="fix-item">INCLUDES array: 5–6 line ✓/✗ breakdown per route — exact transport costs, entry fees, food exclusions</li>
+      <li class="fix-item">Price box redesigned: per-person + total side-by-side figures, route name header, live updates on guest change</li>
+      <li class="fix-item">Route pills now show "from ¥XX,XXX/pp" — visitors can compare routes at a glance</li>
+      <li class="fix-item">All 5 city pages: Book Now + Request Tour buttons now link to booking.html (were going to index.html#contact)</li>
+      <li class="fix-item">City pages: group size corrected 2–6 → 1–5 everywhere; Kōyasan stays 2–4 intimate</li>
+      <li class="fix-item">City page prices updated to match new RATE: Osaka ¥55k, Kobe ¥62k, Kyoto ¥68k, Nara ¥72k, Kōyasan ¥120k</li>
+      <li class="fix-item">Nara price card: removed wrong "Himeji Castle" reference (different prefecture, different tour)</li>
+      <li class="fix-item">WhatsApp pre-fill now includes per-person rate + total price line in all 5 languages</li>
+    </ul>
+    <div class="note"><strong>Errors corrected this version:</strong> v16 launched with weekends blocked (Tony works weekends); guest min 2/max 8 instead of 1/5; prices set as per-group totals instead of per-person; city pages had wrong 6-person max everywhere; Nara mentioned Himeji Castle which is a completely different route.</div>
+  </div>
+
+  <!-- V16 -->
+  <div class="entry">
     <div class="ver">
       <span class="ver-num">v16</span>
       <span class="ver-badge add">BOOKING</span>
-      <span class="ver-badge live">CURRENT CODE</span>
     </div>
     <div class="date">17 May 2026</div>
     <div class="entry-title">Professional booking calendar — date picker · route selection · WhatsApp pre-fill</div>
     <ul class="changes">
       <li class="fix-item">booking.html created — full professional calendar page with dark premium design matching main site</li>
       <li class="fix-item">Monthly calendar grid (Mon-first) with prev/next navigation — 3 states: available, busy, past</li>
-      <li class="fix-item">BUSY array: Tony edits one array to block unavailable dates — weekends pre-populated May–Jul 2026</li>
+      <li class="fix-item">BUSY array: Tony edits one array to block unavailable dates</li>
       <li class="fix-item">Booking panel: date confirmed → route pills (7 routes), guest stepper (2–8), language selector (5 flags), notes textarea</li>
       <li class="fix-item">Green WhatsApp CTA button → opens wa.me with full pre-filled message (date, route, guests, language, notes)</li>
       <li class="fix-item">Full 5-language system (EN/ES/RU/CS/AR) including localized month and weekday names</li>
