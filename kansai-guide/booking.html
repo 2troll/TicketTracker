@@ -110,17 +110,29 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:.9rem 2rem;display:f
 .lang-pill.on{border-color:rgba(229,48,48,.7);background:rgba(229,48,48,.18);color:#fff}
 
 /* Route price tag inside pill */
-.r-price{display:block;font-size:.65rem;color:var(--red);margin-top:.2rem;font-weight:600;letter-spacing:.02em}
-.route-pill.on .r-price{color:#ff9070}
+.r-price{display:block;font-size:.63rem;color:var(--red);margin-top:.2rem;font-weight:600}
+.route-pill.on .r-price{color:#ffaa80}
 
 /* Price breakdown box */
-.price-box{background:rgba(229,48,48,.06);border:1px solid rgba(229,48,48,.22);border-radius:14px;padding:1.3rem 1.5rem;display:flex;flex-direction:column;gap:.55rem}
-.price-row{display:flex;justify-content:space-between;align-items:baseline;gap:.5rem}
-.price-lbl{font-size:.66rem;color:var(--text2);letter-spacing:.04em}
-.price-total{font-family:var(--serif);font-size:1.75rem;font-weight:300;color:#fff;white-space:nowrap}
-.price-sub{font-size:.68rem;color:var(--text3)}
-.price-per{font-size:.9rem;color:#ff9070;font-weight:600;white-space:nowrap}
-.price-note{font-size:.62rem;color:var(--text3);border-top:1px solid rgba(229,48,48,.14);padding-top:.55rem;line-height:1.5}
+.price-box{background:rgba(229,48,48,.05);border:1px solid rgba(229,48,48,.22);border-radius:14px;padding:1.3rem 1.5rem;display:flex;flex-direction:column;gap:.6rem}
+.price-hd{display:flex;justify-content:space-between;align-items:center;gap:.4rem}
+.price-rname{font-size:.58rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
+.price-badge{font-size:.54rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.18rem .55rem;border-radius:999px;white-space:nowrap}
+.price-badge.solo{background:rgba(255,107,53,.12);color:#FF6B35;border:1px solid rgba(255,107,53,.28)}
+.price-badge.disc{background:rgba(34,200,120,.1);color:#22c878;border:1px solid rgba(34,200,120,.28)}
+.price-figs{display:flex;align-items:stretch;gap:.5rem}
+.price-fig{flex:1;text-align:center;background:rgba(255,255,255,.03);border-radius:10px;padding:.7rem .4rem}
+.price-fig-val{font-family:var(--serif);font-size:1.45rem;font-weight:300;color:#fff;line-height:1}
+.price-fig-lbl{font-size:.56rem;color:var(--text3);margin-top:.28rem;line-height:1.4}
+.price-figs-sep{display:flex;align-items:center;color:var(--text3);font-size:.85rem;flex-shrink:0}
+.incl-list{display:flex;flex-direction:column;gap:.22rem}
+.incl-item{display:flex;gap:.42rem;font-size:.7rem;line-height:1.45}
+.incl-item.ok{color:rgba(240,234,216,.75)}
+.incl-item.exc{color:rgba(240,234,216,.32)}
+.incl-mark{flex-shrink:0;margin-top:.06rem;font-size:.65rem}
+.incl-item.ok .incl-mark{color:#22c878}
+.incl-item.exc .incl-mark{color:rgba(255,90,90,.45)}
+.price-note{font-size:.59rem;color:var(--text3);border-top:1px solid rgba(255,255,255,.06);padding-top:.5rem;line-height:1.5}
 
 /* Notes */
 .notes-in{width:100%;background:var(--glass);border:1px solid var(--linew);border-radius:10px;padding:.75rem 1rem;color:var(--text);font-size:.85rem;resize:none;outline:none;transition:border-color .2s;height:72px;line-height:1.55}
@@ -259,15 +271,23 @@ footer a:hover{color:var(--text)}
 
       <!-- Price breakdown -->
       <div class="price-box" id="priceBox">
-        <div class="price-row">
-          <span class="price-lbl" data-i="price.total">Total for your group</span>
-          <span class="price-total" id="priceTotal">¥45,000</span>
+        <div class="price-hd">
+          <span class="price-rname" id="priceRouteName">Osaka Food Circuit</span>
+          <span class="price-badge" id="priceBadge" style="display:none"></span>
         </div>
-        <div class="price-row">
-          <span class="price-sub"><span data-i="price.per">Per person</span> · <span id="priceGuestCtx">1 guest</span></span>
-          <span class="price-per" id="pricePer">~¥45,000</span>
+        <div class="price-figs">
+          <div class="price-fig">
+            <div class="price-fig-val" id="pricePerPerson">¥55,000</div>
+            <div class="price-fig-lbl" data-i="price.per">per person</div>
+          </div>
+          <div class="price-figs-sep">→</div>
+          <div class="price-fig">
+            <div class="price-fig-val" id="priceTotalVal">¥55,000</div>
+            <div class="price-fig-lbl"><span data-i="price.total">total</span> · <span id="priceGuestCtx">1 guest</span></div>
+          </div>
         </div>
-        <div class="price-note" data-i="price.note">Private group · up to 5 people · no hidden fees</div>
+        <div class="incl-list" id="inclList"></div>
+        <div class="price-note" data-i="price.note">100% private · max 5 people · no hidden fees</div>
       </div>
 
       <!-- Guests -->
@@ -332,16 +352,76 @@ var BUSY = [
 ];
 
 // ═══════════════════════════════════════════════════
-// PRICES — per group (up to 5 people), in JPY
+// PRICING — base rate per person (2-person group)
+// Solo pays a 35% supplement; 3-5 people get group discounts
 // ═══════════════════════════════════════════════════
-var PRICES = [
-  45000,  // Osaka Food Circuit
-  55000,  // Hidden Kyoto
-  50000,  // Kobe Refined
-  60000,  // Nara Sacred Forest
-  95000,  // Kōyasan Pilgrimage
-  80000,  // Osaka × Kyoto Grand Day
-  65000,  // Mountain Hiking
+var RATE = [
+  55000,  // Osaka Food Circuit
+  68000,  // Hidden Kyoto
+  62000,  // Kobe Refined
+  72000,  // Nara Sacred Forest
+  120000, // Kōyasan Pilgrimage (2-day, incl. lodging)
+  92000,  // Osaka × Kyoto Grand Day
+  78000,  // Mountain Hiking
+];
+var MULT = {1:1.35, 2:1.00, 3:0.90, 4:0.82, 5:0.75};
+
+// ═══════════════════════════════════════════════════
+// WHAT'S INCLUDED — per route
+// ok:1 = included · ok:0 = not included / extra cost
+// ═══════════════════════════════════════════════════
+var INCLUDES = [
+  [ // Osaka
+    {ok:1,t:'Private guide · full day (7–8 h)'},
+    {ok:1,t:'Metro Namba ↔ Shinsekai · ¥320/person'},
+    {ok:1,t:'Kuromon Market · Dotonbori · Shinsekai'},
+    {ok:1,t:'Sake bar session · 40 premium labels'},
+    {ok:0,t:'Food & drinks (est. ¥3,000–5,000)'},
+  ],
+  [ // Kyoto
+    {ok:1,t:'Private guide · full day (9–10 h)'},
+    {ok:1,t:'JR train Osaka → Kyoto · ¥1,140/person'},
+    {ok:1,t:'Fushimi Inari · Philosopher\'s Path · Gion'},
+    {ok:1,t:'Private tea ceremony · ¥3,500/person incl.'},
+    {ok:0,t:'Dinner (Tony makes the reservation · cost separate)'},
+  ],
+  [ // Kobe
+    {ok:1,t:'Private guide · full day (8 h)'},
+    {ok:1,t:'Train Osaka → Kobe · ¥390/person'},
+    {ok:1,t:'Kitano Ijinkan residences ticket · ¥700/person'},
+    {ok:1,t:'Nada Sake Brewery · free entry + tastings'},
+    {ok:0,t:'Kobe beef lunch (Tony pre-books · cost separate)'},
+  ],
+  [ // Nara
+    {ok:1,t:'Private guide · full day (7–8 h)'},
+    {ok:1,t:'JR/Kintetsu train from Osaka · ¥860/person'},
+    {ok:1,t:'Todai-ji Great Buddha Hall · ¥600/person'},
+    {ok:1,t:'Isuien Garden · ¥900/person · Nara Deer Park'},
+    {ok:0,t:'Lunch (Tony recommends local spots · cost separate)'},
+  ],
+  [ // Koyasan
+    {ok:1,t:'Private guide · 2-day overnight pilgrimage'},
+    {ok:1,t:'Nankai train + Kōyasan cable car · ¥1,990/person'},
+    {ok:1,t:'Kongobu-ji Temple · ¥1,000/person'},
+    {ok:1,t:'Okunoin Cemetery lantern walk'},
+    {ok:1,t:'Shukubo temple lodging · dinner + breakfast'},
+    {ok:0,t:'Personal expenses & souvenirs'},
+  ],
+  [ // Osaka × Kyoto
+    {ok:1,t:'Private guide · 12 h two-city day'},
+    {ok:1,t:'All trains Osaka ↔ Kyoto · included'},
+    {ok:1,t:'Fushimi Inari dawn access · Gion district'},
+    {ok:1,t:'Private tea ceremony · ¥3,500/person incl.'},
+    {ok:1,t:'Dotonbori · Kuromon Market · sake bar'},
+    {ok:0,t:'Food & drinks (est. ¥4,000–6,000)'},
+  ],
+  [ // Mountain Hiking
+    {ok:1,t:'Private guide · full day (8–9 h)'},
+    {ok:1,t:'Train to trailhead · ~¥700/person'},
+    {ok:1,t:'Custom trail by season & fitness level'},
+    {ok:1,t:'5–6 h guided mountain hike'},
+    {ok:0,t:'Hiking gear & equipment (bring your own)'},
+  ],
 ];
 
 // ═══════════════════════════════════════════════════
@@ -365,9 +445,10 @@ en:{
   'form.lang':'Preferred language',
   'form.notes':'Notes (optional)',
   'form.notes.ph':'Dietary requirements, special requests, interests…',
-  'price.total':'Total for your group','price.per':'Per person',
+  'price.per':'per person','price.total':'total',
   'price.guest':'guest','price.guests':'guests',
-  'price.note':'Private group · up to 5 people · no hidden fees',
+  'price.solo':'Solo supplement','price.disc':'Group',
+  'price.note':'100% private · max 5 people · no hidden fees',
   'form.wa':'Send request on WhatsApp',
   'form.wa.note':'Opens WhatsApp with all your details pre-filled. Tony replies within 2 h.',
   'foot.back':'← Back to Tony Kansai Guide',
@@ -400,9 +481,10 @@ es:{
   'form.lang':'Idioma preferido',
   'form.notes':'Notas (opcional)',
   'form.notes.ph':'Alergias, peticiones especiales, intereses…',
-  'price.total':'Total para tu grupo','price.per':'Por persona',
+  'price.per':'por persona','price.total':'total',
   'price.guest':'persona','price.guests':'personas',
-  'price.note':'Grupo privado · hasta 5 personas · sin costes ocultos',
+  'price.solo':'Suplemento individual','price.disc':'Grupo',
+  'price.note':'100% privado · máx 5 personas · sin costes ocultos',
   'form.wa':'Enviar solicitud por WhatsApp',
   'form.wa.note':'Abre WhatsApp con todos tus datos ya escritos. Tony responde en menos de 2 h.',
   'foot.back':'← Volver a la Guía Kansai de Tony',
@@ -435,9 +517,10 @@ ru:{
   'form.lang':'Предпочтительный язык',
   'form.notes':'Заметки (необязательно)',
   'form.notes.ph':'Диетические требования, особые пожелания…',
-  'price.total':'Итого для группы','price.per':'На человека',
+  'price.per':'на человека','price.total':'итого',
   'price.guest':'гость','price.guests':'гостей',
-  'price.note':'Частная группа · до 5 человек · без скрытых платежей',
+  'price.solo':'Доплата за 1 чел.','price.disc':'Группа',
+  'price.note':'100% приватно · макс 5 чел. · без скрытых платежей',
   'form.wa':'Отправить заявку в WhatsApp',
   'form.wa.note':'Откроет WhatsApp с уже заполненными данными. Тони ответит в течение 2 ч.',
   'foot.back':'← Назад к Гиду Тони по Кансай',
@@ -470,9 +553,10 @@ cs:{
   'form.lang':'Preferovaný jazyk',
   'form.notes':'Poznámky (nepovinné)',
   'form.notes.ph':'Dieta, zvláštní přání, zájmy…',
-  'price.total':'Celkem pro skupinu','price.per':'Na osobu',
+  'price.per':'na osobu','price.total':'celkem',
   'price.guest':'host','price.guests':'hostů',
-  'price.note':'Soukromá skupina · až 5 osob · žádné skryté poplatky',
+  'price.solo':'Příplatek solo','price.disc':'Skupina',
+  'price.note':'100% soukromé · max 5 osob · žádné skryté poplatky',
   'form.wa':'Odeslat žádost přes WhatsApp',
   'form.wa.note':'Otevře WhatsApp s předvyplněnými údaji. Tony odpoví do 2 h.',
   'foot.back':'← Zpět na Tonyho průvodce Kansai',
@@ -505,9 +589,10 @@ ar:{
   'form.lang':'اللغة المفضلة',
   'form.notes':'ملاحظات (اختياري)',
   'form.notes.ph':'متطلبات غذائية، طلبات خاصة، اهتمامات…',
-  'price.total':'الإجمالي لمجموعتك','price.per':'لكل شخص',
+  'price.per':'لكل شخص','price.total':'الإجمالي',
   'price.guest':'ضيف','price.guests':'ضيوف',
-  'price.note':'مجموعة خاصة · حتى 5 أشخاص · بدون رسوم مخفية',
+  'price.solo':'رسوم الفرد','price.disc':'مجموعة',
+  'price.note':'خصوصية تامة · حد أقصى 5 أشخاص · بدون رسوم مخفية',
   'form.wa':'إرسال الطلب عبر واتساب',
   'form.wa.note':'يفتح واتساب مع تفاصيلك معبأة مسبقاً. يرد توني خلال ساعتين.',
   'foot.back':'→ العودة إلى دليل توني كانساي',
@@ -685,18 +770,48 @@ function showBookForm(d){
 }
 
 // ═══════════════════════════════════════════════════
-// ROUTES
+// ROUTES & PRICING
 // ═══════════════════════════════════════════════════
 function fmtYen(n){ return '¥'+n.toLocaleString(); }
 
+function calcRate(ri,n){
+  return Math.round(RATE[ri]*(MULT[n]||1.0)/500)*500;
+}
+
+function renderIncludes(){
+  var list=document.getElementById('inclList');
+  if(!list)return;
+  list.innerHTML='';
+  (INCLUDES[selectedRoute]||[]).forEach(function(item){
+    var d=document.createElement('div');
+    d.className='incl-item '+(item.ok?'ok':'exc');
+    d.innerHTML='<span class="incl-mark">'+(item.ok?'✓':'✗')+'</span><span>'+item.t+'</span>';
+    list.appendChild(d);
+  });
+}
+
 function updatePrice(){
-  var price=PRICES[selectedRoute]||0;
-  var per=Math.round(price/Math.max(guestCount,1));
-  document.getElementById('priceTotal').textContent=fmtYen(price);
-  document.getElementById('pricePer').textContent='~'+fmtYen(per);
+  var perPerson=calcRate(selectedRoute,guestCount);
+  var total=perPerson*guestCount;
+  document.getElementById('pricePerPerson').textContent=fmtYen(perPerson);
+  document.getElementById('priceTotalVal').textContent=fmtYen(total);
   var t=T[lang];
   var gw=guestCount===1?(t['price.guest']||'guest'):(t['price.guests']||'guests');
   document.getElementById('priceGuestCtx').textContent=guestCount+' '+gw;
+  var routes=T[lang].routes;
+  if(routes&&routes[selectedRoute])document.getElementById('priceRouteName').textContent=routes[selectedRoute].name;
+  var badge=document.getElementById('priceBadge');
+  if(guestCount===1){
+    badge.textContent=t['price.solo']||'Solo supplement';
+    badge.className='price-badge solo';badge.style.display='inline-block';
+  }else if(guestCount>=3){
+    var dp=Math.round((1-MULT[guestCount])*100);
+    badge.textContent=(t['price.disc']||'Group')+' −'+dp+'%';
+    badge.className='price-badge disc';badge.style.display='inline-block';
+  }else{
+    badge.style.display='none';
+  }
+  renderIncludes();
 }
 
 function renderRoutes(){
@@ -706,11 +821,8 @@ function renderRoutes(){
   t.routes.forEach(function(r,i){
     var btn=document.createElement('button');
     btn.className='route-pill'+(i===selectedRoute?' on':'');
-    btn.innerHTML='<span>'+r.name+'</span><span class="r-kanji">'+r.kanji+'</span><span class="r-price">'+fmtYen(PRICES[i])+'</span>';
-    btn.addEventListener('click',function(){
-      selectedRoute=i;
-      renderRoutes();
-    });
+    btn.innerHTML='<span>'+r.name+'</span><span class="r-kanji">'+r.kanji+'</span><span class="r-price">from '+fmtYen(RATE[i])+'/pp</span>';
+    btn.addEventListener('click',function(){selectedRoute=i;renderRoutes();});
     grid.appendChild(btn);
   });
   updatePrice();
@@ -759,9 +871,9 @@ document.getElementById('waBtn').addEventListener('click',function(){
   var monthName=t.months[selectedDate.getMonth()];
   var dateStr=dayName+', '+monthName+' '+selectedDate.getDate()+' '+selectedDate.getFullYear();
   var notes=document.getElementById('notesIn').value.trim()||'–';
-  var price=PRICES[selectedRoute]||0;
-  var perPerson=Math.round(price/Math.max(guestCount,1));
-  var priceStr=fmtYen(price)+' total · ~'+fmtYen(perPerson)+'/person';
+  var perPerson=calcRate(selectedRoute,guestCount);
+  var total=perPerson*guestCount;
+  var priceStr=fmtYen(perPerson)+'/person · '+fmtYen(total)+' total';
 
   var msg;
   if(lang==='es'){
