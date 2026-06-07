@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    @apply bg-bg text-[#EBE8E0] overflow-x-hidden;
+    line-height: 1.6;
+  }
+
+  ::-webkit-scrollbar { width: 3px; }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #E53030, #FF6B35);
+    border-radius: 2px;
+  }
+}
+
+@layer utilities {
+  .text-grad {
+    @apply bg-gradient-to-br from-[#E53030] to-[#FF6B35] bg-clip-text text-transparent;
+  }
+
+  .border-grad {
+    border-image: linear-gradient(135deg, #E53030, #FF6B35) 1;
+  }
+
+  /* Marquee for testimonials */
+  .marquee-track {
+    animation: marquee 42s linear infinite;
+    display: flex;
+    width: max-content;
+    gap: 1.25rem;
+  }
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+
+  /* Shimmer card border */
+  .shimmer-border-inner {
+    position: absolute;
+    inset: -50%;
+    background: conic-gradient(
+      from 0deg,
+      #E53030 0%,
+      #FF6B35 25%,
+      transparent 50%,
+      transparent 75%,
+      #E53030 100%
+    );
+    animation: shimmer-spin 3.5s linear infinite;
+  }
+}

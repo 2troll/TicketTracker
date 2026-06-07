@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Tony Hanma — Private Kansai Guide · Japan</title>
+<meta name="description" content="Private tours in Osaka, Kyoto, Nara and Kansai in 5 languages. 100% private, 200+ tours completed."/>
+<meta property="og:title" content="Tony Hanma · Private Kansai Guide"/>
+<meta property="og:image" content="https://tonykansaiguide.surge.sh/tony-portrait.jpg"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://tonykansaiguide.surge.sh/"/>
+<link rel="canonical" href="https://tonykansaiguide.surge.sh/"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0C0D16;
+  --bg1:#12141F;
+  --card:#1C1F30;
+  --text:#EBE8E0;
+  --text2:rgba(235,232,224,.68);
+  --text3:rgba(235,232,224,.35);
+  --red:#E53030;
+  --ora:#FF6B35;
+  --grad:linear-gradient(135deg,#E53030,#FF6B35);
+  --border:rgba(255,255,255,.11);
+  --border2:rgba(255,255,255,.06);
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Plus Jakarta Sans',system-ui,sans-serif;
+  --r:16px;
+  --w:1160px;
+  --nh:64px;
+}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);overflow-x:hidden;line-height:1.6}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-thumb{background:var(--red);border-radius:2px}
+
+/* PROGRESS */
+#prog{position:fixed;top:0;left:0;height:2px;background:var(--grad);z-index:9999;width:0;pointer-events:none}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:900;height:var(--nh);background:rgba(12,13,22,.93);backdrop-filter:blur(20px);border-bottom:1px solid var(--border2)}
+.nav-in{max-width:var(--w);margin:0 auto;padding:0 1.8rem;height:100%;display:flex;align-items:center;gap:1.8rem}
+.nav-logo{font-family:var(--serif);font-size:1.18rem;font-style:italic;font-weight:300;color:var(--text);text-decoration:none;margin-right:auto;flex-shrink:0}
+.nav-links{display:flex;list-style:none;gap:1.8rem}
+.nav-links a{font-size:.67rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--text2);text-decoration:none;transition:color .2s;white-space:nowrap}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{padding:.44rem 1.1rem !important;background:var(--grad) !important;color:#fff !important;border-radius:999px}
+.nav-cta:hover{opacity:.84;color:#fff !important}
+.langs{display:flex;gap:.28rem;flex-shrink:0}
+.lb{background:transparent;border:1px solid var(--border);color:var(--text3);font-family:var(--sans);font-size:.59rem;font-weight:600;letter-spacing:.08em;padding:.24rem .56rem;border-radius:999px;cursor:pointer;transition:all .2s;line-height:1}
+.lb.on,.lb:hover{background:var(--grad);border-color:transparent;color:#fff}
+#ham{display:none;flex-direction:column;gap:5px;background:transparent;border:none;cursor:pointer;padding:.35rem}
+#ham span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:all .3s}
+#ham.on span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+#ham.on span:nth-child(2){opacity:0}
+#ham.on span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+/* MOBILE MENU */
+#mob{position:fixed;inset:0;z-index:850;background:rgba(8,9,18,.97);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;opacity:0;pointer-events:none;transition:opacity .3s;padding:2rem}
+#mob.on{opacity:1;pointer-events:all}
+.mob-a{font-family:var(--serif);font-size:2.2rem;font-style:italic;font-weight:300;color:var(--text);text-decoration:none;transition:color .2s}
+.mob-a:hover{color:var(--red)}
+.mob-langs{display:flex;gap:.4rem;flex-wrap:wrap;justify-content:center;margin-top:.6rem}
+
+/* LAYOUT */
+.wrap{max-width:var(--w);margin:0 auto;padding:0 1.8rem}
+section{padding:7rem 0}
+.alt{background:var(--bg1)}
+.lbl{display:block;font-size:.58rem;font-weight:700;letter-spacing:.34em;text-transform:uppercase;color:var(--red);margin-bottom:.9rem}
+.h2{font-family:var(--serif);font-size:clamp(2.2rem,4.5vw,3.6rem);font-weight:300;line-height:1.05}
+.sub{font-size:.94rem;font-weight:300;color:var(--text2);line-height:1.85;margin-top:.8rem;max-width:52ch}
+.acc{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:.44rem;padding:.78rem 1.85rem;border-radius:999px;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:none;font-family:var(--sans);transition:all .22s;white-space:nowrap}
+.btn-r{background:var(--grad);color:#fff}
+.btn-r:hover{opacity:.85;transform:translateY(-2px);box-shadow:0 8px 24px rgba(229,48,48,.28)}
+.btn-o{background:transparent;color:var(--text2);border:1px solid var(--border)}
+.btn-o:hover{color:var(--text);border-color:rgba(255,255,255,.28);background:rgba(255,255,255,.04)}
+.btn svg{width:15px;height:15px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.rv.d1{transition-delay:.08s}.rv.d2{transition-delay:.16s}.rv.d3{transition-delay:.25s}
+.rv.in{opacity:1;transform:none}
+
+/* ── HERO ── */
+#hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;padding:calc(var(--nh) + 2rem) 1.8rem 5.5rem}
+.hero-bg{position:absolute;inset:0;overflow:hidden}
+.hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;animation:hslide 30s ease-in-out infinite}
+.hero-slide:nth-child(1){animation-delay:0s}
+.hero-slide:nth-child(2){animation-delay:5s}
+.hero-slide:nth-child(3){animation-delay:10s}
+.hero-slide:nth-child(4){animation-delay:15s}
+.hero-slide:nth-child(5){animation-delay:20s}
+.hero-slide:nth-child(6){animation-delay:25s}
+@keyframes hslide{0%,13.33%{opacity:1}20%,100%{opacity:0}}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,18,.96) 0%,rgba(8,8,18,.52) 55%,rgba(8,8,18,.2) 100%);pointer-events:none}
+.hero-c{position:relative;z-index:1;max-width:660px}
+.hero-eye{display:block;font-size:.57rem;font-weight:600;letter-spacing:.4em;text-transform:uppercase;color:rgba(255,255,255,.48);margin-bottom:1.3rem}
+.hero-h1{font-family:var(--serif);font-size:clamp(3.5rem,8.5vw,7.8rem);font-weight:300;line-height:.9;color:#fff;margin-bottom:1.5rem}
+.hero-h1 em{display:block;font-style:italic}
+.hero-p{font-size:.97rem;font-weight:300;color:rgba(255,255,255,.74);line-height:1.85;max-width:46ch;margin-bottom:2.2rem;min-height:2.4em}
+.hero-btns{display:flex;gap:.8rem;flex-wrap:wrap}
+.red-bar{display:block;width:46px;height:2px;background:var(--grad);border-radius:2px;margin:1.4rem 0}
+
+/* ── STATS ── */
+#stats{padding:0;border-top:1px solid var(--border2);border-bottom:1px solid var(--border2)}
+.stats-g{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border2)}
+.stat-box{background:var(--bg);padding:2.5rem 1.5rem;text-align:center}
+.stat-n{font-family:var(--serif);font-size:clamp(2.8rem,5vw,4.4rem);font-weight:300;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;display:block}
+.stat-l{font-size:.58rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--text3);display:block;margin-top:.6rem}
+
+/* ── ABOUT ── */
+.about-g{display:grid;grid-template-columns:300px 1fr;gap:5rem;align-items:start;margin-top:3.5rem}
+.about-img{position:relative}
+.about-img img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top center;border-radius:var(--r);display:block}
+.about-img::after{content:'';position:absolute;inset:0;border-radius:var(--r);box-shadow:inset 0 0 0 1px rgba(255,255,255,.09)}
+.about-txt p{font-size:.95rem;font-weight:300;color:var(--text2);line-height:1.95;margin-bottom:1rem}
+.lang-chips{display:flex;flex-wrap:wrap;gap:.45rem;margin:1.5rem 0}
+.chip{font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.28rem .78rem;border-radius:999px;border:1px solid var(--border);color:var(--text3)}
+.about-btns{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:2rem}
+
+/* ── TOURS ── */
+.tours-g{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:3.5rem}
+.tour-card{background:var(--card);border:1px solid var(--border2);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;transition:border-color .3s,transform .3s}
+.tour-card:hover{border-color:rgba(229,48,48,.32);transform:translateY(-4px)}
+.tour-img{height:240px;background-size:cover;background-position:center;position:relative;flex-shrink:0;overflow:hidden}
+.tour-img::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad);z-index:1}
+.tour-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(12,13,22,.88) 0%,rgba(12,13,22,.15) 50%,transparent 75%)}
+.tour-body{padding:1.6rem;display:flex;flex-direction:column;gap:.65rem;flex:1}
+.tour-tag{font-size:.57rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--red)}
+.tour-body h3{font-family:var(--serif);font-size:1.7rem;font-weight:300;line-height:1.1}
+.tour-body p{font-size:.88rem;font-weight:300;color:var(--text2);line-height:1.85;flex:1}
+.tour-card .btn{align-self:flex-start;margin-top:.8rem}
+
+/* ── PRICING ── */
+.price-g{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:3.5rem}
+.price-card{background:var(--card);border:1px solid var(--border2);border-radius:var(--r);padding:2rem;display:flex;flex-direction:column;gap:.85rem;position:relative}
+.price-card.hot{border-color:rgba(229,48,48,.38);background:rgba(229,48,48,.04)}
+.hot-badge{position:absolute;top:-1px;right:1.4rem;background:var(--grad);color:#fff;font-size:.53rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.26rem .85rem;border-radius:0 0 8px 8px}
+.price-tier{font-size:.55rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--text3)}
+.price-name{font-family:var(--serif);font-size:1.75rem;font-weight:300}
+.price-amt{font-family:var(--serif);font-size:2.8rem;font-weight:300;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
+.price-per{font-size:.7rem;color:var(--text3);margin-top:-.3rem}
+.price-feats{list-style:none;display:flex;flex-direction:column;gap:.48rem;flex:1}
+.price-feats li{font-size:.84rem;font-weight:300;color:var(--text2);display:flex;align-items:flex-start;gap:.5rem;line-height:1.65}
+.price-feats li::before{content:'✦';color:var(--red);font-size:.58rem;flex-shrink:0;margin-top:.22rem}
+.price-card .btn{align-self:stretch;justify-content:center;margin-top:auto}
+
+/* ── TESTIMONIALS ── */
+.test-g{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:3.5rem}
+.test-card{background:var(--card);border:1px solid var(--border2);border-radius:var(--r);padding:1.8rem;display:flex;flex-direction:column;gap:.75rem}
+.stars{color:#F5C518;font-size:.9rem;letter-spacing:.05em}
+.test-q{font-family:var(--serif);font-size:1.08rem;font-style:italic;font-weight:300;line-height:1.75;flex:1}
+.test-auth{display:flex;align-items:center;gap:.7rem;padding-top:.8rem;border-top:1px solid var(--border2)}
+.test-flag{font-size:1.2rem}
+.test-name{font-size:.82rem;font-weight:600}
+.test-loc{font-size:.68rem;color:var(--text3);margin-top:.1rem}
+
+/* ── FAQ ── */
+.faq-list{max-width:720px;margin-top:3rem;display:flex;flex-direction:column;gap:.55rem}
+.faq-item{border:1px solid var(--border2);border-radius:12px;background:var(--card);overflow:hidden}
+.faq-q{width:100%;background:transparent;border:none;color:var(--text);font-family:var(--sans);font-size:.93rem;font-weight:500;text-align:left;padding:1.25rem 1.5rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;transition:color .2s}
+.faq-q:hover{color:var(--red)}
+.faq-icon{font-size:1.25rem;font-weight:300;color:var(--text3);transition:transform .3s,color .3s;flex-shrink:0;line-height:1}
+.faq-item.on .faq-icon{transform:rotate(45deg);color:var(--red)}
+.faq-ans{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.faq-item.on .faq-ans{max-height:320px}
+.faq-ans p{padding:.1rem 1.5rem 1.25rem;font-size:.9rem;font-weight:300;color:var(--text2);line-height:1.9}
+
+/* ── BOOKING ── */
+.book-g{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-top:3.5rem;align-items:start}
+.wa-card{background:var(--card);border:1px solid rgba(37,211,102,.22);border-radius:var(--r);padding:2rem}
+.wa-card h3{font-family:var(--serif);font-size:1.6rem;font-weight:300;margin-bottom:.6rem}
+.wa-card p{font-size:.88rem;font-weight:300;color:var(--text2);line-height:1.8;margin-bottom:1.2rem}
+.wa-btns{display:flex;flex-direction:column;gap:.5rem}
+.wa-btn{display:flex;align-items:center;gap:.8rem;padding:.85rem 1.1rem;background:rgba(37,211,102,.06);border:1px solid rgba(37,211,102,.18);border-radius:10px;color:var(--text);text-decoration:none;font-size:.84rem;font-weight:300;transition:all .22s}
+.wa-btn:hover{background:rgba(37,211,102,.13);border-color:rgba(37,211,102,.42)}
+.wa-btn-flag{font-size:1.1rem;flex-shrink:0}
+.wa-btn-txt{flex:1}
+.wa-btn-arr{color:var(--text3);transition:transform .2s}
+.wa-btn:hover .wa-btn-arr{transform:translateX(3px)}
+.form-title{font-family:var(--serif);font-size:1.6rem;font-weight:300;margin-bottom:1.4rem}
+.cform{display:flex;flex-direction:column;gap:.85rem}
+.cform label{font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);display:block;margin-bottom:.24rem}
+.cform input,.cform textarea{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:var(--sans);font-size:.9rem;font-weight:300;padding:.78rem 1rem;outline:none;transition:border-color .2s}
+.cform input:focus,.cform textarea:focus{border-color:rgba(229,48,48,.48);background:rgba(255,255,255,.06)}
+.cform textarea{min-height:110px;resize:vertical}
+.cform input::placeholder,.cform textarea::placeholder{color:var(--text3)}
+#form-ok{display:none;font-family:var(--serif);font-size:1.5rem;font-style:italic;font-weight:300;color:var(--red);text-align:center;padding:2rem 0}
+
+/* ── FOOTER ── */
+footer{background:#070810;border-top:1px solid var(--border2);padding:3rem 1.8rem}
+.foot-in{max-width:var(--w);margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.4rem}
+.foot-logo{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--text)}
+.foot-links{display:flex;gap:1.4rem;flex-wrap:wrap}
+.foot-links a{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);text-decoration:none;transition:color .2s}
+.foot-links a:hover{color:var(--red)}
+.foot-copy{width:100%;text-align:center;font-size:.6rem;letter-spacing:.08em;color:var(--text3);padding-top:1.5rem;border-top:1px solid var(--border2);margin-top:.3rem}
+
+/* ── WHATSAPP FLOAT ── */
+.wa-float{position:fixed;bottom:1.6rem;right:1.6rem;z-index:800;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.38);transition:transform .2s,box-shadow .2s}
+.wa-float::before{content:'';position:absolute;inset:-6px;border-radius:50%;border:2px solid rgba(37,211,102,.32);animation:wa-ring 2.2s ease-in-out infinite;pointer-events:none}
+@keyframes wa-ring{0%,100%{transform:scale(1);opacity:.8}60%{transform:scale(1.3);opacity:0}}
+.wa-float:hover{transform:scale(1.08);box-shadow:0 6px 28px rgba(37,211,102,.55)}
+.wa-float svg{width:26px;height:26px}
+.wa-dot{position:absolute;top:-1px;right:-1px;width:14px;height:14px;border-radius:50%;border:2.5px solid #070810}
+.wa-dot.on{background:#22C87A}
+.wa-dot.off{background:#888}
+.wa-tip{position:absolute;right:66px;background:rgba(6,7,16,.96);color:#fff;font-size:.65rem;font-weight:600;white-space:nowrap;padding:.32rem .85rem;border-radius:8px;opacity:0;pointer-events:none;transition:opacity .2s;border:1px solid rgba(37,211,102,.2);font-family:var(--sans)}
+.wa-float:hover .wa-tip{opacity:1}
+
+/* ── COOKIE ── */
+.cookie{position:fixed;bottom:1.4rem;left:1.4rem;z-index:800;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.1rem 1.4rem;max-width:330px;opacity:0;pointer-events:none;transition:opacity .4s,transform .4s;transform:translateY(8px);box-shadow:0 8px 32px rgba(0,0,0,.5)}
+.cookie.show{opacity:1;pointer-events:all;transform:none}
+.cookie p{font-size:.76rem;color:var(--text2);line-height:1.6;margin-bottom:.75rem}
+.cookie a{color:var(--red);text-decoration:none}
+.cookie-btns{display:flex;gap:.5rem}
+.ck-y{padding:.42rem 1.05rem;background:var(--grad);color:#fff;border:none;border-radius:999px;font-size:.66rem;font-weight:600;cursor:pointer;font-family:var(--sans)}
+.ck-n{padding:.42rem 1.05rem;background:transparent;color:var(--text3);border:1px solid var(--border);border-radius:999px;font-size:.66rem;font-weight:600;cursor:pointer;font-family:var(--sans)}
+
+/* ── RTL ── */
+[dir="rtl"] .nav-logo{margin-right:0;margin-left:auto}
+[dir="rtl"] .wa-float{right:auto;left:1.6rem}
+[dir="rtl"] .wa-tip{right:auto;left:66px}
+[dir="rtl"] .cookie{left:auto;right:1.4rem}
+[dir="rtl"] .hot-badge{right:auto;left:1.4rem;border-radius:0 0 0 8px}
+[dir="rtl"] .faq-q{text-align:right}
+[dir="rtl"] .wa-btn-arr{transform:rotate(180deg)}
+[dir="rtl"] .wa-btn:hover .wa-btn-arr{transform:rotate(180deg) translateX(3px)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .nav-links,.langs{display:none}
+  #ham{display:flex}
+  .about-g{grid-template-columns:1fr;gap:2.5rem}
+  .about-img{max-width:240px}
+  .tours-g,.price-g,.test-g{grid-template-columns:1fr}
+  .book-g{grid-template-columns:1fr}
+  .stats-g{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:500px){
+  section{padding:5rem 0}
+  .hero-h1{font-size:3.2rem}
+  .hero-btns{flex-direction:column;align-items:flex-start}
+  .about-btns{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<div id="prog"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-in">
+    <a class="nav-logo" href="#">Tony Hanma</a>
+    <ul class="nav-links">
+      <li><a href="#about"   data-i="nav.about">About</a></li>
+      <li><a href="#tours"   data-i="nav.tours">Tours</a></li>
+      <li><a href="#pricing" data-i="nav.pricing">Pricing</a></li>
+      <li><a href="#faq"     data-i="nav.faq">FAQ</a></li>
+      <li><a href="#booking" class="nav-cta" data-i="nav.book">Book Now</a></li>
+    </ul>
+    <div class="langs">
+      <button class="lb on" data-l="en">EN</button>
+      <button class="lb" data-l="es">ES</button>
+      <button class="lb" data-l="ru">РУ</button>
+      <button class="lb" data-l="cs">CS</button>
+      <button class="lb" data-l="ar">AR</button>
+    </div>
+    <button id="ham" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div id="mob">
+  <a class="mob-a" href="#about"   onclick="closeMob()" data-i="nav.about">About</a>
+  <a class="mob-a" href="#tours"   onclick="closeMob()" data-i="nav.tours">Tours</a>
+  <a class="mob-a" href="#pricing" onclick="closeMob()" data-i="nav.pricing">Pricing</a>
+  <a class="mob-a" href="#faq"     onclick="closeMob()" data-i="nav.faq">FAQ</a>
+  <a class="mob-a" href="#booking" onclick="closeMob()" data-i="nav.book">Book Now</a>
+  <div class="mob-langs">
+    <button class="lb" data-l="en">EN</button>
+    <button class="lb" data-l="es">ES</button>
+    <button class="lb" data-l="ru">РУ</button>
+    <button class="lb" data-l="cs">CS</button>
+    <button class="lb" data-l="ar">AR</button>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg">
+    <div class="hero-slide" style="background-image:url('img/japan-zen-garden2.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('img/kyoto-fushimi-inari.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('img/kyoto-bamboo-arashiyama.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('img/kyoto-torii-dawn.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('img/japan-sakura-temple.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('img/japan-maple-autumn.jpg')"></div>
+    <div class="hero-overlay"></div>
+  </div>
+  <div class="hero-c">
+    <span class="hero-eye" data-i="hero.eye">Private Guide · Kansai Region · Japan</span>
+    <h1 class="hero-h1"><em>Discover</em><span data-i="hero.h1">Japan's True Soul</span></h1>
+    <p class="hero-p" id="hero-p"></p>
+    <div class="hero-btns">
+      <a href="#booking" class="btn btn-r" data-i="nav.book">Book a Private Tour</a>
+      <a href="#about"   class="btn btn-o" data-i="hero.meet">Meet Tony</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="stats">
+  <div class="wrap">
+    <div class="stats-g">
+      <div class="stat-box">
+        <span class="stat-n" data-count="7" data-sfx="">0</span>
+        <span class="stat-l" data-i="stat.pref">Prefectures</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-n" data-count="200" data-sfx="+">0</span>
+        <span class="stat-l" data-i="stat.tours">Tours Completed</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-n" data-count="5" data-sfx="">0</span>
+        <span class="stat-l" data-i="stat.langs">Languages</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-n" data-count="100" data-sfx="%">0</span>
+        <span class="stat-l" data-i="stat.priv">Private</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="alt">
+  <div class="wrap">
+    <span class="lbl" data-i="about.lbl">Your Guide</span>
+    <div class="about-g">
+      <div class="about-img rv">
+        <img src="tony-portrait.jpg" alt="Tony Hanma — Private Kansai Guide" loading="eager"/>
+      </div>
+      <div class="rv d1">
+        <h2 class="h2">Meet <span class="acc">Tony</span></h2>
+        <span class="red-bar"></span>
+        <div class="about-txt">
+          <p data-i="about.p1">I'm Tony — a private guide based in Osaka. I came to Japan drawn by its culture, its food, and its people — and I never left.</p>
+          <p data-i="about.p2">What I offer is not a packaged tour. It is access to the Japan I know personally — the backstreet izakayas not on Google Maps, the temple at 6am before the crowds arrive, the market vendor who becomes your favourite memory.</p>
+          <p data-i="about.p3">I speak English, Spanish and Arabic fluently, and I adapt to any pace or interest — whether you want to eat everything, photograph every corner, or simply walk and let the city breathe around you.</p>
+        </div>
+        <div class="lang-chips">
+          <span class="chip">🇬🇧 English</span>
+          <span class="chip">🇪🇸 Español</span>
+          <span class="chip">🇷🇺 Русский</span>
+          <span class="chip">🇨🇿 Čeština</span>
+          <span class="chip">🇸🇦 العربية</span>
+        </div>
+        <div class="about-btns">
+          <a href="#booking"       class="btn btn-r" data-i="nav.book">Book a Tour</a>
+          <a href="companions.html" class="btn btn-o" data-i="about.team">Meet All Guides</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOURS -->
+<section id="tours">
+  <div class="wrap">
+    <span class="lbl" data-i="tours.lbl">Experiences</span>
+    <h2 class="h2 rv" data-i="tours.h2">Choose Your <span class="acc">Journey</span></h2>
+    <p class="sub rv d1" data-i="tours.sub">Every tour is 100% private and shaped around your group, pace, and interests.</p>
+    <div class="tours-g">
+
+      <div class="tour-card rv d1">
+        <div class="tour-img" style="background-image:url('img/osaka-dotonbori-neon.jpg')"></div>
+        <div class="tour-body">
+          <span class="tour-tag" data-i="tours.city.tag">City Experience</span>
+          <h3 class="acc" data-i="tours.city.h3">Osaka &amp; Kyoto</h3>
+          <p data-i="tours.city.p">Food markets, ancient temples, neon streets and hidden alleys — the full spectrum of urban Japan.</p>
+          <a href="routes.html" class="btn btn-r">
+            <span data-i="tours.cta">Explore</span>
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="tour-card rv d2">
+        <div class="tour-img" style="background-image:url('img/koyasan-okunoin.jpg')"></div>
+        <div class="tour-body">
+          <span class="tour-tag" data-i="tours.hike.tag">Mountain &amp; Nature</span>
+          <h3 class="acc" data-i="tours.hike.h3">Trails &amp; Peaks</h3>
+          <p data-i="tours.hike.p">Kōyasan pilgrimages, mountain shrines and forest paths few tourists ever reach.</p>
+          <a href="hiking.html" class="btn btn-r">
+            <span data-i="tours.cta">Explore</span>
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="tour-card rv d3">
+        <div class="tour-img" style="background-image:url('img/guide-tony-trail.jpg');background-position:center 20%"></div>
+        <div class="tour-body">
+          <span class="tour-tag" data-i="tours.team.tag">Multi-Language</span>
+          <h3 class="acc" data-i="tours.team.h3">Meet the Team</h3>
+          <p data-i="tours.team.p">Tony, Johnny and Larion — three guides covering EN, ES, AR, RU, CS and JP.</p>
+          <a href="companions.html" class="btn btn-r">
+            <span data-i="tours.team.cta">Meet Guides</span>
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="alt">
+  <div class="wrap">
+    <span class="lbl" data-i="price.lbl">Investment</span>
+    <h2 class="h2 rv" data-i="price.h2">Simple <span class="acc">Pricing</span></h2>
+    <p class="sub rv d1" data-i="price.sub">All prices are per group — not per person. Includes a private guide for the full duration.</p>
+    <div class="price-g">
+
+      <div class="price-card rv d1">
+        <span class="price-tier" data-i="price.t1">Half Day</span>
+        <div class="price-name" data-i="price.n1">Essential</div>
+        <div class="price-amt">¥50,000</div>
+        <div class="price-per" data-i="price.per">per group · up to 5 people</div>
+        <ul class="price-feats">
+          <li data-i="pf.district">One district or neighbourhood</li>
+          <li data-i="pf.meet">Hotel meeting point</li>
+          <li data-i="pf.lunch">Lunch recommendation</li>
+          <li data-i="pf.guide">Fully private guide</li>
+        </ul>
+        <a href="#booking" class="btn btn-o" data-i="price.cta">Book This Plan</a>
+      </div>
+
+      <div class="price-card hot rv d2">
+        <span class="hot-badge" data-i="price.pop">Most Popular</span>
+        <span class="price-tier" data-i="price.t2">Full Day</span>
+        <div class="price-name" data-i="price.n2">Signature</div>
+        <div class="price-amt">¥80,000</div>
+        <div class="price-per" data-i="price.per">per group · up to 5 people</div>
+        <ul class="price-feats">
+          <li data-i="pf.fullcity">One full city — complete experience</li>
+          <li data-i="pf.transfer">Hotel pickup &amp; drop-off</li>
+          <li data-i="pf.lunch-book">Lunch recommendation &amp; booking</li>
+          <li data-i="pf.custom">Custom itinerary</li>
+          <li data-i="pf.guide">Fully private guide</li>
+          <li data-i="pf.support">24h WhatsApp support</li>
+        </ul>
+        <a href="#booking" class="btn btn-r" data-i="price.cta">Book This Plan</a>
+      </div>
+
+      <div class="price-card rv d3">
+        <span class="price-tier" data-i="price.t3">Multi-Day</span>
+        <div class="price-name" data-i="price.n3">Premium</div>
+        <div class="price-amt">¥200,000</div>
+        <div class="price-per" data-i="price.per3">per group · 2–4 days</div>
+        <ul class="price-feats">
+          <li data-i="pf.multi">Multiple cities across Kansai</li>
+          <li data-i="pf.logistics">Full logistics managed</li>
+          <li data-i="pf.hotel">Hotel recommendations</li>
+          <li data-i="pf.transport">Transport booking assistance</li>
+          <li data-i="pf.vip">VIP restaurant bookings</li>
+        </ul>
+        <a href="#booking" class="btn btn-o" data-i="price.cta">Book This Plan</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="wrap">
+    <span class="lbl" data-i="test.lbl">Reviews</span>
+    <h2 class="h2 rv" data-i="test.h2">What Guests <span class="acc">Say</span></h2>
+    <div class="test-g">
+      <div class="test-card rv d1">
+        <div class="stars">★★★★★</div>
+        <p class="test-q">"Tony showed us an Osaka that doesn't exist in any guidebook. Three days later we are still talking about the ramen spot at 7am in Shinsekai."</p>
+        <div class="test-auth">
+          <span class="test-flag">🇪🇸</span>
+          <div><div class="test-name">María &amp; Carlos</div><div class="test-loc">Madrid, Spain</div></div>
+        </div>
+      </div>
+      <div class="test-card rv d2">
+        <div class="stars">★★★★★</div>
+        <p class="test-q">"We had a toddler and Tony adapted every single minute of the day. Kyoto felt magical, not exhausting. Worth every yen."</p>
+        <div class="test-auth">
+          <span class="test-flag">🇬🇧</span>
+          <div><div class="test-name">James &amp; family</div><div class="test-loc">London, UK</div></div>
+        </div>
+      </div>
+      <div class="test-card rv d3">
+        <div class="stars">★★★★★</div>
+        <p class="test-q">"Тони говорит по-русски и знает Кансай как свой карман. Лучший способ увидеть Японию — это с ним."</p>
+        <div class="test-auth">
+          <span class="test-flag">🇷🇺</span>
+          <div><div class="test-name">Анна К.</div><div class="test-loc">Москва</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="alt">
+  <div class="wrap">
+    <span class="lbl" data-i="faq.lbl">Questions</span>
+    <h2 class="h2 rv" data-i="faq.h2">Frequently <span class="acc">Asked</span></h2>
+    <div class="faq-list">
+      <div class="faq-item rv d1">
+        <button class="faq-q"><span data-i="faq.q1">Do you offer group tours?</span><span class="faq-icon">+</span></button>
+        <div class="faq-ans"><p data-i="faq.a1">No — all tours are 100% private. You will never share your guide with strangers.</p></div>
+      </div>
+      <div class="faq-item rv d2">
+        <button class="faq-q"><span data-i="faq.q2">How far in advance should I book?</span><span class="faq-icon">+</span></button>
+        <div class="faq-ans"><p data-i="faq.a2">2–4 weeks ahead is ideal. Last-minute requests are welcome — just message Tony on WhatsApp.</p></div>
+      </div>
+      <div class="faq-item rv d3">
+        <button class="faq-q"><span data-i="faq.q3">What is the cancellation policy?</span><span class="faq-icon">+</span></button>
+        <div class="faq-ans"><p data-i="faq.a3">Free cancellation up to 48 hours before the tour. No questions asked.</p></div>
+      </div>
+      <div class="faq-item rv d1">
+        <button class="faq-q"><span data-i="faq.q4">Do you drive between cities?</span><span class="faq-icon">+</span></button>
+        <div class="faq-ans"><p data-i="faq.a4">All travel is by train or on foot — no private car. Japan's rail network is fast, comfortable, and part of the experience.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section id="booking">
+  <div class="wrap">
+    <span class="lbl" data-i="book.lbl">Reservations</span>
+    <h2 class="h2 rv" data-i="book.h2">Book Your <span class="acc">Tour</span></h2>
+    <div style="margin-bottom:2.5rem;text-align:center">
+      <a href="booking.html" style="display:inline-flex;align-items:center;gap:.6rem;padding:.9rem 2.4rem;background:linear-gradient(135deg,#E53030,#FF6B35);color:#fff;font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border-radius:999px;text-decoration:none;transition:all .22s" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 32px rgba(229,48,48,.42)'" onmouseout="this.style.transform='none';this.style.boxShadow='none'">
+        <span>📅</span><span data-i="book.cal">Check Availability &amp; Book</span>
+      </a>
+      <p style="margin-top:.9rem;font-size:.8rem;color:rgba(235,232,224,.4)" data-i="book.cal.sub">Pick a date, choose your route — WhatsApp message sent automatically</p>
+    </div>
+    <div class="book-g">
+
+      <div class="rv d1">
+        <div class="wa-card">
+          <h3 data-i="book.wa.h3">Message Tony Directly</h3>
+          <p data-i="book.wa.p">The fastest way to book. Tony typically replies within a few hours. Choose your language:</p>
+          <div class="wa-btns">
+            <a class="wa-btn" href="https://wa.me/34634193106?text=Hi%20Tony!%20I'd%20like%20to%20know%20more%20about%20your%20private%20tours%20in%20Kansai." target="_blank" rel="noopener">
+              <span class="wa-btn-flag">🇬🇧</span><span class="wa-btn-txt">English</span><span class="wa-btn-arr">→</span>
+            </a>
+            <a class="wa-btn" href="https://wa.me/34634193106?text=%C2%A1Hola%20Tony!%20Me%20gustar%C3%ADa%20saber%20m%C3%A1s%20sobre%20tus%20tours%20privados%20en%20Kansai." target="_blank" rel="noopener">
+              <span class="wa-btn-flag">🇪🇸</span><span class="wa-btn-txt">Español</span><span class="wa-btn-arr">→</span>
+            </a>
+            <a class="wa-btn" href="https://wa.me/34634193106?text=%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82%2C%20%D0%A2%D0%BE%D0%BD%D0%B8!%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%B5%20%D0%BE%20%D0%B2%D0%B0%D1%88%D0%B8%D1%85%20%D1%82%D1%83%D1%80%D0%B0%D1%85." target="_blank" rel="noopener">
+              <span class="wa-btn-flag">🇷🇺</span><span class="wa-btn-txt">Русский</span><span class="wa-btn-arr">→</span>
+            </a>
+            <a class="wa-btn" href="https://wa.me/34634193106?text=Ahoj%20Tony!%20R%C3%A1d%20bych%20se%20dozv%C4%9Bd%C4%9Bl%20v%C3%ADce%20o%20va%C5%A1ich%20soukrom%C3%BDch%20v%C3%BDletech." target="_blank" rel="noopener">
+              <span class="wa-btn-flag">🇨🇿</span><span class="wa-btn-txt">Čeština</span><span class="wa-btn-arr">→</span>
+            </a>
+            <a class="wa-btn" href="https://wa.me/34634193106?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%AA%D9%88%D9%86%D9%8A!%20%D8%A3%D9%88%D8%AF%20%D9%85%D8%B9%D8%B1%D9%81%D8%A9%20%D8%A7%D9%84%D9%85%D8%B2%D9%8A%D8%AF%20%D8%B9%D9%86%20%D8%AC%D9%88%D9%84%D8%A7%D8%AA%D9%83." target="_blank" rel="noopener">
+              <span class="wa-btn-flag">🇸🇦</span><span class="wa-btn-txt">العربية</span><span class="wa-btn-arr">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="rv d2">
+        <h3 class="form-title" data-i="book.form.h3">Send a Message</h3>
+        <form class="cform" id="cform">
+          <div><label data-i="form.name">Your name</label><input type="text" name="name" required/></div>
+          <div><label data-i="form.email">Email address</label><input type="email" name="email" required/></div>
+          <div><label data-i="form.dates">Travel dates</label><input type="text" name="dates"/></div>
+          <div><label data-i="form.msg">Message</label><textarea name="message"></textarea></div>
+          <button type="submit" class="btn btn-r" style="justify-content:center;width:100%">
+            <span data-i="form.send">Send Message</span>
+          </button>
+        </form>
+        <div id="form-ok" data-i="form.ok">✓ Message sent! Tony will reply within 24 h.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-in">
+    <span class="foot-logo">Tony Hanma · 日本</span>
+    <div class="foot-links">
+      <a href="hiking.html"     data-i="foot.hiking">Hiking Tours</a>
+      <a href="companions.html" data-i="foot.guides">Our Guides</a>
+      <a href="practical.html"  data-i="foot.practical">Practical Info</a>
+      <a href="privacy.html"    data-i="foot.privacy">Privacy</a>
+      <a href="versions.html"   data-i="foot.updates" style="color:var(--red);border:1px solid rgba(229,48,48,.35);border-radius:999px;padding:.18rem .72rem">Updates</a>
+    </div>
+    <p class="foot-copy">© 2026 Tony Hanma · Private Kansai Guide · <a href="https://wa.me/34634193106" style="color:inherit;text-decoration:none">+34 634 19 31 06</a> · <a href="versions.html" style="color:rgba(235,232,224,.13);text-decoration:none;font-size:.52rem;letter-spacing:.05em" title="Historial">v19</a></p>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/34634193106" target="_blank" rel="noopener noreferrer" class="wa-float" id="wa-float" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zm-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884zm8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <span class="wa-dot on" id="wa-dot"></span>
+  <span class="wa-tip" id="wa-tip">Chat with Tony</span>
+</a>
+
+<!-- COOKIE -->
+<div class="cookie" id="cookie">
+  <p data-i="cookie.msg">We use cookies to improve your experience. <a href="privacy.html" data-i="cookie.link">Learn more</a>.</p>
+  <div class="cookie-btns">
+    <button class="ck-y" id="ck-y" data-i="cookie.ok">Accept</button>
+    <button class="ck-n" id="ck-n" data-i="cookie.no">Decline</button>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════
+// TRANSLATIONS  (key: data-i attribute value)
+// ══════════════════════════════════════════════
+var T = {
+en:{
+  'nav.about':'About','nav.tours':'Tours','nav.pricing':'Pricing','nav.faq':'FAQ','nav.book':'Book Now',
+  'hero.eye':'Private Guide · Kansai Region · Japan','hero.h1':"Japan's True Soul",'hero.meet':'Meet Tony',
+  'hero.sub':"Beyond the guidebooks — an intimate journey through Osaka, Kyoto, Nara and the hidden corners of Kansai, led by someone who lives it.",
+  'about.lbl':'Your Guide','about.team':'Meet All Guides',
+  'about.p1':"I'm Tony — a private guide based in Osaka. I came to Japan drawn by its culture, its food, and its people — and I never left.",
+  'about.p2':"What I offer is not a packaged tour. It is access to the Japan I know personally — the backstreet izakayas not on Google Maps, the temple at 6am before the crowds arrive, the market vendor who becomes your favourite memory.",
+  'about.p3':"I speak English, Spanish and Arabic fluently, and I adapt to any pace or interest — whether you want to eat everything, photograph every corner, or simply walk and let the city breathe around you.",
+  'stat.pref':'Prefectures','stat.tours':'Tours Completed','stat.langs':'Languages','stat.priv':'Private',
+  'tours.lbl':'Experiences','tours.h2':'Choose Your Journey','tours.sub':'Every tour is 100% private and shaped around your group, pace, and interests.',
+  'tours.city.tag':'City Experience','tours.city.h3':'Osaka &amp; Kyoto','tours.city.p':'Food markets, ancient temples, neon streets and hidden alleys — the full spectrum of urban Japan.',
+  'tours.hike.tag':'Mountain &amp; Nature','tours.hike.h3':'Trails &amp; Peaks','tours.hike.p':'Kōyasan pilgrimages, mountain shrines and forest paths few tourists ever reach.',
+  'tours.team.tag':'Multi-Language','tours.team.h3':'Meet the Team','tours.team.p':'Tony, Johnny and Larion — three guides covering EN, ES, AR, RU, CS and JP.',
+  'tours.cta':'Explore','tours.team.cta':'Meet Guides',
+  'price.lbl':'Investment','price.h2':'Simple Pricing','price.sub':'All prices are per group — not per person. Includes a private guide for the full duration.',
+  'price.t1':'Half Day','price.n1':'Essential','price.t2':'Full Day','price.n2':'Signature','price.t3':'Multi-Day','price.n3':'Premium',
+  'price.per':'per group · up to 5 people','price.per3':'per group · 2–4 days','price.pop':'Most Popular','price.cta':'Book This Plan',
+  'pf.district':'One district or neighbourhood','pf.meet':'Hotel meeting point','pf.lunch':'Lunch recommendation',
+  'pf.fullcity':'One full city — complete experience','pf.transfer':'Hotel pickup &amp; drop-off',
+  'pf.lunch-book':'Lunch recommendation &amp; booking','pf.custom':'Custom itinerary','pf.guide':'Fully private guide','pf.support':'24h WhatsApp support',
+  'pf.multi':'Multiple cities across Kansai','pf.logistics':'Full logistics managed','pf.hotel':'Hotel recommendations','pf.transport':'Transport booking assistance','pf.vip':'VIP restaurant bookings',
+  'test.lbl':'Reviews','test.h2':'What Guests Say',
+  'faq.lbl':'Questions','faq.h2':'Frequently Asked',
+  'faq.q1':'Do you offer group tours?','faq.a1':'No — all tours are 100% private. You will never share your guide with strangers.',
+  'faq.q2':'How far in advance should I book?','faq.a2':'2–4 weeks ahead is ideal. Last-minute requests are welcome — just message Tony on WhatsApp.',
+  'faq.q3':'What is the cancellation policy?','faq.a3':'Free cancellation up to 48 hours before the tour. No questions asked.',
+  'faq.q4':'Do you drive between cities?','faq.a4':"All travel is by train or on foot — no private car. Japan's rail network is fast, comfortable, and part of the experience.",
+  'book.lbl':'Reservations','book.h2':'Book Your Tour',
+  'book.cal':'Check Availability &amp; Book','book.cal.sub':'Pick a date, choose your route — WhatsApp message sent automatically',
+  'book.wa.h3':'Message Tony Directly','book.wa.p':'The fastest way to book. Tony typically replies within a few hours. Choose your language:',
+  'book.form.h3':'Send a Message',
+  'form.name':'Your name','form.email':'Email address','form.dates':'Travel dates','form.msg':'Message','form.send':'Send Message',
+  'form.ok':'✓ Message sent! Tony will reply within 24 h.','form.err':'Something went wrong — please try WhatsApp instead.',
+  'foot.hiking':'Hiking Tours','foot.guides':'Our Guides','foot.practical':'Practical Info','foot.privacy':'Privacy','foot.updates':'Updates',
+  'cookie.msg':'We use cookies to improve your experience.','cookie.link':'Learn more','cookie.ok':'Accept','cookie.no':'Decline',
+  'wa.on':'Tony is available now','wa.off':'Replies within 24 h'
+},
+es:{
+  'nav.about':'Sobre Mí','nav.tours':'Tours','nav.pricing':'Precios','nav.faq':'FAQ','nav.book':'Reservar',
+  'hero.eye':'Guía Privado · Región de Kansai · Japón','hero.h1':'El Alma de Japón','hero.meet':'Conoce a Tony',
+  'hero.sub':'Más allá de las guías — un viaje íntimo por Osaka, Kioto, Nara y los rincones ocultos de Kansai, guiado por alguien que vive aquí.',
+  'about.lbl':'Tu Guía','about.team':'Conoce a los Guías',
+  'about.p1':'Soy Tony — guía privado en Osaka. Vine a Japón atraído por su cultura, su comida y su gente — y nunca me fui.',
+  'about.p2':'Lo que ofrezco no es un tour de paquete. Es acceso al Japón que conozco personalmente — los izakayas de callejuela que no aparecen en Google Maps, el templo a las 6am antes de las multitudes, el vendedor del mercado que se convierte en tu mejor recuerdo.',
+  'about.p3':'Hablo inglés, español y árabe con fluidez, y me adapto a cualquier ritmo o interés — tanto si quieres probarlo todo, fotografiar cada rincón, o simplemente caminar y dejar que la ciudad respire a tu alrededor.',
+  'stat.pref':'Prefecturas','stat.tours':'Tours Realizados','stat.langs':'Idiomas','stat.priv':'Privado',
+  'tours.lbl':'Experiencias','tours.h2':'Elige tu Aventura','tours.sub':'Cada tour es 100% privado y adaptado a tu grupo, ritmo e intereses.',
+  'tours.city.tag':'Experiencia Urbana','tours.city.h3':'Osaka y Kioto','tours.city.p':'Mercados, templos milenarios, calles de neón y callejuelas ocultas — el espectro completo del Japón urbano.',
+  'tours.hike.tag':'Montaña y Naturaleza','tours.hike.h3':'Rutas y Cimas','tours.hike.p':'Peregrinaciones a Kōyasan, santuarios de montaña y senderos boscosos que pocos turistas alcanzan.',
+  'tours.team.tag':'Multilingüe','tours.team.h3':'El Equipo','tours.team.p':'Tony, Johnny y Larion — tres guías en EN, ES, AR, RU, CS y JP.',
+  'tours.cta':'Explorar','tours.team.cta':'Conocer Guías',
+  'price.lbl':'Inversión','price.h2':'Precios Claros','price.sub':'Precios por grupo — no por persona. Incluye guía privado durante toda la duración.',
+  'price.t1':'Medio Día','price.n1':'Esencial','price.t2':'Día Completo','price.n2':'Signature','price.t3':'Varios Días','price.n3':'Premium',
+  'price.per':'por grupo · hasta 5 personas','price.per3':'por grupo · 2–4 días','price.pop':'Más Popular','price.cta':'Reservar Este Plan',
+  'pf.district':'Un barrio o distrito','pf.meet':'Punto de encuentro en hotel','pf.lunch':'Recomendación de almuerzo',
+  'pf.fullcity':'Una ciudad completa — experiencia total','pf.transfer':'Recogida y regreso al hotel',
+  'pf.lunch-book':'Recomendación y reserva de almuerzo','pf.custom':'Itinerario personalizado','pf.guide':'Guía totalmente privado','pf.support':'Soporte WhatsApp 24h',
+  'pf.multi':'Varias ciudades de Kansai','pf.logistics':'Logística completa gestionada','pf.hotel':'Recomendaciones de alojamiento','pf.transport':'Asistencia para transporte','pf.vip':'Reservas en restaurantes VIP',
+  'test.lbl':'Reseñas','test.h2':'Lo que Dicen los Clientes',
+  'faq.lbl':'Preguntas','faq.h2':'Preguntas Frecuentes',
+  'faq.q1':'¿Ofrecéis tours en grupo?','faq.a1':'No — todos los tours son 100% privados. Nunca compartirás guía con desconocidos.',
+  'faq.q2':'¿Con cuánta antelación debo reservar?','faq.a2':'2–4 semanas de antelación es ideal. Las solicitudes de última hora son bienvenidas — solo envía un WhatsApp.',
+  'faq.q3':'¿Cuál es la política de cancelación?','faq.a3':'Cancelación gratuita hasta 48 horas antes del tour. Sin preguntas.',
+  'faq.q4':'¿Conducís entre ciudades?','faq.a4':'Todo el transporte es en tren o a pie — sin coche privado. La red ferroviaria de Japón es rápida, cómoda y parte de la experiencia.',
+  'book.lbl':'Reservas','book.h2':'Reserva tu Tour',
+  'book.cal':'Verificar Disponibilidad y Reservar','book.cal.sub':'Elige una fecha y ruta — el mensaje de WhatsApp se envía automáticamente',
+  'book.wa.h3':'Escríbele a Tony Directamente','book.wa.p':'La forma más rápida de reservar. Tony normalmente responde en pocas horas. Elige tu idioma:',
+  'book.form.h3':'Enviar un Mensaje',
+  'form.name':'Tu nombre','form.email':'Correo electrónico','form.dates':'Fechas de viaje','form.msg':'Mensaje','form.send':'Enviar Mensaje',
+  'form.ok':'✓ ¡Mensaje enviado! Tony responderá en menos de 24 h.','form.err':'Algo salió mal — intenta por WhatsApp.',
+  'foot.hiking':'Tours de Senderismo','foot.guides':'Nuestros Guías','foot.practical':'Info Práctica','foot.privacy':'Privacidad','foot.updates':'Actualizaciones',
+  'cookie.msg':'Usamos cookies para mejorar tu experiencia.','cookie.link':'Más info','cookie.ok':'Aceptar','cookie.no':'Rechazar',
+  'wa.on':'Tony está disponible','wa.off':'Responde en menos de 24 h'
+},
+ru:{
+  'nav.about':'О гиде','nav.tours':'Туры','nav.pricing':'Цены','nav.faq':'FAQ','nav.book':'Забронировать',
+  'hero.eye':'Частный гид · Регион Кансай · Япония','hero.h1':'Душа Японии','hero.meet':'Познакомиться с Тони',
+  'hero.sub':'За пределами путеводителей — личное путешествие по Осаке, Киото, Нара и скрытым уголкам Кансай с гидом, который здесь живёт.',
+  'about.lbl':'Ваш гид','about.team':'Все гиды',
+  'about.p1':'Я Тони — частный гид в Осаке. Я приехал в Японию, привлечённый её культурой, едой и людьми — и остался навсегда.',
+  'about.p2':'То, что я предлагаю — не туристический пакет. Это доступ к той Японии, которую я знаю лично — закусочные в переулках без Google Maps, храм в 6 утра до туристов, продавец на рынке, который станет вашим лучшим воспоминанием.',
+  'about.p3':'Я свободно говорю по-английски, по-испански и по-арабски, и адаптируюсь к любому темпу — хотите ли вы попробовать всё, сфотографировать каждый угол, или просто гулять.',
+  'stat.pref':'Префектур','stat.tours':'Завершённых туров','stat.langs':'Языков','stat.priv':'Приватно',
+  'tours.lbl':'Экспириенс','tours.h2':'Выберите Путешествие','tours.sub':'Каждый тур на 100% приватный и адаптирован под вашу группу.',
+  'tours.city.tag':'Городской экспириенс','tours.city.h3':'Осака и Киото','tours.city.p':'Рынки, древние храмы, неоновые улицы и скрытые переулки — весь спектр городской Японии.',
+  'tours.hike.tag':'Горы и природа','tours.hike.h3':'Маршруты и вершины','tours.hike.p':'Паломничество в Коясан, горные святилища и лесные тропы, которые видят немногие туристы.',
+  'tours.team.tag':'Многоязычный','tours.team.h3':'Команда','tours.team.p':'Тони, Джонни и Ларион — три гида: EN, ES, AR, RU, CS и JP.',
+  'tours.cta':'Смотреть','tours.team.cta':'Познакомиться',
+  'price.lbl':'Стоимость','price.h2':'Простые Цены','price.sub':'Цены за группу — не за человека. Включает частного гида на всё время.',
+  'price.t1':'Полдня','price.n1':'Базовый','price.t2':'Полный день','price.n2':'Signature','price.t3':'Несколько дней','price.n3':'Премиум',
+  'price.per':'на группу · до 5 человек','price.per3':'на группу · 2–4 дня','price.pop':'Самый популярный','price.cta':'Забронировать',
+  'pf.district':'Один район','pf.meet':'Встреча у отеля','pf.lunch':'Рекомендация обеда',
+  'pf.fullcity':'Один город — полноценный опыт','pf.transfer':'Трансфер от/до отеля',
+  'pf.lunch-book':'Рекомендация и бронь обеда','pf.custom':'Индивидуальный маршрут','pf.guide':'Полностью частный гид','pf.support':'Поддержка WhatsApp 24ч',
+  'pf.multi':'Несколько городов Кансая','pf.logistics':'Полная логистика','pf.hotel':'Рекомендации по жилью','pf.transport':'Помощь с транспортом','pf.vip':'VIP-бронирование ресторанов',
+  'test.lbl':'Отзывы','test.h2':'Что говорят гости',
+  'faq.lbl':'Вопросы','faq.h2':'Частые Вопросы',
+  'faq.q1':'Есть ли групповые туры?','faq.a1':'Нет — все туры на 100% приватные. Вы никогда не будете делить гида с незнакомцами.',
+  'faq.q2':'За сколько заранее нужно бронировать?','faq.a2':'Идеально — за 2–4 недели. Запросы в последний момент тоже приветствуются — просто напишите в WhatsApp.',
+  'faq.q3':'Какова политика отмены?','faq.a3':'Бесплатная отмена за 48 часов до тура. Без вопросов.',
+  'faq.q4':'Вы ездите на машине между городами?','faq.a4':'Всё передвижение — на поезде или пешком. Японская сеть железных дорог быстрая, удобная и сама по себе часть опыта.',
+  'book.lbl':'Бронирование','book.h2':'Забронируйте Тур',
+  'book.cal':'Проверить Доступность и Забронировать','book.cal.sub':'Выберите дату и маршрут — сообщение WhatsApp отправится автоматически',
+  'book.wa.h3':'Написать Тони напрямую','book.wa.p':'Самый быстрый способ забронировать. Тони обычно отвечает в течение нескольких часов. Выберите язык:',
+  'book.form.h3':'Написать сообщение',
+  'form.name':'Ваше имя','form.email':'Email','form.dates':'Даты поездки','form.msg':'Сообщение','form.send':'Отправить',
+  'form.ok':'✓ Сообщение отправлено! Тони ответит в течение 24 ч.','form.err':'Что-то пошло не так — попробуйте WhatsApp.',
+  'foot.hiking':'Пешие туры','foot.guides':'Наши гиды','foot.practical':'Практическая информация','foot.privacy':'Конфиденциальность','foot.updates':'Обновления',
+  'cookie.msg':'Мы используем cookies для улучшения сайта.','cookie.link':'Подробнее','cookie.ok':'Принять','cookie.no':'Отклонить',
+  'wa.on':'Тони доступен сейчас','wa.off':'Ответит в течение 24 ч'
+},
+cs:{
+  'nav.about':'O průvodci','nav.tours':'Výlety','nav.pricing':'Ceny','nav.faq':'FAQ','nav.book':'Rezervovat',
+  'hero.eye':'Soukromý průvodce · Region Kansai · Japonsko','hero.h1':'Duše Japonska','hero.meet':'Poznat Tonyho',
+  'hero.sub':'Za hranicemi průvodců — intimní cesta přes Osaku, Kjóto, Naru a skryté kouty Kansai s průvodcem, který tu žije.',
+  'about.lbl':'Váš průvodce','about.team':'Všichni průvodci',
+  'about.p1':'Jsem Tony — soukromý průvodce v Ósace. Přišel jsem do Japonska přitahován jeho kulturou, jídlem a lidmi — a nikdy neodešel.',
+  'about.p2':'Nenabízím balíkový zájezd. Nabízím přístup k Japonsku, které znám osobně — izakaya v uličkách bez Google Map, chrám v 6 ráno před davy, prodavač na trhu, který se stane vaším nejlepším vzpomínkou.',
+  'about.p3':'Mluvím plynně anglicky, španělsky a arabsky a přizpůsobuji se jakémukoli tempu — ať chcete ochutnat vše, fotografovat každý kout nebo jen procházet.',
+  'stat.pref':'Prefektur','stat.tours':'Dokončených výletů','stat.langs':'Jazyků','stat.priv':'Soukromé',
+  'tours.lbl':'Zážitky','tours.h2':'Vyberte svůj Výlet','tours.sub':'Každý výlet je 100% soukromý a přizpůsobený vaší skupině.',
+  'tours.city.tag':'Městský zážitek','tours.city.h3':'Ósaka a Kjóto','tours.city.p':'Trhy, starověké chrámy, neonové ulice — celé spektrum japonského města.',
+  'tours.hike.tag':'Hory a příroda','tours.hike.h3':'Stezky a vrcholy','tours.hike.p':'Poutě na Kóyasan, horské svatyně a lesní cesty, kam turisté málokdy dojdou.',
+  'tours.team.tag':'Vícejazyčný','tours.team.h3':'Náš tým','tours.team.p':'Tony, Johnny a Larion — tři průvodci: EN, ES, AR, RU, CS a JP.',
+  'tours.cta':'Zobrazit','tours.team.cta':'Poznat průvodce',
+  'price.lbl':'Investice','price.h2':'Přehledné Ceny','price.sub':'Ceny jsou za skupinu — ne za osobu. Zahrnuje soukromého průvodce.',
+  'price.t1':'Půlden','price.n1':'Základní','price.t2':'Celý den','price.n2':'Signature','price.t3':'Více dní','price.n3':'Prémiový',
+  'price.per':'za skupinu · až 5 osob','price.per3':'za skupinu · 2–4 dny','price.pop':'Nejoblíbenější','price.cta':'Rezervovat tento plán',
+  'pf.district':'Jedna čtvrť nebo oblast','pf.meet':'Setkání u hotelu','pf.lunch':'Doporučení oběda',
+  'pf.fullcity':'Celé město — úplný zážitek','pf.transfer':'Odvoz od/do hotelu',
+  'pf.lunch-book':'Doporučení a rezervace oběda','pf.custom':'Vlastní itinerář','pf.guide':'Plně soukromý průvodce','pf.support':'Podpora WhatsApp 24h',
+  'pf.multi':'Více měst v Kansai','pf.logistics':'Kompletní logistika','pf.hotel':'Doporučení ubytování','pf.transport':'Pomoc s dopravou','pf.vip':'Rezervace VIP restaurací',
+  'test.lbl':'Recenze','test.h2':'Co říkají hosté',
+  'faq.lbl':'Dotazy','faq.h2':'Časté Otázky',
+  'faq.q1':'Nabízíte skupinové výlety?','faq.a1':'Ne — všechny výlety jsou 100% soukromé. Průvodce nikdy nesdílíte s cizími.',
+  'faq.q2':'Jak daleko dopředu rezervovat?','faq.a2':'Ideálně 2–4 týdny. Požadavky na poslední chvíli jsou vítány — stačí zpráva na WhatsApp.',
+  'faq.q3':'Jaká je politika stornování?','faq.a3':'Bezplatné storno 48 hodin před výletem. Bez otázek.',
+  'faq.q4':'Jezdíte autem mezi městy?','faq.a4':'Veškerá přeprava je vlakem nebo pěšky. Japonská železniční síť je rychlá a pohodlná.',
+  'book.lbl':'Rezervace','book.h2':'Rezervujte svůj Výlet',
+  'book.cal':'Zkontrolovat Dostupnost a Rezervovat','book.cal.sub':'Vyberte datum a trasu — zpráva WhatsApp se odešle automaticky',
+  'book.wa.h3':'Napište Tonymu přímo','book.wa.p':'Nejrychlejší způsob rezervace. Tony obvykle odpoví do několika hodin. Vyberte jazyk:',
+  'book.form.h3':'Napsat zprávu',
+  'form.name':'Vaše jméno','form.email':'E-mail','form.dates':'Termín cesty','form.msg':'Zpráva','form.send':'Odeslat zprávu',
+  'form.ok':'✓ Zpráva odeslána! Tony odpoví do 24 h.','form.err':'Něco se pokazilo — zkuste prosím WhatsApp.',
+  'foot.hiking':'Turistické výlety','foot.guides':'Naši průvodci','foot.practical':'Praktické informace','foot.privacy':'Soukromí','foot.updates':'Aktualizace',
+  'cookie.msg':'Používáme cookies pro zlepšení vašeho zážitku.','cookie.link':'Více informací','cookie.ok':'Přijmout','cookie.no':'Odmítnout',
+  'wa.on':'Tony je dostupný','wa.off':'Odpoví do 24 h'
+},
+ar:{
+  'nav.about':'عن المرشد','nav.tours':'جولات','nav.pricing':'الأسعار','nav.faq':'أسئلة','nav.book':'احجز الآن',
+  'hero.eye':'مرشد سياحي خاص · منطقة كانساي · اليابان','hero.h1':'روح اليابان','hero.meet':'تعرّف على توني',
+  'hero.sub':'ما وراء الأدلة السياحية — رحلة حميمة عبر أوساكا وكيوتو ونارا والزوايا الخفية لكانساي بقيادة من يعيش هناك.',
+  'about.lbl':'مرشدك','about.team':'جميع المرشدين',
+  'about.p1':'أنا توني — مرشد سياحي خاص في أوساكا. جئت إلى اليابان مفتوناً بثقافتها وطعامها وناسها — ولم أغادر قط.',
+  'about.p2':'ما أقدمه ليس جولة مُعبّأة. إنه وصول إلى اليابان التي أعرفها شخصياً — المطاعم الصغيرة في الأزقة غير الموجودة على خرائط غوغل، المعبد في السادسة صباحاً قبل الحشود.',
+  'about.p3':'أتحدث الإنجليزية والإسبانية والعربية بطلاقة، وأتكيّف مع أي وتيرة — سواء أردت تذوق كل شيء أو التصوير في كل زاوية أو مجرد المشي.',
+  'stat.pref':'محافظات','stat.tours':'جولات مكتملة','stat.langs':'لغات','stat.priv':'خاص',
+  'tours.lbl':'التجارب','tours.h2':'اختر مغامرتك','tours.sub':'كل جولة خاصة 100% ومصمّمة حول مجموعتك وإيقاعك.',
+  'tours.city.tag':'تجربة المدينة','tours.city.h3':'أوساكا وكيوتو','tours.city.p':'الأسواق والمعابد القديمة والشوارع المضيئة — الطيف الكامل لليابان الحضرية.',
+  'tours.hike.tag':'الجبال والطبيعة','tours.hike.h3':'المسارات والقمم','tours.hike.p':'حج كويسان والمزارات الجبلية ومسارات الغابات التي يصلها قلة من السياح.',
+  'tours.team.tag':'متعدد اللغات','tours.team.h3':'فريق المرشدين','tours.team.p':'توني وجوني وليريون — ثلاثة مرشدين بالعربية والإنجليزية والإسبانية والروسية والتشيكية واليابانية.',
+  'tours.cta':'استكشاف','tours.team.cta':'تعرّف على المرشدين',
+  'price.lbl':'الاستثمار','price.h2':'أسعار واضحة','price.sub':'الأسعار لكل مجموعة — لا للفرد. تشمل مرشداً خاصاً طوال المدة.',
+  'price.t1':'نصف يوم','price.n1':'أساسي','price.t2':'يوم كامل','price.n2':'مميّز','price.t3':'أيام متعددة','price.n3':'بريميوم',
+  'price.per':'للمجموعة · حتى 5 أشخاص','price.per3':'للمجموعة · 2–4 أيام','price.pop':'الأكثر طلباً','price.cta':'احجز هذه الخطة',
+  'pf.district':'حي أو منطقة واحدة','pf.meet':'نقطة لقاء في الفندق','pf.lunch':'توصية غداء',
+  'pf.fullcity':'مدينة كاملة — تجربة شاملة','pf.transfer':'توصيل من/إلى الفندق',
+  'pf.lunch-book':'توصية وحجز غداء','pf.custom':'مسار مخصص','pf.guide':'مرشد خاص بالكامل','pf.support':'دعم واتساب 24 ساعة',
+  'pf.multi':'مدن متعددة في كانساي','pf.logistics':'لوجستيات كاملة','pf.hotel':'توصيات إقامة','pf.transport':'مساعدة في حجز المواصلات','pf.vip':'حجوزات مطاعم VIP',
+  'test.lbl':'التقييمات','test.h2':'ماذا يقول الضيوف',
+  'faq.lbl':'أسئلة','faq.h2':'الأسئلة الشائعة',
+  'faq.q1':'هل تقدّمون جولات جماعية؟','faq.a1':'لا — جميع الجولات خاصة 100%. لن تشارك مرشدك مع غرباء أبداً.',
+  'faq.q2':'كم قبل الحجز يجب أن أحجز؟','faq.a2':'من 2 إلى 4 أسابيع مقدّماً مثالي. طلبات اللحظة الأخيرة مرحّب بها — فقط أرسل رسالة على واتساب.',
+  'faq.q3':'ما هي سياسة الإلغاء؟','faq.a3':'إلغاء مجاني حتى 48 ساعة قبل الجولة. بلا أسئلة.',
+  'faq.q4':'هل تقود سيارة بين المدن؟','faq.a4':'جميع التنقلات بالقطار أو سيراً على الأقدام. شبكة السكك الحديدية في اليابان سريعة ومريحة.',
+  'book.lbl':'الحجز','book.h2':'احجز جولتك',
+  'book.cal':'تحقق من التوفر واحجز','book.cal.sub':'اختر تاريخاً ومساراً — يُرسل رسالة واتساب تلقائياً',
+  'book.wa.h3':'تواصل مع توني مباشرة','book.wa.p':'أسرع طريقة للحجز. توني يرد عادةً خلال ساعات. اختر لغتك:',
+  'book.form.h3':'إرسال رسالة',
+  'form.name':'اسمك','form.email':'البريد الإلكتروني','form.dates':'تواريخ السفر','form.msg':'رسالتك','form.send':'إرسال',
+  'form.ok':'✓ تم إرسال رسالتك! سيرد توني خلال 24 ساعة.','form.err':'حدث خطأ — جرّب واتساب بدلاً من ذلك.',
+  'foot.hiking':'جولات التنزه','foot.guides':'مرشدونا','foot.practical':'معلومات عملية','foot.privacy':'الخصوصية','foot.updates':'التحديثات',
+  'cookie.msg':'نستخدم ملفات تعريف الارتباط لتحسين تجربتك.','cookie.link':'اعرف المزيد','cookie.ok':'قبول','cookie.no':'رفض',
+  'wa.on':'توني متاح الآن','wa.off':'يرد خلال 24 ساعة'
+}
+};
+
+// ══════════════════════════════════════════════
+// LANGUAGE CORE
+// ══════════════════════════════════════════════
+var lang = 'en';
+
+function detectLang() {
+  try { var s = localStorage.getItem('lang'); if (s && T[s]) return s; } catch(e) {}
+  var b = (navigator.language || '').toLowerCase();
+  if (b.startsWith('es')) return 'es';
+  if (b.startsWith('ru') || b.startsWith('uk')) return 'ru';
+  if (b.startsWith('cs') || b.startsWith('sk')) return 'cs';
+  if (b.startsWith('ar')) return 'ar';
+  return 'en';
+}
+
+function applyLang(l) {
+  if (!T[l]) l = 'en';
+  lang = l;
+  try { localStorage.setItem('lang', l); } catch(e) {}
+  document.documentElement.lang = l;
+  document.documentElement.dir = (l === 'ar') ? 'rtl' : 'ltr';
+  var t = T[l];
+  document.querySelectorAll('[data-i]').forEach(function(el) {
+    var v = t[el.getAttribute('data-i')];
+    if (v !== undefined) el.innerHTML = v;
+  });
+  document.querySelectorAll('[data-l]').forEach(function(btn) {
+    btn.classList.toggle('on', btn.getAttribute('data-l') === l);
+  });
+  updateWA();
+  typeHero();
+}
+
+// Wire up ALL language buttons (nav + mobile)
+document.querySelectorAll('[data-l]').forEach(function(btn) {
+  btn.addEventListener('click', function() { applyLang(btn.getAttribute('data-l')); });
+});
+
+// ══════════════════════════════════════════════
+// HAMBURGER
+// ══════════════════════════════════════════════
+var hamEl = document.getElementById('ham');
+var mobEl = document.getElementById('mob');
+
+function closeMob() {
+  hamEl.classList.remove('on');
+  mobEl.classList.remove('on');
+  document.body.style.overflow = '';
+}
+
+hamEl.addEventListener('click', function() {
+  var open = mobEl.classList.contains('on');
+  if (open) { closeMob(); }
+  else { hamEl.classList.add('on'); mobEl.classList.add('on'); document.body.style.overflow = 'hidden'; }
+});
+
+// ══════════════════════════════════════════════
+// SCROLL PROGRESS
+// ══════════════════════════════════════════════
+var progEl = document.getElementById('prog');
+window.addEventListener('scroll', function() {
+  var pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+  progEl.style.width = Math.min(pct, 100) + '%';
+}, {passive: true});
+
+// ══════════════════════════════════════════════
+// SCROLL REVEAL  (only static .rv elements)
+// ══════════════════════════════════════════════
+var ro = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); }
+  });
+}, {threshold: 0.12});
+document.querySelectorAll('.rv').forEach(function(el) { ro.observe(el); });
+
+// ══════════════════════════════════════════════
+// STAT COUNTERS
+// ══════════════════════════════════════════════
+function runCount(el) {
+  var target = parseInt(el.getAttribute('data-count'), 10);
+  var sfx    = el.getAttribute('data-sfx') || '';
+  var t0 = null;
+  function tick(ts) {
+    if (!t0) t0 = ts;
+    var p = Math.min((ts - t0) / 1600, 1);
+    var v = Math.round((1 - Math.pow(1 - p, 3)) * target);
+    el.textContent = v + (p < 1 ? '' : sfx);
+    if (p < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+var co = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) { runCount(e.target); co.unobserve(e.target); }
+  });
+}, {threshold: 0.5});
+document.querySelectorAll('[data-count]').forEach(function(el) { co.observe(el); });
+
+// ══════════════════════════════════════════════
+// TYPEWRITER HERO
+// ══════════════════════════════════════════════
+var heroP  = document.getElementById('hero-p');
+var twTmr  = null;
+function typeHero() {
+  if (twTmr) { clearTimeout(twTmr); twTmr = null; }
+  var txt = (T[lang] && T[lang]['hero.sub']) || T.en['hero.sub'];
+  heroP.textContent = '';
+  var i = 0;
+  function step() { if (i < txt.length) { heroP.textContent = txt.slice(0, ++i); twTmr = setTimeout(step, 20); } }
+  step();
+}
+
+// ══════════════════════════════════════════════
+// WHATSAPP FLOAT
+// ══════════════════════════════════════════════
+var waFloat = document.getElementById('wa-float');
+var waDot   = document.getElementById('wa-dot');
+var waTip   = document.getElementById('wa-tip');
+var WA_NUM  = '34634193106';
+var WA_MSGS = {
+  en: "Hi Tony! I'd like to know more about your private tours in Kansai.",
+  es: "¡Hola Tony! Me gustaría saber más sobre tus tours privados en Kansai.",
+  ru: "Привет, Тони! Хотел бы узнать больше о ваших частных турах в Кансай.",
+  cs: "Ahoj Tony! Rád bych se dozvěděl více o vašich soukromých výletech v Kansai.",
+  ar: "مرحباً توني! أود معرفة المزيد عن جولاتك الخاصة في كانساي."
+};
+function updateWA() {
+  var msg = WA_MSGS[lang] || WA_MSGS.en;
+  waFloat.href = 'https://wa.me/' + WA_NUM + '?text=' + encodeURIComponent(msg);
+  var jst  = new Date(new Date().toLocaleString('en-US', {timeZone: 'Asia/Tokyo'}));
+  var h    = jst.getHours();
+  var on   = h >= 9 && h < 21;
+  waDot.className = 'wa-dot ' + (on ? 'on' : 'off');
+  var t = T[lang] || T.en;
+  waTip.textContent = (on ? '🟢 ' : '🌙 ') + t[on ? 'wa.on' : 'wa.off'];
+}
+setInterval(updateWA, 60000);
+
+// ══════════════════════════════════════════════
+// FAQ ACCORDION
+// ══════════════════════════════════════════════
+document.querySelectorAll('.faq-q').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var item   = btn.closest('.faq-item');
+    var wasOn  = item.classList.contains('on');
+    document.querySelectorAll('.faq-item.on').forEach(function(i) { i.classList.remove('on'); });
+    if (!wasOn) item.classList.add('on');
+  });
+});
+
+// ══════════════════════════════════════════════
+// CONTACT FORM
+// ══════════════════════════════════════════════
+var cform   = document.getElementById('cform');
+var formOk  = document.getElementById('form-ok');
+if (cform) {
+  cform.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var btn     = cform.querySelector('[type="submit"]');
+    var spanEl  = btn.querySelector('[data-i]');
+    var origTxt = spanEl ? spanEl.textContent : '';
+    btn.disabled = true;
+    if (spanEl) spanEl.textContent = '...';
+    var ep = atob('aHR0cHM6Ly9mb3Jtc3VibWl0LmNvL2FqYXgvUHJpbmNlLms3M2tAcHJvdG9uLm1l');
+    fetch(ep, {method:'POST', body:new FormData(cform), headers:{Accept:'application/json'}})
+      .then(function(r) {
+        if (r.ok) {
+          cform.style.display = 'none';
+          formOk.style.display = 'block';
+        } else {
+          btn.disabled = false;
+          if (spanEl) spanEl.textContent = origTxt;
+          var t = T[lang] || T.en;
+          alert(t['form.err']);
+        }
+      })
+      .catch(function() {
+        btn.disabled = false;
+        if (spanEl) spanEl.textContent = origTxt;
+        window.open('https://wa.me/' + WA_NUM + '?text=' + encodeURIComponent(WA_MSGS[lang] || WA_MSGS.en), '_blank');
+      });
+  });
+}
+
+// ══════════════════════════════════════════════
+// COOKIE
+// ══════════════════════════════════════════════
+var cookieEl = document.getElementById('cookie');
+(function() {
+  var v; try { v = localStorage.getItem('ck'); } catch(e) {}
+  if (!v) setTimeout(function() { cookieEl.classList.add('show'); }, 1400);
+})();
+document.getElementById('ck-y').addEventListener('click', function() {
+  try { localStorage.setItem('ck','1'); } catch(e) {}
+  cookieEl.classList.remove('show');
+});
+document.getElementById('ck-n').addEventListener('click', function() {
+  try { localStorage.setItem('ck','0'); } catch(e) {}
+  cookieEl.classList.remove('show');
+});
+
+// ══════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════
+applyLang(detectLang());
+</script>
+</body>
+</html>
